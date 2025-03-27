@@ -1,5 +1,5 @@
-@import "tailwindcss" source("../../src");
-@import "./components/card.css" layer(component);
+@import "tailwindcss" source("../../../src/");
+@import "./card.css" layer(component);
 
 @theme {
 	--font-*: initial;

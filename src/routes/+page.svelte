@@ -1,5 +1,5 @@
 <script lang="ts">
-  import PhotoCard from "$lib/PhotoCard.svelte";
+  import PhotoCard from "$lib/components/PhotoCard.svelte";
 </script>
 
 <PhotoCard />
