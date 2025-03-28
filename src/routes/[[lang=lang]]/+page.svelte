@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { t } from "$lib/utils";
 	import PhotoCard from "$lib/components/PhotoCard.svelte";
-	import { state } from "$lib/global-state.svelte.js";
+
+	import image from "$lib/assets/the-hunt.jpg?enhanced"
 </script>
 
-<PhotoCard />
-<h1>{state.lang}</h1>
+<PhotoCard name={t({en: 'The Hunt', bg: "Ловът"})} number="XVII" image={image} />

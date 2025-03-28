@@ -1,5 +1,5 @@
 import type { Handle } from "@sveltejs/kit";
-import { state } from "$lib/global-state.svelte";
+import { state } from "$lib/state.svelte";
 
 export const handle: Handle = ({ event, resolve }) => {
 	return resolve(event, {
