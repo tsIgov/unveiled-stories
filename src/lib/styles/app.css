@@ -1,11 +1,11 @@
 @import "tailwindcss" source("../../../src/");
+@import "./base.css" layer(base);
 @import "./card.css" layer(component);
 
 @theme {
 	--font-*: initial;
-	--font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	--font-sans: "Comfortaa", sans-serif;
+	--font-serif: "Kurale", serif;
 
 	--color-*: initial;
 	--color-red-50: oklch(0.971 0.013 17.38);
@@ -19,10 +19,4 @@
 	--color-red-800: oklch(0.444 0.177 26.899);
 	--color-red-900: oklch(0.396 0.141 25.723);
 	--color-red-950: oklch(0.258 0.092 26.042);
-}
-
-@layer base {
-	body {
-		background-color: black;
-	}
 }
