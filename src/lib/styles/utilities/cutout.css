@@ -1,0 +1,52 @@
+@utility cutout-corners-xs {
+	--cutout-corner-size: 1rem;
+	--cutout-corner-mask-color: transparent;
+
+	@apply cutout;
+}
+
+@utility cutout-top-xs {
+	--cutout-top-width: 6rem;
+	--cutout-top-height: 1rem;
+	--cutout-top-mask-color: transparent;
+
+	@apply cutout;
+}
+
+@utility cutout {
+	mask-image: radial-gradient(
+			circle at top left,
+			var(--cutout-corner-mask-color, black) 0,
+			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
+			black calc(var(--cutout-corner-size, 0rem) + 1px)
+		),
+		radial-gradient(
+			circle at top right,
+			var(--cutout-corner-mask-color, black) 0,
+			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
+			black calc(var(--cutout-corner-size, 0rem) + 1px)
+		),
+		radial-gradient(
+			circle at bottom left,
+			var(--cutout-corner-mask-color, black) 0,
+			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
+			black calc(var(--cutout-corner-size, 0rem) + 1px)
+		),
+		radial-gradient(
+			circle at bottom right,
+			var(--cutout-corner-mask-color, black) 0,
+			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
+			black calc(var(--cutout-corner-size, 0rem) + 1px)
+		),
+		radial-gradient(
+			circle at top center,
+			var(--cutout-top-mask-color, black) 0,
+			var(--cutout-top-mask-color, black) var(--cutout-top-width, 0rem),
+			black calc(var(--cutout-top-width, 0rem) + 1px)
+		);
+	mask-position: top left, top right, bottom left, bottom right,
+		center calc(var(--cutout-top-height, 0rem) - var(--cutout-top-width, 0rem));
+	mask-repeat: no-repeat;
+	mask-size: 25% 50%, 25% 50%, 25% 50%, 25% 50%,
+		50% calc(100% + var(--cutout-top-width, 0rem) - var(--cutout-top-height, 0rem));
+}

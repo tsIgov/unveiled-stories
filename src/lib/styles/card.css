@@ -1,13 +1,3 @@
-.preview-card {
-	display: inline-block;
-	position: relative;
-	padding: 0.5rem;
-	padding-top: 1rem;
-	background-color: #2E2D33;
-	border: 2px solid #81764C;
-	outline: 0.5rem solid #2E2D33;
-}
-
 .main-card {
 	display: inline-block;
 	position: relative;
@@ -18,83 +8,12 @@
 	outline: 0.5rem solid #2E2D33;
 }
 
-.preview-card .photo-border {
-	display: inline-flex;
-	position: relative;
-	background-color: #81764C;
-	overflow: hidden;
-	padding: 2px;
-
-	mask-image:
-		radial-gradient(circle at top left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top center, transparent 0, transparent 6rem, black calc(6rem + 1px)),
-		radial-gradient(circle at bottom center, transparent 0, transparent 6rem, black calc(6rem + 1px));
-	mask-position: top left, top right, bottom left, bottom right, center -5rem, center calc(100% + 5rem);
-	mask-repeat: no-repeat;
-	mask-size: 25% 50%, 25% 50%, 25% 50%, 25% 50%, 50% calc(50% + 5rem), 50% calc(50% + 5rem);
-}
-
 .main-card .photo-border {
 	display: inline-flex;
 	position: relative;
 	background-color: #81764C;
 	overflow: hidden;
 	padding: 2px;
-
-	mask-image:
-		radial-gradient(circle at top left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top center, transparent 0, transparent 6rem, black calc(6rem + 1px));
-	mask-position: top left, top right, bottom left, bottom right, center -5rem;
-	mask-repeat: no-repeat;
-	mask-size: 25% 50%, 25% 50%, 25% 50%, 25% 50%, 50% calc(100% + 5rem);
-}
-
-.preview-card .photo {
-	object-fit: cover;
-	width: 25rem;
-	aspect-ratio: 0.625;
-	mask-image:
-		radial-gradient(circle at top left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top center, transparent 0, transparent 6rem, black calc(6rem + 1px)),
-		radial-gradient(circle at bottom center, transparent 0, transparent 6rem, black calc(6rem + 1px));
-	mask-position: top left, top right, bottom left, bottom right, center -5rem, center calc(100% + 5rem);
-	mask-repeat: no-repeat;
-	mask-size: 25% 50%, 25% 50%, 25% 50%, 25% 50%, 50% calc(50% + 5rem), 50% calc(50% + 5rem);
-}
-
-.main-card .photo {
-	object-fit: cover;
-	width: 25rem;
-	aspect-ratio: 0.625;
-	mask-image:
-		radial-gradient(circle at top left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom left, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at bottom right, transparent 0, transparent 1rem, black calc(1rem + 1px)),
-		radial-gradient(circle at top center, transparent 0, transparent 6rem, black calc(6rem + 1px));
-	mask-position: top left, top right, bottom left, bottom right, center -5rem;
-	mask-repeat: no-repeat;
-	mask-size: 25% 50%, 25% 50%, 25% 50%, 25% 50%, 50% calc(100% + 5rem);
-}
-
-.preview-card .number {
-	position: absolute;
-	width: 100%;
-	color: gainsboro;
-	text-align: center;
-	font-weight: bold;
-	top: 0.25rem;
-	left: 50%;
-	transform: translateX(-50%);
 }
 
 .main-card .number {
@@ -170,14 +89,6 @@
 	mask-size: 50% 50%, 50% 50%, 50% 50%, 50% 50%;
 }
 
-.preview-card .corner {
-	position: absolute;
-	width: 5px;
-	height: 5px;
-	background-color: #81764C;
-	border-radius: 100rem;
-}
-
 .main-card .corner {
 	position: absolute;
 	width: 5px;
@@ -201,3 +112,5 @@
 .corner.right {
 	right: 0.5rem;
 }
+
+

@@ -11,31 +11,14 @@
 </script>
 
 
-<div class="preview-card">
-  <div class="corner top left"></div>
-  <div class="corner top right"></div>
-  <div class="corner bottom left"></div>
-  <div class="corner bottom right"></div>
-  <p class="number">{number}</p>
-  <div class="photo-border">
-    <enhanced:img class="photo" src="$lib/assets/the-hunt.jpg" alt="The Hunt" />
-  </div>
-</div>
-
-<br />
-<br />
-<br />
-<br />
-<br />
-
 <div class="main-card">
   <div class="corner top left"></div>
   <div class="corner top right"></div>
   <div class="corner bottom left"></div>
   <div class="corner bottom right"></div>
   <p class="number">{number}</p>
-  <div class="photo-border">
-    <enhanced:img class="photo" src={image} alt={name} />
+  <div class="photo-border cutout-corners-xs cutout-top-xs">
+    <enhanced:img class="object-cover w-sm aspect-[0.625] cutout-corners-xs cutout-top-xs" src={image} alt={name} />
   </div>
   <div class="title-outline">
     <div class="title-border">
@@ -43,8 +26,3 @@
     </div>
   </div>
 </div>
-
-<br />
-<br />
-<br />
-<br />
