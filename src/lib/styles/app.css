@@ -1,6 +1,5 @@
 @import "tailwindcss" source("../../../src/");
 @import "./base.css" layer(base);
-@import "./card.css" layer(components);
 
 @import "./utilities/cutout.css";
 

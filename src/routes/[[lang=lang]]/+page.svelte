@@ -5,4 +5,4 @@
 	import image from "$lib/assets/the-hunt.jpg?enhanced"
 </script>
 
-<PhotoCard name={t({en: 'The Hunt', bg: "Ловът"})} number="XVII" image={image} />
+<PhotoCard name={t({en: 'The Hunt', bg: "Ловът"})} number="XVIII" image={image} />

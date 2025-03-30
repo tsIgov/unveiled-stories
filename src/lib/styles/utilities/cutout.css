@@ -1,3 +1,10 @@
+@property --cutout-top-mask-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: black;
+}
+
+
 @utility cutout-corners-xs {
 	--cutout-corner-size: 1rem;
 	--cutout-corner-mask-color: transparent;
