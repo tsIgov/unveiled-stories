@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { t } from "$lib/utils";
-	import PhotoCard from "$lib/components/PhotoCard.svelte";
-
-	import image from "$lib/assets/the-hunt.jpg?enhanced"
+	import CardSpread from "$lib/components/CardSpread.svelte";
 </script>
 
-<PhotoCard name={t({en: 'The Hunt', bg: "Ловът"})} number="XVIII" image={image} />
+
+<CardSpread />
+
