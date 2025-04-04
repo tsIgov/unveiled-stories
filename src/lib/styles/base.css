@@ -8,3 +8,7 @@ body {
 	font-style: normal;
 	color: white;
 }
+
+img {
+	pointer-events: none;
+}
