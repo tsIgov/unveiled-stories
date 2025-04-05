@@ -23,14 +23,18 @@
 
 	<enhanced:img class="absolute object-cover w-full h-full saturate-[0.25] brightness-[0.25] opacity-20" src={heroimage} />
 
-	<div class="relative flex-col flex w-full h-full justify-center items-center p-16 gap-6">
+	<div class="relative flex flex-col w-full h-full justify-center items-center p-16 gap-6">
 
-		<div class="inline-flex relative items-center flex-[1_1_0] h-0">
-			<!-- <PhotoCard class="relative -left-8 translate-y-[18%] origin-top-left w-1/2 -rotate-20 scale-90 saturate-[0.30]" image={image3} /> -->
-			<PhotoCard class="absolute w-full -left-8 -translate-x-[50%] translate-y-[18%] origin-top-left -rotate-20 scale-90 saturate-[0.30]" image={image3} />
-			<PhotoCard class="z-100 max-h-full max-w-full" name={t({ en: "The Hunt", bg: "Ловът" })} number="XVIII" {image}	/>
-			<PhotoCard class="absolute w-full left-8 translate-x-[50%] translate-y-[18%] origin-top-right rotate-20 scale-90 saturate-[0.30]" image={image2} />
-			<!-- <PhotoCard class="relative left-8 translate-y-[18%] origin-top-right w-1/2 rotate-20 scale-90 saturate-[0.30]" image={image2} /> -->
+		<div class="relative shrink w-0 h-[calc((100vw_-_8rem)_*_1.6)]"> <!-- 8rem is the combined inline padding and 1.6 is the aspect ratio -->
+			<div class="-z-10 absolute h-full aspect-[0.625] -translate-x-[105%] translate-y-[18%] origin-top-left -rotate-15 scale-90"
+				style="box-shadow: rgba(100, 100, 100, 0.2) 0px 5px 25px 15px" > </div>
+			<PhotoCard class="absolute z-0 h-full -translate-x-[105%] translate-y-[18%] origin-top-left -rotate-15 scale-90 saturate-[0.30]" image={image3} />
+			<div class="-z-10 aspect-[0.625] absolute h-full -translate-x-[50%]"
+				style="box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 15px 15px" > </div>
+			<PhotoCard class="absolute z-100 h-full -translate-x-[50%]" name={t({ en: "The Hunt", bg: "Ловът" })} number="XVIII" {image}	/>
+			<PhotoCard class="absolute z-0 h-full translate-x-[5%] translate-y-[18%] origin-top-right rotate-15 scale-90 saturate-[0.30]" image={image2} />
+			<div class="-z-10 aspect-[0.625] absolute h-full translate-x-[5%] translate-y-[18%] origin-top-right rotate-15 scale-90"
+				style="box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 15px 15px" > </div>
 		</div>
 
 		<div class="w-sm max-w-full flex flex-col flex-none justify-center">
