@@ -7,6 +7,7 @@
 	--font-*: initial;
 	--font-sans: "Comfortaa", sans-serif;
 	--font-serif: "Kurale", serif;
+	--font-fancy: "MonteCarlo", cursive;
 
 	/* --color-*: initial;
 	--color-red-50: oklch(0.971 0.013 17.38);
@@ -20,4 +21,19 @@
 	--color-red-800: oklch(0.444 0.177 26.899);
 	--color-red-900: oklch(0.396 0.141 25.723);
 	--color-red-950: oklch(0.258 0.092 26.042); */
+
+	--animate-gradient: gradient 10s ease-in-out infinite;
+
+	@keyframes gradient {
+		0% {
+			background-position: 0% 0%;
+		}
+		50% {
+			background-position: 50% 50%;
+		}
+		100% {
+			background-position: 100% 100%;
+		}
+	}
+
 }

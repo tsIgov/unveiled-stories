@@ -2,9 +2,9 @@
 	import { t } from "$lib/utils";
 	import PhotoCard from "$lib/components/PhotoCard.svelte";
 
-	import image from "$lib/assets/glow-1.jpg?enhanced";
-	import image2 from "$lib/assets/glow-3.jpg?enhanced";
-	import image3 from "$lib/assets/glow-2.jpg?enhanced";
+	import image from "$lib/assets/the-hunt-1.jpg?enhanced";
+	import image2 from "$lib/assets/the-hunt-3.jpg?enhanced";
+	import image3 from "$lib/assets/the-hunt-2.jpg?enhanced";
 
 
 	let { ...others } :

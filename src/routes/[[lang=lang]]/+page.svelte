@@ -1,6 +1,6 @@
 <script lang="ts">
 	import CardSpread from "$lib/components/CardSpread.svelte";
-	import heroimage from "$lib/assets/glow.jpg?enhanced"
+	import heroimage from "$lib/assets/the-hunt.jpg?enhanced"
 
 </script>
 
@@ -29,14 +29,13 @@
 
 			<div class="inline-block bg-[#081319] p-[2px] cutout">
 				<div class="bg-radial from-[#AF5612] via-[#FCF8B2] to-[#AF5612] p-[2px] cutout">
-					<p class="text-[gainsboro] text-center font-bold uppercase bg-[#081319] px-[2.5em] py-1 cutout select-none">Nocturnal Glow</p>
+					<p class="text-[#dcdcdc] text-center font-bold uppercase bg-[#081319] px-[2.5em] py-1 cutout select-none">Nocturnal Glow</p>
 				</div>
 			</div>
 
 
 			<p class="italic text-[#ebead8] text-center">The hunt begins in silence, shadows stretching long beneath the ancient trees.</p>
 
-			<button class="border w-full border-[#928f67]">See more</button>
 		</div>
 
 	</div>

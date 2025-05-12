@@ -11,7 +11,7 @@
 }
 
 @utility cutout {
-	--cutout-corner-size: 1em;
+	--cutout-corner-size: 16px;
 	--cutout-corner-mask-color: transparent;
 
 	mask-image:
