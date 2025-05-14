@@ -1,21 +1,35 @@
 <script lang="ts">
-	import { t } from "$lib/utils";
+	import type { Picture } from 'vite-imagetools';
 	import PhotoCard from "$lib/components/PhotoCard.svelte";
 
-	import image from "$lib/assets/the-hunt-1.jpg?enhanced";
-	import image2 from "$lib/assets/the-hunt-3.jpg?enhanced";
-	import image3 from "$lib/assets/the-hunt-2.jpg?enhanced";
-
-
-	let { ...others } :
+	let props :
 	{
+		imageLeft : Picture,
+		imageCenter: Picture,
+		imageRight: Picture,
+		name: string,
 		class? : string | undefined,
 	} = $props();
+
 </script>
 
-	<div class="relative items-start justify-center flex aspect-[1.26] {others.class}">
-		<PhotoCard class="left-1/2 absolute z-0 w-[48%] -translate-x-[105%] translate-y-[17%]  origin-top-left -rotate-15 scale-90 saturate-[0.50]" image={image3} />
-		<PhotoCard class="relative z-100 w-[48%] flex-none" name={t({ en: "Nocrurnal Glow", bg: "Ловът" })} {image}	/>
-		<PhotoCard class="right-1/2 top-0 absolute z-0 w-[48%] translate-x-[105%] translate-y-[17%] origin-top-right rotate-15 scale-90 saturate-[0.50]" image={image2} />
+	<div class="flex items-start justify-center aspect-[1.26] {props.class}">
+		<PhotoCard
+			class="absolute left-1/2 z-0 w-[48%] -translate-x-[105%] translate-y-[17%] origin-top-left -rotate-15 scale-90 saturate-50"
+			image={props.imageLeft}
+			name={props.name}
+		/>
+
+		<PhotoCard
+			class="z-100 w-[48%] flex-none"
+			image={props.imageCenter}
+			name={props.name}
+		/>
+
+		<PhotoCard
+			class="right-1/2 top-0 absolute z-0 w-[48%] translate-x-[105%] translate-y-[17%] origin-top-right rotate-15 scale-90 saturate-50"
+			image={props.imageRight}
+			name={props.name}
+		/>
 	</div>
 

@@ -1,46 +1,4 @@
-@custom-variant hsm {
-  @media(height < 32rem) {
-    @slot;
-  }
-}
-
-@custom-variant ar {
-  @media(min-aspect-ratio: 4/3) {
-    @slot;
-  }
-}
-
 @utility cutout {
-	--cutout-corner-size: 16px;
-	--cutout-corner-mask-color: transparent;
-
-	mask-image:
-		radial-gradient(
-			circle at top left,
-			var(--cutout-corner-mask-color, black) 0,
-			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
-			black calc(var(--cutout-corner-size, 0rem) + 1px)
-		),
-		radial-gradient(
-			circle at top right,
-			var(--cutout-corner-mask-color, black) 0,
-			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
-			black calc(var(--cutout-corner-size, 0rem) + 1px)
-		),
-		radial-gradient(
-			circle at bottom left,
-			var(--cutout-corner-mask-color, black) 0,
-			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
-			black calc(var(--cutout-corner-size, 0rem) + 1px)
-		),
-		radial-gradient(
-			circle at bottom right,
-			var(--cutout-corner-mask-color, black) 0,
-			var(--cutout-corner-mask-color, black) var(--cutout-corner-size, 0rem),
-			black calc(var(--cutout-corner-size, 0rem) + 1px)
-		);
-	mask-position: top left, top right, bottom left, bottom right;
-	mask-repeat: no-repeat;
-	mask-size: 51% 51%, 51% 51%, 51% 51%, 51% 51%;
+	mask: radial-gradient(16px at 16px 16px, transparent 95%, black) -16px -16px;
 }
 

@@ -4,6 +4,7 @@ body {
 
 * {
 	@apply font-serif;
+	position: relative;
 	font-weight: 400;
 	font-style: normal;
 	color: white;
@@ -11,4 +12,8 @@ body {
 
 img {
 	pointer-events: none;
+}
+
+picture {
+	position: unset;
 }
