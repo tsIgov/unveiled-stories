@@ -1,5 +1,5 @@
 body {
-	background-color: #081319;
+	@apply bg-surface;
 }
 
 * {
@@ -7,7 +7,7 @@ body {
 	position: relative;
 	font-weight: 400;
 	font-style: normal;
-	color: white;
+	@apply text-base;
 }
 
 img {

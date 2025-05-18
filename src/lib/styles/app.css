@@ -1,10 +1,10 @@
 @import "tailwindcss" source("../../../src/");
 @import "./base.css" layer(base);
 
-@import "./utilities/cutout.css";
+@import "./utilities/inverse-corners.css";
 @import "./utilities/glow.css";
 
-@import "./variants/near-portrait.css";
+@import "./variants/hero.css";
 
 @theme {
 	--font-*: initial;
@@ -12,23 +12,30 @@
 	--font-serif: "Kurale", serif;
 	--font-fancy: "MonteCarlo", cursive;
 
-	/* --color-*: initial;
-	--color-red-50: oklch(0.971 0.013 17.38);
-	--color-red-100: oklch(0.936 0.032 17.717);
-	--color-red-200: oklch(0.885 0.062 18.334);
-	--color-red-300: oklch(0.808 0.114 19.571);
-	--color-red-400: oklch(0.704 0.191 22.216);
-	--color-red-500: oklch(0.637 0.237 25.331);
-	--color-red-600: oklch(0.577 0.245 27.325);
-	--color-red-700: oklch(0.505 0.213 27.518);
-	--color-red-800: oklch(0.444 0.177 26.899);
-	--color-red-900: oklch(0.396 0.141 25.723);
-	--color-red-950: oklch(0.258 0.092 26.042); */
+	--color-*: initial;
+	--color-base: #ebead8;
+	--color-surface: #081319;
+	--color-brand: #f8e1c0;
+	--color-brand-2: #b87c4d;
 
 
+	/* --color-neutral-100: oklch(97% 0.02 233);
+	--color-neutral-200: oklch(89% 0.02 233);
+	--color-neutral-300: oklch(80% 0.02 233);
+	--color-neutral-400: oklch(71% 0.02 233);
+	--color-neutral-500: oklch(60% 0.02 233);
+	--color-neutral-600: oklch(49% 0.02 233);
+	--color-neutral-700: oklch(38% 0.02 233);
+	--color-neutral-800: oklch(25% 0.02 233);
+	--color-neutral-900: oklch(12% 0.02 233);
 
-
-
-
-
+	--color-base-100: oklch(97% 0.02 77);
+	--color-base-200: oklch(89% 0.02 77);
+	--color-base-300: oklch(80% 0.02 77);
+	--color-base-400: oklch(71% 0.02 77);
+	--color-base-500: oklch(60% 0.02 77);
+	--color-base-600: oklch(49% 0.02 77);
+	--color-base-700: oklch(38% 0.02 77);
+	--color-base-800: oklch(25% 0.02 77);
+	--color-base-900: oklch(12% 0.02 77); */
 }
