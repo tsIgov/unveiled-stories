@@ -9,7 +9,7 @@
 	import imageRight from "$lib/assets/glow-right.jpg?enhanced";
 
 	let name = t({en: "Nocturnal Glow", bg:"Нощен блясък"});
-	let description = t({en: "The hunt begins in silence, shadows stretching long beneath the ancient trees.", bg:"The hunt begins in silence, shadows stretching long beneath the ancient trees."});
+	let description = t({en: "TThe predator watches, eyes sharp, muscles tensed, as the whisper of the wind carries the scent of its prey.", bg:"The predator watches, eyes sharp, muscles tensed, as the whisper of the wind carries the scent of its prey."});
 
 	let props:
 	{
@@ -28,6 +28,7 @@
 	{imageLeft}
 	{imageCenter}
 	{imageRight}
+	color="#5e1e5e"
 />
 
 

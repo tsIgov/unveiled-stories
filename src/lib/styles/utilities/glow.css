@@ -1,8 +1,7 @@
 @utility glow {
 	--glow-angle: 0deg;
-	aaanimation: glow-rotation 40s linear infinite;
+	animation: glow-rotation 40s linear infinite;
 
-	--glow-color-1: var(--color-brand-2);
 	--glow-color-2: var(--color-brand);
 
 	&::before {

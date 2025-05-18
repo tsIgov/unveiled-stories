@@ -8,6 +8,7 @@
 		class? : string | undefined,
 		name: string,
 		description: string,
+		color: string,
 		imagePortrait : Picture,
 		imageLandscape : Picture,
 		imageLeft : Picture,
@@ -18,7 +19,7 @@
 </script>
 
 
-<div class="flex hero-portrait:flex-col justify-center items-center p-16 gap-6 {props.class}">
+<div class="flex hero-portrait:flex-col justify-center items-center p-16 gap-6 {props.class}" style="--glow-color-1:{props.color}">
 
 	<enhanced:img class="landscape:hidden absolute left-0 top-0 object-cover w-full h-full saturate-25 brightness-25 opacity-20" src={props.imagePortrait} />
 	<enhanced:img class="portrait:hidden absolute left-0 top-0 object-cover w-full h-full saturate-25 brightness-25 opacity-20" src={props.imageLandscape} />
