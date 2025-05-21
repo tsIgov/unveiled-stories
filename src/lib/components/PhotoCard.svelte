@@ -1,17 +1,18 @@
 <script lang="ts">
 	import type { Picture } from 'vite-imagetools';
 
-	let props:
-	{
-		class? : string | undefined,
+	interface Props {
+		class? : string,
 		name: string,
 		image : Picture
-	} = $props();
+	}
+
+	let { name, image, ...others } : Props  = $props();
 
 </script>
 
 
-<div class="aspect-[0.625] p-[2px] glow {props.class}">
+<div class="aspect-[0.625] p-[2px] glow {others.class}">
 	<div class="w-full h-full border-surface border-8 p-[2px] overflow-hidden">
 
 		<span class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2
@@ -32,6 +33,6 @@
 		</span>
 
 		<enhanced:img class="bg-surface object-cover w-full h-full select-none inverse-corners"
-			 src={props.image} alt={props.name} />
+			 src={image} alt={name} />
 	</div>
 </div>
