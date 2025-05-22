@@ -1,6 +1,7 @@
 <script lang="ts" generics="T">
 	import { onMount } from "svelte";
 	import type { Snippet } from 'svelte';
+	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
 
 	interface Props {
 		class? : string,
@@ -29,6 +30,21 @@
 		}, timeout);
 	}
 
+	function swipeHandler(event: SwipeCustomEvent) {
+		if (event.detail.pointerType == "mouse")
+			return;
+
+		if (event.detail.direction == "left") {
+			if (currentSlide == 0)
+				changeSlide(slidesCount - 1);
+			else
+				changeSlide((currentSlide + 1) % slidesCount);
+		}
+
+		else if (event.detail.direction == "right")
+			changeSlide((currentSlide + 1) % slidesCount);
+	}
+
 	$effect(() => {
 		const progress = document.getElementById("progress-" + currentSlide);
 		if (progress) {
@@ -48,8 +64,11 @@
 			*:w-full *:h-full
 			transition-all transition-discrete duration-[2s]
 			{currentSlide == index ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-			">
+			"
+			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60 })} onswipe={swipeHandler} >
+
 			{@render slideSnippet(slide)}
+
 		</div>
 	{/each}
 
