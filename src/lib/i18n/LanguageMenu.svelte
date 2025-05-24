@@ -1,0 +1,23 @@
+<script lang="ts">
+	import { resolveRoute } from "$app/paths";
+	import { languages, type Language } from "./languages";
+
+	interface Props {
+		class? : string,
+		currentLang : Language,
+		currentRoute : string
+	}
+
+	let { currentLang, currentRoute, ...others} : Props = $props();
+</script>
+
+<div class="flex items-center justify-center gap-2 text-sm {others.class}">
+	{#each languages as language}
+		<a
+			data-sveltekit-noscroll
+			class="uppercase {currentLang == language ? "text-base" : "text-brand/70"}"
+			href="{resolveRoute(currentRoute, { lang: language })}">
+			{language}
+		</a>
+	{/each}
+</div>

@@ -1,5 +1,6 @@
+import { languages, type Language } from "$lib/i18n/languages";
 import type { ParamMatcher } from "@sveltejs/kit";
 
-export const match = ((param: string): param is "en" | "bg" => {
-	return param === "en" || param === "bg";
+export const match = ((param: string): param is Language => {
+	return languages.includes(param as Language);
 }) satisfies ParamMatcher;

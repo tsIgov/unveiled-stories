@@ -16,3 +16,6 @@
 {/snippet}
 
 <Slideshow slideSnippet={slide} data={previews} timeout={5000} />
+
+<div class="h-svh"></div>
+<div class="h-svh"></div>

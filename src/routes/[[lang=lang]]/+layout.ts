@@ -2,15 +2,12 @@ export const prerender = true;
 import "$lib/styles/app.css";
 
 import type { LayoutLoad } from './$types';
-import type { MultilingualText } from "$lib/i18n/multilingual-text";
+import { defaultLanguage } from "$lib/i18n/languages";
+import { createTranslator } from "$lib/i18n/translator";
 
 export const load : LayoutLoad = ({ params, route }) => {
-	const lang = params.lang ?? "en";
-
-	const translator = (text: MultilingualText) => {
-		const result = text[lang];
-		return result ?? text.en;
-	};
+	const lang = params.lang ?? defaultLanguage;
+	const translator = createTranslator(lang);
 
 	return { route: route.id, lang, translator};
 };

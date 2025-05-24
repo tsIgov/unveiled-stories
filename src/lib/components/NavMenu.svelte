@@ -1,0 +1,43 @@
+<script lang="ts">
+	import LanguageMenu from '$lib/i18n/LanguageMenu.svelte';
+	import type { Language } from '$lib/i18n/languages';
+
+	interface Props {
+		currentLang : Language,
+		currentRoute : string
+	}
+
+	let { currentLang, currentRoute } : Props = $props();
+
+	let scrollY = $state(0);
+	let innerHeight = $state(1);
+	let navMenuOpacityThreshold = $derived(innerHeight / 2);
+	let navMenuOpacity = $derived(Math.min(navMenuOpacityThreshold, scrollY) / navMenuOpacityThreshold);
+
+</script>
+
+<svelte:window bind:scrollY={scrollY} bind:innerHeight={innerHeight} />
+
+<div class="fixed w-full h-20 p-4 overflow-visible flex justify-center content-center z-[1000]">
+
+	<div class="absolute top-0 left-0 w-full h-full bg-surface" style="opacity: {navMenuOpacity};">
+		<div class="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-brand-2/0 via-brand/50 to-brand-2/0"></div>
+	</div>
+
+	<div class="w-full h-full flex content-center justify-center">
+		<div class="h-full grow basis-0 flex content-center justify-start">
+			<div class="flex items-center gap-2">
+				<img class="h-5 w-auto" src="hamburger.svg" alt="logo" />
+			</div>
+		</div>
+
+		<div class="h-full basis-auto grow-0 shrink-0">
+			<img class="h-full w-auto" src="logo.svg" alt="logo" />
+		</div>
+
+		<div class="h-full grow basis-0 flex content-center justify-end">
+			<LanguageMenu {currentRoute} {currentLang} />
+		</div>
+	</div>
+
+</div>

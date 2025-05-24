@@ -65,7 +65,7 @@
 			transition-all transition-discrete duration-[2s]
 			{currentSlide == index ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
 			"
-			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60 })} onswipe={swipeHandler} >
+			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 			{@render slideSnippet(slide)}
 
