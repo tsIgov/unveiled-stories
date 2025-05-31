@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Break from '$lib/common/Break.svelte';
 	import LanguageMenu from '$lib/i18n/LanguageMenu.svelte';
 	import type { Language } from '$lib/i18n/languages';
 
@@ -20,8 +21,9 @@
 
 <div class="fixed w-full h-20 p-4 overflow-visible flex justify-center content-center z-[1000]">
 
-	<div class="absolute top-0 left-0 w-full h-full bg-surface" style="opacity: {navMenuOpacity};">
-		<div class="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-brand-2/0 via-brand/50 to-brand-2/0"></div>
+	<div class="absolute top-0 left-0 w-full h-full bg-neutral-100" style="opacity: {navMenuOpacity};">
+		<Break orientation="horizontal" centerOrnament={false} class="absolute bottom-0 w-full" />
+		<div class="absolute bottom-0 w-full h-1 blur-md -z-10 from-light/0 via-light to-light/0 bg-gradient-to-r" ></div>
 	</div>
 
 	<div class="w-full h-full flex content-center justify-center">

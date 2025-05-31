@@ -15,7 +15,7 @@
 	{#each languages as language}
 		<a
 			data-sveltekit-noscroll
-			class="uppercase {currentLang == language ? "text-base" : "text-brand/70"}"
+			class="uppercase {currentLang == language ? "text-neutral-900" : "text-light/70"}"
 			href="{resolveRoute(currentRoute, { lang: language })}">
 			{language}
 		</a>

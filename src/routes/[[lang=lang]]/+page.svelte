@@ -1,6 +1,6 @@
 <script lang="ts">
-	import HeroPreview from "$lib/components/HeroPreview.svelte";
-	import Slideshow from "$lib/components/Slideshow.svelte";
+	import HeroPreview from "./HeroPreview.svelte";
+	import Slideshow from "$lib/common/Slideshow.svelte";
 	import { type PhotoshootData, theHunt, nocturnalGlow } from "$lib/photoshoots/PhotoshootData";
 
 	let { data } = $props();

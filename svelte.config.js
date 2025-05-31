@@ -6,9 +6,12 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
+		alias: {
+			"styles": "src/styles"
+		},
 		adapter: adapter(),
 		prerender: {
-			entries: ["*", "/bg", "/en"],
+			entries: ["*"],
 		},
 	},
 };

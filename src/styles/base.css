@@ -1,6 +1,6 @@
 body {
-	@apply bg-surface;
-	@apply text-base;
+	@apply bg-neutral-100;
+	@apply text-neutral-900;
 }
 
 * {

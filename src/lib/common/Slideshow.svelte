@@ -77,11 +77,11 @@
 			<button class= "group flex justify-center items-center rounded-full transition-all w-[24px] h-[24px] cursor-pointer"
 				onclick="{() => changeSlide(slideIndex)}"
 				tabindex="-1">
-				<span class="transition-all duration-1000 text-xs {currentSlide % slidesCount == slideIndex ? "text-base" : "text-base/60" } group-hover:text-base">
+				<span class="transition-all duration-1000 text-xs {currentSlide % slidesCount == slideIndex ? "text-neutral-900" : "text-neutral-900/60" } group-hover:text-neutral-900">
 					{String(slideIndex + 1).padStart(2, '0')}
 				</span>
 
-				<div id="progress-{slideIndex}" class="transition-all duration-1000 absolute top-[-2px] left-[-2px] w-[28px] h-[28px] rounded-full bg-conic from-base to-base/20 from-100% to-100% progress-anim -z-10
+				<div id="progress-{slideIndex}" class="transition-all duration-1000 absolute top-[-2px] left-[-2px] w-[28px] h-[28px] rounded-full bg-conic from-neutral-900 to-neutral-900/20 from-100% to-100% progress-anim -z-10
 					{currentSlide % 2 == slideIndex ? "opacity-100" : "opacity-0"}"
 					style="mask: radial-gradient(14px at center, transparent 12px, black 13px);
 						animation-duration: {timeout}ms">

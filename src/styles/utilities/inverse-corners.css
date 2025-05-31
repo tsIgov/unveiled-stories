@@ -1,0 +1,7 @@
+@utility inverse-corners {
+	mask: radial-gradient(var(--inverse-corner-size) at var(--inverse-corner-size) var(--inverse-corner-size) , transparent 95%, black) calc(var(--inverse-corner-size) * -1) calc(var(--inverse-corner-size) * -1);
+}
+
+:root {
+	--inverse-corner-size: 16px;
+}
