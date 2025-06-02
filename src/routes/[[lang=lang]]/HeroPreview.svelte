@@ -9,8 +9,6 @@
 	}
 
 	let { data, ...others } : Props = $props();
-
-
 </script>
 
 
