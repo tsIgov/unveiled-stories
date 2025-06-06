@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolveRoute } from "$app/paths";
-	import { languages, type Language } from "./languages";
+	import { languages, type Language } from "$lib/i18n/languages";
 
 	interface Props {
 		class? : string,

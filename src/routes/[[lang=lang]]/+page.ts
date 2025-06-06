@@ -5,6 +5,7 @@ export const load: PageLoad = (async ({ parent }) => {
 	const { translator } = await parent();
 
 	return {
+		transparentNavigation: true,
 		photoshoots: [
 			theHunt(translator),
 			nocturnalGlow(translator),
