@@ -57,7 +57,7 @@
 </script>
 
 
-<div class="w-full h-svh overflow-hidden {others.class}">
+<div class="overflow-hidden {others.class}">
 
 	{#each data as slide, index}
 		<div class="flex absolute top-0 left-0 w-full h-full
