@@ -1,4 +1,4 @@
-import type { PhotoshootData } from "../PhotoshootData";
+import type { PhotoshootData } from "../photoshoot-data";
 import type { Translator } from "$lib/i18n/translator";
 type Factory = (t: Translator) => PhotoshootData;
 

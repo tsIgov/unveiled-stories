@@ -1,5 +1,4 @@
 <script lang="ts" generics="T">
-	import { onMount } from "svelte";
 	import type { Snippet } from 'svelte';
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
 
@@ -10,8 +9,7 @@
 	}
 
 	let { itemSnippet, data, ...others} : Props =$props();
-	let itemsCount = $derived(data.length);
-	let currentItem = $state(1);
+	let currentItem = $state(0);
 
 	function getNeighbourClasses(index: number, currentItem : number) {
 		let result = "";
@@ -52,12 +50,12 @@
 	use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 	{#each data as item, index}
-		<div class="absolute top-0 left-1/2 h-full ease-out duration-1000 select-none
+		<button class="absolute top-0 left-1/2 h-full ease-out duration-1000 select-none
 		carouselItem {getNeighbourClasses(index, currentItem)}"
 			style="translate:{(index - currentItem) * 100 - 50}% 0;"
 			onclick={() => {changeCurrentItem(index)}}>
 			{@render itemSnippet(item)}
-		</div>
+		</button>
 	{/each}
 
 </div>

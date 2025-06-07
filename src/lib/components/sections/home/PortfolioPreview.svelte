@@ -1,23 +1,23 @@
 <script lang="ts">
-	import Break from '$lib/common/Break.svelte';
-	import CardSpread from '$lib/photoshoots/CardSpread.svelte';
-	import type { PhotoshootData } from '$lib/photoshoots/PhotoshootData';
+	import { Break, Slideshow } from '$lib/components/common/index';
+	import { PhotoCardSpread } from '$lib/components/cards/index';
+	import type { PhotoshootData } from 'photoshoots/photoshoot-data';
 
 	interface Props {
 		class? : string;
-		data : PhotoshootData
+		photoshoots : PhotoshootData[]
 	}
 
-	let { data, ...others } : Props = $props();
+	let { photoshoots, ...others } : Props = $props();
 </script>
 
-
-<div class="flex hero-portrait:flex-col justify-center items-center p-16 gap-6 {others.class}" style="--glow-color:{data.color}">
+{#snippet photoshoot(data : PhotoshootData)}
+	<div class="flex hero-portrait:flex-col justify-center items-center p-16 gap-6 {others.class}" style="--glow-color:{data.color}">
 
 	<enhanced:img class="landscape:hidden absolute left-0 top-0 object-cover w-full h-full brightness-75 opacity-20" src={data.backgroundPortrait} />
 	<enhanced:img class="portrait:hidden absolute left-0 top-0 object-cover w-full h-full brightness-75 opacity-20" src={data.backgroundLandscape} />
 
-	<CardSpread
+	<PhotoCardSpread
 		class="flex-auto shrink-0`
 			h-1/2 max-w-[145svw] max-h-[115.08svw]
 			hero-landscape:h-auto hero-landscape:max-w-[85svh] hero-landscape:max-h-[67.46svh]"
@@ -46,3 +46,8 @@
 	</div>
 
 </div>
+{/snippet}
+
+
+
+<Slideshow class={others.class} slideSnippet={photoshoot} data={photoshoots} timeout={5000} />

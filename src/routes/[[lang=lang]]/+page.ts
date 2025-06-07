@@ -1,4 +1,4 @@
-import { nocturnalGlow, theHunt } from '$lib/photoshoots/PhotoshootData';
+import { nocturnalGlow, theHunt } from '../../photoshoots/photoshoot-data';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = (async ({ parent }) => {

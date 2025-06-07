@@ -7,7 +7,8 @@ const config = {
 
 	kit: {
 		alias: {
-			"styles": "src/styles"
+			"styles": "src/styles",
+			"photoshoots": "src/photoshoots"
 		},
 		adapter: adapter(),
 		prerender: {

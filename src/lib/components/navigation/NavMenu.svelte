@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Break from '$lib/common/Break.svelte';
-	import LanguageMenu from '$lib/navigation/LanguageMenu.svelte';
+	import { Break } from '$lib/components/common/index';
+	import LanguageMenu from '$lib/components/navigation/LanguageMenu.svelte';
 	import type { Language } from '$lib/i18n/languages';
 
 	interface Props {

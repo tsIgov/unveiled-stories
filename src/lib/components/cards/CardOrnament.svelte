@@ -8,10 +8,14 @@
 	let { horizontalPosition, verticalPosition } : Props  = $props();;
 </script>
 
-<span class="absolute rounded-full orn-{verticalPosition} orn-{horizontalPosition}"></span>
+<span class="orn-{verticalPosition} orn-{horizontalPosition}"></span>
 
 <style>
+	@reference "tailwindcss";
+
 	span {
+		@apply absolute rounded-full;
+
 		--ornament-radius: 3px;
 		width: calc(var(--inverse-corner-size) * 2);
 		height: calc(var(--inverse-corner-size) * 2);
