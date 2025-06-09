@@ -15,7 +15,7 @@
 
 </script>
 
-	<div class="flex items-start justify-center aspect-[1.26] {others.class}">
+	<div class="flex items-start justify-center aspect-spread {others.class}">
 		<PhotoCard
 			class="absolute left-1/2 z-0 w-[48%] -translate-x-[105%] translate-y-[17%] origin-top-left -rotate-15 scale-90 saturate-50"
 			image={imageLeft}

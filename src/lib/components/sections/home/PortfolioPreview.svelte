@@ -128,7 +128,7 @@
 			}
 
 			& > :global(.spread) {
-				width: calc(var(--preview-max-content-height) * 1.26);
+				width: calc(var(--preview-max-content-height) * var(--aspect-spread));
 				max-width: 100%;
 			}
 
