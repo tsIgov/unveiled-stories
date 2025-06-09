@@ -60,11 +60,8 @@
 <div class="overflow-hidden {others.class}">
 
 	{#each data as slide, index}
-		<div class="flex absolute top-0 left-0 w-full h-full
-			*:w-full *:h-full
-			transition-all transition-discrete duration-[2s]
-			{currentSlide == index ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-			"
+		<div class="slide
+			{currentSlide == index ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}"
 			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 			{@render slideSnippet(slide)}
@@ -72,19 +69,18 @@
 		</div>
 	{/each}
 
-	<div class="absolute p-4 w-full bottom-0 left-0 flex justify-center items-center gap-4">
+	<div class="slideshow-nav">
 		{#each { length: slidesCount }, slideIndex}
-			<button class= "group flex justify-center items-center rounded-full transition-all w-[24px] h-[24px] cursor-pointer"
+			<button class="group"
 				onclick="{() => changeSlide(slideIndex)}"
 				tabindex="-1">
-				<span class="transition-all duration-1000 text-xs {currentSlide % slidesCount == slideIndex ? "text-neutral-900" : "text-neutral-900/60" } group-hover:text-neutral-900">
+				<span class="{currentSlide % slidesCount == slideIndex ? "text-neutral-900" : "text-neutral-900/60" }">
 					{String(slideIndex + 1).padStart(2, '0')}
 				</span>
 
-				<div id="progress-{slideIndex}" class="transition-all duration-1000 absolute top-[-2px] left-[-2px] w-[28px] h-[28px] rounded-full bg-conic from-neutral-900 to-neutral-900/20 from-100% to-100% progress-anim -z-10
-					{currentSlide % 2 == slideIndex ? "opacity-100" : "opacity-0"}"
-					style="mask: radial-gradient(14px at center, transparent 12px, black 13px);
-						animation-duration: {timeout}ms">
+				<div id="progress-{slideIndex}" class="progress-line progress-anim
+					{currentSlide == slideIndex ? "opacity-100" : "opacity-0"}"
+					style="animation-duration: {timeout}ms">
 				</div>
 
 			</button>
@@ -95,6 +91,46 @@
 
 
 <style>
+	@reference "style";
+
+	:global(:root) {
+		--slideshow-navigation-height: 3.5rem;
+	}
+
+	.slide {
+		@apply flex absolute top-0 left-0 w-full h-full transition-all transition-discrete duration-[2s];
+
+		& > :global(*) {
+			@apply w-full h-full;
+		}
+	}
+
+	.slideshow-nav {
+		@apply absolute p-4 w-full bottom-0 left-0 flex justify-center items-center gap-4;
+
+		& > button {
+			@apply flex justify-center items-center rounded-full transition-all cursor-pointer;
+			width: calc(var(--slideshow-navigation-height) - 2rem);
+			height: calc(var(--slideshow-navigation-height) - 2rem);
+
+			& > span {
+				@apply transition-all duration-1000 text-xs group-hover:text-neutral-900;
+			}
+
+			& > .progress-line {
+				@apply transition-all duration-1000 absolute rounded-full bg-conic from-neutral-900 to-neutral-900/20 from-100% to-100% -z-10;
+
+				top: -2px;
+				left: -2px;
+				width: calc(var(--slideshow-navigation-height) - 2rem + 4px);
+				height: calc(var(--slideshow-navigation-height) - 2rem + 4px);
+				mask: radial-gradient(
+					transparent calc((var(--slideshow-navigation-height) - 2rem) / 2),
+					black calc((var(--slideshow-navigation-height) - 2rem) / 2 + 1px));
+			}
+		}
+	}
+
 	.progress-anim {
 		animation-name: progress;
 		animation-timing-function: linear;

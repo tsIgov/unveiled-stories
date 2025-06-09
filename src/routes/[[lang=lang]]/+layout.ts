@@ -1,5 +1,5 @@
 export const prerender = true;
-import "styles/app.css";
+import "style";
 
 import type { LayoutLoad } from './$types';
 import { defaultLanguage } from "$lib/i18n/languages";

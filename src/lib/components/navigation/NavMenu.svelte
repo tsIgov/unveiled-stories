@@ -37,3 +37,9 @@
 	</div>
 
 </div>
+
+<style>
+	:global(:root) {
+		--navbar-height: 5rem;
+	}
+</style>

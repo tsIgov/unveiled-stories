@@ -1,6 +1,6 @@
 export const fit = (
 	node: HTMLElement,
-	{ min_size = 10, max_size = 100 } = { min_size: 10, max_size: 100 }
+	{ min_size = 0.625, max_size = 1 } = { min_size: 0.625, max_size: 1 }
 ): { destroy: () => void } => {
 	const on_resize = (): void => {
 		if (node.parentElement) {
@@ -33,14 +33,13 @@ function resize_text(
 	min_size: number,
 	max_size: number
 ): void {
-	for (let i = min_size + 1; i <= max_size; i++) {
-		element.style.fontSize = `${i}px`
+	const step = 0.0625;
+	for (let i = min_size + step; i <= max_size; i += step) {
+		element.style.fontSize = `${i}rem`
 		let overflow = is_overflow(parent)
 		if (overflow) {
-			element.style.fontSize = `${i - 1}px`;
+			element.style.fontSize = `${i - step}rem`;
 			break;
 		}
 	}
 }
-
-export const parent_style = `display: inline-block; width: 100%; height: 100%;`

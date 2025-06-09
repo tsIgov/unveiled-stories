@@ -1,7 +1,3 @@
-:root {
-    --navbar-height: 5rem;
-}
-
 body {
 	@apply bg-neutral-100;
 	@apply text-neutral-900;
