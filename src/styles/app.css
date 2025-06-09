@@ -4,8 +4,6 @@
 @import "./utilities/inverse-corners.css";
 @import "./utilities/glow.css";
 
-@import "./variants/hero.css";
-
 @theme {
 	--font-*: initial;
 	--font-sans: "Comfortaa", sans-serif;
