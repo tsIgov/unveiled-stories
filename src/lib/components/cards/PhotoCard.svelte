@@ -16,7 +16,7 @@
 
 <div class="aspect-card p-[2px] glow {others.class}"
 	style="--glow-color: {color}">
-	<div class="w-full h-full border-neutral-100 border-8 p-[2px] overflow-hidden">
+	<div class="w-full h-full border-neutral-100 border-[min(1.5cqb,0.5rem)] p-[2px] overflow-hidden">
 
 		<CardOrnament verticalPosition="top" horizontalPosition="left" />
 		<CardOrnament verticalPosition="top" horizontalPosition="right" />
