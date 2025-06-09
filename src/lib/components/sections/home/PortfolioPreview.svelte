@@ -78,7 +78,7 @@
 	@media (max-aspect-ratio: 4/3) {
 		.preview {
 			@apply w-full h-full px-4 grid gap-4 content-evenly justify-items-center overflow-hidden;
-			padding-top: var(--navbar-height);
+			padding-top: calc(var(--navbar-height) + 1rem);
 			padding-bottom: var(--slideshow-navigation-height);
 			grid-template-rows: minmax(0, auto) minmax(0, auto);
 			grid-template-columns: 100%;
@@ -111,12 +111,12 @@
 	/* landscape */
 	@media not (max-aspect-ratio: 4/3) {
 		.preview {
-			@apply w-full h-full px-4 grid gap-4 justify-evenly items-center overflow-hidden;
-			padding-top: var(--navbar-height);
+			@apply w-full h-full px-4 grid gap-4 justify-evenly items-center overflow-hidden max-w-7xl left-1/2 -translate-x-1/2;
+			padding-top: calc(var(--navbar-height) + 1rem);
 			padding-bottom: var(--slideshow-navigation-height);
 			grid-template-columns: minmax(0, auto) minmax(0,auto);
 			grid-template-rows: 100%;
-			--preview-max-content-height: calc(100svh - var(--navbar-height) - var(--slideshow-navigation-height));
+			--preview-max-content-height: calc(100svh - var(--navbar-height) - var(--slideshow-navigation-height) - 1rem);
 
 			& :global(.break-h) {
 				display: none;
