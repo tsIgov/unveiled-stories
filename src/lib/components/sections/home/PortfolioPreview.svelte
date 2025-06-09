@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Break, Slideshow } from '$lib/components/common/index';
 	import { PhotoCardSpread } from '$lib/components/cards/index';
-	import { fit } from '$lib/utils/text-fit'
 	import type { PhotoshootData } from 'photoshoots/photoshoot-data';
 
 	interface Props {
@@ -31,14 +30,15 @@
 			/>
 
 			<div class="side">
+				<Break orientation="vertical" centerOrnament={true} class="break-v"/>
+				<Break orientation="horizontal" centerOrnament={true} class="break-h"/>
+
 				<div class="details">
-					<Break orientation="horizontal" centerOrnament={true} class="break-h absolute top-0 left-0 w-full"/>
-					<Break orientation="vertical" centerOrnament={true} class="break-v absolute top-0 left-0 h-full"/>
 
 					<h3 style="--glow-color:{data.color}">
 						<span>{data.name}</span>
 					</h3>
-					<p use:fit>{data.description}</p>
+					<p>{data.description}</p>
 				</div>
 			</div>
 
@@ -77,24 +77,29 @@
 	/* portrait */
 	@media (max-aspect-ratio: 4/3) {
 		.preview {
-			@apply w-full h-full grid gap-4 justify-items-center overflow-hidden;
+			@apply w-full h-full grid gap-4 content-evenly justify-items-center overflow-hidden;
 			padding-top: var(--navbar-height);
-			grid-template-rows: minmax(10rem, 1fr) minmax(0, auto);
+			padding-bottom: var(--slideshow-navigation-height);
+			grid-template-rows: minmax(0, auto) minmax(0, auto);
+			grid-template-columns: 100%;
+
 
 			& :global(.break-v) {
 				display: none;
 			}
 
+			& :global(.break-h) {
+				@apply absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-sm ;
+			}
+
 			& > :global(.spread) {
 				@apply self-center;
-				height: 100%;
-				max-width: 145svw;
-				max-height: 115.08svw;
+				height: 115.08svw;
+				max-height: 100%;
 			}
 
 			& > .side {
-				@apply w-full flex flex-col items-center gap-6 bg-neutral-100/50;
-				padding-bottom: var(--slideshow-navigation-height);
+				@apply w-full flex flex-col items-center gap-6 h-fit;
 
 				& .details {
 					@apply pt-6;
@@ -109,23 +114,29 @@
 			@apply w-full h-full grid gap-4 justify-evenly items-center overflow-hidden;
 			padding-top: var(--navbar-height);
 			padding-bottom: var(--slideshow-navigation-height);
-			grid-template-columns: auto minmax(0,auto);
+			grid-template-columns: minmax(0, auto) minmax(0,auto);
 			grid-template-rows: 100%;
+			--preview-max-content-height: calc(100svh - var(--navbar-height) - var(--slideshow-navigation-height));
 
 			& :global(.break-h) {
 				display: none;
 			}
 
+			& :global(.break-v) {
+				@apply absolute top-1/2 -translate-y-1/2 h-full;
+				max-height: var(--preview-max-content-height);
+			}
+
 			& > :global(.spread) {
-				width: calc((100svh - var(--navbar-height) - var(--slideshow-navigation-height)) * 1.26);
+				width: calc(var(--preview-max-content-height) * 1.26);
+				max-width: 100%;
 			}
 
 			& > .side {
-				@apply flex items-center gap-6;
+				@apply flex items-center gap-6 py-8;
 
 				& .details {
-					@apply py-8;
-					max-height: calc(100svh - var(--navbar-height) - var(--slideshow-navigation-height));
+					max-height: var(--preview-max-content-height);
 				}
 			}
 		}
