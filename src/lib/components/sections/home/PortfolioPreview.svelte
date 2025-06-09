@@ -48,7 +48,7 @@
 
 
 
-<Slideshow class={others.class} slideSnippet={photoshoot} data={photoshoots} timeout={500000} />
+<Slideshow class={others.class} slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
 
 
 <style>
@@ -77,7 +77,7 @@
 	/* portrait */
 	@media (max-aspect-ratio: 4/3) {
 		.preview {
-			@apply w-full h-full grid gap-4 content-evenly justify-items-center overflow-hidden;
+			@apply w-full h-full px-4 grid gap-4 content-evenly justify-items-center overflow-hidden;
 			padding-top: var(--navbar-height);
 			padding-bottom: var(--slideshow-navigation-height);
 			grid-template-rows: minmax(0, auto) minmax(0, auto);
@@ -111,7 +111,7 @@
 	/* landscape */
 	@media not (max-aspect-ratio: 4/3) {
 		.preview {
-			@apply w-full h-full grid gap-4 justify-evenly items-center overflow-hidden;
+			@apply w-full h-full px-4 grid gap-4 justify-evenly items-center overflow-hidden;
 			padding-top: var(--navbar-height);
 			padding-bottom: var(--slideshow-navigation-height);
 			grid-template-columns: minmax(0, auto) minmax(0,auto);
