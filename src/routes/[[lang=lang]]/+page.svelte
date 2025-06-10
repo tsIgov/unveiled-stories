@@ -6,21 +6,21 @@
 
 </script>
 
-<div class="section">
+<div class="section h-full">
 	<PortfolioPreview class="w-full h-full" photoshoots={data.photoshoots} />
 </div>
 
 <Break orientation="horizontal" centerOrnament={false} class="w-full" />
 
-<div class="section">
-	<Explanation class="w-full h-full" header={data.texts.theExperienceHeader} paragraph={data.texts.theExperienceParagraph} steps={data.steps} />
+<div class="section h-auto min-h-full">
+	<Explanation header={data.texts.theExperienceHeader} paragraph={data.texts.theExperienceParagraph} steps={data.steps} />
 </div>
 
 <style>
 	@reference "tailwindcss";
 
 	.section {
-		@apply w-full h-full snap-start snap-always;
+		@apply w-full snap-start snap-always;
 	}
 
 	.section:not(:first-child) {

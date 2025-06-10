@@ -21,7 +21,7 @@
 
 <NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
 
-<div class="w-full h-[100svh] oveflow-x-hidden overflow-y-scroll snap-y snap-proximity"
+<div class="w-full h-svh oveflow-x-hidden overflow-y-scroll snap-y snap-proximity scroll-smooth"
 	onscroll={(e) => scrollY = e.currentTarget.scrollTop} bind:offsetHeight={viewportHeight}
 	bind:this={scroller}>
 	{@render children()}
