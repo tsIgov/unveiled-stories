@@ -1,23 +1,29 @@
 <script lang="ts">
 	import { PortfolioPreview, Explanation } from "$lib/components/sections/home";
 	import { Break } from "$lib/components/common"
-	import { Section } from "$lib/full-page";
-	import Steps from "$lib/components/sections/home/Steps.svelte";
 
 	let { data } = $props();
 
 </script>
 
-<Section forceNewPage={true}>
-	<PortfolioPreview class="w-full h-svh" photoshoots={data.photoshoots} />
-</Section>
+<div class="section h-full">
+	<PortfolioPreview class="w-full h-full" photoshoots={data.photoshoots} />
+</div>
 
 <Break orientation="horizontal" centerOrnament={false} class="w-full" />
 
-<Section>
+<div class="section h-auto min-h-full">
 	<Explanation header={data.texts.theExperienceHeader} paragraph={data.texts.theExperienceParagraph} steps={data.steps} />
-</Section>
+</div>
 
-<Section forceNewPage={false}>
-	<Steps header={data.texts.theExperienceHeader} paragraph={data.texts.theExperienceParagraph} steps={data.steps} />
-</Section>
+<style>
+	@reference "tailwindcss";
+
+	.section {
+		@apply w-full snap-start snap-always;
+	}
+
+	.section:not(:first-child) {
+		@apply pt-[var(--navbar-height)];
+	}
+</style>
