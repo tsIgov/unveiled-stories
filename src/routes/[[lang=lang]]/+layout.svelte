@@ -1,29 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import NavMenu from '$lib/components/navigation/NavMenu.svelte';
-	import { onMount } from 'svelte';
+	import { Fullpage } from '$lib/full-page';
 
 	let { children, data } = $props();
 
-	let viewportHeight = $state(1);
+	let offsetHeight = $state(1);
 	let scrollY = $state(0);
-	let navMenuOpacityThreshold = $derived(viewportHeight / 2);
+	let navMenuOpacityThreshold = $derived(offsetHeight / 2);
 	let navMenuMinOpacity = $derived(page.data.transparentNavigation ? 0 : 1);
 	let navMenuOpacity = $derived(Math.max(navMenuMinOpacity, Math.min(1, scrollY / navMenuOpacityThreshold)));
 
-	let scroller : HTMLElement;
-
-	// onMount(() => {
-	// 	scrollY = scroller.scrollTop;
-	// });
-
 </script>
 
-<!-- <NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
+<NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
 
-<div class="w-full h-svh oveflow-x-hidden overflow-y-scroll snap-y snap-proximity scroll-smooth"
-	onscroll={(e) => scrollY = e.currentTarget.scrollTop} bind:offsetHeight={viewportHeight}
-	bind:this={scroller}> -->
+<Fullpage
+	bind:scrollY={scrollY} bind:offsetHeight={offsetHeight}>
 	{@render children()}
-<!-- </div> -->
+</Fullpage>
 

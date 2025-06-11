@@ -1,20 +1,17 @@
 import { getContext, setContext } from 'svelte';
-import { readonly, writable, type Writable } from 'svelte/store';
-
-export interface Transformations {
-	marginTop : number,
-	snap : boolean,
-	textSize : number
-}
+import { writable, type Writable } from 'svelte/store';
+import type { SectionProperties, Transformations } from './Section.svelte';
 
 export function initializeFullPageScrollingContext() {
 
 	const heights : number[] = [];
 	const transformations : Transformations[] = [];
+	const properties : SectionProperties[] = [];
 
 	const context = {
 		heights: writable(heights),
-		transformations: writable(transformations)
+		transformations: writable(transformations),
+		properties: writable(properties)
 	};
 
 	setContext("fullPageScrollingContext", context);
@@ -24,7 +21,8 @@ export function initializeFullPageScrollingContext() {
 export function getFullPageScrollingContext() {
 	let context = getContext("fullPageScrollingContext") as {
 		heights: Writable<number[]>,
-		transformations: Writable<Transformations[]>
+		transformations: Writable<Transformations[]>,
+		properties: Writable<SectionProperties[]>
 	};
 	return context;
 }
