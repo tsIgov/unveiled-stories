@@ -10,8 +10,8 @@
 	let scroller : HTMLElement;
 
 	let mounted = false;
-	heightsStore.subscribe(redraw);
-	propertiesStore.subscribe(redraw);
+	// heightsStore.subscribe(redraw);
+	// propertiesStore.subscribe(redraw);
 
 	let { offsetHeight = $bindable(), scrollY = $bindable(), children } : {
 		offsetHeight: number,
@@ -23,6 +23,8 @@
 		mounted = true;
 		scrollY = scroller.scrollTop;
 	});
+
+	$effect(() => redraw());
 
 	function redraw() {
 		if (!mounted)
