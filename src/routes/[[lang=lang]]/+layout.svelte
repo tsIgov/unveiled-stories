@@ -13,17 +13,17 @@
 
 	let scroller : HTMLElement;
 
-	onMount(() => {
-		scrollY = scroller.scrollTop;
-	});
+	// onMount(() => {
+	// 	scrollY = scroller.scrollTop;
+	// });
 
 </script>
 
-<NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
+<!-- <NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
 
 <div class="w-full h-svh oveflow-x-hidden overflow-y-scroll snap-y snap-proximity scroll-smooth"
 	onscroll={(e) => scrollY = e.currentTarget.scrollTop} bind:offsetHeight={viewportHeight}
-	bind:this={scroller}>
+	bind:this={scroller}> -->
 	{@render children()}
-</div>
+<!-- </div> -->
 
