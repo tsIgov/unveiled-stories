@@ -24,7 +24,7 @@
 		<h3 class="text-center font-serif text-lg text-light uppercase">{title}</h3>
 		<Break orientation="horizontal" centerOrnament={true} class="w-full mb-2" />
 		<div class="h-0 w-full grow flex items-center">
-			<p use:fit class="text-center text-neutral-900">{text}</p>
+			<p class="text-center text-neutral-900">{text}</p>
 		</div>
 	</div>
 </div>

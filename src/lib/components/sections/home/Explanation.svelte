@@ -25,5 +25,5 @@
 		<Break class="w-full mt-4 snap-start" orientation="horizontal" centerOrnament={true} />
 	</div>
 
-	<Carousel class="h-[calc(100svh_-_var(--navbar-height)_-2rem)] max-h-[min(30rem,_calc(0.70_*120svw_*1.6))] w-full" itemSnippet={step} data={steps} />
+	<Carousel class="h-[calc(100svh_-_var(--navbar-height)_-2em)] max-h-[min(30em,_calc(0.70_*120svw_*1.6))] w-full" itemSnippet={step} data={steps} />
 </div>
