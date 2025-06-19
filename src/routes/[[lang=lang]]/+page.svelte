@@ -1,18 +1,45 @@
 <script lang="ts">
 	import { PortfolioPreview, Explanation } from "$lib/components/sections/home";
 	import { Break } from "$lib/components/common"
-	import Section from "$lib/utils/Section.svelte";
 
 	let { data } = $props();
 
 </script>
 
-<Section minSize={1} maxSize={1}>
+<section>
 	<PortfolioPreview class="w-full h-full" photoshoots={data.photoshoots} />
-</Section>
+</section>
 
 <Break orientation="horizontal" centerOrnament={false} class="w-full" />
 
-<Section>
+<section>
 	<Explanation header={data.texts.theExperienceHeader} paragraph={data.texts.theExperienceParagraph} steps={data.steps} />
-</Section>
+</section>
+
+<Break orientation="horizontal" centerOrnament={false} class="w-full" />
+
+<section>
+	<p>Lorem ipsum</p>
+</section>
+
+<style>
+	@reference "style";
+
+	section {
+		@apply snap-start snap-always;
+		@apply flex flex-col items-center justify-center;
+		width: 100%;
+	}
+
+	section:first-child {
+		height: 100svh;
+	}
+
+	section:not(:first-child) {
+		min-height: calc(100lvh - var(--navbar-height));
+		padding-top: max(1rem, calc(50lvh - 50svh));
+		padding-bottom: max(1rem, calc(50lvh - 50svh));
+		scroll-margin-top: var(--navbar-height);
+	}
+
+</style>

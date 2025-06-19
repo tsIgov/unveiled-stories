@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import NavMenu from '$lib/components/navigation/NavMenu.svelte';
-	import { onMount } from 'svelte';
 
 	let { children, data } = $props();
 
@@ -11,19 +10,12 @@
 	let navMenuMinOpacity = $derived(page.data.transparentNavigation ? 0 : 1);
 	let navMenuOpacity = $derived(Math.max(navMenuMinOpacity, Math.min(1, scrollY / navMenuOpacityThreshold)));
 
-	let scroller : HTMLElement;
-
-	onMount(() => {
-		scrollY = scroller.scrollTop;
-	});
-
 </script>
 
-<NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
+<svelte:window bind:scrollY={scrollY} bind:innerHeight={viewportHeight} />
 
-<div class="w-full h-svh oveflow-x-hidden overflow-y-scroll snap-y snap-proximity scroll-smooth"
-	onscroll={(e) => scrollY = e.currentTarget.scrollTop} bind:offsetHeight={viewportHeight}
-	bind:this={scroller}>
+<NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
+<main>
 	{@render children()}
-</div>
+</main>
 

@@ -1,6 +1,11 @@
+:root {
+	@apply snap-y snap-proximity scroll-smooth;
+}
+
 body {
 	@apply bg-neutral-100;
 	@apply text-neutral-900;
+	@apply overflow-x-hidden;
 }
 
 * {

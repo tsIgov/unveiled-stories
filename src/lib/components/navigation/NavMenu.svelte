@@ -13,7 +13,7 @@
 </script>
 
 
-<div class="fixed w-full h-[var(--navbar-height)] p-4 overflow-visible flex justify-center content-center z-[1000]">
+<nav class="fixed w-full h-[var(--navbar-height)] p-4 overflow-visible flex justify-center content-center z-[1000]">
 
 	<div class="absolute top-0 left-0 w-full h-full bg-neutral-100" style="opacity: {opacity};">
 		<Break orientation="horizontal" centerOrnament={false} class="absolute bottom-0 w-full" />
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-</div>
+</nav>
 
 <style>
 	:global(:root) {
