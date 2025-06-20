@@ -7,7 +7,7 @@
 </script>
 
 <section>
-	<PortfolioPreview class="w-full h-full" photoshoots={data.photoshoots} />
+	<PortfolioPreview photoshoots={data.photoshoots} />
 </section>
 
 <Break orientation="horizontal" centerOrnament={false} class="w-full" />
@@ -27,7 +27,7 @@
 
 	section {
 		@apply snap-start snap-always;
-		@apply flex flex-col items-center justify-center;
+		@apply flex flex-col items-center justify-center gap-8;
 		width: 100%;
 	}
 

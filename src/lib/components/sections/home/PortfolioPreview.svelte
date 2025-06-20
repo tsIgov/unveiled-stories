@@ -4,16 +4,13 @@
 	import type { PhotoshootData } from 'photoshoots/photoshoot-data';
 
 	interface Props {
-		class? : string;
 		photoshoots : PhotoshootData[]
 	}
 
-	let { photoshoots, ...others } : Props = $props();
+	let { photoshoots } : Props = $props();
 </script>
 
 {#snippet photoshoot(data : PhotoshootData)}
-
-
 	<div>
 		<enhanced:img class="background landscape:hidden" src={data.backgroundPortrait} alt={data.name} />
 		<enhanced:img class="background portrait:hidden" src={data.backgroundLandscape} alt={data.name} />
@@ -47,15 +44,14 @@
 {/snippet}
 
 
-
-<Slideshow class={others.class} slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
+<Slideshow class="w-full h-svh" slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
 
 
 <style>
 	@reference "style";
 
 	.background {
-		@apply w-full h-full absolute left-0 top-0 object-cover brightness-75 opacity-20;
+		@apply w-full h-full absolute object-cover brightness-75 opacity-20;
 	}
 
 	.details {
