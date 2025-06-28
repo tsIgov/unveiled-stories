@@ -1,6 +1,6 @@
 <script lang="ts">
 
-	import { Break } from "$lib/components/common/index";
+	import { Rule } from "$lib/components/common/index";
 	import { fit } from '$lib/utils/text-fit';
 	import test2 from "photoshoots/the-hunt/images/background-portrait.jpg?enhanced"
 
@@ -22,7 +22,7 @@
 		src={test2} alt="{title}" />
 
 		<h3 class="text-center font-serif text-lg text-light uppercase">{title}</h3>
-		<Break orientation="horizontal" centerOrnament={true} class="w-full mb-2" />
+		<Rule centerOrnament={true} class="w-full mb-2" />
 		<div class="h-0 w-full grow flex items-center">
 			<p class="text-center text-neutral-900">{text}</p>
 		</div>

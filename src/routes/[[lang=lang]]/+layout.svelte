@@ -15,7 +15,5 @@
 <svelte:window bind:scrollY={scrollY} bind:innerHeight={viewportHeight} />
 
 <NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
-<main>
-	{@render children()}
-</main>
+{@render children()}
 

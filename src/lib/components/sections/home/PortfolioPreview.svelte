@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Break, Slideshow } from '$lib/components/common/index';
+	import { Rule, Slideshow } from '$lib/components/common/index';
 	import { PhotoCardSpread } from '$lib/components/cards/index';
 	import type { PhotoshootData } from 'photoshoots/photoshoot-data';
 
@@ -27,8 +27,8 @@
 			/>
 
 			<div class="side">
-				<Break orientation="vertical" centerOrnament={true} class="break-v"/>
-				<Break orientation="horizontal" centerOrnament={true} class="break-h"/>
+				<Rule orientation="vertical" centerOrnament={true} class="break-v"/>
+				<Rule orientation="horizontal" centerOrnament={true} class="break-h"/>
 
 				<div class="details">
 
@@ -43,9 +43,9 @@
 	</div>
 {/snippet}
 
-
-<Slideshow class="w-full h-svh" slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
-
+<section>
+	<Slideshow class="w-full h-svh" slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
+</section>
 
 <style>
 	@reference "style";

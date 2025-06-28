@@ -62,6 +62,89 @@ export const load: PageLoad = (async ({ parent }) => {
 				en: "Step into a space where your story comes alive  — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts of yourself that are ready to be unveiled. Whether you are honoring a turning point, embracing a quiet truth, or simply allowing yourself to feel, this is where it all unfolds.",
 				bg:""
 			})
-		}
+		},
+
+		faq: [
+			{
+				question: translator({
+					en: "Do I have to get undressed?",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+			{
+				question: translator({
+					en: "How many people can participate?",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+			{
+				question: translator({
+					en: "How much does it cost?",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+			{
+				question: translator({
+					en: "Can I bring a friend?",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+			{
+				question: translator({
+					en: "I don't know how to pose?",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+			{
+				question: translator({
+					en: "I'm not fit.",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+			{
+				question: translator({
+					en: "I don't have beautiful lingerie/clothes.",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+			{
+				question: translator({
+					en: "What if I don't live in Sofia?",
+					bg: ""
+				}),
+				answer: translator({
+					en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+					bg: ""
+				})
+			},
+		]
 	};
 });

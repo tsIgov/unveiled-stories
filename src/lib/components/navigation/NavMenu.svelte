@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Break } from '$lib/components/common/index';
+	import { Rule } from '$lib/components/common/index';
 	import LanguageMenu from '$lib/components/navigation/LanguageMenu.svelte';
 	import type { Language } from '$lib/i18n/languages';
 
@@ -16,7 +16,7 @@
 <nav class="fixed w-full h-[var(--navbar-height)] p-4 overflow-visible flex justify-center content-center z-[1000]">
 
 	<div class="absolute top-0 left-0 w-full h-full bg-neutral-100" style="opacity: {opacity};">
-		<Break orientation="horizontal" centerOrnament={false} class="absolute bottom-0 w-full" />
+		<Rule class="absolute bottom-0 w-full" />
 		<div class="absolute bottom-0 w-full h-1 blur-md -z-10 from-light/0 via-light to-light/0 bg-gradient-to-r"></div>
 	</div>
 
