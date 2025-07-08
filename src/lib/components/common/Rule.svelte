@@ -71,22 +71,25 @@
 
 	.rule.no-ornament {
 		@apply from-gold via-light to-gold;
-		height: 1px;
 
 		&::after {
 			@apply from-neutral-100 via-neutral-100/0 to-neutral-100;
-			@apply absolute top-0 left-0 w-full h-full;
+			@apply absolute top-0 left-0;
 			content: "";
 		}
 
 		&.horizontal,
 		&.horizontal::after {
 			@apply bg-gradient-to-r;
+			width: 100%;
+			height: 1px;
 		}
 
 		&.vertical,
 		&.vertical::after {
 			@apply bg-gradient-to-b;
+			width: 1px;
+			height: 100%;
 		}
 
 	}

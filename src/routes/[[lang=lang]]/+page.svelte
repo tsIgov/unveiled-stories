@@ -13,7 +13,7 @@
 	<Rule class="w-full" />
 	<Explanation header={data.texts.theExperienceHeader} paragraph={data.texts.theExperienceParagraph} steps={data.steps} />
 	<Rule class="w-full" />
-	<Faq faq={data.faq} />
+	<Faq header={data.texts.faqHeader} faq={data.faq} />
 </main>
 
 <style>
@@ -21,7 +21,7 @@
 
 	main {
 		& > :global(section) {
-			@apply snap-start snap-always;
+			/* @apply snap-start snap-always; */
 			@apply flex flex-col items-center justify-center gap-8;
 			width: 100%;
 		}
