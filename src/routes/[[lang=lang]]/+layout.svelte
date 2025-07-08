@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import NavMenu from '$lib/components/navigation/NavMenu.svelte';
+	import { NavMenu } from 'components/navigation';
 
 	let { children, data } = $props();
 

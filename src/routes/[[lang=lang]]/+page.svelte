@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { PortfolioPreview, Explanation } from "$lib/components/sections/home";
-	import { Rule } from "$lib/components/common"
-	import Faq from "$lib/components/sections/home/Faq.svelte";
+	import { PortfolioPreview, TheExperience, Faq, Team } from "components/sections/home";
+	import { Rule } from "components/common"
 
 	let { data } = $props();
-
 
 </script>
 
 <main>
-	<PortfolioPreview photoshoots={data.photoshoots} />
+	<PortfolioPreview photoshoots={data.portfolio} />
 	<Rule class="w-full" />
-	<Explanation header={data.texts.theExperienceHeader} paragraph={data.texts.theExperienceParagraph} steps={data.steps} />
+	<TheExperience data={data.theExperinece} />
 	<Rule class="w-full" />
-	<Faq header={data.texts.faqHeader} faq={data.faq} />
+	<Faq data={data.faq} />
+	<Rule class="w-full" />
+	<Team data={data.team} />
 </main>
 
 <style>

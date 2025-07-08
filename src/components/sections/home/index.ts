@@ -1,0 +1,4 @@
+export { default as PortfolioPreview } from "./PortfolioPreview.svelte";
+export { default as TheExperience } from "./TheExperience.svelte";
+export { default as Faq } from "./Faq.svelte";
+export { default as Team } from "./Team.svelte";
