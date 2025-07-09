@@ -1,6 +1,10 @@
 <script lang="ts">
-	import { PortfolioPreview, TheExperience, Faq, Team } from "components/sections/home";
 	import { Rule } from "components/common"
+
+	import PortfolioPreview from "./PortfolioPreview.svelte";
+	import TheExperience from "./TheExperience.svelte";
+	import Faq from "./Faq.svelte";
+	import Team from "./Team.svelte";
 
 	let { data } = $props();
 
