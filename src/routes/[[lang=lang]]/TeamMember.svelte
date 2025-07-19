@@ -4,10 +4,9 @@
 
 	interface Props {
 		data : MemberData,
-		class? : string
 	}
 
-	let { data, ...others } : Props = $props();
+	let { data } : Props = $props();
 
 	let expanded = $state(false);
 
