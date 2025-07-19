@@ -3,6 +3,7 @@
 
 @import "./utilities/inverse-corners.css";
 @import "./utilities/glow.css";
+@import "./utilities/hover-glow.css";
 
 @theme {
 

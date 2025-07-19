@@ -69,19 +69,7 @@
 			@apply w-full p-6;
 			@apply flex flex-col;
 			@apply text-left;
-			@apply cursor-pointer;
-
-
-			&::before {
-				@apply absolute top-1/2 left-0 w-full h-1;
-				@apply blur-md bg-gradient-to-r from-light/0 via-light to-light/0;
-				@apply transition-all duration-150 opacity-0;
-				content: "";
-			}
-
-			&:hover::before {
-				@apply opacity-100;
-			}
+			@apply cursor-pointer hover-glow;
 
 			& > h3 {
 				@apply text-xl font-bold text-light;
