@@ -5,7 +5,7 @@
 @import "./utilities/glow.css";
 
 @theme {
-	--spacing: 0.25em;
+
 
 	--font-*: initial;
 	--font-sans: "Comfortaa", sans-serif;
@@ -16,6 +16,7 @@
 	--color-neutral-900: oklch(0.933 0.0239 104.27);
 	--color-neutral-100: oklch(0.1793 0.0204 233.1);
 	--color-light: oklch(0.9201 0.0502 76.88);
+	--color-light-300: #BCAE96;
 	--color-gold: oklch(0.638 0.0977 57.9);
 
 	--aspect-*: initial;

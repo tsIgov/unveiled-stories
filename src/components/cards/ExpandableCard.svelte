@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Rule } from "components/common";
+	import { Rule, ExpandIndicator } from "components/common";
 
 	interface Props {
 		class? : string,
@@ -17,10 +17,7 @@
 
 	<Rule class="w-full" />
 	<button onclick={() => { if (onclick) onclick()}}>
-		<span class="indicator">
-			<img class="expand-icon" src="plus.svg" alt="expand" />
-			<img class="collapse-icon" src="minus.svg" alt="collapse" />
-		</span>
+		<ExpandIndicator class="indicator" expanded={expanded} />
 		<h2>{header}</h2>
 	</button>
 	<div class="content">
@@ -53,7 +50,7 @@
 		@apply cursor-pointer;
 
 		&::before {
-			@apply absolute top-1/2 left-0 w-full h-[2px];
+			@apply absolute top-1/2 left-0 w-full h-1;
 			@apply blur-md bg-gradient-to-r from-light/0 via-light to-light/0 ;
 			@apply transition-all duration-150 opacity-0;
 			content: "";
@@ -62,34 +59,9 @@
 		&:hover::before {
 			@apply opacity-100;
 		}
-	}
 
-	.indicator {
-		@apply absolute top-0 left-0 w-4 h-full ml-4;
-		@apply font-bold;
-
-		& > .expand-icon,
-		& > .collapse-icon {
-			@apply absolute left-0 w-full h-full;
-			@apply transition-all duration-500;
-		}
-
-		& > .expand-icon {
-			@apply opacity-100 rotate-0;
-		}
-
-		& > .collapse-icon {
-			@apply opacity-0;
-		}
-	}
-
-	.expanded .indicator {
-		& > .expand-icon {
-			@apply opacity-0 rotate-90;
-		}
-
-		& > .collapse-icon {
-			@apply opacity-100;
+		& > :global(.indicator) {
+			@apply absolute top-0 left-0 w-4 h-full ml-4;
 		}
 	}
 

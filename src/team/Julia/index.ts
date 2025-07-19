@@ -7,7 +7,7 @@ export default function (t : Translator): MemberData {
 	return {
 		name: t({en: "Julia", bg:"Юлия"}),
 		intro: t({
-			en: "She and her three dantians.",
+			en: "She and her three dantians. She and her three dantians.",
 			bg:"Тя и трите ѝ дантиена."
 		}),
 		title: t({
