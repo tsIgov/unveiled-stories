@@ -25,7 +25,7 @@ export const load: PageLoad = (async ({ parent }) => {
 			steps: [
 				{
 					title: translator({
-						en: "Step 1: Planning",
+						en: "Chapter 1: Planning",
 						bg: "Стъпка 1: Планиране"
 					}),
 					text: translator({
@@ -35,7 +35,7 @@ export const load: PageLoad = (async ({ parent }) => {
 				},
 				{
 					title: translator({
-						en: "Step 2: Preparation",
+						en: "Chapter 2: Preparation",
 						bg: "Стъпка 2: Подготовка"
 					}),
 					text: translator({
@@ -45,7 +45,7 @@ export const load: PageLoad = (async ({ parent }) => {
 				},
 				{
 					title: translator({
-						en: "Step 3: The Shoot",
+						en: "Chapter 3: The Shoot",
 						bg: "Стъпка 3: Сесията"
 					}),
 					text: translator({
@@ -55,7 +55,7 @@ export const load: PageLoad = (async ({ parent }) => {
 				},
 				{
 					title: translator({
-						en: "Step 4: The Reveal",
+						en: "Chapter 4: The Reveal",
 						bg: "Стъпка 4: ???"
 					}),
 					text: translator({
@@ -174,6 +174,45 @@ export const load: PageLoad = (async ({ parent }) => {
 				Tsvetan(translator),
 				Julia(translator),
 				Julia(translator)
+			]
+		},
+
+		testimonials : {
+			header: translator({
+				en: "Testimonials",
+				bg: "Testimonials"
+			}),
+			quotes: [
+				{
+					author: translator({
+						en: "Pamela",
+						bg: ""
+					}),
+					quote: translator({
+						en: "Bri is an absolute joy to work with! From the first contact with her she was warm, friendly and knowledgeable. She was the exact same in person on shoot day. So kind and the best hype friend. Absolutely recommend her a million times.",
+						bg: ""
+					})
+				},
+				{
+					author: translator({
+						en: "Krys Harr",
+						bg: ""
+					}),
+					quote: translator({
+						en: "I love everything about Matt Mathews Boudoir!! I’ve shot with both Matt and Brianna multiple times and can wholeheartedly say that first, you cannot tell a difference between who’s taking the pictures— the talent is unbelievable. Second, the experience is so uplifting and positive. And last, you’ll walk away feeling like a million bucks! My last shoot was a maternity session with Brianna and she took the most beautiful and CREATIVE pictures of me, my pregnant belly, and even my husband even jumped in on a few! Their makeup artist, Lauren, is freaking amazing and nails the look every. time. I can’t recommend shooting with the MM team. It’s worth the investment in yourself",
+						bg: ""
+					})
+				},
+				{
+					author: translator({
+						en: "Lacy Herbert",
+						bg: ""
+					}),
+					quote: translator({
+						en: "Bri and Lauren made this a beautiful experience for me. The photos are absolutely stunning. Makes me emotional every time I look at them. Thank You, so much ladies. This has done so much for me.",
+						bg: ""
+					})
+				}
 			]
 		}
 	};

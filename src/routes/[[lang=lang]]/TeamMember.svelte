@@ -92,7 +92,7 @@
 			@apply transition-all duration-1000;
 
 			& > p {
-				@apply p-6 pt-0;
+				@apply p-6 pt-0 italic;
 			}
 		}
 	}

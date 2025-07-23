@@ -5,6 +5,7 @@
 	import TheExperience from "./TheExperience.svelte";
 	import Faq from "./Faq.svelte";
 	import Team from "./Team.svelte";
+	import Testimonials from "./Testimonials.svelte";
 
 	let { data } = $props();
 
@@ -18,6 +19,9 @@
 	<Faq data={data.faq} />
 	<Rule class="w-full" />
 	<Team data={data.team} />
+	<Rule class="w-full" />
+	<Testimonials data={data.testimonials} />
+
 </main>
 
 <style>
