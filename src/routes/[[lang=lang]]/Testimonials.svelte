@@ -14,7 +14,7 @@
 </script>
 
 {#snippet quote({author, quote} : {author: string, quote: string})}
-	<div class="w-xs max-w-full flex flex-col gap-4 items-center p-4">
+	<div class="max-w-xs flex flex-col gap-4 items-center p-4">
 		<img class="w-8 h-8" src="quote.svg" alt="quote">
 		<p class="italic text-sm">{quote}</p>
 		<p>{author}</p>
@@ -28,19 +28,11 @@
 	</div>
 
 
-	<div class="carousel">
-		<Carousel class="w-full h-full" itemSnippet={quote} data={data.quotes} />
-	</div>
+	<Carousel class="w-full" itemSnippet={quote} data={data.quotes} />
 
 </section>
 
 <style>
 	@reference "style";
 
-	.carousel {
-		overflow-x: hidden;
-		width: 100%;
-		height: calc(100svh - var(--navbar-height) - 2rem);
-		max-height: min(30rem, calc(0.70 * 110svw * 1.6));
-	}
 </style>

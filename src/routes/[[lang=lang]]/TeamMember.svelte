@@ -39,7 +39,7 @@
 	@reference "style";
 
 	.card {
-		@apply w-3xs max-w-full aspect-card;
+		@apply max-w-3xs aspect-card;
 		@apply glow p-[2px] inverse-corners;
 		--glow-color: oklch(0.6201 0.0502 76.88);
 	}
@@ -49,7 +49,7 @@
 	}
 
 	.background {
-		@apply absolute top-0 left-0 w-full h-full;
+		@apply absolute top-0 left-0 w-full h-full select-none;
 	}
 
 	.content {

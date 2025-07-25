@@ -15,7 +15,7 @@
 </script>
 
 {#snippet step({title, text} : {title: string, text: string})}
-	<TextCard class="h-full" {title} {text}/>
+	<TextCard class="max-w-xs" {title} {text}/>
 {/snippet}
 
 <section>
@@ -25,17 +25,10 @@
 		<Rule class="w-full mt-4 snap-start" centerOrnament={true} />
 	</div>
 
-	<div class="carousel">
-		<Carousel class="w-full h-full" itemSnippet={step} data={data.steps} />
-	</div>
+	<Carousel class="w-full" itemSnippet={step} data={data.steps} />
 </section>
 
 
 <style>
-	.carousel {
-		overflow-x: hidden;
-		width: 100%;
-		height: calc(100svh - var(--navbar-height) - 2rem);
-		max-height: min(30rem, calc(0.70 * 110svw * 1.6));
-	}
+	@rerefence "style";
 </style>
