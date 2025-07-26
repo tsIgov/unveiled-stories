@@ -25,7 +25,7 @@
 		<Rule class="w-full mt-4 snap-start" centerOrnament={true} />
 	</div>
 
-	<Carousel class="w-full" itemSnippet={step} data={data.steps} />
+	<Carousel class="w-full" itemSnippet={step} data={data.steps} loop={false} />
 </section>
 
 

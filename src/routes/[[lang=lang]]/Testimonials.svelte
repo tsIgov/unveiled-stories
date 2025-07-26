@@ -28,7 +28,7 @@
 	</div>
 
 
-	<Carousel class="w-full" itemSnippet={quote} data={data.quotes} />
+	<Carousel class="w-full" itemSnippet={quote} data={data.quotes} loop={true} />
 
 </section>
 

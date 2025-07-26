@@ -30,7 +30,7 @@
 		{/each}
 	</div> -->
 
-		<Carousel class="w-full" itemSnippet={member} data={data.members} />
+		<Carousel class="w-full" itemSnippet={member} data={data.members} loop={true} />
 
 </section>
 

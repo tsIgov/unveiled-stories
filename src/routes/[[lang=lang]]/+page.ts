@@ -173,8 +173,6 @@ export const load: PageLoad = (async ({ parent }) => {
 			members: [
 				Tsvetan(translator),
 				Julia(translator),
-				Julia(translator),
-				Tsvetan(translator)
 			]
 		},
 

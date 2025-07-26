@@ -5,31 +5,69 @@
 	interface Props {
 		class? : string,
 		data: T[],
+		loop: boolean,
 		itemSnippet: Snippet<[T]>
 	}
 
-	let { itemSnippet, data, ...others} : Props =$props();
+	let { itemSnippet, data, loop, ...others} : Props =$props();
 	let currentItem = $state(0);
+	let count = $derived(loop ? Math.ceil(5 / data.length) * data.length : data.length);
 
 	function getNeighbourClasses(index: number, currentItem : number) {
-		let result = "";
-		if (index == currentItem)
-			result += "active ";
-		else
-			result += "inactive ";
+		const dist = distance(index, currentItem);
 
-		if (index + 1 == currentItem)
-			result += "prev  ";
-		else if (index - 1 == currentItem)
-			result += "next ";
-		else if (index != currentItem)
+		let result = "";
+		if (dist == 0)
+			result += "active ";
+		else if (dist == 1)
+			result += "neighbour ";
+		else if (dist == 2)
 			result += "distant ";
+		else
+			result += "far ";
+
+		result += direction(index)
 
 		return result;
 	}
 
+	function distance(a: number, b: number) {
+		if (loop) {
+			const d1 = Math.abs(a - b);
+			const d2 = count - d1;
+			return Math.min(d1, d2);
+		}
+		else {
+			return Math.abs(a - b);
+		}
+	}
+
+	function direction(index: number) {
+		if (loop) {
+			const dist = distance(index, currentItem);
+			if (index < currentItem) {
+				if (currentItem - index == dist)
+					return "left";
+				else
+					return "right";
+			}
+			if (index > currentItem) {
+				if (index - currentItem == dist)
+					return "right";
+				else
+					return "left"
+			}
+		}
+		else {
+			if (index < currentItem) return "left";
+			if (index > currentItem) return "right";
+		}
+
+		return "";
+	}
+
 	function changeCurrentItem(index: number) {
-		if (Math.abs(currentItem - index) == 1)
+		if (distance(currentItem, index) == 1)
 			currentItem = index;
 	}
 
@@ -38,9 +76,16 @@
 			return;
 
 		if (event.detail.direction == "left")
-			currentItem = Math.min(data.length - 1, currentItem + 1);
+			currentItem++;
 		else if (event.detail.direction == "right")
-			currentItem = Math.max(0, currentItem - 1);
+			currentItem--;
+
+		if (loop) {
+			if (currentItem == -1) currentItem = count - 1;
+			if (currentItem == count) currentItem = 0;
+		}
+		else
+			currentItem = Math.max(0, Math.min(count - 1, currentItem));
 	}
 
 </script>
@@ -49,11 +94,10 @@
 <div class="carousel {others.class}"
 	use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
-	{#each data as item, index}
+	{#each { length: count }, index}
 		<button class="item {getNeighbourClasses(index, currentItem)}"
-			style="translate:{(index - currentItem) * 100}%;"
 			onclick={() => {changeCurrentItem(index)}}>
-			{@render itemSnippet(item)}
+			{@render itemSnippet(data[index % data.length])}
 		</button>
 	{/each}
 
@@ -89,49 +133,54 @@
 		filter: grayscale(0);
 		--carousel-opacity-left: 1;
 		--carousel-opacity-right: 1;
-	}
 
-	.item.inactive {
-		scale: 0.85;
-		filter: grayscale(0.75);
-	}
+		&.left {
+			--direction: -1;
+			--carousel-opacity-left: 0;
+			--carousel-opacity-right: 0.5;
+		}
+		&.right {
+			--direction: 1;
+			--carousel-opacity-left: 0.5;
+			--carousel-opacity-right: 0;
+		}
 
-	.item.prev {
-		--carousel-opacity-left: 0;
-		--carousel-opacity-right: 0.5;
-	}
+		&.active {
+			@apply select-all;
+			translate: 0%;
+		}
+		&:not(.active) {
+			scale: 0.85;
+			filter: grayscale(0.75);
+		}
+		&.neighbour {
+			@apply cursor-pointer;
+			translate: calc(var(--direction) * 100%);
+		}
+		&.distant {
+			translate: calc(var(--direction) * 200%);
+			--carousel-opacity-left: 0;
+			--carousel-opacity-right: 0;
+		}
+		&.far {
+			@apply hidden;
+			translate: calc(var(--direction) * 200%);
+			--carousel-opacity-left: 0;
+			--carousel-opacity-right: 0;
+		}
 
-	.item.next {
-		--carousel-opacity-left: 0.5;
-		--carousel-opacity-right: 0;
-	}
+		&.neighbour.left:hover {
+			filter: grayscale(0);
+			--carousel-opacity-left: 0.2;
+			--carousel-opacity-right: 0.7;
+		}
 
-	.item.distant {
-		@apply pointer-events-none;
-		--carousel-opacity-left: 0;
-		--carousel-opacity-right: 0;
-	}
+		&.neighbour.right:hover {
+			filter: grayscale(0);
+			--carousel-opacity-left: 0.7;
+			--carousel-opacity-right: 0.2;
+		}
 
-	.item.prev,
-	.item.next,
-	.item.active {
-		cursor: pointer;
-	}
-
-	.item.active {
-		@apply select-text;
-	}
-
-	.item.prev:hover {
-		filter: grayscale(0);
-		--carousel-opacity-left: 0.2;
-		--carousel-opacity-right: 0.7;
-	}
-
-	.item.next:hover {
-		filter: grayscale(0);
-		--carousel-opacity-left: 0.7;
-		--carousel-opacity-right: 0.2;
 	}
 
 </style>
