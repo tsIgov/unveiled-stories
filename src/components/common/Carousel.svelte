@@ -125,7 +125,8 @@
 
 	.item {
 		@apply col-start-2 col-end-5 row-start-1 max-h-full;
-		@apply ease-out duration-1000 select-none;
+		@apply ease-out duration-1000;
+		@apply select-none;
 
 		transition-property: --carousel-opacity-left, --carousel-opacity-right, scale, translate, filter;
 		mask: linear-gradient(to right,rgba(255,255,255,var(--carousel-opacity-left)), rgba(255,255,255,var(--carousel-opacity-right)));
@@ -146,12 +147,16 @@
 		}
 
 		&.active {
-			@apply select-all;
+			@apply select-auto;
 			translate: 0%;
 		}
 		&:not(.active) {
 			scale: 0.85;
 			filter: grayscale(0.75);
+
+			& > :global(*) {
+				@apply pointer-events-none;
+			}
 		}
 		&.neighbour {
 			@apply cursor-pointer;
