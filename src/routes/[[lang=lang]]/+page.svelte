@@ -6,6 +6,7 @@
 	import Faq from "./Faq.svelte";
 	import Team from "./Team.svelte";
 	import Testimonials from "./Testimonials.svelte";
+	import Contact from "./Contact.svelte";
 
 	let { data } = $props();
 
@@ -21,6 +22,8 @@
 	<Team data={data.team} />
 	<Rule class="w-full" />
 	<Testimonials data={data.testimonials} />
+	<Rule class="w-full" />
+	<Contact />
 
 </main>
 

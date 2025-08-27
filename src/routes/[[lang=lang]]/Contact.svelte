@@ -1,0 +1,120 @@
+<script lang="ts">
+	import { Rule } from "components/common";
+
+
+	let honeypot = $state("");
+	let name = $state("");
+	let email = $state("");
+	let message = $state("");
+	let success : boolean | null = $state(null);
+	let sending = $state(false);
+
+	const handleSubmit = async (e : any) => {
+    	e.preventDefault();
+
+		sending = true;
+
+		if (honeypot) {
+			return;
+		}
+
+		const formData = new FormData();
+		formData.append("name", name);
+		formData.append("message", message);
+		formData.append("email", email);
+		formData.append("honeypot", honeypot);
+
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbx9XtTnkOu3Q0bni0QE_yS1SAndeYqmhRF1odCgEh9qgy53ih5q9kSA8mZCbSdtgt0c/exec",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
+
+	  success = response.ok;
+    } catch (error) {
+		success = false;
+    }
+  };
+
+
+</script>
+
+
+
+<section class="w-full px-4">
+
+	<div class="text-center max-w-3xl px-4">
+		<h2 class="font-serif text-xl text-light uppercase mb-2">Book your experience</h2>
+		<p class="text-neutral-900">Step into a space where your story comes alive — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts</p>
+		<Rule class="w-full mt-4 snap-start" centerOrnament={true} />
+	</div>
+
+
+	<div class="flex flex-col md:flex-row p-6 gap-16 md:gap-8">
+		<div class="flex flex-col gap-2 justify-center-safe items-center-safe order-2 md:order-1 basis-auto grow-0 shrink-0">
+			<img class="w-3xs" src="logo-full.svg" alt="logo" />
+			<div class="flex gap-4 justify-center">
+				<img class="w-8" src="mail.svg" alt="logo" />
+				<img class="w-8" src="mail.svg" alt="logo" />
+				<img class="w-8" src="mail.svg" alt="logo" />
+			</div>
+		</div>
+
+		{#if success == null}
+			{#if !sending}
+				<form onsubmit="{handleSubmit}" class="max-w-xl w-full flex flex-wrap gap-4 order-1">
+
+					<input required placeholder="Enter your name" bind:value={name} />
+
+					<input type="email" bind:value={email} required placeholder="Enter your email" />
+
+					<textarea rows="5" required	placeholder="Tell us what's on your mind..." bind:value={message} class=" w-full"></textarea>
+
+					<input type="text" bind:value={honeypot} class="hidden" />
+
+					<button class="glow inverse-corners p-[1px]" style="--glow-color: var(--color-gold)"><span class=" px-4 py-1 inverse-corners bg-neutral-200 block">Send</span></button>
+				</form>
+			{:else}
+				<div>Loading...</div>
+			{/if}
+		{/if}
+
+		{#if success == true}
+			<div>Success!</div>
+		{/if}
+
+		{#if success == false}
+			<div>Fail!</div>
+		{/if}
+	</div>
+
+</section>
+
+<style>
+	@reference "style";
+
+	form {
+		@apply justify-center;
+	}
+
+	input {
+		@apply grow basis-0 min-w-40;
+	}
+
+	input,
+	textarea {
+		@apply p-2;
+		@apply text-neutral-900 bg-neutral-200 border-b border-b-[grey];
+		@apply placeholder:italic placeholder:text-[grey];
+		@apply user-invalid:border-b-[red];
+		@apply focus:border-b-light-300;
+	}
+
+	button {
+		@apply border border-[grey]  uppercase grow;
+	}
+
+</style>
