@@ -58,7 +58,7 @@
 		transition-property: --tw-gradient-from, --tw-gradient-to, --tw-gradient-via;
 		transition-duration: 1000ms;
 
-		@apply bg-linear-to-b from-transparent via-neutral-100/50 to-neutral-100 from-50% via-75% to-100%;
+		@apply bg-linear-to-b from-transparent via-neutral-900/50 to-neutral-900 from-50% via-75% to-100%;
 
 		& > .top-gap {
 			@apply grow transition-all duration-1000;
@@ -71,18 +71,18 @@
 			@apply cursor-pointer hover-glow;
 
 			& > h3 {
-				@apply text-xl font-bold text-light;
-				@apply text-shadow-sm text-shadow-neutral-100;
+				@apply text-xl font-bold text-moonlight;
+				@apply text-shadow-sm text-shadow-neutral-900;
 			}
 
 			& > .title {
-				@apply text-shadow-sm text-shadow-neutral-100;
+				@apply text-shadow-sm text-shadow-neutral-900;
 			}
 
 			& > :global(.indicator) {
 				@apply w-6 h-6 top-1/2 -mt-3;
 				@apply absolute right-0 mr-4;
-				@apply text-3xl text-neutral-900/70;
+				@apply text-3xl text-neutral-100/70;
 			}
 		}
 
@@ -98,7 +98,7 @@
 	}
 
 	.content.expanded {
-		@apply bg-linear-to-b from-neutral-100/80 via-neutral-100/80 to-neutral-100/80 from-50% via-75% to-100%;
+		@apply bg-linear-to-b from-neutral-900/80 via-neutral-900/80 to-neutral-900/80 from-50% via-75% to-100%;
 
 		& > .top-gap {
 			@apply grow-0;

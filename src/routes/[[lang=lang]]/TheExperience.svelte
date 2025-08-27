@@ -20,8 +20,8 @@
 
 <section>
 	<div class="text-center max-w-3xl px-4">
-		<h2 class="font-serif text-xl text-light uppercase mb-2">{data.header}</h2>
-		<p class="text-neutral-900">{data.paragraph}</p>
+		<h2 class="font-serif text-xl text-moonlight uppercase mb-2">{data.header}</h2>
+		<p class="text-neutral-100">{data.paragraph}</p>
 		<Rule class="w-full mt-4 snap-start" centerOrnament={true} />
 	</div>
 

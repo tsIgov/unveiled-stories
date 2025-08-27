@@ -20,7 +20,7 @@
 
 <section class="w-full">
 	<div class="text-center max-w-3xl px-4">
-		<h2 class="font-serif text-xl text-light uppercase mb-2">{data.header}</h2>
+		<h2 class="font-serif text-xl text-moonlight uppercase mb-2">{data.header}</h2>
 		<Rule class="min-w-3xs" centerOrnament={true} />
 	</div>
 

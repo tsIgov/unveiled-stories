@@ -60,7 +60,7 @@
 			@apply w-full max-w-2xs p-[2px] glow inverse-corners;
 
 			& > span {
-				@apply block px-5 py-1 bg-neutral-100 inverse-corners;
+				@apply block px-5 py-1 bg-neutral-900 inverse-corners;
 				@apply text-center font-bold uppercase select-none;
 			}
 		}

@@ -16,15 +16,15 @@
 <div class="glow aspect-card p-[2px] inverse-corners {others.class}"
 		style="--glow-color: oklch(0.6201 0.0502 76.88)">
 
-	<div class="h-full w-full p-4 flex flex-col items-center justify-center bg-neutral-100 inverse-corners">
+	<div class="h-full w-full p-4 flex flex-col items-center justify-center bg-neutral-900 inverse-corners">
 
-		<enhanced:img class="absolute top-0 left-0 w-full h-full bg-neutral-100 object-cover select-none inverse-corners brightness-75 opacity-10"
+		<enhanced:img class="absolute top-0 left-0 w-full h-full bg-neutral-900 object-cover select-none inverse-corners brightness-75 opacity-10"
 		src={test2} alt="{title}" />
 
-		<h3 class="text-center font-serif text-lg text-light uppercase">{title}</h3>
+		<h3 class="text-center font-serif text-lg text-moonlight uppercase">{title}</h3>
 		<Rule centerOrnament={true} class="w-full mb-2" />
 		<div class="h-0 w-full grow flex items-center">
-			<p class="text-center text-neutral-900">{text}</p>
+			<p class="text-center text-neutral-100">{text}</p>
 		</div>
 	</div>
 </div>

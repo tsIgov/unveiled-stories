@@ -19,7 +19,7 @@
 		--ornament-radius: 3px;
 		width: calc(var(--inverse-corner-size) * 2);
 		height: calc(var(--inverse-corner-size) * 2);
-		background-image: radial-gradient(at var(--gradientPositionX) var(--gradientPositionY), transparent var(--ornament-radius), var(--color-neutral-100) var(--ornament-radius));
+		background-image: radial-gradient(at var(--gradientPositionX) var(--gradientPositionY), transparent var(--ornament-radius), var(--color-neutral-900) var(--ornament-radius));
 		translate: var(--translateX) var(--translateY);
 	}
 

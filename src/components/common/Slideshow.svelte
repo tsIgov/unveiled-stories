@@ -74,7 +74,7 @@
 			<button class="group"
 				onclick="{() => changeSlide(slideIndex)}"
 				tabindex="-1">
-				<span class="{currentSlide % slidesCount == slideIndex ? "text-neutral-900" : "text-neutral-900/60" }">
+				<span class="{currentSlide % slidesCount == slideIndex ? "text-neutral-100" : "text-neutral-100/60" }">
 					{String(slideIndex + 1).padStart(2, '0')}
 				</span>
 
@@ -114,11 +114,11 @@
 			height: calc(var(--slideshow-navigation-height) - 2rem);
 
 			& > span {
-				@apply transition-all duration-1000 text-xs group-hover:text-neutral-900;
+				@apply transition-all duration-1000 text-xs group-hover:text-neutral-100;
 			}
 
 			& > .progress-line {
-				@apply transition-all duration-1000 absolute rounded-full bg-conic from-neutral-900 to-neutral-900/20 from-100% to-100% -z-10;
+				@apply transition-all duration-1000 absolute rounded-full bg-conic from-neutral-100 to-neutral-100/20 from-100% to-100% -z-10;
 
 				top: -2px;
 				left: -2px;

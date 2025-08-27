@@ -46,7 +46,7 @@
 
 	button {
 		@apply w-full px-12 py-2 overflow-hidden;
-		@apply text-light text-center text-lg;
+		@apply text-moonlight text-center text-lg;
 		@apply cursor-pointer hover-glow;
 
 		& > :global(.indicator) {

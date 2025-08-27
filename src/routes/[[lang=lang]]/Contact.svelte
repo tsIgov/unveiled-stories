@@ -47,8 +47,8 @@
 <section class="w-full px-4">
 
 	<div class="text-center max-w-3xl px-4">
-		<h2 class="font-serif text-xl text-light uppercase mb-2">Book your experience</h2>
-		<p class="text-neutral-900">Step into a space where your story comes alive — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts</p>
+		<h2 class="font-serif text-xl text-moonlight uppercase mb-2">Book your experience</h2>
+		<p class="text-neutral-100">Step into a space where your story comes alive — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts</p>
 		<Rule class="w-full mt-4 snap-start" centerOrnament={true} />
 	</div>
 
@@ -75,7 +75,7 @@
 
 					<input type="text" bind:value={honeypot} class="hidden" />
 
-					<button class="glow inverse-corners p-[1px]" style="--glow-color: var(--color-gold)"><span class=" px-4 py-1 inverse-corners bg-neutral-200 block">Send</span></button>
+					<button class="glow inverse-corners p-[1px]" style="--glow-color: var(--color-gold)"><span class=" px-4 py-1 inverse-corners bg-neutral-800 block">Send</span></button>
 				</form>
 			{:else}
 				<div>Loading...</div>
@@ -107,14 +107,14 @@
 	input,
 	textarea {
 		@apply p-2;
-		@apply text-neutral-900 bg-neutral-200 border-b border-b-[grey];
-		@apply placeholder:italic placeholder:text-[grey];
-		@apply user-invalid:border-b-[red];
-		@apply focus:border-b-light-300;
+		@apply text-neutral-100 bg-neutral-800 border-b border-b-neutral-500;
+		@apply placeholder:italic placeholder:text-neutral-500;
+		@apply user-invalid:border-b-error;
+		@apply focus:border-b-moonlight;
 	}
 
 	button {
-		@apply border border-[grey]  uppercase grow;
+		@apply border border-neutral-500 uppercase grow;
 	}
 
 </style>

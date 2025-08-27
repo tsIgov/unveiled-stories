@@ -15,9 +15,9 @@
 
 <nav class="fixed w-full h-[var(--navbar-height)] p-4 overflow-visible flex justify-center content-center z-[1000]">
 
-	<div class="absolute top-0 left-0 w-full h-full bg-neutral-100" style="opacity: {opacity};">
+	<div class="absolute top-0 left-0 w-full h-full bg-neutral-900" style="opacity: {opacity};">
 		<Rule class="absolute bottom-0 w-full" />
-		<div class="absolute bottom-0 w-full h-1 blur-md -z-10 from-light/0 via-light to-light/0 bg-gradient-to-r"></div>
+		<div class="absolute bottom-0 w-full h-1 blur-md -z-10 from-moonlight/0 via-moonlight to-moonlight/0 bg-gradient-to-r"></div>
 	</div>
 
 	<div class="w-full h-full flex content-center justify-center">

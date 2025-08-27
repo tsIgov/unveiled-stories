@@ -14,12 +14,17 @@
 	--font-fancy: "MonteCarlo", cursive;
 
 	--color-*: initial;
-	--color-neutral-900: oklch(0.933 0.0239 104.27);
-	--color-neutral-100: oklch(0.1793 0.0204 233.1);
-	--color-neutral-200: oklch(0.1950 0.0204 233.1);
-	--color-light: oklch(0.9201 0.0502 76.88);
-	--color-light-300: #BCAE96;
+
+	--color-neutral-100: oklch(0.933 0.0239 104.27);
+	--color-neutral-500: oklch(0.675 0.0239 104.27);
+	--color-neutral-900: oklch(0.1793 0.0204 233.1);
+	--color-neutral-800: oklch(0.1950 0.0204 233.1);
+
+	--color-moonlight: oklch(0.9201 0.0502 76.88);
+	--color-moonlight-dim: oklch(0.7562 0.0369 81.22);
+
 	--color-gold: oklch(0.638 0.0977 57.9);
+	--color-error: oklch(0.5564 0.19 15);
 
 	--aspect-*: initial;
 	--aspect-card: 0.625;
