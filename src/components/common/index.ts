@@ -1,4 +1,5 @@
-export { default as Rule } from './Rule.svelte'
 export { default as Carousel } from './Carousel.svelte'
-export { default as Slideshow } from './Slideshow.svelte'
 export { default as ExpandIndicator } from './ExpandIndicator.svelte'
+export { default as Heading } from './Heading.svelte'
+export { default as Rule } from './Rule.svelte'
+export { default as Slideshow } from './Slideshow.svelte'

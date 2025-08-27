@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Rule } from "components/common";
+	import { Heading } from "components/common";
 	import { ExpandableCard } from "components/cards";
 
 	interface Props {
@@ -34,10 +34,7 @@
 {/snippet}
 
 <section>
-	<div class="text-center max-w-3xl px-4">
-		<h2 class="font-serif text-xl text-moonlight uppercase mb-2">{data.header}</h2>
-		<Rule class="min-w-3xs" centerOrnament={true} />
-	</div>
+	<Heading title={data.header} />
 
 	<div class="questions">
 		{@render column(0, data.questions.length / 2)}

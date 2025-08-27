@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Carousel, Rule } from 'components/common';
+	import { Carousel, Heading } from 'components/common';
 
 
 	interface Props {
@@ -22,14 +22,8 @@
 {/snippet}
 
 <section>
-	<div class="text-center max-w-3xl px-4">
-		<h2 class="font-serif text-xl text-moonlight uppercase mb-2">{data.header}</h2>
-		<Rule class="min-w-3xs" centerOrnament={true} />
-	</div>
-
-
+	<Heading title={data.header} />
 	<Carousel class="w-full" itemSnippet={quote} data={data.quotes} loop={true} />
-
 </section>
 
 <style>

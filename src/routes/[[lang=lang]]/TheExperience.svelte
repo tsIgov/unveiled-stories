@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { TextCard } from 'components/cards';
-	import { Carousel, Rule } from 'components/common';
+	import { Carousel, Heading } from 'components/common';
 
 	interface Props {
 		data: {
@@ -19,12 +19,7 @@
 {/snippet}
 
 <section>
-	<div class="text-center max-w-3xl px-4">
-		<h2 class="font-serif text-xl text-moonlight uppercase mb-2">{data.header}</h2>
-		<p class="text-neutral-100">{data.paragraph}</p>
-		<Rule class="w-full mt-4 snap-start" centerOrnament={true} />
-	</div>
-
+	<Heading title={data.header} summary={data.paragraph}/>
 	<Carousel class="w-full" itemSnippet={step} data={data.steps} loop={false} />
 </section>
 

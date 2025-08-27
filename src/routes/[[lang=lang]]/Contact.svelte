@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Rule } from "components/common";
-
+	import { Heading } from "components/common";
 
 	let honeypot = $state("");
 	let name = $state("");
@@ -39,18 +38,15 @@
     }
   };
 
-
 </script>
 
 
 
-<section class="w-full px-4">
-
-	<div class="text-center max-w-3xl px-4">
-		<h2 class="font-serif text-xl text-moonlight uppercase mb-2">Book your experience</h2>
-		<p class="text-neutral-100">Step into a space where your story comes alive — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts</p>
-		<Rule class="w-full mt-4 snap-start" centerOrnament={true} />
-	</div>
+<section>
+	<Heading
+		title="Book your experience"
+		summary="Step into a space where your story comes alive — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts"
+	/>
 
 
 	<div class="flex flex-col md:flex-row p-6 gap-16 md:gap-8">
@@ -75,7 +71,7 @@
 
 					<input type="text" bind:value={honeypot} class="hidden" />
 
-					<button class="glow inverse-corners p-[1px]" style="--glow-color: var(--color-gold)"><span class=" px-4 py-1 inverse-corners bg-neutral-800 block">Send</span></button>
+					<button class="glow  p-[1px]" style="--glow-color: var(--color-gold)"><span class=" px-4 py-1  bg-neutral-800 block">Send</span></button>
 				</form>
 			{:else}
 				<div>Loading...</div>
@@ -95,6 +91,10 @@
 
 <style>
 	@reference "style";
+
+	section {
+		@apply w-full px-4;
+	}
 
 	form {
 		@apply justify-center;
