@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Rule, Slideshow } from 'components/common';
+	import { Rule, Slideshow, Frame } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 	import type { PhotoshootData } from 'photoshoots';
 
@@ -31,10 +31,12 @@
 				<Rule orientation="horizontal" centerOrnament={true} class="break-h"/>
 
 				<div class="details">
-
-					<h3 style="--glow-color:{data.color}">
-						<span>{data.name}</span>
+					<h3>
+						<Frame color={data.color}>
+							<span>{data.name}</span>
+						</Frame>
 					</h3>
+
 					<p>{data.description}</p>
 				</div>
 			</div>
@@ -56,12 +58,14 @@
 
 	.details {
 		@apply max-w-sm px-4 flex flex-col gap-3 items-center overflow-hidden;
-		& > h3 {
-			@apply w-full max-w-2xs p-[2px] glow inverse-corners;
 
-			& > span {
-				@apply block px-5 py-1 bg-neutral-900 inverse-corners;
-				@apply text-center font-bold uppercase select-none;
+		& > h3 {
+			@apply w-full max-w-2xs;
+			@apply bg-neutral-900;
+			@apply text-center font-bold uppercase select-none;
+
+			& span {
+				@apply block w-full px-8 py-1;
 			}
 		}
 

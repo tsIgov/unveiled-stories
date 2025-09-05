@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ExpandIndicator } from 'components/common';
+	import { ExpandIndicator, Frame } from 'components/common';
 	import type { MemberData } from 'team';
 
 	interface Props {
@@ -13,8 +13,8 @@
 </script>
 
 
-<div class="card">
-	<div class="card-border">
+<div class="team-member">
+	<Frame color="var(--color-gold-dim)" glow={expanded}>
 		<enhanced:img class="background" src={data.photo} alt={data.name} />
 
 		<div class="content"
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 
-	</div>
+	</Frame>
 </div>
 
 
@@ -38,14 +38,8 @@
 <style>
 	@reference "style";
 
-	.card {
+	.team-member {
 		@apply max-w-3xs aspect-card;
-		@apply glow p-[2px] inverse-corners;
-		--glow-color: oklch(0.6201 0.0502 76.88);
-	}
-
-	.card-border {
-		@apply w-full h-full inverse-corners;
 	}
 
 	.background {

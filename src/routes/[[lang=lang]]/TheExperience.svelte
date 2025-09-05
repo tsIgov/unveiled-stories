@@ -14,8 +14,8 @@
 
 </script>
 
-{#snippet step({title, text} : {title: string, text: string})}
-	<TextCard class="max-w-xs" {title} {text}/>
+{#snippet step({title, text} : {title: string, text: string}, active : boolean )}
+	<TextCard class="max-w-xs" {title} {text} glow={false} />
 {/snippet}
 
 <section>

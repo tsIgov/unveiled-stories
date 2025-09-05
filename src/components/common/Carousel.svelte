@@ -9,7 +9,7 @@
 		data: T[],
 		loop: boolean,
 		expandMediaQuery?: string,
-		itemSnippet: Snippet<[T]>
+		itemSnippet: Snippet<[item: T, active: boolean]>
 	}
 
 	let { itemSnippet, data, loop, expandMediaQuery, ...others} : Props =$props();
@@ -34,6 +34,11 @@
 		result += direction(index)
 
 		return result;
+	}
+
+	function isActive(index: number) {
+		const dist = distance(index, currentItem);
+		return dist == 0;
 	}
 
 	function distance(a: number, b: number) {
@@ -97,9 +102,9 @@
 
 {#if $expanded}
 	<div class="list {others.class}">
-		{#each data as item}
+		{#each data as item, index}
 			<div class="item" >
-				{@render itemSnippet(item)}
+				{@render itemSnippet(item, isActive(index))}
 			</div>
 		{/each}
 	</div>
@@ -110,7 +115,7 @@
 		{#each { length: count }, index}
 			<button class="item {getNeighbourClasses(index, currentItem)}"
 				onclick={() => {changeCurrentItem(index)}}>
-				{@render itemSnippet(data[index % data.length])}
+				{@render itemSnippet(data[index % data.length], isActive(index))}
 			</button>
 		{/each}
 	</div>
@@ -132,12 +137,12 @@
 	}
 
 	.list {
-		@apply flex content-center-safe justify-center-safe gap-4 px-4;
+		@apply flex content-center-safe justify-center-safe gap-6 px-4;
 	}
 
 	.carousel {
 		@apply grid grid-cols-5 grid-rows-1 justify-items-center-safe items-center-safe;
-		@apply max-w-full max-h-full overflow-hidden;
+		@apply max-w-full max-h-full;
 
 		& > .item {
 			@apply col-start-2 col-end-5 row-start-1 max-h-full;

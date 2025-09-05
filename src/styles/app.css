@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "./base.css" layer(base);
 
-@import "./utilities/inverse-corners.css";
-@import "./utilities/glow.css";
 @import "./utilities/hover-glow.css";
 
 @theme {
@@ -24,6 +22,8 @@
 	--color-moonlight-dim: oklch(0.7562 0.0369 81.22);
 
 	--color-gold: oklch(0.638 0.0977 57.9);
+	--color-gold-dim: oklch(0.6201 0.0502 76.88);
+
 	--color-error: oklch(0.5564 0.19 15);
 
 	--aspect-*: initial;

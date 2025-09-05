@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Heading } from "components/common";
+	import { Frame, Heading } from "components/common";
 
 	let honeypot = $state("");
 	let name = $state("");
@@ -71,7 +71,11 @@
 
 					<input type="text" bind:value={honeypot} class="hidden" />
 
-					<button class="glow  p-[1px]" style="--glow-color: var(--color-gold)"><span class=" px-4 py-1  bg-neutral-800 block">Send</span></button>
+					<button>
+						<Frame>
+							<span class="inline-block px-4 py-1">Send</span>
+						</Frame>
+					</button>
 				</form>
 			{:else}
 				<div>Loading...</div>
@@ -114,7 +118,7 @@
 	}
 
 	button {
-		@apply border border-neutral-500 uppercase grow;
+		@apply uppercase grow;
 	}
 
 </style>
