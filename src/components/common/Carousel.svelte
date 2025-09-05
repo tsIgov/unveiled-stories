@@ -113,10 +113,11 @@
 		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 		{#each { length: count }, index}
-			<button class="item {getNeighbourClasses(index, currentItem)}"
-				onclick={() => {changeCurrentItem(index)}}>
-				{@render itemSnippet(data[index % data.length], isActive(index))}
-			</button>
+			<div class="item {getNeighbourClasses(index, currentItem)}">
+				<button onclick={() => {changeCurrentItem(index)}}>
+					{@render itemSnippet(data[index % data.length], isActive(index))}
+				</button>
+			</div>
 		{/each}
 	</div>
 {/if}
@@ -137,17 +138,18 @@
 	}
 
 	.list {
-		@apply flex content-center-safe justify-center-safe gap-6 px-4;
+		@apply flex content-center-safe justify-center-safe gap-6;
 	}
 
 	.carousel {
 		@apply grid grid-cols-5 grid-rows-1 justify-items-center-safe items-center-safe;
 		@apply max-w-full max-h-full;
+		@apply overflow-hidden;
 
 		& > .item {
+			@apply p-4;
 			@apply col-start-2 col-end-5 row-start-1 max-h-full;
 			@apply ease-out duration-1000;
-			@apply select-none;
 
 			transition-property: --carousel-opacity-left, --carousel-opacity-right, scale, translate, filter;
 			mask: linear-gradient(to right,rgba(255,255,255,var(--carousel-opacity-left)), rgba(255,255,255,var(--carousel-opacity-right)));
@@ -168,29 +170,33 @@
 			}
 
 			&.active {
-				@apply select-auto;
 				translate: 0%;
+				& > button {
+					@apply select-auto;
+				}
 			}
 			&:not(.active) {
 				scale: 0.85;
 				filter: grayscale(0.75);
 
-				& > :global(*) {
+				& > button :global(*) {
 					@apply pointer-events-none;
 				}
 			}
 			&.neighbour {
-				@apply cursor-pointer;
-				translate: calc(var(--direction) * 100%);
+				translate: calc(var(--direction) * (100% - 1rem));
+				& > button {
+					@apply cursor-pointer;
+				}
 			}
 			&.distant {
-				translate: calc(var(--direction) * 200%);
+				translate: calc(var(--direction) * (100% - 1rem) * 2);
 				--carousel-opacity-left: 0;
 				--carousel-opacity-right: 0;
 			}
 			&.far {
 				@apply hidden;
-				translate: calc(var(--direction) * 200%);
+				translate: calc(var(--direction) * (100% - 1rem) * 2);
 				--carousel-opacity-left: 0;
 				--carousel-opacity-right: 0;
 			}
@@ -209,7 +215,5 @@
 
 		}
 	}
-
-
 
 </style>

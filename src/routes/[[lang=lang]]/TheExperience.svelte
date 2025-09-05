@@ -15,15 +15,25 @@
 </script>
 
 {#snippet step({title, text} : {title: string, text: string}, active : boolean )}
-	<TextCard class="max-w-xs" {title} {text} glow={false} />
+	<TextCard {title} {text} glow={active} />
 {/snippet}
 
 <section>
 	<Heading title={data.header} summary={data.paragraph}/>
-	<Carousel class="w-full" itemSnippet={step} data={data.steps} loop={false} />
+	<Carousel itemSnippet={step} data={data.steps} loop={false} />
 </section>
 
 
 <style>
-	@rerefence "style";
+	@reference "style";
+
+	section {
+		& :global(.text-card) {
+			@apply max-w-xs;
+		}
+
+		& :global(.carousel) {
+			@apply w-full;
+		}
+	}
 </style>
