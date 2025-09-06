@@ -24,6 +24,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@lucide/svelte": "^0.542.0",
 		"svelte-gestures": "^5.1.4"
 	}
 }

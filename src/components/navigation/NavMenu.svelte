@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { MenuIcon } from '@lucide/svelte';
+	import type { Language } from '$lib/i18n/languages';
+
 	import { Rule } from 'components/common';
 	import { LanguageMenu } from 'components/navigation';
-	import type { Language } from '$lib/i18n/languages';
 
 	interface Props {
 		currentLang : Language,
@@ -13,27 +15,19 @@
 </script>
 
 
-<nav class="fixed w-full h-[var(--navbar-height)] p-4 overflow-visible flex justify-center content-center z-[1000]">
-
-	<div class="absolute top-0 left-0 w-full h-full bg-neutral-900" style="opacity: {opacity};">
+<nav>
+	<div class="background" style="opacity: {opacity};">
 		<Rule />
-		<div class="absolute bottom-0 w-full h-1 blur-md -z-10 from-moonlight/0 via-moonlight to-moonlight/0 bg-gradient-to-r"></div>
+		<div class="glow"></div>
 	</div>
 
-	<div class="w-full h-full flex content-center justify-center">
-		<div class="h-full grow basis-0 flex content-center justify-start">
-			<div class="flex items-center gap-2">
-				<img class="h-5 w-auto" src="hamburger.svg" alt="logo" />
-			</div>
+	<div class="content">
+		<div class="menu">
+			<MenuIcon class="h-5 w-auto text-moonlight" />
 		</div>
 
-		<div class="h-full basis-auto grow-0 shrink-0">
-			<img class="h-full w-auto" src="logo.svg" alt="logo" />
-		</div>
-
-		<div class="h-full grow basis-0 flex content-center justify-end">
-			<LanguageMenu {currentRoute} {currentLang} />
-		</div>
+		<img class="logo" src="logo.svg" alt="logo" />
+		<LanguageMenu {currentRoute} {currentLang} />
 	</div>
 
 </nav>
@@ -45,7 +39,43 @@
 		--navbar-height: 5rem;
 	}
 
-	nav :global(.rule) {
-		@apply absolute bottom-0 w-full;
+	nav {
+		@apply fixed w-full p-4 overflow-visible;
+		@apply flex justify-center content-center;
+		height: var(--navbar-height);
+		z-index: 1000;
+
+		& :global(.rule) {
+			@apply absolute bottom-0 w-full;
+		}
+
+		& > .background {
+			@apply absolute top-0 left-0 w-full h-full bg-neutral-900;
+
+			& > .glow {
+				@apply absolute bottom-0 w-full h-1 -z-10;
+				@apply bg-gradient-to-r from-moonlight/0 via-moonlight to-moonlight/0;
+				@apply blur-md;
+			}
+		}
+
+		& > .content {
+			@apply w-full h-full max-w-7xl;
+			@apply flex content-center justify-center;
+
+			& > .menu {
+				@apply h-full grow basis-0;
+				@apply flex items-center content-center gap-2;
+			}
+
+			& > .logo {
+				@apply h-full basis-auto grow-0 shrink-0;
+			}
+
+			& > :global(.language-menu) {
+				@apply h-full grow basis-0 flex content-center justify-end;
+			}
+		}
 	}
+
 </style>

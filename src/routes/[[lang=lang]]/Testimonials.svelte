@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Carousel, Heading } from 'components/common';
+	import { MessageCircleMoreIcon } from '@lucide/svelte';
 
 
 	interface Props {
@@ -15,7 +16,7 @@
 
 {#snippet quote({author, quote} : {author: string, quote: string})}
 	<div class="max-w-sm flex flex-col gap-4 items-center p-4">
-		<img class="w-8 h-8" src="quote.svg" alt="quote">
+		<MessageCircleMoreIcon class="w-8 h-8" color="var(--color-moonlight)" />
 		<p class="italic text-sm">{quote}</p>
 		<p>{author}</p>
 	</div>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { MailIcon } from '@lucide/svelte';
+
 	import { Frame, Heading } from "components/common";
 
 	let honeypot = $state("");
@@ -53,9 +55,9 @@
 		<div class="flex flex-col gap-2 justify-center-safe items-center-safe order-2 md:order-1 basis-auto grow-0 shrink-0">
 			<img class="w-3xs" src="logo-full.svg" alt="logo" />
 			<div class="flex gap-4 justify-center">
-				<img class="w-8" src="mail.svg" alt="logo" />
-				<img class="w-8" src="mail.svg" alt="logo" />
-				<img class="w-8" src="mail.svg" alt="logo" />
+				<MailIcon class="w-8 text-moonlight-dim"/>
+				<MailIcon class="w-8 text-moonlight-dim"/>
+				<MailIcon class="w-8 text-moonlight-dim"/>
 			</div>
 		</div>
 

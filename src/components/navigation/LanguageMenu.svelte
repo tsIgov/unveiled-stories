@@ -25,7 +25,7 @@
 	@reference "style";
 
 	.language-menu {
-		@apply flex items-center justify-center gap-2
+		@apply flex items-center justify-center gap-2;
 		@apply text-sm;
 
 		& > a {

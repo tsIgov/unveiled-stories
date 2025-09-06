@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { PlusIcon, MinusIcon } from '@lucide/svelte';
+
 	interface Props {
 		expanded : boolean,
 	}
@@ -8,8 +10,8 @@
 
 <span class="expand-indicator"
 	class:expanded={expanded}>
-	<img class="expand-icon" src="plus.svg" alt="expand" />
-	<img class="collapse-icon" src="minus.svg" alt="collapse" />
+	<PlusIcon class="expand-icon" />
+	<MinusIcon class="collapse-icon" />
 </span>
 
 <style>
@@ -18,26 +20,27 @@
 	.expand-indicator {
 		@apply min-w-4 min-h-4;
 
-		& > .expand-icon,
-		& > .collapse-icon {
+		& > :global(.expand-icon),
+		& > :global(.collapse-icon) {
 			@apply absolute left-0 w-full h-full;
 			@apply transition-all duration-500;
+			@apply text-moonlight;
 		}
 
-		& > .expand-icon {
+		& > :global(.expand-icon) {
 			@apply opacity-100 rotate-0;
 		}
 
-		& > .collapse-icon {
+		& > :global(.collapse-icon) {
 			@apply opacity-0;
 		}
 
 		&.expanded {
-			& > .expand-icon {
+			& > :global(.expand-icon) {
 				@apply opacity-0 rotate-90;
 			}
 
-			& > .collapse-icon {
+			& > :global(.collapse-icon) {
 				@apply opacity-100;
 			}
 		}
