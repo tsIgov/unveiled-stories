@@ -23,7 +23,7 @@
 			<button onclick="{() => { expanded = !expanded; }}">
 				<h3>{data.name}</h3>
 				<p class="title">{data.title}</p>
-				<ExpandIndicator expanded={expanded} class="indicator" />
+				<ExpandIndicator expanded={expanded} />
 			</button>
 			<div class="bio">
 				<p>{data.bio}</p>
@@ -73,7 +73,7 @@
 				@apply text-shadow-sm text-shadow-neutral-900;
 			}
 
-			& > :global(.indicator) {
+			& > :global(.expand-indicator) {
 				@apply w-6 h-6 top-1/2 -mt-3;
 				@apply absolute right-0 mr-4;
 				@apply text-3xl text-neutral-100/70;
