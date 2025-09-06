@@ -14,15 +14,15 @@
 
 <main>
 	<PortfolioPreview photoshoots={data.portfolio} />
-	<Rule class="w-full" />
+	<Rule />
 	<TheExperience data={data.theExperinece} />
-	<Rule class="w-full" />
+	<Rule />
 	<Faq data={data.faq} />
-	<Rule class="w-full" />
+	<Rule />
 	<Team data={data.team} />
-	<Rule class="w-full" />
+	<Rule />
 	<Testimonials data={data.testimonials} />
-	<Rule class="w-full" />
+	<Rule />
 	<Contact />
 
 </main>
@@ -46,6 +46,10 @@
 			padding-top: max(1rem, calc(50lvh - 50svh));
 			padding-bottom: max(1rem, calc(50lvh - 50svh));
 			scroll-margin-top: var(--navbar-height);
+		}
+
+		& > :global(.rule) {
+			@apply w-full;
 		}
 	}
 </style>

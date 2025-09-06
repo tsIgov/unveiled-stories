@@ -3,24 +3,43 @@
 	import { Frame } from 'components/common'
 
 	interface Props {
-		class? : string,
 		name: string,
 		image : Picture,
 		color: string,
 	}
 
-	let { name, image, color, ...others } : Props  = $props();
+	let { name, image, color } : Props  = $props();
 
 </script>
 
 
-<div class="aspect-card {others.class}">
+<div class="photo-card">
 	<Frame {color}>
-		<div class="w-full h-full p-[min(1.5cqb,0.5rem)]">
+		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img class="bg-neutral-900 object-cover w-full h-full select-none"
+				<enhanced:img class=""
 					src={image} alt={name} />
 			</Frame>
 		</div>
 	 </Frame>
 </div>
+
+
+<style>
+	@reference "style";
+
+	.photo-card {
+		@apply aspect-card;
+
+		& .frame-gap {
+			@apply w-full h-full;
+			padding: min(1.5cqb, 0.5rem);
+		}
+
+		& :global(img) {
+			@apply w-full h-full;
+			@apply bg-neutral-900 object-cover;
+			@apply select-none;
+		}
+	}
+</style>

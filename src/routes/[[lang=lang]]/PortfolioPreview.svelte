@@ -12,13 +12,12 @@
 
 {#snippet photoshoot(data : PhotoshootData)}
 	<div>
-		<enhanced:img class="background landscape:hidden" src={data.backgroundPortrait} alt={data.name} />
-		<enhanced:img class="background portrait:hidden" src={data.backgroundLandscape} alt={data.name} />
+		<enhanced:img class="background portrait" src={data.backgroundPortrait} alt={data.name} />
+		<enhanced:img class="background landscape" src={data.backgroundLandscape} alt={data.name} />
 
 		<div class="preview">
 
 			<PhotoCardSpread
-				class="spread"
 				imageLeft={data.cardLeft}
 				imageCenter={data.cardCenter}
 				imageRight={data.cardRight}
@@ -27,8 +26,8 @@
 			/>
 
 			<div class="side">
-				<Rule orientation="vertical" centerOrnament={true} class="break-v"/>
-				<Rule orientation="horizontal" centerOrnament={true} class="break-h"/>
+				<Rule orientation="vertical" centerOrnament={true}/>
+				<Rule orientation="horizontal" centerOrnament={true}/>
 
 				<div class="details">
 					<h3>
@@ -36,7 +35,6 @@
 							<span>{data.name}</span>
 						</Frame>
 					</h3>
-
 					<p>{data.description}</p>
 				</div>
 			</div>
@@ -46,14 +44,26 @@
 {/snippet}
 
 <section>
-	<Slideshow class="w-full h-svh" slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
+	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
 </section>
 
 <style>
 	@reference "style";
 
+	section > :global(.slideshow) {
+		@apply w-full h-svh;
+	}
+
 	.background {
 		@apply w-full h-full absolute object-cover brightness-75 opacity-20;
+
+		&.portrait {
+			@apply landscape:hidden;
+		}
+
+		&.landscape{
+			@apply portrait:hidden;
+		}
 	}
 
 	.details {
@@ -84,15 +94,15 @@
 			grid-template-columns: 100%;
 
 
-			& :global(.break-v) {
+			& :global(.rule.vertical) {
 				display: none;
 			}
 
-			& :global(.break-h) {
+			& :global(.rule.horizontal) {
 				@apply absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-sm ;
 			}
 
-			& > :global(.spread) {
+			& > :global(.photo-card-spread) {
 				@apply self-center;
 				height: 115.08svw;
 				max-height: 100%;
@@ -118,16 +128,16 @@
 			grid-template-rows: 100%;
 			--preview-max-content-height: calc(100svh - var(--navbar-height) - var(--slideshow-navigation-height) - 1rem);
 
-			& :global(.break-h) {
+			& :global(.rule.horizontal) {
 				display: none;
 			}
 
-			& :global(.break-v) {
+			& :global(.rule.vertical) {
 				@apply absolute top-1/2 -translate-y-1/2 h-full;
 				max-height: var(--preview-max-content-height);
 			}
 
-			& > :global(.spread) {
+			& > :global(.photo-card-spread) {
 				width: calc(var(--preview-max-content-height) * var(--aspect-spread));
 				max-width: 100%;
 			}

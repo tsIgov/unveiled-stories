@@ -2,6 +2,8 @@
 	import { TextCard } from 'components/cards';
 	import { Carousel, Heading } from 'components/common';
 
+	import test2 from "photoshoots/the-hunt/images/background-portrait.jpg?enhanced"
+
 	interface Props {
 		data: {
 			header: string,
@@ -15,7 +17,7 @@
 </script>
 
 {#snippet step({title, text} : {title: string, text: string}, active : boolean )}
-	<TextCard {title} {text} glow={active} />
+	<TextCard {title} {text} glow={active} backgroundImage={test2} />
 {/snippet}
 
 <section>

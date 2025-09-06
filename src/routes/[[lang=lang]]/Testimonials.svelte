@@ -23,10 +23,14 @@
 
 <section>
 	<Heading title={data.header} />
-	<Carousel class="w-full" itemSnippet={quote} data={data.quotes} loop={true} />
+	<Carousel itemSnippet={quote} data={data.quotes} loop={true} />
 </section>
 
 <style>
 	@reference "style";
+
+	section > :global(.carousel) {
+		@apply w-full;
+	}
 
 </style>

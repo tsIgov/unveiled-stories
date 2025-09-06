@@ -1,15 +1,14 @@
 <script lang="ts">
 	interface Props {
-		class? : string,
 		orientation? : "horizontal" | "vertical",
 		centerOrnament?: boolean,
 	}
 
-	let { orientation = "horizontal", centerOrnament = false, ...others} : Props = $props();
+	let { orientation = "horizontal", centerOrnament = false} : Props = $props();
 
 </script>
 
-<div class="rule {centerOrnament ? "ornament" : "no-ornament"} {orientation} {others.class}">
+<div class="rule {centerOrnament ? "ornament" : "no-ornament"} {orientation}">
 	{#if centerOrnament}
 		<span></span>
 		<span></span>

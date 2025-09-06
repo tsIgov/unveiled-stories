@@ -3,21 +3,38 @@
 	import { languages, type Language } from "$lib/i18n/languages";
 
 	interface Props {
-		class? : string,
 		currentLang : Language,
 		currentRoute : string
 	}
 
-	let { currentLang, currentRoute, ...others} : Props = $props();
+	let { currentLang, currentRoute} : Props = $props();
 </script>
 
-<div class="flex items-center justify-center gap-2 text-sm {others.class}">
+<div class="language-menu">
 	{#each languages as language}
 		<a
 			data-sveltekit-noscroll
-			class="uppercase {currentLang == language ? "text-neutral-100" : "text-moonlight-dim"}"
+			class:active={currentLang == language}
 			href="{resolveRoute(currentRoute, { lang: language })}">
 			{language}
 		</a>
 	{/each}
 </div>
+
+<style>
+	@reference "style";
+
+	.language-menu {
+		@apply flex items-center justify-center gap-2
+		@apply text-sm;
+
+		& > a {
+			@apply uppercase text-moonlight-dim;
+		}
+
+		& > a.active {
+			@apply text-neutral-100;
+		}
+	}
+
+</style>

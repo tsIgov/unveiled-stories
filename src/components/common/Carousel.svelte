@@ -5,14 +5,13 @@
 
 
 	interface Props {
-		class? : string,
 		data: T[],
 		loop: boolean,
 		expandMediaQuery?: string,
 		itemSnippet: Snippet<[item: T, active: boolean]>
 	}
 
-	let { itemSnippet, data, loop, expandMediaQuery, ...others} : Props =$props();
+	let { itemSnippet, data, loop, expandMediaQuery} : Props =$props();
 	let expanded = useMediaQuery(expandMediaQuery);
 
 	let currentItem = $state(0);
@@ -101,7 +100,7 @@
 </script>
 
 {#if $expanded}
-	<div class="list {others.class}">
+	<div class="carousel list">
 		{#each data as item}
 			<div class="item" >
 				{@render itemSnippet(item, false)}
@@ -109,7 +108,7 @@
 		{/each}
 	</div>
 {:else}
-	<div class="carousel {others.class}"
+	<div class="carousel"
 		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 		{#each { length: count }, index}
@@ -137,11 +136,11 @@
 		inherits: false;
 	}
 
-	.list {
+	.carousel.list {
 		@apply flex content-center-safe justify-center-safe gap-6;
 	}
 
-	.carousel {
+	.carousel:not(.list) {
 		@apply grid grid-cols-5 grid-rows-1 justify-items-center-safe items-center-safe;
 		@apply max-w-full max-h-full;
 		@apply overflow-hidden;

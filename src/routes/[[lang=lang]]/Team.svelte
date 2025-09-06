@@ -21,11 +21,15 @@
 <section class="w-full">
 	<Heading title={data.header} />
 
-	<Carousel class="w-full" itemSnippet={member} data={data.members} loop={false} expandMediaQuery="(width >= 54rem)" />
+	<Carousel itemSnippet={member} data={data.members} loop={false} expandMediaQuery="(width >= 54rem)" />
 
 </section>
 
 <style>
 	@reference "style";
+
+	section > :global(.carousel) {
+		@apply w-full;
+	}
 
 </style>

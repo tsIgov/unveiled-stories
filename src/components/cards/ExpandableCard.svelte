@@ -2,55 +2,61 @@
 	import { Rule, ExpandIndicator } from "components/common";
 
 	interface Props {
-		class? : string,
 		header: string,
 		content: string,
 		expanded: boolean,
 		onclick?: () => void
 	}
-	let { header, expanded, content, onclick, ...others } : Props  = $props();
+	let { header, expanded, content, onclick } : Props  = $props();
 </script>
 
 
-<div class="{others.class}"
+<div class="expandable-card"
 	class:expanded={expanded}>
 
-	<Rule class="w-full" />
+	<Rule />
 	<button onclick={() => { if (onclick) onclick()}}>
-		<ExpandIndicator class="indicator" expanded={expanded} />
+		<ExpandIndicator expanded={expanded} />
 		<h2>{header}</h2>
 	</button>
 	<div class="content">
 		<p>{content}</p>
 	</div>
-	<Rule class="w-full" />
+	<Rule />
 </div>
 
 <style>
 	@reference "style";
 
-	.content {
-		display: grid;
-		grid-template-rows: 0fr;
-		transition: grid-template-rows 0.5s ease-out;
+	.expandable-card {
 
-		& > p {
-			@apply px-4 mb-4;
-			overflow: hidden;
+		& > .content {
+			display: grid;
+			grid-template-rows: 0fr;
+			transition: grid-template-rows 0.5s ease-out;
+
+			& > p {
+				@apply px-4 mb-4;
+				overflow: hidden;
+			}
 		}
-	}
 
-	.expanded > .content {
-		grid-template-rows: 1fr;
-	}
+		&.expanded > .content {
+			grid-template-rows: 1fr;
+		}
 
-	button {
-		@apply w-full px-12 py-2 overflow-hidden;
-		@apply text-moonlight text-center text-lg;
-		@apply cursor-pointer hover-glow;
+		& > button {
+			@apply w-full px-12 py-2 overflow-hidden;
+			@apply text-moonlight text-center text-lg;
+			@apply cursor-pointer hover-glow;
 
-		& > :global(.indicator) {
-			@apply absolute top-0 left-0 w-4 h-full ml-4;
+			& > :global(.expand-indicator) {
+				@apply absolute top-0 left-0 w-4 h-full ml-4;
+			}
+		}
+
+		& > :global(.rule) {
+			@apply w-full;
 		}
 	}
 

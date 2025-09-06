@@ -4,13 +4,12 @@
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
 
 	interface Props {
-		class? : string,
 		data: T[],
 		slideSnippet: Snippet<[T]>
 		timeout: number
 	}
 
-	let { data, slideSnippet, timeout, ...others} : Props =$props();
+	let { data, slideSnippet, timeout} : Props =$props();
 	let slidesCount = $derived(data.length);
 	let currentSlide = $state(0);
 
@@ -48,20 +47,20 @@
 	$effect(() => {
 		const progress = document.getElementById("progress-" + currentSlide);
 		if (progress) {
-			progress.classList.remove("progress-anim");
+			progress.classList.remove("running");
 			void progress.offsetWidth;
-			progress.classList.add("progress-anim");
+			progress.classList.add("running");
 		}
 	});
 
 </script>
 
 
-<div class="overflow-hidden {others.class}">
+<div class="slideshow">
 
 	{#each data as slide, index}
-		<div class="slide
-			{currentSlide == index ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}"
+		<div class="slide"
+			class:active={currentSlide == index}
 			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 			{@render slideSnippet(slide)}
@@ -71,15 +70,13 @@
 
 	<div class="slideshow-nav">
 		{#each { length: slidesCount }, slideIndex}
-			<button class="group"
+			<button
+				class:active={currentSlide == slideIndex}
 				onclick="{() => changeSlide(slideIndex)}"
 				tabindex="-1">
-				<span class="{currentSlide % slidesCount == slideIndex ? "text-neutral-100" : "text-neutral-100/60" }">
-					{String(slideIndex + 1).padStart(2, '0')}
-				</span>
+				<span>{String(slideIndex + 1).padStart(2, '0')}</span>
 
-				<div id="progress-{slideIndex}" class="progress-line progress-anim
-					{currentSlide == slideIndex ? "opacity-100" : "opacity-0"}"
+				<div id="progress-{slideIndex}" class="progress-line running"
 					style="animation-duration: {timeout}ms">
 				</div>
 
@@ -97,11 +94,23 @@
 		--slideshow-navigation-height: 3.5rem;
 	}
 
+	.slideshow {
+		@apply overflow-hidden;
+	}
+
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full transition-all transition-discrete duration-[2s];
 
 		& > :global(*) {
 			@apply w-full h-full;
+		}
+
+		&.active {
+			@apply opacity-100 pointer-events-auto;
+		}
+
+		&:not(.active) {
+			@apply opacity-0 pointer-events-none;
 		}
 	}
 
@@ -114,11 +123,20 @@
 			height: calc(var(--slideshow-navigation-height) - 2rem);
 
 			& > span {
-				@apply transition-all duration-1000 text-xs group-hover:text-neutral-100;
+				@apply transition-all duration-1000 text-xs;
+				@apply text-neutral-100/60;
+
+			}
+
+			&:hover > span,
+			&.active > span {
+				@apply text-neutral-100;
 			}
 
 			& > .progress-line {
-				@apply transition-all duration-1000 absolute rounded-full bg-conic from-neutral-100 to-neutral-100/20 from-100% to-100% -z-10;
+				@apply transition-all duration-1000;
+				@apply absolute rounded-full bg-conic from-neutral-100 to-neutral-100/20 from-100% to-100% -z-10;
+				@apply opacity-0;
 
 				top: -2px;
 				left: -2px;
@@ -128,12 +146,16 @@
 					transparent calc((var(--slideshow-navigation-height) - 2rem) / 2),
 					black calc((var(--slideshow-navigation-height) - 2rem) / 2 + 1px));
 			}
-		}
-	}
 
-	.progress-anim {
-		animation-name: progress;
-		animation-timing-function: linear;
+			&.active > .progress-line {
+				@apply opacity-100;
+			}
+
+			& > .progress-line.running {
+				animation-name: progress;
+				animation-timing-function: linear;
+			}
+		}
 	}
 
 	@keyframes progress {
