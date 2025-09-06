@@ -102,9 +102,9 @@
 
 {#if $expanded}
 	<div class="list {others.class}">
-		{#each data as item, index}
+		{#each data as item}
 			<div class="item" >
-				{@render itemSnippet(item, isActive(index))}
+				{@render itemSnippet(item, false)}
 			</div>
 		{/each}
 	</div>

@@ -80,7 +80,7 @@
 			--blur-size: 0.375rem;
 		}
 		to {
-			--blur-size: 0.625rem;
+			--blur-size: 0.5rem;
 		}
 	}
 
