@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MailIcon } from '@lucide/svelte';
+	import { MailIcon, InstagramIcon, PhoneIcon } from '@lucide/svelte';
 
 	import { Frame, Heading } from "components/common";
 
@@ -55,9 +55,9 @@
 		<div class="flex flex-col gap-2 justify-center-safe items-center-safe order-2 md:order-1 basis-auto grow-0 shrink-0">
 			<img class="w-3xs" src="logo-full.svg" alt="logo" />
 			<div class="flex gap-4 justify-center">
+				<InstagramIcon class="w-8 text-moonlight-dim"/>
 				<MailIcon class="w-8 text-moonlight-dim"/>
-				<MailIcon class="w-8 text-moonlight-dim"/>
-				<MailIcon class="w-8 text-moonlight-dim"/>
+				<PhoneIcon class="w-8 text-moonlight-dim"/>
 			</div>
 		</div>
 
