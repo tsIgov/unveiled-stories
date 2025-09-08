@@ -53,7 +53,7 @@
 	}
 
 	.background {
-		@apply w-full h-full absolute object-cover brightness-75 opacity-20;
+		@apply w-full h-full absolute object-cover brightness-75 opacity-20 select-none;
 
 		&.portrait {
 			@apply landscape:hidden;
@@ -65,7 +65,7 @@
 	}
 
 	.details {
-		@apply max-w-sm px-4 flex flex-col gap-3 items-center overflow-hidden;
+		@apply max-w-sm px-4 flex flex-col gap-3 items-center;
 
 		& > h3 {
 			@apply w-full max-w-2xs;

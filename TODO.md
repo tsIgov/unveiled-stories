@@ -1,0 +1,7 @@
+- Finish the contact component
+- Add checkbox to contact form?
+- Footer and privacy policy
+- Commit to root size
+- Fix section height and snap
+- Change FAQ layout?
+- Implement or remove menu

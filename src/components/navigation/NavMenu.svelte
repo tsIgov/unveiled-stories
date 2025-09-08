@@ -69,7 +69,7 @@
 			}
 
 			& > .logo {
-				@apply h-full basis-auto grow-0 shrink-0;
+				@apply h-full basis-auto grow-0 shrink-0 select-none;
 			}
 
 			& > :global(.language-menu) {
