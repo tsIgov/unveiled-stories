@@ -29,7 +29,7 @@
 	</div>
 {/snippet}
 
-<section>
+<section class="faq">
 	<Heading title={t(title)} />
 
 	<div class="questions">

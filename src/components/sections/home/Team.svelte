@@ -17,7 +17,7 @@
 	/>
 {/snippet}
 
-<section class="w-full">
+<section class="team">
 	<Heading title={t(header)} />
 	<Carousel itemSnippet={member} data={members} loop={false} expandMediaQuery="(width >= 54rem)" />
 </section>
@@ -25,8 +25,12 @@
 <style>
 	@reference "style";
 
-	section > :global(.carousel) {
+	.team {
 		@apply w-full;
+
+		& > :global(.carousel) {
+			@apply w-full;
+		}
 	}
 
 </style>

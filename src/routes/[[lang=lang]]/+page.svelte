@@ -1,27 +1,26 @@
 <script lang="ts">
 	import { Rule } from "components/common"
-
-	import PortfolioPreview from "./PortfolioPreview.svelte";
-	import TheExperience from "./TheExperience.svelte";
-	import Faq from "./Faq.svelte";
-	import Team from "./Team.svelte";
-	import Testimonials from "./Testimonials.svelte";
-	import Contact from "./Contact.svelte";
+	import { PortfolioPreview, TheExperience, Faq, Team, Testimonials } from "components/sections/home";
+	import { Contact } from "components/sections/shared/";
 </script>
 
 <main>
 	<PortfolioPreview />
 	<Rule />
+
 	<TheExperience />
 	<Rule />
+
 	<Faq />
 	<Rule />
+
 	<Team />
 	<Rule />
+
 	<Testimonials />
 	<Rule />
-	<Contact />
 
+	<Contact />
 </main>
 
 <style>

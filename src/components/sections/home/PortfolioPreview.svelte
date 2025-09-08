@@ -41,14 +41,14 @@
 	</div>
 {/snippet}
 
-<section>
+<section class="portfolio-preview">
 	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
 </section>
 
 <style>
 	@reference "style";
 
-	section > :global(.slideshow) {
+	.portfolio-preview > :global(.slideshow) {
 		@apply w-full h-svh;
 	}
 

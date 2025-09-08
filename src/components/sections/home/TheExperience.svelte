@@ -18,7 +18,7 @@
 	/>
 {/snippet}
 
-<section>
+<section class="the-experience">
 	<Heading title={t(header)} summary={t(summary)}/>
 	<Carousel itemSnippet={step} data={steps} loop={false} />
 </section>
@@ -27,7 +27,7 @@
 <style>
 	@reference "style";
 
-	section {
+	.the-experience {
 		& :global(.text-card) {
 			@apply max-w-xs;
 		}
