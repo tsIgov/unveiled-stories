@@ -1,28 +1,26 @@
 <script lang="ts">
 	import { Rule, Slideshow, Frame } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
-	import type { PhotoshootData } from 'photoshoots';
 
-	interface Props {
-		photoshoots : PhotoshootData[]
-	}
+	import { type Photoshoot, photoshoots } from 'data/photoshoots';
+	import { getTranslator } from '$lib/i18n/translator';
 
-	let { photoshoots } : Props = $props();
+	let t = $derived(getTranslator());
 </script>
 
-{#snippet photoshoot(data : PhotoshootData)}
+{#snippet photoshoot(item : Photoshoot)}
 	<div>
-		<enhanced:img class="background portrait" src={data.backgroundPortrait} alt={data.name} />
-		<enhanced:img class="background landscape" src={data.backgroundLandscape} alt={data.name} />
+		<enhanced:img class="background portrait" src={item.backgroundPortrait} alt={t(item.name)} />
+		<enhanced:img class="background landscape" src={item.backgroundLandscape} alt={t(item.name)} />
 
 		<div class="preview">
 
 			<PhotoCardSpread
-				imageLeft={data.cardLeft}
-				imageCenter={data.cardCenter}
-				imageRight={data.cardRight}
-				name={data.name}
-				color={data.color}
+				imageLeft={item.cardLeft}
+				imageCenter={item.cardCenter}
+				imageRight={item.cardRight}
+				name={t(item.name)}
+				color={item.color}
 			/>
 
 			<div class="side">
@@ -31,11 +29,11 @@
 
 				<div class="details">
 					<h3>
-						<Frame color={data.color}>
-							<span>{data.name}</span>
+						<Frame color={item.color}>
+							<span>{t(item.name)}</span>
 						</Frame>
 					</h3>
-					<p>{data.description}</p>
+					<p>{t(item.description)}</p>
 				</div>
 			</div>
 

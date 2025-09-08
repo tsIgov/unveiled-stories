@@ -9,8 +9,7 @@ const config = {
 		alias: {
 			"style": "src/styles/app.css",
 			"components": "src/components",
-			"photoshoots": "src/photoshoots",
-			"team": "src/team"
+			"data": "src/data"
 		},
 		adapter: adapter(),
 		prerender: {

@@ -1,30 +1,23 @@
 <script lang="ts">
 	import { Carousel, Heading } from 'components/common';
 	import { MessageCircleMoreIcon } from '@lucide/svelte';
+	import { getTranslator } from '$lib/i18n/translator';
+	import { type Quote, title, quotes } from 'data/testimonials';
 
-
-	interface Props {
-		data: {
-			header : string,
-			quotes: { author : string; quote: string }[];
-		}
-	}
-
-	let { data } : Props = $props();
-
+	let t = $derived(getTranslator());
 </script>
 
-{#snippet quote({author, quote} : {author: string, quote: string})}
+{#snippet quote(item : Quote)}
 	<div class="max-w-sm flex flex-col gap-4 items-center p-4">
 		<MessageCircleMoreIcon class="w-8 h-8" color="var(--color-moonlight)" />
-		<p class="italic text-sm">{quote}</p>
-		<p>{author}</p>
+		<p class="italic text-sm">{t(item.quote)}</p>
+		<p>{t(item.author)}</p>
 	</div>
 {/snippet}
 
 <section>
-	<Heading title={data.header} />
-	<Carousel itemSnippet={quote} data={data.quotes} loop={true} />
+	<Heading title={t(title)} />
+	<Carousel itemSnippet={quote} data={quotes} loop={true} />
 </section>
 
 <style>

@@ -1,28 +1,26 @@
 <script lang="ts">
 	import { TextCard } from 'components/cards';
 	import { Carousel, Heading } from 'components/common';
+	import { getTranslator } from '$lib/i18n/translator';
 
-	import test2 from "photoshoots/the-hunt/images/background-portrait.jpg?enhanced"
+	import { type ExperienceStep, header, summary, steps } from "data/experinece";
 
-	interface Props {
-		data: {
-			header: string,
-			paragraph: string,
-			steps: { title : string; text: string }[];
-		}
-	}
-
-	let { data } : Props = $props();
+	let t = $derived(getTranslator());
 
 </script>
 
-{#snippet step({title, text} : {title: string, text: string}, active : boolean )}
-	<TextCard {title} {text} glow={active} backgroundImage={test2} />
+{#snippet step(item : ExperienceStep, active : boolean )}
+	<TextCard
+		title={t(item.title)}
+		text={t(item.text)}
+		glow={active}
+		backgroundImage={item.background}
+	/>
 {/snippet}
 
 <section>
-	<Heading title={data.header} summary={data.paragraph}/>
-	<Carousel itemSnippet={step} data={data.steps} loop={false} />
+	<Heading title={t(header)} summary={t(summary)}/>
+	<Carousel itemSnippet={step} data={steps} loop={false} />
 </section>
 
 

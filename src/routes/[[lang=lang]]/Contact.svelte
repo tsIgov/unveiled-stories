@@ -1,5 +1,10 @@
 <script lang="ts">
 	import { MailIcon, InstagramIcon, PhoneIcon } from '@lucide/svelte';
+	import { getTranslator } from '$lib/i18n/translator';
+	import { page } from '$app/state';
+
+	let t = $derived(getTranslator());
+	// let t = $derived(page.data.translator);
 
 	import { Frame, Heading } from "components/common";
 
@@ -46,7 +51,10 @@
 
 <section>
 	<Heading
-		title="Book your experience"
+		title={t({
+			en: "Book Your Experience",
+			bg: "Запази час"
+		})}
 		summary="Step into a space where your story comes alive — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts"
 	/>
 
@@ -75,7 +83,7 @@
 
 					<button>
 						<Frame>
-							<span class="inline-block px-4 py-1">Send</span>
+							<span class="inline-block px-4 py-1"> Send</span>
 						</Frame>
 					</button>
 				</form>

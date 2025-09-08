@@ -1,28 +1,25 @@
 <script lang="ts">
 	import { Carousel, Heading } from 'components/common';
-	import type { MemberData } from 'team';
-	import TeamMember from './TeamMember.svelte';
+	import { DetailsCard } from 'components/cards';
 
-	interface Props {
-		data: {
-			header : string,
-			members: MemberData[];
-		}
-	}
+	import { type TeamMember, header, members } from 'data/team';
+	import { getTranslator } from '$lib/i18n/translator';
 
-	let { data } : Props = $props();
-
+	let t = $derived(getTranslator());
 </script>
 
-{#snippet member(data : MemberData)}
-	<TeamMember data={data} />
+{#snippet member(item : TeamMember)}
+	<DetailsCard
+		title={t(item.name)}
+		subtitle={t(item.title)}
+		details={t(item.bio)}
+		background={item.photo}
+	/>
 {/snippet}
 
 <section class="w-full">
-	<Heading title={data.header} />
-
-	<Carousel itemSnippet={member} data={data.members} loop={false} expandMediaQuery="(width >= 54rem)" />
-
+	<Heading title={t(header)} />
+	<Carousel itemSnippet={member} data={members} loop={false} expandMediaQuery="(width >= 54rem)" />
 </section>
 
 <style>

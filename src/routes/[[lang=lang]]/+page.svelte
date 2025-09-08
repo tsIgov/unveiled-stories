@@ -7,21 +7,18 @@
 	import Team from "./Team.svelte";
 	import Testimonials from "./Testimonials.svelte";
 	import Contact from "./Contact.svelte";
-
-	let { data } = $props();
-
 </script>
 
 <main>
-	<PortfolioPreview photoshoots={data.portfolio} />
+	<PortfolioPreview />
 	<Rule />
-	<TheExperience data={data.theExperinece} />
+	<TheExperience />
 	<Rule />
-	<Faq data={data.faq} />
+	<Faq />
 	<Rule />
-	<Team data={data.team} />
+	<Team />
 	<Rule />
-	<Testimonials data={data.testimonials} />
+	<Testimonials />
 	<Rule />
 	<Contact />
 

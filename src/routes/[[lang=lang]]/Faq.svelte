@@ -2,14 +2,10 @@
 	import { Heading } from "components/common";
 	import { ExpandableCard } from "components/cards";
 
-	interface Props {
-		data: {
-			header : string,
-			questions: { question : string; answer: string }[];
-		}
-	}
+	import { getTranslator } from '$lib/i18n/translator';
+	import { questions, title } from "data/questions"
 
-	let { data } : Props = $props();
+	let t = $derived(getTranslator());
 
 	let openedFaq = $state(-1);
 
@@ -20,11 +16,11 @@
 
 {#snippet column(min: number, max: number)}
 	<div class="column">
-		{#each data.questions as item, i}
+		{#each questions as item, i}
 			{#if i >= min && i < max}
 				<ExpandableCard
-					header={item.question}
-					content={item.answer}
+					header={t(item.question)}
+					content={t(item.answer)}
 					expanded={openedFaq == i}
 					onclick={() => onToggle(i)}
 				/>
@@ -34,11 +30,11 @@
 {/snippet}
 
 <section>
-	<Heading title={data.header} />
+	<Heading title={t(title)} />
 
 	<div class="questions">
-		{@render column(0, data.questions.length / 2)}
-		{@render column(data.questions.length / 2, data.questions.length)}
+		{@render column(0, questions.length / 2)}
+		{@render column(questions.length / 2, questions.length)}
 	</div>
 </section>
 
