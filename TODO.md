@@ -5,3 +5,4 @@
 - Fix section height and snap
 - Change FAQ layout?
 - Implement or remove menu
+- SEO

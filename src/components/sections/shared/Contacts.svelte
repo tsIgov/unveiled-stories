@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Frame, Heading } from "components/common";
+	import { Heading, PrimaryButton } from "components/common";
 
 	import { MailIcon, InstagramIcon, PhoneIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
@@ -68,12 +68,7 @@
 						<textarea rows="5" required	placeholder={t(formData.messagePlaceholder)} bind:value={message}></textarea>
 
 						<input type="text" bind:value={honeypot} class="hidden" />
-
-						<button>
-							<Frame>
-								<span class="inline-block px-4 py-1">{t(formData.buttonText)}</span>
-							</Frame>
-						</button>
+						<PrimaryButton text={t(formData.buttonText)} />
 					</form>
 				{:else}
 					<div>Loading...</div>
@@ -132,7 +127,7 @@
 					& > input,
 					& > textarea {
 						@apply p-2;
-						@apply transition-all duration-300;
+						@apply transition-all duration-500;
 						@apply text-neutral-100 bg-neutral-800 border-b border-b-neutral-500;
 						@apply placeholder:italic placeholder:text-neutral-500;
 						@apply user-invalid:border-b-error;
@@ -146,17 +141,13 @@
 					& > textarea {
 						@apply w-full;
 					}
+
+					& > :global(.primary-button) {
+						@apply grow;
+					}
 				}
 			}
 		}
-	}
-
-
-
-
-
-	button {
-		@apply uppercase grow;
 	}
 
 </style>
