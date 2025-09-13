@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Rule } from "components/common"
 	import { PortfolioPreview, TheExperience, Faq, Team, Testimonials } from "components/sections/home";
-	import { Contact } from "components/sections/shared";
+	import { Contacts } from "components/sections/shared";
 </script>
 
 <main>
@@ -20,7 +20,7 @@
 	<Testimonials />
 	<Rule />
 
-	<Contact />
+	<Contacts />
 </main>
 
 <style>

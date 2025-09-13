@@ -1,1 +1,1 @@
-export { default as Contact } from './Contact.svelte'
+export { default as Contacts } from './Contacts.svelte'
