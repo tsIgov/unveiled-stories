@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Heading, PrimaryButton } from "components/common";
 
-	import { MailIcon, InstagramIcon, PhoneIcon } from '@lucide/svelte';
+	import { MailIcon, InstagramIcon, PhoneIcon, LoaderCircleIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
 	import { header, summary, formSubmitUrl, socials, formData } from 'data/contacts'
 
@@ -11,16 +11,18 @@
 	let name = $state("");
 	let email = $state("");
 	let message = $state("");
-	let success : boolean | null = $state(null);
-	let sending = $state(false);
+	let currentState : "fill" | "sending" | "success" | "error" = $state("fill");
 
 	const handleSubmit = async (e : any) => {
     	e.preventDefault();
 
-		if (success != null || honeypot)
+		currentState = "success";
+		return;
+
+		if (currentState != "fill" || honeypot)
 			return;
 
-		sending = true;
+		currentState = "sending";
 
 		const formData = new FormData();
 		formData.append("name", name);
@@ -28,12 +30,12 @@
 		formData.append("email", email);
 		formData.append("honeypot", honeypot);
 
-    try {
-      const response = await fetch(formSubmitUrl, { method: "POST", body: formData });
-	  success = response.ok;
-    } catch (error) {
-		success = false;
-    }
+		try {
+			const response = await fetch(formSubmitUrl, { method: "POST", body: formData });
+			currentState = response.ok ? "success" : "error";
+		} catch (error) {
+			currentState = "error";
+		}
   };
 
 </script>
@@ -58,31 +60,21 @@
 			</div>
 		</div>
 
-		<div class="form-wrapper">
-			{#if success == null}
-				{#if !sending}
-					<form onsubmit="{handleSubmit}">
+		<form onsubmit="{handleSubmit}">
+			<div class="fill" class:active={currentState == "fill"} class:faded={currentState == "sending"}>
+				<input required autocomplete="name" placeholder={t(formData.namePlaceholder)} bind:value={name} />
+				<input required autocomplete="email" type="email" bind:value={email} placeholder={t(formData.emailPlaceholder)} />
+				<textarea required rows="5" placeholder={t(formData.messagePlaceholder)} bind:value={message}></textarea>
 
-						<input autocomplete="name" required placeholder={t(formData.namePlaceholder)} bind:value={name} />
-						<input autocomplete="email" type="email" bind:value={email} required placeholder={t(formData.emailPlaceholder)} />
-						<textarea rows="5" required	placeholder={t(formData.messagePlaceholder)} bind:value={message}></textarea>
+				<input type="text" bind:value={honeypot} class="hidden" />
+				<PrimaryButton text={t(formData.buttonText)} glow={currentState == "fill"} />
+			</div>
 
-						<input type="text" bind:value={honeypot} class="hidden" />
-						<PrimaryButton text={t(formData.buttonText)} />
-					</form>
-				{:else}
-					<div>Loading...</div>
-				{/if}
-			{/if}
+			<div class="form-overlay spinner" class:active={currentState == "sending"}><LoaderCircleIcon /></div>
+			<div class="form-overlay success" class:active={currentState == "success"}>Success!</div>
+			<div class="form-overlay fail" class:active={currentState == "error" }>Fail!</div>
+		</form>
 
-			{#if success == true}
-				<div>Success!</div>
-			{/if}
-
-			{#if success == false}
-				<div>Fail!</div>
-			{/if}
-		</div>
 	</div>
 
 </section>
@@ -117,12 +109,21 @@
 				}
 			}
 
-			& > .form-wrapper {
+			& > form {
 				@apply max-w-xl w-full order-1;
 
-				& > form {
-					@apply w-full;
-					@apply flex flex-wrap gap-4 justify-center;
+				& > .fill {
+					@apply w-full flex flex-wrap gap-4 justify-center;
+					@apply transition-[opacity,visibility] duration-1000 transition-discrete;
+					@apply opacity-0 invisible;
+
+					&.active {
+						@apply opacity-100 visible;
+					}
+
+					&.faded {
+						@apply opacity-50 visible;
+					}
 
 					& > input,
 					& > textarea {
@@ -144,6 +145,25 @@
 
 					& > :global(.primary-button) {
 						@apply grow;
+					}
+				}
+
+				& > .form-overlay {
+					@apply transition-[opacity,visibility] duration-1000 transition-discrete;
+					@apply absolute top-0 left-0 w-full h-full;
+					@apply flex justify-center-safe content-center-safe items-center-safe;
+					@apply opacity-0 invisible;
+
+					&.active {
+						@apply visible opacity-100;
+					}
+
+					&.spinner {
+						@apply bg-neutral-900/70;
+
+						& :global(svg) {
+							@apply w-8 h-8 animate-spin;
+						}
 					}
 				}
 			}

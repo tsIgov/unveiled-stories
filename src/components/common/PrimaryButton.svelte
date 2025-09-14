@@ -5,18 +5,20 @@
 
 	interface Props {
 		text: string,
+		glow? : boolean,
 		onclick?: MouseEventHandler<HTMLButtonElement> | null,
 	}
 
 	let {
 		text,
+		glow = true,
 		onclick = null,
 	} : Props = $props();
 </script>
 
 
 <button class="primary-button" onclick={onclick}>
-	<Frame>
+	<Frame {glow}>
 		<span class="hover-glow block">{text}</span>
 	</Frame>
 </button>
