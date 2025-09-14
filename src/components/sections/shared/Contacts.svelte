@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Heading, PrimaryButton } from "components/common";
+	import { Heading, PrimaryButton, Rule } from "components/common";
 
 	import { MailIcon, InstagramIcon, PhoneIcon, LoaderCircleIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
-	import { header, summary, formSubmitUrl, socials, formData } from 'data/contacts'
+	import { header, summary, formSubmitUrl, socials, formData, responseData } from 'data/contacts'
 
 	let t = $derived(getTranslator());
 
@@ -15,9 +15,6 @@
 
 	const handleSubmit = async (e : any) => {
     	e.preventDefault();
-
-		currentState = "success";
-		return;
 
 		if (currentState != "fill" || honeypot)
 			return;
@@ -71,8 +68,16 @@
 			</div>
 
 			<div class="form-overlay spinner" class:active={currentState == "sending"}><LoaderCircleIcon /></div>
-			<div class="form-overlay success" class:active={currentState == "success"}>Success!</div>
-			<div class="form-overlay fail" class:active={currentState == "error" }>Fail!</div>
+			<div class="form-overlay success" class:active={currentState == "success"}>
+				<h3>{t(responseData.successHeader)}</h3>
+				<Rule centerOrnament={true} />
+				<p>{t(responseData.successContent)}</p>
+			</div>
+			<div class="form-overlay error" class:active={currentState == "error" }>
+				<h3>{t(responseData.errorHeader)}</h3>
+				<Rule centerOrnament={true} error={true} />
+				<p>{t(responseData.errorContent)}</p>
+			</div>
 		</form>
 
 	</div>
@@ -151,7 +156,7 @@
 				& > .form-overlay {
 					@apply transition-[opacity,visibility] duration-1000 transition-discrete;
 					@apply absolute top-0 left-0 w-full h-full;
-					@apply flex justify-center-safe content-center-safe items-center-safe;
+					@apply flex flex-col justify-center-safe content-center-safe items-center-safe;
 					@apply opacity-0 invisible;
 
 					&.active {
@@ -164,6 +169,31 @@
 						& :global(svg) {
 							@apply w-8 h-8 animate-spin;
 						}
+					}
+
+					&.success,
+					&.error {
+						@apply bg-neutral-800 p-4;
+
+						& > h3 {
+							@apply uppercase;
+						}
+
+						& > :global(.rule) {
+							@apply w-2xs mb-4 max-w-full;
+						}
+
+						& > p {
+							@apply text-neutral-100 italic;
+						}
+					}
+
+					&.success > h3 {
+						@apply text-moonlight;
+					}
+
+					&.error > h3 {
+						@apply text-error;
 					}
 				}
 			}

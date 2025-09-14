@@ -41,3 +41,27 @@ export const formData : {
 		bg: ""
 	},
 }
+
+export const responseData : {
+	successHeader : MultilingualText,
+	successContent : MultilingualText,
+	errorHeader : MultilingualText,
+	errorContent : MultilingualText
+} = {
+	successHeader:  {
+		en: "Thank You!",
+		bg: ""
+	},
+	successContent:  {
+		en: "Thank you for trusting us. We'll come back to you in two business days. Also some more text goes in here.",
+		bg: ""
+	},
+	errorHeader:  {
+		en: "Something Went Wrong...",
+		bg: ""
+	},
+	errorContent:  {
+		en: "Thank you for trusting us. We'll come back to you in two business days. Also some more text goes in here.",
+		bg: ""
+	},
+}

@@ -1,14 +1,17 @@
 <script lang="ts">
 	interface Props {
 		orientation? : "horizontal" | "vertical",
+		error? : boolean,
 		centerOrnament?: boolean,
 	}
 
-	let { orientation = "horizontal", centerOrnament = false} : Props = $props();
+	let { orientation = "horizontal", centerOrnament = false, error=false} : Props = $props();
 
 </script>
 
-<div class="rule {centerOrnament ? "ornament" : "no-ornament"} {orientation}">
+<div class="rule {orientation}"
+	class:ornament={centerOrnament}
+	class:error={error}>
 	{#if centerOrnament}
 		<span></span>
 		<span></span>
@@ -66,9 +69,19 @@
 				@apply bg-gradient-to-t;
 			}
 		}
+
+		&.error {
+			& > span:not(:nth-child(2)) {
+				@apply to-error from-moonlight;
+			}
+
+			& > span:nth-child(2) {
+				@apply bg-error;
+			}
+		}
 	}
 
-	.rule.no-ornament {
+	.rule:not(.ornament) {
 		@apply from-gold via-moonlight to-gold;
 
 		&::after {
@@ -89,6 +102,9 @@
 			@apply bg-gradient-to-b;
 			width: 1px;
 			height: 100%;
+		}
+		&.error {
+			@apply via-error from-moonlight to-moonlight;
 		}
 
 	}
