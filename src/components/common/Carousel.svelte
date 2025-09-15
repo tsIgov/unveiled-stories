@@ -194,7 +194,7 @@
 				--carousel-opacity-right: 0;
 			}
 			&.far {
-				@apply hidden;
+				@apply invisible;
 				translate: calc(var(--direction) * (100% - 1rem) * 2);
 				--carousel-opacity-left: 0;
 				--carousel-opacity-right: 0;
