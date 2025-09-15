@@ -30,7 +30,7 @@
 
 			& > a {
 				@apply underline;
-				@apply hover:text-moonlight;
+				@apply hover:text-neutral-100;
 				@apply transition-colors duration-300;
 			}
 		}
