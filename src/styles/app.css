@@ -1,11 +1,10 @@
 @import "tailwindcss";
 @import "./base.css" layer(base);
 
+@import "./components/markdown.css";
 @import "./utilities/hover-glow.css";
 
 @theme {
-
-
 	--font-*: initial;
 	--font-sans: "Comfortaa", sans-serif;
 	--font-serif: "Kurale", serif;

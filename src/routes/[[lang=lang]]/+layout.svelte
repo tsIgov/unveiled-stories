@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { NavMenu } from 'components/navigation';
+	import { Footer } from 'components/sections/shared';
 
 	let { children, data } = $props();
 
@@ -14,6 +15,6 @@
 
 <svelte:window bind:scrollY={scrollY} bind:innerHeight={viewportHeight} />
 
-<NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} />
+<NavMenu currentLang={data.lang} currentRoute={data.route} opacity={navMenuOpacity} reserveSpace={!page.data.transparentNavigation} />
 {@render children()}
-
+<Footer />

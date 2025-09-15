@@ -1,0 +1,56 @@
+@layer components {
+	.markdown {
+		@apply space-y-4
+		;
+		& h1 {
+			@apply text-moonlight uppercase font-bold text-lg;
+		}
+
+		& h2 {
+			@apply text-moonlight uppercase font-bold pt-4 text-center;
+
+			&::before {
+				content: "";
+				@apply w-full h-[1px];
+				@apply absolute top-0 left-0;
+				@apply bg-gradient-to-r from-gold via-moonlight to-gold;
+			}
+
+			&::after {
+				content: "";
+				@apply w-full h-[1px];
+				@apply absolute top-0 left-0;
+				@apply bg-gradient-to-r from-neutral-900 via-neutral-900/0 to-neutral-900;
+			}
+		}
+		& h3 {
+			@apply text-moonlight font-bold;
+		}
+
+		& h4 {
+			@apply text-moonlight;
+		}
+
+		& strong {
+			@apply text-moonlight;
+		}
+
+		& ul {
+			@apply list-disc pl-4;
+		}
+
+		& ol {
+			@apply list-decimal pl-4;
+		}
+
+		& li::marker {
+			@apply text-moonlight;
+		}
+
+		& a {
+			@apply underline text-moonlight;
+			@apply hover:text-neutral-100;
+			@apply transition-colors duration-300;
+		}
+	}
+}

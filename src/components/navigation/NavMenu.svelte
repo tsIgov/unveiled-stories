@@ -8,14 +8,16 @@
 	interface Props {
 		currentLang : Language,
 		currentRoute : string,
-		opacity : number
+		opacity : number,
+		reserveSpace: boolean,
 	}
 
-	let { currentLang, currentRoute, opacity } : Props = $props();
+	let { currentLang, currentRoute, opacity, reserveSpace } : Props = $props();
 </script>
 
 
-<nav>
+<nav class="nav-menu"
+	class:reserved-space={reserveSpace}>
 	<div class="background" style="opacity: {opacity};">
 		<Rule />
 		<div class="glow"></div>
@@ -26,7 +28,7 @@
 			<MenuIcon class="h-5 w-auto text-moonlight" />
 		</div>
 
-		<img class="logo" src="logo.svg" alt="logo" />
+		<a class="logo" href="/"><img src="/logo.svg" alt="logo" /></a>
 		<LanguageMenu {currentRoute} {currentLang} />
 	</div>
 
@@ -40,10 +42,14 @@
 	}
 
 	nav {
-		@apply fixed w-full p-4 overflow-visible;
+		@apply fixed w-full top-0 p-4 overflow-visible;
 		@apply flex justify-center content-center;
 		height: var(--navbar-height);
 		z-index: 1000;
+
+		&.reserved-space + :global(*) {
+			margin-top: var(--navbar-height);
+		}
 
 		& :global(.rule) {
 			@apply absolute bottom-0 w-full;
@@ -69,7 +75,11 @@
 			}
 
 			& > .logo {
-				@apply h-full basis-auto grow-0 shrink-0 select-none;
+				@apply h-full basis-auto grow-0 shrink-0;
+
+				& > img {
+					@apply h-full select-none;
+				}
 			}
 
 			& > :global(.language-menu) {
