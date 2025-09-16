@@ -31,6 +31,10 @@
 		& > :global(.carousel) {
 			@apply w-full;
 		}
+
+		& :global(.details-card) {
+			@apply max-w-2xs;
+		}
 	}
 
 </style>

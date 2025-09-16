@@ -42,7 +42,7 @@
 	@reference "style";
 
 	.details-card {
-		@apply max-w-3xs aspect-card;
+		@apply aspect-card;
 	}
 
 	.background {
