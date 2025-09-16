@@ -19,14 +19,19 @@
 <style>
 	@reference "style";
 
+	:global(:root) {
+		--footer-height: 2.375rem;
+	}
+
 	footer {
 		& > :global(.rule) {
-			@apply w-full;
+			@apply w-full absolute top-0 left-0;
 		}
 
 		& > p {
-			@apply p-2 text-center;
+			@apply text-center;
 			@apply text-moonlight-dim text-sm;
+			line-height: var(--footer-height);
 
 			& > a {
 				@apply underline;
