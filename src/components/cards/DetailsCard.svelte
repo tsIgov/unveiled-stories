@@ -46,7 +46,7 @@
 	}
 
 	.background {
-		@apply absolute top-0 left-0 w-full h-full select-none;
+		@apply absolute top-0 left-0 w-full h-full select-none object-cover;
 	}
 
 	.content {
