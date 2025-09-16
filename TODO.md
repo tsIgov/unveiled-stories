@@ -1,7 +1,8 @@
+- Team member gains height on expanding
+- Change FAQ layout?
+- Fix section height and snap
 - Add checkbox to contact form?
 - Commit to root size
-- Fix section height and snap
-- Change FAQ layout?
 - Implement or remove menu
 - SEO
 - Translate
