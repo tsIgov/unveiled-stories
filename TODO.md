@@ -1,4 +1,3 @@
-- Team member gains height on expanding
 - Change FAQ layout?
 - Fix section height and snap
 - Add checkbox to contact form?
