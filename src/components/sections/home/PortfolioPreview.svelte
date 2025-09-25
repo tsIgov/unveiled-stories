@@ -10,8 +10,8 @@
 
 {#snippet photoshoot(item : Photoshoot)}
 	<div>
-		<enhanced:img class="background portrait" src={item.backgroundPortrait} alt={t(item.name)} />
-		<enhanced:img class="background landscape" src={item.backgroundLandscape} alt={t(item.name)} />
+		<enhanced:img class="background dim portrait" src={item.backgroundPortrait} alt={t(item.name)} />
+		<enhanced:img class="background dim landscape" src={item.backgroundLandscape} alt={t(item.name)} />
 
 		<div class="preview">
 
@@ -53,7 +53,6 @@
 	}
 
 	.background {
-		@apply brightness-75 opacity-20;
 
 		&.portrait {
 			@apply landscape:hidden;
