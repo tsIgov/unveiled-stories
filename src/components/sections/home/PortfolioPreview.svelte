@@ -53,7 +53,7 @@
 	}
 
 	.background {
-		@apply w-full h-full absolute object-cover brightness-75 opacity-20 select-none;
+		@apply brightness-75 opacity-20;
 
 		&.portrait {
 			@apply landscape:hidden;

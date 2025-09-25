@@ -7,12 +7,16 @@
 	interface Props {
 		data: T[],
 		loop: boolean,
-		expandMediaQuery?: string,
+		expandIfFit?: boolean,
 		itemSnippet: Snippet<[item: T, active: boolean]>
 	}
 
-	let { itemSnippet, data, loop, expandMediaQuery} : Props =$props();
-	let expanded = useMediaQuery(expandMediaQuery);
+	let { itemSnippet, data, loop, expandIfFit = false} : Props =$props();
+
+	// Padding + item gaps + max item size
+	let remToFit = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 20;
+	let mediaQuery = expandIfFit ? `(width >= ${remToFit}rem)` : undefined;
+	let expanded = useMediaQuery(mediaQuery);
 
 	let currentItem = $state(0);
 	let count = $derived(loop ? Math.ceil(5 / data.length) * data.length : data.length);
@@ -103,7 +107,7 @@
 	<div class="carousel list">
 		{#each data as item}
 			<div class="item" >
-				{@render itemSnippet(item, false)}
+				{@render itemSnippet(item, true)}
 			</div>
 		{/each}
 	</div>

@@ -8,18 +8,19 @@
 	let t = $derived(getTranslator());
 </script>
 
-{#snippet member(item : TeamMember)}
+{#snippet member(item : TeamMember, active : boolean)}
 	<DetailsCard
 		title={t(item.name)}
 		subtitle={t(item.title)}
 		details={t(item.bio)}
 		background={item.photo}
+		glow={active}
 	/>
 {/snippet}
 
 <section class="team">
 	<Heading title={t(header)} />
-	<Carousel itemSnippet={member} data={members} loop={false} expandMediaQuery="(width >= 54rem)" />
+	<Carousel itemSnippet={member} data={members} loop={false} expandIfFit={true} />
 </section>
 
 <style>

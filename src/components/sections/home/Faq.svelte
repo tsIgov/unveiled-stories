@@ -1,9 +1,18 @@
 <script lang="ts">
-	import { Heading } from "components/common";
-	import { ExpandableCard } from "components/cards";
+	import { Carousel, Heading } from "components/common";
 
 	import { getTranslator } from '$lib/i18n/translator';
 	import { questions, title } from "data/questions"
+	import Frame from "components/common/Frame.svelte";
+
+
+
+
+	import MultipleDetailsCard from "components/cards/MultipleDetailsCard.svelte";
+	import bg from "data/team/portraits/julia.jpg?enhanced";
+
+
+
 
 	let t = $derived(getTranslator());
 
@@ -14,8 +23,9 @@
 	}
 </script>
 
-{#snippet column(min: number, max: number)}
-	<div class="column">
+<!-- {#snippet column(min: number, max: number)}
+<Frame>
+	<div class="column aspect-card w-2xs">
 		{#each questions as item, i}
 			{#if i >= min && i < max}
 				<ExpandableCard
@@ -27,16 +37,33 @@
 			{/if}
 		{/each}
 	</div>
+</Frame>
+{/snippet} -->
+
+{#snippet step(item : any, active : boolean )}
+	<MultipleDetailsCard title={questions.map(x => t(x.question))}
+		details={questions.map(x => t(x.answer))}
+		background={bg} />
 {/snippet}
 
 <section class="faq">
 	<Heading title={t(title)} />
 
-	<div class="questions">
+	<!-- <div class="questions">
 		{@render column(0, questions.length / 2)}
 		{@render column(questions.length / 2, questions.length)}
-	</div>
+	</div> -->
+
+	<!-- <MultipleDetailsCard title={questions.map(x => t(x.question))}
+		details={questions.map(x => t(x.answer))}
+		background={bg} /> -->
+
+	<Carousel itemSnippet={step} data={[1, 2, 3]} loop={false} />
+
+
 </section>
+
+
 
 <style>
 	@reference "style";
@@ -49,6 +76,12 @@
 	.column {
 		@apply space-y-4 basis-0 grow;
 		@apply max-w-md md:max-w-none;
+	}
+
+	.faq {
+		& :global(.carousel) {
+			@apply w-full;
+		}
 	}
 
 </style>

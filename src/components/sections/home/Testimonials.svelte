@@ -3,16 +3,19 @@
 	import { MessageCircleMoreIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
 	import { type Quote, title, quotes } from 'data/testimonials';
+	import Card from 'components/cards/Card.svelte';
 
 	let t = $derived(getTranslator());
 </script>
 
-{#snippet quote(item : Quote)}
-	<div class="quote">
-		<MessageCircleMoreIcon class="icon" />
-		<p class="text">{t(item.quote)}</p>
-		<p class="author">{t(item.author)}</p>
-	</div>
+{#snippet quote(item : Quote, active: boolean)}
+	<Card glow={active}>
+		<div class="quote">
+			<MessageCircleMoreIcon class="icon" />
+			<p class="text">{t(item.quote)}</p>
+			<p class="author">{t(item.author)}</p>
+		</div>
+	</Card>
 {/snippet}
 
 <section class="testimonials">
@@ -28,8 +31,12 @@
 	}
 
 	.quote {
-		@apply max-w-sm p-4;
-		@apply flex flex-col gap-4 items-center;
+		@apply w-full h-full p-4 overflow-y-auto;
+		@apply flex flex-col gap-4 items-center justify-center-safe;
+
+		& > :global(*) {
+			@apply flex-none;
+		}
 
 		& > :global(.icon) {
 			@apply w-8 h-8 text-moonlight;

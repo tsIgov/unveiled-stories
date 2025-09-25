@@ -1,53 +1,43 @@
 <script lang="ts">
 	import { ExpandIndicator, Frame } from 'components/common';
 	import type { Picture } from 'vite-imagetools';
+	import { Card } from '.';
 
 	interface Props {
 		title : string,
 		subtitle : string,
 		details : string,
-		background: Picture
+		background: Picture,
+		glow?: boolean,
 	}
 
-	let { title, subtitle, details, background } : Props = $props();
+	let { title, subtitle, details, background, glow = true } : Props = $props();
 	let expanded = $state(false);
 
 </script>
 
 
-<div class="details-card">
-	<Frame color="var(--color-gold-dim)" glow={expanded}>
-		<enhanced:img class="background" src={background} alt={title} />
+<Card class="detail-card" {glow}>
+	<enhanced:img class="background" src={background} alt={title} />
 
-		<div class="content"
-			class:expanded={expanded}>
-			<div class="title">
-				<button onclick="{() => { expanded = !expanded; }}">
-					<h3>{title}</h3>
-					<p class="subtitle">{subtitle}</p>
-					<ExpandIndicator expanded={expanded} />
-				</button>
-			</div>
-			<div class="details">
-				<p>{details}</p>
-			</div>
+	<div class="content"
+		class:expanded={expanded}>
+		<div class="title">
+			<button onclick="{() => { expanded = !expanded; }}">
+				<h3>{title}</h3>
+				<p class="subtitle">{subtitle}</p>
+				<ExpandIndicator expanded={expanded} />
+			</button>
 		</div>
-
-	</Frame>
-</div>
-
+		<div class="details">
+			<p>{details}</p>
+		</div>
+	</div>
+</Card>
 
 
 <style>
 	@reference "style";
-
-	.details-card {
-		@apply aspect-card;
-	}
-
-	.background {
-		@apply absolute top-0 left-0 w-full h-full select-none object-cover;
-	}
 
 	.content {
 		@apply w-full h-full;

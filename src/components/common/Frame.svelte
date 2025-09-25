@@ -72,7 +72,7 @@
 	}
 
 	.content {
-		@apply bg-neutral-900 h-full;
+		@apply bg-neutral-800 h-full;
 	}
 
 	@keyframes pulse {

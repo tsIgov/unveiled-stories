@@ -1,7 +1,10 @@
 @import "tailwindcss";
 @import "./base.css" layer(base);
 
+@import "./components/background.css";
 @import "./components/markdown.css";
+
+@import "./utilities/dim.css";
 @import "./utilities/hover-glow.css";
 
 @theme {
