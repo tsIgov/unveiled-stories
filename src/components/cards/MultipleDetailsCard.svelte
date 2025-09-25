@@ -1,72 +1,67 @@
 <script lang="ts">
 	import { ExpandIndicator, Frame, Rule } from 'components/common';
 	import type { Picture } from 'vite-imagetools';
-	import TextCard from './TextCard.svelte';
+	import { Card } from '.';
 
 	interface Props {
 		title : string[],
 		details : string[],
+		glow?: boolean,
 		background: Picture
 	}
 
-	let { title, details, background } : Props = $props();
+	let { title, details, background, glow = true } : Props = $props();
 	let itemIndex = $state(-1);
 
 </script>
 
 
-<div class="multiple-details-card w-svw max-w-xs">
-	<Frame color="var(--color-gold-dim)" glow={itemIndex >= 0}>
-		<enhanced:img class="background" src={background} alt="background" />
+<Card class="multiple-details-card" {glow}>
+	<!-- <enhanced:img class="background dim" src={background} alt="background" /> -->
 
-		<div class="content w-full h-full"
-			class:expanded={itemIndex >= 0}>
+	<div class="content w-full h-full"
+		class:expanded={itemIndex >= 0}>
 
-			{#each title as tit, index }
-			{#if index < 4}
-				<div
-					class="absolute w-full h-full overflow-hidden flex flex-col "
-				class:chosen={itemIndex == index}
-				class:before={index < itemIndex}
-				class:after={index > itemIndex}
-				style="--top: {itemIndex == -1 ? 22 * index + 5 : ( index > itemIndex ? 22 * (index - itemIndex) + 105 : (itemIndex - index) * -22 - 5) }%;">
-						<button class="h-[20%] bg-neutral-900/40" onclick={() => { if(itemIndex == index) itemIndex = -1; else itemIndex = index; }}>
-							<ExpandIndicator expanded={itemIndex == index} />
-						<h3>{tit}</h3>
+		{#each title as tit, index }
+		{#if index < 4}
+			<div
+				class="absolute w-full h-full overflow-hidden flex flex-col "
+			class:chosen={itemIndex == index}
+			class:before={index < itemIndex}
+			class:after={index > itemIndex}
+			style="--top: {itemIndex == -1 ? 22 * index + 5 : ( index > itemIndex ? 22 * (index - itemIndex) + 105 : (itemIndex - index) * -22 - 5) }%;">
+					<button class="h-[20%]" onclick={() => { if(itemIndex == index) itemIndex = -1; else itemIndex = index; }}>
+						<ExpandIndicator expanded={itemIndex == index} />
+					<h3>{tit}</h3>
 
-						</button>
-					<Rule />
-					<p class=" overflow-hidden transition-all duration-[1.5s] grow flex items-center-safe opacity-0 p-4">{details[index]}</p>
-				</div>
-			{/if}
-			{/each}
-
-			<!-- <p>{details[0]}</p> -->
-
-
-
-			<!-- <div class="title">
-				<button onclick="{() => { expanded = !expanded; }}">
-					<h3>{title}</h3>
-					<ExpandIndicator expanded={expanded} />
-				</button>
+					</button>
+				<Rule />
+				<p class=" overflow-hidden transition-all duration-[1.5s] grow flex items-center-safe opacity-0 p-4">{details[index]}</p>
 			</div>
-			<div class="details">
-				<p>{details}</p>
-			</div> -->
-		</div>
+		{/if}
+		{/each}
 
-	</Frame>
-</div>
+		<!-- <p>{details[0]}</p> -->
+
+
+
+		<!-- <div class="title">
+			<button onclick="{() => { expanded = !expanded; }}">
+				<h3>{title}</h3>
+				<ExpandIndicator expanded={expanded} />
+			</button>
+		</div>
+		<div class="details">
+			<p>{details}</p>
+		</div> -->
+	</div>
+
+</Card>
 
 
 
 <style>
 	@reference "style";
-
-	.multiple-details-card {
-		@apply aspect-card;
-	}
 
 	button {
 		@apply w-full p-4;
@@ -110,12 +105,6 @@
 	.content.expanded > div.before {
 		top: calc(var(--top) - 100%);
 	} */
-
-	.background {
-		@apply absolute top-0 left-0 w-full h-full;
-		@apply bg-neutral-900 object-cover brightness-75 opacity-10;
-		@apply select-none;
-	}
 
 	/*.content > p {
 		@apply overflow-hidden basis-0 grow-0;

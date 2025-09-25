@@ -6,12 +6,12 @@
 
 	interface Props {
 		data: T[],
-		loop: boolean,
+		loop?: boolean,
 		expandIfFit?: boolean,
 		itemSnippet: Snippet<[item: T, active: boolean]>
 	}
 
-	let { itemSnippet, data, loop, expandIfFit = false} : Props =$props();
+	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
 
 	// Padding + item gaps + max item size
 	let remToFit = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 20;

@@ -20,7 +20,7 @@
 
 <section class="team">
 	<Heading title={t(header)} />
-	<Carousel itemSnippet={member} data={members} loop={false} expandIfFit={true} />
+	<Carousel itemSnippet={member} data={members} expandIfFit={true} />
 </section>
 
 <style>

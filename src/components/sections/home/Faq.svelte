@@ -5,11 +5,15 @@
 	import { questions, title } from "data/questions"
 	import Frame from "components/common/Frame.svelte";
 
+	import type { Picture } from 'vite-imagetools';
+
+
 
 
 
 	import MultipleDetailsCard from "components/cards/MultipleDetailsCard.svelte";
-	import bg from "data/team/portraits/julia.jpg?enhanced";
+	import bg from "data/photoshoots/nocturnal-glow/images/card-right.jpg?enhanced";
+	import background from "data/photoshoots/nocturnal-glow/images/background-landscape.jpg?enhanced";
 
 
 
@@ -43,10 +47,12 @@
 {#snippet step(item : any, active : boolean )}
 	<MultipleDetailsCard title={questions.map(x => t(x.question))}
 		details={questions.map(x => t(x.answer))}
-		background={bg} />
+		background={bg} glow={active}/>
 {/snippet}
 
 <section class="faq">
+	<enhanced:img class="background dim" src={background} alt="background" />
+
 	<Heading title={t(title)} />
 
 	<!-- <div class="questions">
@@ -58,7 +64,7 @@
 		details={questions.map(x => t(x.answer))}
 		background={bg} /> -->
 
-	<Carousel itemSnippet={step} data={[1, 2, 3]} loop={false} />
+	<Carousel itemSnippet={step} data={[1, 2, 3]} />
 
 
 </section>

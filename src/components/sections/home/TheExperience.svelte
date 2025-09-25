@@ -20,7 +20,7 @@
 
 <section class="the-experience">
 	<Heading title={t(header)} summary={t(summary)}/>
-	<Carousel itemSnippet={step} data={steps} loop={false} />
+	<Carousel itemSnippet={step} data={steps} />
 </section>
 
 
