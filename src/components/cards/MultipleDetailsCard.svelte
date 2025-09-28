@@ -1,59 +1,61 @@
 <script lang="ts">
-	import { ExpandIndicator, Frame, Rule } from 'components/common';
-	import type { Picture } from 'vite-imagetools';
+	import { ExpandIndicator, Rule } from 'components/common';
 	import { Card } from '.';
 
-	interface Props {
-		title : string[],
-		details : string[],
-		glow?: boolean,
-		background: Picture
+	import {fly } from "svelte/transition"
+
+	interface MultipleDetailsCardData {
+		title: string,
+		details: string
 	}
 
-	let { title, details, background, glow = true } : Props = $props();
+	interface Props {
+		data: MultipleDetailsCardData[],
+		slots: number,
+		glow?: boolean,
+	}
+
+	let { data, slots, glow = true } : Props = $props();
 	let itemIndex = $state(-1);
 
 </script>
 
 
 <Card class="multiple-details-card" {glow}>
-	<!-- <enhanced:img class="background dim" src={background} alt="background" /> -->
 
-	<div class="content w-full h-full"
+	<div class="content w-full h-full flex flex-col justify-center-safe"
 		class:expanded={itemIndex >= 0}>
 
-		{#each title as tit, index }
+		{#each data as item, index }
 		{#if index < 4}
+
 			<div
-				class="absolute w-full h-full overflow-hidden flex flex-col "
+				class="overflow-hidden flex flex-col bg-neutral-800 h-0 grow justify-between"
+			class:grow={itemIndex == index || itemIndex == -1}
 			class:chosen={itemIndex == index}
 			class:before={index < itemIndex}
 			class:after={index > itemIndex}
-			style="--top: {itemIndex == -1 ? 22 * index + 5 : ( index > itemIndex ? 22 * (index - itemIndex) + 105 : (itemIndex - index) * -22 - 5) }%;">
-					<button class="h-[20%]" onclick={() => { if(itemIndex == index) itemIndex = -1; else itemIndex = index; }}>
+
+			>
+				<Rule />
+
+					<button class="transition-all duration-[1.5s]" onclick={() => { if(itemIndex == index) itemIndex = -1; else itemIndex = index; }}>
 						<ExpandIndicator expanded={itemIndex == index} />
-					<h3>{tit}</h3>
+						<h3>{item.title}</h3>
 
 					</button>
 				<Rule />
-				<p class=" overflow-hidden transition-all duration-[1.5s] grow flex items-center-safe opacity-0 p-4">{details[index]}</p>
+			{#if index == itemIndex}
+
+				<p class=" h-0 p-0 overflow-hidden transition-all duration-[1.5s] grow flex items-center-safe opacity-0"
+				transition:fly>{item.details}</p>
+			{/if}
 			</div>
+
+
 		{/if}
 		{/each}
 
-		<!-- <p>{details[0]}</p> -->
-
-
-
-		<!-- <div class="title">
-			<button onclick="{() => { expanded = !expanded; }}">
-				<h3>{title}</h3>
-				<ExpandIndicator expanded={expanded} />
-			</button>
-		</div>
-		<div class="details">
-			<p>{details}</p>
-		</div> -->
 	</div>
 
 </Card>
@@ -90,11 +92,11 @@
 
 	.content > div {
 		@apply transition-all duration-[1.5s];
-		top: var(--top);
+		/* top: var(--top); */
 	}
 
 	.content > div.chosen {
-		 @apply top-4;
+		 /* @apply top-4; */
 		 & > p {
 			@apply opacity-100;
 		 }
