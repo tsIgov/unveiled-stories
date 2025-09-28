@@ -1,5 +1,5 @@
 import { type MultilingualText } from "$lib/i18n/languages";
-import { type Picture } from 'vite-imagetools';
+import type { Picture } from 'vite-imagetools';
 
 import { default as chapter1 } from "./chapters/1"
 import { default as chapter2 } from "./chapters/2"
