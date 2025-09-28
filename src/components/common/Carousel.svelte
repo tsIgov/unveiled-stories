@@ -164,11 +164,11 @@
 			&.left {
 				--direction: -1;
 				--carousel-opacity-left: 0;
-				--carousel-opacity-right: 0.5;
+				--carousel-opacity-right: 0.8;
 			}
 			&.right {
 				--direction: 1;
-				--carousel-opacity-left: 0.5;
+				--carousel-opacity-left: 0.8;
 				--carousel-opacity-right: 0;
 			}
 
@@ -205,14 +205,14 @@
 			}
 
 			&.neighbour.left:hover {
-				filter: grayscale(0);
+				filter: grayscale(0.5);
 				--carousel-opacity-left: 0.2;
-				--carousel-opacity-right: 0.7;
+				--carousel-opacity-right: 0.9;
 			}
 
 			&.neighbour.right:hover {
-				filter: grayscale(0);
-				--carousel-opacity-left: 0.7;
+				filter: grayscale(0.5);
+				--carousel-opacity-left: 0.9;
 				--carousel-opacity-right: 0.2;
 			}
 
