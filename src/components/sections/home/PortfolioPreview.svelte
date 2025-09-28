@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Rule, Slideshow, Frame } from 'components/common';
+	import { Rule, Slideshow, Frame, SectionBackground } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 
 	import { type Photoshoot, photoshoots } from 'data/photoshoots';
@@ -10,8 +10,7 @@
 
 {#snippet photoshoot(item : Photoshoot)}
 	<div>
-		<enhanced:img class="background dim portrait" src={item.backgroundPortrait} alt={t(item.name)} />
-		<enhanced:img class="background dim landscape" src={item.backgroundLandscape} alt={t(item.name)} />
+		<SectionBackground landscape={item.backgroundLandscape} portrait={item.backgroundPortrait} alt={t(item.name)} />
 
 		<div class="preview">
 
@@ -50,17 +49,6 @@
 
 	.portfolio-preview > :global(.slideshow) {
 		@apply w-full h-svh;
-	}
-
-	.background {
-
-		&.portrait {
-			@apply landscape:hidden;
-		}
-
-		&.landscape{
-			@apply portrait:hidden;
-		}
 	}
 
 	.details {

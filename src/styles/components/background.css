@@ -1,7 +1,0 @@
-@layer components {
-	.background {
-		@apply absolute top-0 left-0 w-full h-full;
-		@apply bg-neutral-800 object-cover;
-		@apply select-none;
-	}
-}

@@ -3,6 +3,7 @@
 
 	import { Rule } from 'components/common';
 	import { Card } from '.';
+	import { CardBackground } from './internal';
 
 	interface Props {
 		title: string;
@@ -16,7 +17,7 @@
 
 <Card {glow} class="text-card">
 	{#if backgroundImage}
-		<enhanced:img class="background dim" src={backgroundImage} alt="{title}" />
+		<CardBackground image={backgroundImage} alt={title} />
 	{/if}
 	<div class="content">
 

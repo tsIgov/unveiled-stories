@@ -56,7 +56,7 @@
 		}
 
 		& > .background {
-			@apply absolute top-0 left-0 w-full h-full bg-neutral-900;
+			@apply absolute top-0 left-0 w-full h-full bg-neutral-800;
 
 			& > .glow {
 				@apply absolute bottom-0 w-full h-1 -z-10;

@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { ExpandIndicator, Frame } from 'components/common';
+	import { ExpandIndicator } from 'components/common';
 	import type { Picture } from 'vite-imagetools';
+
 	import { Card } from '.';
+	import { CardBackground } from './internal';
 
 	interface Props {
 		title : string,
@@ -18,7 +20,7 @@
 
 
 <Card class="detail-card" {glow}>
-	<enhanced:img class="background" src={background} alt={title} />
+	<CardBackground image={background} alt={title} dim={false} />
 
 	<div class="content"
 		class:expanded={expanded}>
