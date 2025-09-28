@@ -3,13 +3,13 @@
 	import { Carousel, Heading } from 'components/common';
 	import { getTranslator } from '$lib/i18n/translator';
 
-	import { type ExperienceStep, header, summary, steps } from "data/experinece";
+	import { type Chapter, header, summary, chapters } from "data/experinece";
 
 	let t = $derived(getTranslator());
 
 </script>
 
-{#snippet step(item : ExperienceStep, active : boolean )}
+{#snippet chapter(item : Chapter, active : boolean )}
 	<TextCard
 		title={t(item.title)}
 		text={t(item.text)}
@@ -20,7 +20,7 @@
 
 <section class="the-experience">
 	<Heading title={t(header)} summary={t(summary)}/>
-	<Carousel itemSnippet={step} data={steps} />
+	<Carousel itemSnippet={chapter} data={chapters} />
 </section>
 
 
