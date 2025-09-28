@@ -1,6 +1,6 @@
 import { type MultilingualText } from "$lib/i18n/languages";
-import backgroundLandscape from "./backgrounds/faq-landscape.jpg?enhanced";
-import backgroundPortrait from "./backgrounds/faq-portrait.jpg?enhanced";
+import backgroundLandscape from "./backgrounds/landscape.jpg?enhanced";
+import backgroundPortrait from "./backgrounds/portrait.jpg?enhanced";
 
 export const title : MultilingualText = {
 	en: "FAQ",

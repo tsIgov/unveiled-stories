@@ -1,4 +1,4 @@
-import type { TeamMember } from "..";
+import type { TeamMember } from "data/team";
 import Portrait from "./portrait.jpg?enhanced";
 
 const data : TeamMember = {

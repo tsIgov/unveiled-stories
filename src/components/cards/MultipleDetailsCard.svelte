@@ -27,7 +27,6 @@
 		class:expanded={itemIndex >= 0}>
 
 		{#each data as item, index }
-		{#if index < 4}
 
 			<div
 				class="overflow-hidden flex flex-col bg-neutral-800 h-0 grow justify-between"
@@ -53,7 +52,6 @@
 			</div>
 
 
-		{/if}
 		{/each}
 
 	</div>
