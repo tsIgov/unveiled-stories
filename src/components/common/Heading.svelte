@@ -26,6 +26,7 @@
 
 		& > h2 {
 			@apply font-serif text-xl text-moonlight uppercase;
+			@apply text-shadow-sm text-shadow-neutral-900;
 			@apply mb-2;
 		}
 
