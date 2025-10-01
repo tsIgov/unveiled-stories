@@ -23,6 +23,10 @@
 <style>
 	@reference "style";
 
+	.rule {
+		@apply shrink-0 grow-0;
+	}
+
 	.rule.ornament {
 		@apply flex gap-3 items-center;
 

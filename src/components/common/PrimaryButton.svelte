@@ -19,7 +19,7 @@
 
 <button class="primary-button" onclick={onclick}>
 	<Frame {glow}>
-		<span class="hover-glow block">{text}</span>
+		<span>{text}</span>
 	</Frame>
 </button>
 
@@ -30,8 +30,9 @@
 	.primary-button {
 		@apply uppercase cursor-pointer;
 
-		& :global(.content) {
-			@apply px-4 py-1;
+		& span {
+			@apply block hover-glow px-4 py-1;
+			@apply text-shadow-sm text-shadow-neutral-900;
 		}
 	}
 </style>
