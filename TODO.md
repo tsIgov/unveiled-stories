@@ -1,4 +1,3 @@
-- Change FAQ layout?
 - Fix section height and snap
 - Center the icons below the bottom logo
 - Add checkbox to contact form?

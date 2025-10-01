@@ -43,6 +43,7 @@
 			</p>
 
 			<div style="height: {fr}%; top: {getTop(index)}%;"
+				class:first={index == 0}
 				class:next={chosenItem != -1 && index == chosenItem + 1}>
 				<Rule />
 
@@ -83,7 +84,8 @@
 				display: none;
 			}
 
-			&.next > :global(.rule) {
+			&.next > :global(.rule),
+			&.first > :global(.rule) {
 				display: block;
 			}
 
