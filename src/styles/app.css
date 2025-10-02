@@ -29,5 +29,6 @@
 
 	--aspect-*: initial;
 	--aspect-card: 0.625;
+	--aspect-card-landscape: 1.6;
 	--aspect-spread: 1.26;
 }

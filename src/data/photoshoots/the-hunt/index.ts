@@ -17,7 +17,12 @@ const data: Photoshoot = {
 		cardLeft,
 		cardCenter,
 		cardRight,
-		color: "#809D5C"
+		color: "#809D5C",
+		gallery: [
+			cardLeft,
+			cardCenter,
+			cardRight
+		]
 };
 
 export default data;

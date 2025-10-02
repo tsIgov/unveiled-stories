@@ -28,10 +28,6 @@
 	@reference "style";
 
 	.the-experience {
-		& :global(.text-card) {
-			@apply max-w-xs;
-		}
-
 		& :global(.carousel) {
 			@apply w-full;
 		}

@@ -14,6 +14,7 @@ export interface Photoshoot
 	cardLeft : Picture,
 	cardCenter : Picture,
 	cardRight : Picture,
+	gallery : Picture[]
 }
 
 export const photoshoots : Photoshoot[] = [

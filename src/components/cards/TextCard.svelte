@@ -6,16 +6,17 @@
 	import { CardBackground } from './internal';
 
 	interface Props {
-		title: string;
-		text: string;
+		title: string,
+		text: string,
 		backgroundImage? : Picture,
-		glow?: boolean;
+		glow?: boolean,
+		orientation?: "landscape" | "portrait"
 	}
 
-	let { title, text, backgroundImage, glow = true } : Props = $props();
+	let { title, text, backgroundImage, glow = true, orientation = "portrait" } : Props = $props();
 </script>
 
-<Card {glow} class="text-card">
+<Card {glow} {orientation} class="text-card">
 	{#if backgroundImage}
 		<CardBackground image={backgroundImage} alt={title} />
 	{/if}

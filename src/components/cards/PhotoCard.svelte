@@ -6,14 +6,17 @@
 		name: string,
 		image : Picture,
 		color: string,
+		orientation?: "landscape" | "portrait"
 	}
 
-	let { name, image, color } : Props  = $props();
+	let { name, image, color, orientation = "portrait" } : Props  = $props();
 
 </script>
 
 
-<div class="photo-card">
+<div class="photo-card"
+	class:portrait={orientation == "portrait"}
+	class:landscape={orientation == "landscape"}>
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
@@ -29,7 +32,8 @@
 	@reference "style";
 
 	.photo-card {
-		@apply aspect-card;
+		&.portrait { @apply aspect-card; }
+		&.landscape { @apply aspect-card-landscape; }
 
 		& .frame-gap {
 			@apply w-full h-full;

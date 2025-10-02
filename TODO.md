@@ -1,3 +1,5 @@
+- Add gallery for the portfolio
+
 - Fix section height and snap
 - Show contacts for pointer devices
 - Center the icons below the bottom logo
