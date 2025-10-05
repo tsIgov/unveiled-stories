@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { Rule, Slideshow, Frame, SectionBackground } from 'components/common';
+	import { Rule, Slideshow, Frame, SectionBackground, LightboxGallery } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 
 	import { type Photoshoot, photoshoots } from 'data/photoshoots';
 	import { getTranslator } from '$lib/i18n/translator';
+
+let galleryOpened = $state(true);
 
 	let t = $derived(getTranslator());
 </script>
@@ -42,6 +44,9 @@
 
 <section class="portfolio-preview">
 	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
+	{#if galleryOpened}
+		<LightboxGallery images={photoshoots[0].gallery} galleryName={t(photoshoots[0].name)} onclose={() => { galleryOpened = false; } } />
+	{/if}
 </section>
 
 <style>

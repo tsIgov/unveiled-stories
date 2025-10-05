@@ -20,7 +20,7 @@ const data: Photoshoot = {
 		color: "#809D5C",
 		gallery: [
 			cardLeft,
-			cardCenter,
+			backgroundLandscape,
 			cardRight
 		]
 };

@@ -1,4 +1,6 @@
 - Add gallery for the portfolio
+	- swipe, keys, pause slideshow
+	- props to be the same as photocard
 
 - Fix section height and snap
 - Show contacts for pointer devices
@@ -11,4 +13,5 @@
 
 - Gallery on the slideshow?
 - Better experience section?
+- landscape testimonials
 

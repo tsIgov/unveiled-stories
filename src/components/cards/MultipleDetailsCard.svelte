@@ -64,8 +64,13 @@
 	@reference "style";
 
 	.content {
-		@apply w-full h-full;
+		@apply w-full h-full overflow-hidden;
 		@apply flex flex-col justify-center-safe;
+
+		&::before {
+			content: "";
+			@apply w-svw h-svh;
+		}
 
 		& > p {
 			@apply absolute p-4;
