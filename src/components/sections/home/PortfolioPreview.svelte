@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Picture } from 'vite-imagetools';
+
 	import { Rule, Slideshow, Frame, SectionBackground, LightboxGallery } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 
@@ -22,17 +24,17 @@
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
 	<div>
-		<SectionBackground landscape={item.backgroundLandscape} portrait={item.backgroundPortrait} alt={t(item.name)} />
+		<SectionBackground landscape={item.background.landscape} portrait={item.background.portrait} alt={t(item.name)} />
 
 		<div class="preview">
 
 			<PhotoCardSpread
-				imageLeft={item.cardLeft}
-				imageCenter={item.cardCenter}
-				imageRight={item.cardRight}
+				imageLeft={item.preview.left}
+				imageCenter={item.preview.center}
+				imageRight={item.preview.right}
 				name={t(item.name)}
 				color={item.color}
-				onclick={ item.gallery == null ? null : () => openGallery(index)}
+				onclick={ item.gallery == undefined ? null : () => openGallery(index)}
 			/>
 
 			<div class="side">
@@ -40,7 +42,7 @@
 				<Rule orientation="horizontal" centerOrnament={true}/>
 
 				<div class="details">
-					{#if item.gallery != null}
+					{#if item.gallery != undefined}
 					<button onclick={() => openGallery(index)}>
 						<Frame color={item.color}>
 							<span>{t(item.name)}</span>
@@ -65,7 +67,7 @@
 	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} {paused} />
 	{#if galleryOpenedIndex != null }
 		<LightboxGallery
-			images={photoshoots[galleryOpenedIndex].gallery}
+			images={photoshoots[galleryOpenedIndex].gallery?.() as Picture[]}
 			galleryName={t(photoshoots[galleryOpenedIndex].name)}
 			borderColor={photoshoots[galleryOpenedIndex].color}
 			onclose={closeGallery}

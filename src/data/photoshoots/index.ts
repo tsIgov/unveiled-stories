@@ -9,12 +9,16 @@ export interface Photoshoot
     name: MultilingualText,
 	description: MultilingualText,
 	color: string,
-	backgroundPortrait : Picture,
-	backgroundLandscape : Picture,
-	cardLeft : Picture,
-	cardCenter : Picture,
-	cardRight : Picture,
-	gallery : Picture[]
+	background: {
+		portrait : Picture,
+		landscape : Picture,
+	}
+	preview: {
+		left : Picture,
+		center : Picture,
+		right : Picture,
+	}
+	gallery?: () => Picture[]
 }
 
 export const photoshoots : Photoshoot[] = [
