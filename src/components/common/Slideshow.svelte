@@ -5,18 +5,18 @@
 
 	interface Props {
 		data: T[],
-		slideSnippet: Snippet<[T]>
-		timeout: number
+		slideSnippet: Snippet<[T, number]>
+		timeout: number,
+		paused? : boolean;
 	}
 
-	let { data, slideSnippet, timeout} : Props =$props();
+	let { data, slideSnippet, timeout, paused = false } : Props =$props();
 	let slidesCount = $derived(data.length);
 	let currentSlide = $state(0);
 
 	let timer = -1;
 
 	onMount(() => {
-		changeSlide(0);
 		return () => clearInterval(timer);
 	});
 
@@ -45,8 +45,19 @@
 	}
 
 	$effect(() => {
+		if (paused) {
+			clearInterval(timer);
+		}
+		else {
+			timer = setInterval(() => {
+				currentSlide = (currentSlide + 1) % slidesCount;
+			}, timeout);
+		}
+	});
+
+	$effect(() => {
 		const progress = document.getElementById("progress-" + currentSlide);
-		if (progress) {
+		if (progress && !paused) {
 			progress.classList.remove("running");
 			void progress.offsetWidth;
 			progress.classList.add("running");
@@ -63,7 +74,7 @@
 			class:active={currentSlide == index}
 			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
-			{@render slideSnippet(slide)}
+			{@render slideSnippet(slide, index)}
 
 		</div>
 	{/each}
@@ -76,7 +87,7 @@
 				tabindex="-1">
 				<span>{String(slideIndex + 1).padStart(2, '0')}</span>
 
-				<div id="progress-{slideIndex}" class="progress-line running"
+				<div id="progress-{slideIndex}" class="progress-line running" class:paused={paused}
 					style="animation-duration: {timeout}ms">
 				</div>
 
@@ -154,6 +165,10 @@
 			& > .progress-line.running {
 				animation-name: progress;
 				animation-timing-function: linear;
+			}
+
+			& > .progress-line.paused {
+				@apply opacity-0;
 			}
 		}
 	}

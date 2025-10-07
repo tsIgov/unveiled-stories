@@ -8,34 +8,33 @@
 		imageRight: Picture,
 		name: string,
 		color: string,
+		onclick?: (() => void) | null,
 	}
 
-	let { imageLeft, imageCenter, imageRight, name, color } : Props = $props();
+	let { imageLeft, imageCenter, imageRight, name, color, onclick = null } : Props = $props();
 
 </script>
 
-<div class="photo-card-spread">
-	<PhotoCard
-		image={imageLeft}
-		name={name}
-		{color}
-	/>
-
-	<PhotoCard
-		image={imageCenter}
-		name={name}
-		{color}
-	/>
-
-	<PhotoCard
-		image={imageRight}
-		name={name}
-		{color}
-	/>
-</div>
+{#if onclick != null}
+	<button class="photo-card-spread" {onclick}>
+		<PhotoCard image={imageLeft} {name} {color}	/>
+		<PhotoCard image={imageCenter} {name} {color} />
+		<PhotoCard image={imageRight} {name} {color} />
+	</button>
+{:else}
+	<div class="photo-card-spread">
+		<PhotoCard image={imageLeft} {name} {color}	/>
+		<PhotoCard image={imageCenter} {name} {color} />
+		<PhotoCard image={imageRight} {name} {color} />
+	</div>
+{/if}
 
 <style>
 	@reference "style";
+
+	button.photo-card-spread {
+		@apply cursor-pointer;
+	}
 
 	.photo-card-spread {
 		@apply flex items-start justify-center aspect-spread;

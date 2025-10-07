@@ -2,6 +2,7 @@
 	import type { Picture } from 'vite-imagetools';
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition"
+	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
 	import { PhotoCard } from 'components/cards';
 
 	interface Props {
@@ -28,14 +29,40 @@
 		index = Math.max(index - 1, 0);
 	}
 
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.key == "Escape")
+			close();
+		if (event.key == "ArrowLeft")
+			prev();
+		if (event.key == "ArrowRight")
+			next();
+	}
+
+	function swipeHandler(event: SwipeCustomEvent) {
+		if (event.detail.pointerType == "mouse")
+			return;
+
+		if (event.detail.direction == "left")
+			next();
+		else if (event.detail.direction == "right")
+			prev();
+	}
+
 	onMount(() => {
 		document.body.classList.add("overflow-hidden");
-		return () => document.body.classList.remove("overflow-hidden");
+		window.addEventListener("keydown", handleKeyDown);
+
+		return () => {
+			document.body.classList.remove("overflow-hidden");
+			window.removeEventListener("keydown", handleKeyDown);
+		};
 	});
 
 </script>
 
-	<div class="lightbox-gallery" transition:fade>
+	<div class="lightbox-gallery"
+		transition:fade
+		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 		<div class="content">
 			{#each images as image, i}
 				<PhotoCard

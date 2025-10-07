@@ -39,6 +39,7 @@
 
 		& > h3 {
 			@apply text-center text-lg text-moonlight uppercase;
+			@apply text-shadow-sm text-shadow-neutral-900;
 			@apply px-4 pt-4;
 		}
 

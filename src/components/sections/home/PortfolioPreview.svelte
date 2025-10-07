@@ -5,12 +5,22 @@
 	import { type Photoshoot, photoshoots } from 'data/photoshoots';
 	import { getTranslator } from '$lib/i18n/translator';
 
-let galleryOpened = $state(true);
-
 	let t = $derived(getTranslator());
+
+	let galleryOpenedIndex : number | null = $state(null);
+	let paused = $derived( galleryOpenedIndex != null );
+
+	function openGallery(index: number) {
+		galleryOpenedIndex = index;
+	}
+
+	function closeGallery() {
+		galleryOpenedIndex = null
+	}
+
 </script>
 
-{#snippet photoshoot(item : Photoshoot)}
+{#snippet photoshoot(item : Photoshoot, index : number)}
 	<div>
 		<SectionBackground landscape={item.backgroundLandscape} portrait={item.backgroundPortrait} alt={t(item.name)} />
 
@@ -22,6 +32,7 @@ let galleryOpened = $state(true);
 				imageRight={item.cardRight}
 				name={t(item.name)}
 				color={item.color}
+				onclick={ item.gallery == null ? null : () => openGallery(index)}
 			/>
 
 			<div class="side">
@@ -29,11 +40,19 @@ let galleryOpened = $state(true);
 				<Rule orientation="horizontal" centerOrnament={true}/>
 
 				<div class="details">
+					{#if item.gallery != null}
+					<button onclick={() => openGallery(index)}>
+						<Frame color={item.color}>
+							<span>{t(item.name)}</span>
+						</Frame>
+					</button>
+					{:else}
 					<h3>
 						<Frame color={item.color}>
 							<span>{t(item.name)}</span>
 						</Frame>
 					</h3>
+					{/if}
 					<p>{t(item.description)}</p>
 				</div>
 			</div>
@@ -43,9 +62,14 @@ let galleryOpened = $state(true);
 {/snippet}
 
 <section class="portfolio-preview">
-	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
-	{#if galleryOpened}
-		<LightboxGallery images={photoshoots[0].gallery} galleryName={t(photoshoots[0].name)} onclose={() => { galleryOpened = false; } } />
+	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} {paused} />
+	{#if galleryOpenedIndex != null }
+		<LightboxGallery
+			images={photoshoots[galleryOpenedIndex].gallery}
+			galleryName={t(photoshoots[galleryOpenedIndex].name)}
+			borderColor={photoshoots[galleryOpenedIndex].color}
+			onclose={closeGallery}
+		 />
 	{/if}
 </section>
 
@@ -59,7 +83,8 @@ let galleryOpened = $state(true);
 	.details {
 		@apply max-w-sm px-4 flex flex-col gap-3 items-center;
 
-		& > h3 {
+		& > h3,
+		& > button {
 			@apply w-full max-w-2xs;
 			@apply bg-neutral-900;
 			@apply text-center font-bold uppercase select-none;
@@ -67,6 +92,10 @@ let galleryOpened = $state(true);
 			& span {
 				@apply block w-full px-8 py-1;
 			}
+		}
+
+		& > button {
+			@apply hover-glow cursor-pointer;
 		}
 
 		& > p {

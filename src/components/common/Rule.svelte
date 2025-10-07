@@ -34,6 +34,7 @@
 			@apply from-gold to-moonlight grow;
 			width: 1px;
 			height: 1px;
+			min-height: 1.15px;
 
 			&::after {
 				@apply from-neutral-900 to-neutral-900/0;
@@ -87,6 +88,7 @@
 
 	.rule:not(.ornament) {
 		@apply from-gold via-moonlight to-gold;
+		min-height: 1.15px;
 
 		&::after {
 			@apply from-neutral-900 via-neutral-900/0 to-neutral-900;
