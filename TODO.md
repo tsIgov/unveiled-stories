@@ -1,6 +1,7 @@
 - Add gallery for the portfolio
-	- swipe, keys, pause slideshow
-	- props to be the same as photocard
+	- style
+
+- make rules into svgs to prevent flickering
 
 - Fix section height and snap
 - Show contacts for pointer devices

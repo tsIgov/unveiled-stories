@@ -83,6 +83,8 @@
 			@apply bg-neutral-800;
 			@apply flex flex-col items-center-safe;
 			@apply transition-[top] duration-[1.5s];
+			transform: translateZ(0);
+			will-change: transform;
 
 			& > :global(.rule) {
 				@apply transition-[display] duration-[1.5s] transition-discrete;
