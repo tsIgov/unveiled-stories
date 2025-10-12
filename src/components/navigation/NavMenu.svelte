@@ -25,7 +25,7 @@
 
 	<div class="content">
 		<div class="menu">
-			<MenuIcon class="h-5 w-auto text-moonlight" />
+			<!-- <MenuIcon class="h-5 w-auto text-moonlight" /> -->
 		</div>
 
 		<a class="logo" href="/"><img src="/logo.svg" alt="logo" /></a>
