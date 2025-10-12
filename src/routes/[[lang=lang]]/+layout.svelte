@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { Metadata } from 'components/common';
 	import { NavMenu } from 'components/navigation';
 	import { Footer } from 'components/sections/shared';
 
@@ -12,6 +13,8 @@
 	let navMenuOpacity = $derived(Math.max(navMenuMinOpacity, Math.min(1, scrollY / navMenuOpacityThreshold)));
 
 </script>
+
+<Metadata data={page.data.metadata} />
 
 <svelte:window bind:scrollY={scrollY} bind:innerHeight={viewportHeight} />
 

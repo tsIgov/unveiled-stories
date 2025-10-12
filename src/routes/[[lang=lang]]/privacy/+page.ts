@@ -1,9 +1,9 @@
 import type { PageLoad } from './$types';
-import { home } from 'data/metadata'
+import { privacy } from 'data/metadata'
 
 export const load: PageLoad = (() => {
 	return {
-		transparentNavigation: true,
-		metadata: home
+		transparentNavigation: false,
+		metadata: privacy
 	};
 });

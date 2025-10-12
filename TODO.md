@@ -1,14 +1,10 @@
-- make rules into svgs to prevent flickering
-
+- prevent rule flickering
 - Fix section height and snap
-- Show contacts for pointer devices
-- Center the icons below the bottom logo
-- Add checkbox to contact form?
 - Commit to root size
+
 - Implement or remove menu
+
+- Pick photoshoots
 - SEO
 - Translate
-
-- Better experience section?
-- landscape testimonials
-
+- Change the default og image
