@@ -49,7 +49,7 @@
 	<div class="content">
 
 		<div class="logo">
-			<img src="logo-full.svg" alt="logo" />
+			<img src="logo-full-center.svg" alt="logo" />
 			<div class="socials">
 				<a href="{socials.instagram}" target="_blank" ><InstagramIcon /></a>
 				<a href="mailto:{socials.email}" ><MailIcon /></a>
@@ -104,10 +104,10 @@
 				}
 
 				& > .socials {
-					@apply flex gap-4 justify-center;
+					@apply flex gap-6 justify-center;
 
 					& > a {
-						@apply w-8 text-moonlight-dim;
+						@apply text-moonlight-dim;
 						@apply transition-all duration-300;
 						@apply hover:text-neutral-100;
 					}
