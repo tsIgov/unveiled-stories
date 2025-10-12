@@ -3,6 +3,8 @@
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition"
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
+	import { ChevronLeftIcon, ChevronRightIcon,XIcon } from '@lucide/svelte';
+
 	import { PhotoCard } from 'components/cards';
 
 	interface Props {
@@ -22,7 +24,7 @@
 	}
 
 	function next() {
-		index = Math.min(index + 1, images.length);
+		index = Math.min(index + 1, images.length - 1);
 	}
 
 	function prev() {
@@ -73,9 +75,21 @@
 			{/each}
 		</div>
 
-		<button class="close" onclick={(e) => { e.stopPropagation(); close(); }}>X</button>
-		<button class="prev" class:invisible={index == 0} onclick={(e) => { e.stopPropagation(); prev(); }}>P</button>
-		<button class="next" class:invisible={index == images.length - 1} onclick={(e) => { e.stopPropagation(); next(); }}>N</button>
+		<button class="close"
+			onclick={(e) => { e.stopPropagation(); close(); }}>
+				<XIcon />
+		</button>
+		<button class="prev"
+			class:invisible={index == 0}
+			onclick={(e) => { e.stopPropagation(); prev(); }}>
+				<ChevronLeftIcon />
+		</button>
+		<button class="next"
+			class:invisible={index == images.length - 1}
+			onclick={(e) => { e.stopPropagation(); next(); }}>
+				<ChevronRightIcon />
+		</button>
+
 	</div>
 
 <style>
@@ -105,10 +119,26 @@
 	}
 
 	button {
-		@apply absolute;
-		@apply  w-6 h-6 top-1/2 -translate-y-1/2 bg-[red];
+		@apply absolute w-8 h-8 top-1/2 -translate-y-1/2;
+		@apply flex content-center items-center justify-center;
+		@apply bg-neutral-800 border-2 border-moonlight-dim rounded-full;
+		@apply transition-[visibility_opacity] duration-[1s] transition-discrete opacity-100;
+		@apply drop-shadow-neutral-900  shadow-md shadow-neutral-900;
+		@apply cursor-pointer;
 
-		&.close { @apply right-0 top-0 translate-y-0; }
+		&.invisible {
+			@apply opacity-0 cursor-default;
+		}
+
+		&:hover {
+			@apply hover-glow;
+		}
+
+		& :global(.lucide-icon) {
+			@apply w-4 h-4;
+		}
+
+		&.close { @apply right-4 top-4 translate-y-0; }
 		&.prev { @apply left-4; }
 		&.next { @apply right-4; }
 	}
