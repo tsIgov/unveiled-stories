@@ -4,7 +4,7 @@
 	import { Rule, Slideshow, Frame, SectionBackground, LightboxGallery } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 
-	import { type Photoshoot, photoshoots } from 'data/photoshoots';
+	import { type Photoshoot, photoshoots, galleryEnabled } from 'data/photoshoots';
 	import { getTranslator } from '$lib/i18n/translator';
 
 	let t = $derived(getTranslator());
@@ -34,7 +34,7 @@
 				imageRight={item.preview.right}
 				name={t(item.name)}
 				color={item.color}
-				onclick={ item.gallery == undefined ? null : () => openGallery(index)}
+				onclick={ item.gallery == undefined || !galleryEnabled ? null : () => openGallery(index)}
 			/>
 
 			<div class="side">
@@ -42,7 +42,7 @@
 				<Rule orientation="horizontal" centerOrnament={true}/>
 
 				<div class="details">
-					{#if item.gallery != undefined}
+					{#if item.gallery != undefined && galleryEnabled}
 					<button onclick={() => openGallery(index)}>
 						<Frame color={item.color}>
 							<span>{t(item.name)}</span>

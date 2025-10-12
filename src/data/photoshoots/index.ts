@@ -12,12 +12,12 @@ export interface Photoshoot
 	background: {
 		portrait : Picture,
 		landscape : Picture,
-	}
+	},
 	preview: {
 		left : Picture,
 		center : Picture,
 		right : Picture,
-	}
+	},
 	gallery?: () => Picture[]
 }
 
@@ -25,3 +25,5 @@ export const photoshoots : Photoshoot[] = [
 	theHunt,
 	nocturnalGlow
 ]
+
+export const galleryEnabled : boolean = true;

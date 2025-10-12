@@ -1,6 +1,3 @@
-- Add gallery for the portfolio
-	- style
-
 - make rules into svgs to prevent flickering
 
 - Fix section height and snap
@@ -12,7 +9,6 @@
 - SEO
 - Translate
 
-- Gallery on the slideshow?
 - Better experience section?
 - landscape testimonials
 
