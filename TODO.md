@@ -1,5 +1,6 @@
 - prevent rule flickering
 - Commit to root size
+- Convert svg fonts to paths
 
 - Pick photoshoots
 - SEO

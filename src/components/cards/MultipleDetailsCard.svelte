@@ -73,7 +73,7 @@
 
 		& > p {
 			@apply absolute p-4;
-			@apply flex items-center-safe;
+			@apply flex items-center-safe text-center;
 			@apply transition-[top,opacity] duration-[1.5s];
 		}
 
