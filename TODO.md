@@ -1,4 +1,4 @@
-- Optimize gallery opening
+- Optimize gallery opening (shallow routing)
 - Commit to root size
 - Convert svg fonts to paths
 
