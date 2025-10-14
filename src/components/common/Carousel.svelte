@@ -205,7 +205,7 @@
 				translate: 0%;
 
 				& :global(.rule) {
-					@apply scale-y-100;
+					@apply scale-100;
 				}
 			}
 			&:not(.active) {
@@ -216,8 +216,11 @@
 					@apply pointer-events-none;
 				}
 
-				& :global(.rule) {
+				& :global(.rule.horizontal) {
 					@apply scale-y-[1.5];
+				}
+				& :global(.rule.vertical) {
+					@apply scale-x-[1.5];
 				}
 			}
 			&.neighbour {
