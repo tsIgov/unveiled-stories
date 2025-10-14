@@ -75,7 +75,7 @@
 			{/each}
 		</div>
 
-		<button class="close"
+		<button class="close active"
 			onclick={(e) => { e.stopPropagation(); close(); }}>
 				<XIcon />
 		</button>
