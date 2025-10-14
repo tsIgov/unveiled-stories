@@ -197,8 +197,16 @@
 				--carousel-opacity-right: 0;
 			}
 
+			& :global(.rule) {
+				@apply transition-all duration-1000;
+			}
+
 			&.active {
 				translate: 0%;
+
+				& :global(.rule) {
+					@apply scale-y-100;
+				}
 			}
 			&:not(.active) {
 				scale: 0.85;
@@ -206,6 +214,10 @@
 
 				& :global(*) {
 					@apply pointer-events-none;
+				}
+
+				& :global(.rule) {
+					@apply scale-y-[1.5];
 				}
 			}
 			&.neighbour {
