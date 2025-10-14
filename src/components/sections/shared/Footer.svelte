@@ -12,7 +12,7 @@
 	<Rule />
 	<p>
 		©{new Date().getFullYear()} Unveiled Stories |
-		<a href="{page.data.lang}/privacy" target="_blank">{t(footerLink)}</a>
+		<a href="/{page.data.lang}/privacy" target="_blank">{t(footerLink)}</a>
 	</p>
 </footer>
 

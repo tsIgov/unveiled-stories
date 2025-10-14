@@ -15,24 +15,18 @@
 
 </script>
 
-{#if onclick != null}
-	<button class="photo-card-spread" {onclick}>
-		<PhotoCard image={imageLeft} {name} {color}	/>
-		<PhotoCard image={imageCenter} {name} {color} />
-		<PhotoCard image={imageRight} {name} {color} />
-	</button>
-{:else}
-	<div class="photo-card-spread">
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="photo-card-spread" class:interactive={onclick != null} {onclick}>
 		<PhotoCard image={imageLeft} {name} {color}	/>
 		<PhotoCard image={imageCenter} {name} {color} />
 		<PhotoCard image={imageRight} {name} {color} />
 	</div>
-{/if}
 
 <style>
 	@reference "style";
 
-	button.photo-card-spread {
+	.photo-card-spread.interactive {
 		@apply cursor-pointer;
 	}
 

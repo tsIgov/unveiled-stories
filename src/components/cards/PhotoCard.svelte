@@ -15,9 +15,6 @@
 	}
 
 	let { name, image, color, ...rest } : Props  = $props();
-
-	let el : HTMLElement;
-
 	let orientation = $derived(image.img.w > image.img.h ? "landscape" : "portrait");
 
 </script>
@@ -29,9 +26,7 @@
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<img class="logo" src="/logo.svg" alt="logo" />
-				<enhanced:img class="" onload={() => { el.classList.add("loaded") }}
-					src={image} alt={name} bind:this={el} />
+				<enhanced:img src={image} alt={name}  />
 			</Frame>
 		</div>
 	 </Frame>
@@ -48,14 +43,8 @@
 		@apply max-w-full max-h-full;
 
 		& .frame-gap {
-			@apply w-full h-full;
+			@apply w-full h-full bg-neutral-800;
 			padding: min(1.5cqb, 0.5rem);
-		}
-
-		& :global(.logo) {
-			@apply absolute w-full h-full top-0 left-0;
-			@apply object-fill -rotate-45;
-			@apply select-none;
 		}
 
 		& :global(img) {
@@ -63,11 +52,6 @@
 			@apply min-w-4 min-h-4;
 			@apply object-cover;
 			@apply select-none;
-			@apply transition-opacity opacity-0 duration-1000;
-
-			&:global(.loaded) {
-				@apply opacity-100;
-			}
 		}
 	}
 </style>
