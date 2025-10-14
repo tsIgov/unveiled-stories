@@ -80,12 +80,12 @@
 				<XIcon />
 		</button>
 		<button class="prev"
-			class:invisible={index == 0}
+			class:active={index != 0}
 			onclick={(e) => { e.stopPropagation(); prev(); }}>
 				<ChevronLeftIcon />
 		</button>
 		<button class="next"
-			class:invisible={index == images.length - 1}
+			class:active={index != images.length - 1}
 			onclick={(e) => { e.stopPropagation(); next(); }}>
 				<ChevronRightIcon />
 		</button>
@@ -109,11 +109,12 @@
 
 		& > :global(.photo-card) {
 			@apply col-start-1 row-start-1;
-			@apply transition-[visibility_opacity] duration-[1s] transition-discrete;
-			@apply opacity-0 invisible;
+			@apply transition-opacity duration-[1s];
+			@apply opacity-100;
 
-			&:global(.active) {
-				@apply opacity-100 visible;
+			&:global(:not(.active)) {
+				@apply opacity-0;
+				animation: remove 1s linear 1;
 			}
 		}
 	}
@@ -122,12 +123,13 @@
 		@apply absolute w-8 h-8 top-1/2 -translate-y-1/2;
 		@apply flex content-center items-center justify-center;
 		@apply bg-neutral-800 border-2 border-moonlight-dim rounded-full;
-		@apply transition-[visibility_opacity] duration-[1s] transition-discrete opacity-100;
+		@apply transition-opacity duration-[1s] opacity-100;
 		@apply drop-shadow-neutral-900  shadow-md shadow-neutral-900;
 		@apply cursor-pointer;
 
-		&.invisible {
+		&:not(.active) {
 			@apply opacity-0 cursor-default;
+			animation: remove 1s linear 1;
 		}
 
 		&:hover {

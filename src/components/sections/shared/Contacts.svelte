@@ -119,11 +119,13 @@
 
 				& > .fill {
 					@apply w-full flex flex-wrap gap-4 justify-center;
-					@apply transition-[opacity,visibility] duration-1000 transition-discrete;
-					@apply opacity-0 invisible;
+					@apply transition-opacity duration-1000;
+					@apply opacity-100;
 
-					&.active {
-						@apply opacity-100 visible;
+					&:not(.active) {
+						@apply opacity-0;
+						animation: remove 1s linear 1;
+
 					}
 
 					&.faded {
@@ -154,13 +156,14 @@
 				}
 
 				& > .form-overlay {
-					@apply transition-[opacity,visibility] duration-1000 transition-discrete;
+					@apply transition-opacity duration-1000;
 					@apply absolute top-0 left-0 w-full h-full;
 					@apply flex flex-col justify-center-safe content-center-safe items-center-safe;
-					@apply opacity-0 invisible;
+					@apply opacity-100;
 
-					&.active {
-						@apply visible opacity-100;
+					&:not(.active) {
+						@apply opacity-0;
+						animation: remove 1s linear 1;
 					}
 
 					&.spinner {

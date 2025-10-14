@@ -31,3 +31,12 @@ img {
 picture {
 	position: unset;
 }
+
+@keyframes remove {
+	from {
+		visibility: visible;
+	}
+	to {
+		visibility: hidden;
+	}
+}
