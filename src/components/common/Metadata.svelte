@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getTranslator } from '$lib/i18n/translator';
 	import { type Metadata } from 'data/metadata';
+	import { page } from '$app/state';
 
 	interface Props {
 		data: Metadata,
@@ -21,6 +22,6 @@
 
 	<meta name="keywords" content={t(data.keywords)}>
 
-    <meta property="og:image" content={data.image ?? "http://localhost:5173/og-image.jpg"}>
+    <meta property="og:image" content={data.image ?? page.data.defaultOgImageUrl }>
     <meta property="og:type" content="website">
 </svelte:head>

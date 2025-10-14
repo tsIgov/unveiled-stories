@@ -4,4 +4,3 @@
 - Pick photoshoots
 - SEO
 - Translate
-- Change the default og image
