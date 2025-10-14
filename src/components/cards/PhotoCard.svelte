@@ -9,12 +9,11 @@
 	}
 
 	interface Props extends base {
-		name: string,
 		image : Picture,
 		color: string,
 	}
 
-	let { name, image, color, ...rest } : Props  = $props();
+	let { image, color, ...rest } : Props  = $props();
 	let orientation = $derived(image.img.w > image.img.h ? "landscape" : "portrait");
 
 </script>
@@ -26,7 +25,7 @@
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img src={image} alt={name}  />
+				<enhanced:img src={image} alt="" />
 			</Frame>
 		</div>
 	 </Frame>
@@ -49,7 +48,7 @@
 
 		& :global(img) {
 			@apply w-full h-full;
-			@apply min-w-4 min-h-4;
+			@apply min-w-12 min-h-12;
 			@apply object-cover;
 			@apply select-none;
 		}

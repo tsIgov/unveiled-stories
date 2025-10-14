@@ -6,21 +6,20 @@
 		imageLeft : Picture,
 		imageCenter: Picture,
 		imageRight: Picture,
-		name: string,
 		color: string,
 		onclick?: (() => void) | null,
 	}
 
-	let { imageLeft, imageCenter, imageRight, name, color, onclick = null } : Props = $props();
+	let { imageLeft, imageCenter, imageRight, color, onclick = null } : Props = $props();
 
 </script>
 
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class="photo-card-spread" class:interactive={onclick != null} {onclick}>
-		<PhotoCard image={imageLeft} {name} {color}	/>
-		<PhotoCard image={imageCenter} {name} {color} />
-		<PhotoCard image={imageRight} {name} {color} />
+		<PhotoCard image={imageLeft} {color}	/>
+		<PhotoCard image={imageCenter} {color} />
+		<PhotoCard image={imageRight} {color} />
 	</div>
 
 <style>

@@ -10,11 +10,10 @@
 	interface Props {
 		images : Picture[],
 		borderColor?: string,
-		galleryName: string,
 		onclose?: () => void,
 	}
 
-	let { images, borderColor, galleryName, onclose } : Props = $props();
+	let { images, borderColor, onclose } : Props = $props();
 
 	let index : number = $state(0);
 
@@ -69,7 +68,6 @@
 			{#each images as image, i}
 				<PhotoCard
 					color={borderColor ?? "var(--color-gold)"}
-					name={galleryName}
 					image={image}
 					class={i == index ? "active" : ""}  />
 			{/each}

@@ -32,7 +32,6 @@
 				imageLeft={item.preview.left}
 				imageCenter={item.preview.center}
 				imageRight={item.preview.right}
-				name={t(item.name)}
 				color={item.color}
 				onclick={ item.gallery == undefined || !galleryEnabled ? null : () => openGallery(index)}
 			/>
@@ -65,10 +64,9 @@
 
 <section class="portfolio-preview">
 	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} {paused} />
-	{#if galleryOpenedIndex != null }
+	{#if galleryOpenedIndex != null}
 		<LightboxGallery
 			images={photoshoots[galleryOpenedIndex].gallery?.() as Picture[]}
-			galleryName={t(photoshoots[galleryOpenedIndex].name)}
 			borderColor={photoshoots[galleryOpenedIndex].color}
 			onclose={closeGallery}
 		 />
