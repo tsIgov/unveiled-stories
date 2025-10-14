@@ -26,7 +26,8 @@
 			details: t(x.answer)
 		}))}
 		slots={questionsPerCard}
-		glow={active}/>
+		glow={active}
+		active={active}/>
 {/snippet}
 
 <section class="faq">

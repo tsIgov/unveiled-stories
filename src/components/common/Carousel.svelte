@@ -117,9 +117,15 @@
 
 		{#each { length: count }, index}
 			<div class="item {getNeighbourClasses(index, currentItem)}">
-				<button onclick={() => {changeCurrentItem(index)}}>
-					{@render itemSnippet(data[index % data.length], isActive(index))}
-				</button>
+				{#if currentItem != index}
+					<button onclick={() => {changeCurrentItem(index)}}>
+						{@render itemSnippet(data[index % data.length], isActive(index))}
+					</button>
+				{:else}
+					<div>
+						{@render itemSnippet(data[index % data.length], isActive(index))}
+					</div>
+				{/if}
 			</div>
 		{/each}
 	</div>
@@ -174,9 +180,6 @@
 
 			&.active {
 				translate: 0%;
-				& > button {
-					@apply select-auto;
-				}
 			}
 			&:not(.active) {
 				scale: 0.85;
