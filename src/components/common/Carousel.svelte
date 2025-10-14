@@ -217,10 +217,10 @@
 				}
 
 				& :global(.rule.horizontal) {
-					@apply scale-y-[1.5];
+					@apply scale-y-[1.2];
 				}
 				& :global(.rule.vertical) {
-					@apply scale-x-[1.5];
+					@apply scale-x-[1.2];
 				}
 			}
 			&.neighbour {

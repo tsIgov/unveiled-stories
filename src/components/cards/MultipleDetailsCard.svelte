@@ -78,7 +78,7 @@
 		}
 
 		& > div {
-			@apply absolute w-full left-0 overflow-hidden;
+			@apply absolute w-full left-0 overflow-visible;
 			@apply bg-neutral-800;
 			@apply flex flex-col items-center-safe;
 			@apply transition-[top] duration-[1.5s];
@@ -86,8 +86,7 @@
 			will-change: transform;
 
 			& > :global(.rule) {
-				@apply transition-[display] duration-[1.5s] transition-discrete;
-				display: none;
+				@apply top-[-1px];
 			}
 
 			&.next > :global(.rule),
