@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Carousel, Heading } from 'components/common';
+	import { Carousel, Heading, SectionBackground } from 'components/common';
 	import { MessageCircleMoreIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
-	import { type Quote, title, quotes } from 'data/testimonials';
+	import { type Quote, title, quotes, background } from 'data/testimonials';
 	import Card from 'components/cards/Card.svelte';
 
 	let t = $derived(getTranslator());
@@ -19,6 +19,7 @@
 {/snippet}
 
 <section class="testimonials">
+	<SectionBackground portrait={background.portrait} landscape={background.landscape} />
 	<Heading title={t(title)} />
 	<Carousel itemSnippet={quote} data={quotes} loop={true} />
 </section>
