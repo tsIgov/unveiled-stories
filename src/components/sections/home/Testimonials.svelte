@@ -44,7 +44,7 @@
 		}
 
 		& > .text {
-			@apply italic text-sm;
+			@apply italic text-sm text-center;
 		}
 	}
 </style>

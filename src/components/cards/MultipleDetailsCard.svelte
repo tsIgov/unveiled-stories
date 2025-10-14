@@ -11,10 +11,9 @@
 		data: MultipleDetailsCardData[],
 		slots: number,
 		glow?: boolean,
-		active?: boolean,
 	}
 
-	let { data, slots, glow = true, active = true } : Props = $props();
+	let { data, slots, glow = true } : Props = $props();
 
 	let chosenItem = $state(-1);
 	let fr = $derived(100 / slots);
@@ -47,20 +46,11 @@
 				class:first={index == 0}
 				class:next={chosenItem != -1 && index == chosenItem + 1}>
 				<Rule />
-
-				{#if active}
-					<button onclick={() => { if(chosenItem == index) chosenItem = -1; else chosenItem = index; }}>
-						<ExpandIndicator expanded={chosenItem == index} />
-						<h3>{item.title}</h3>
-						<Rule />
-					</button>
-				{:else}
-					<div>
-						<ExpandIndicator expanded={chosenItem == index} />
-						<h3>{item.title}</h3>
-						<Rule />
-					</div>
-				{/if}
+				<button onclick={() => { if(chosenItem == index) chosenItem = -1; else chosenItem = index; }}>
+					<ExpandIndicator expanded={chosenItem == index} />
+					<h3>{item.title}</h3>
+					<Rule />
+				</button>
 			</div>
 
 		{/each}
@@ -105,8 +95,7 @@
 				display: block;
 			}
 
-			& > button,
-			& > div {
+			& > button {
 				@apply w-full h-full p-4;
 				@apply flex flex-row gap-4;
 				@apply items-center-safe;

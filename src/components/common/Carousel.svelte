@@ -84,14 +84,8 @@
 			currentItem = index;
 	}
 
-	function swipeHandler(event: SwipeCustomEvent) {
-		if (event.detail.pointerType == "mouse")
-			return;
-
-		if (event.detail.direction == "left")
-			currentItem++;
-		else if (event.detail.direction == "right")
-			currentItem--;
+	function next() {
+		currentItem++;
 
 		if (loop) {
 			if (currentItem == -1) currentItem = count - 1;
@@ -99,6 +93,34 @@
 		}
 		else
 			currentItem = Math.max(0, Math.min(count - 1, currentItem));
+	}
+
+	function prev() {
+		currentItem--;
+
+		if (loop) {
+			if (currentItem == -1) currentItem = count - 1;
+			if (currentItem == count) currentItem = 0;
+		}
+		else
+			currentItem = Math.max(0, Math.min(count - 1, currentItem));
+	}
+
+	function swipeHandler(event: SwipeCustomEvent) {
+		if (event.detail.pointerType == "mouse")
+			return;
+
+		if (event.detail.direction == "left")
+			next();
+		else if (event.detail.direction == "right")
+			prev();
+	}
+
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.key == "ArrowLeft")
+			prev();
+		if (event.key == "ArrowRight")
+			next();
 	}
 
 </script>
@@ -113,19 +135,16 @@
 	</div>
 {:else}
 	<div class="carousel"
+		tabindex="0"
+		onkeydown={handleKeyDown}
+		role="tablist"
 		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 		{#each { length: count }, index}
-			<div class="item {getNeighbourClasses(index, currentItem)}">
-				{#if currentItem != index}
-					<button onclick={() => {changeCurrentItem(index)}}>
-						{@render itemSnippet(data[index % data.length], isActive(index))}
-					</button>
-				{:else}
-					<div>
-						{@render itemSnippet(data[index % data.length], isActive(index))}
-					</div>
-				{/if}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class="item {getNeighbourClasses(index, currentItem)}" onclick={() => {changeCurrentItem(index)}}>
+					{@render itemSnippet(data[index % data.length], isActive(index))}
 			</div>
 		{/each}
 	</div>
@@ -185,15 +204,13 @@
 				scale: 0.85;
 				filter: grayscale(0.75);
 
-				& > button :global(*) {
+				& :global(*) {
 					@apply pointer-events-none;
 				}
 			}
 			&.neighbour {
 				translate: calc(var(--direction) * (100% - 1rem));
-				& > button {
-					@apply cursor-pointer;
-				}
+				@apply cursor-pointer;
 			}
 			&.distant {
 				translate: calc(var(--direction) * (100% - 1rem) * 2);
