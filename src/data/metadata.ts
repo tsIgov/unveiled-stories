@@ -5,8 +5,10 @@ export interface Metadata
 	title: MultilingualText,
 	description: MultilingualText,
 	keywords: MultilingualText,
-	image?: string
+	image: string
 }
+
+const defaultOgImage = "http://localhost:5173/og-image.jpg";
 
 export const home : Metadata = {
 	title: {
@@ -21,6 +23,7 @@ export const home : Metadata = {
 		en: "boudoir, photography",
 		bg: ""
 	},
+	image: defaultOgImage
 }
 
 export const privacy : Metadata = {
@@ -36,4 +39,5 @@ export const privacy : Metadata = {
 		en: "boudoir, photography",
 		bg: ""
 	},
+	image: defaultOgImage
 }
