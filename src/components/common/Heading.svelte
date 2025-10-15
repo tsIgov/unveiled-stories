@@ -11,9 +11,7 @@
 
 <div class="heading">
 	<h2>{title}</h2>
-	{#if summary}
-		<p>{summary}</p>
-	{/if}
+	<p>{summary}</p>
 	<Rule centerOrnament={true} />
 </div>
 

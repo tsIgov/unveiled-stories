@@ -1,16 +1,13 @@
 <script lang="ts">
-	import type { Picture } from 'vite-imagetools';
 	import { Frame } from 'components/common'
+
+	import type { Picture } from 'vite-imagetools';
 	import type { ClassValue } from 'svelte/elements';
 
-	interface base {
-		class?: ClassValue,
-		style?: string
-	}
-
-	interface Props extends base {
+	interface Props {
 		image : Picture,
 		color: string,
+		class?: ClassValue,
 	}
 
 	let { image, color, ...rest } : Props  = $props();
@@ -19,7 +16,7 @@
 </script>
 
 
-<div class="photo-card {rest.class}" style={rest.style}
+<div class="photo-card {rest.class}"
 	class:portrait={orientation == "portrait"}
 	class:landscape={orientation == "landscape"}>
 	<Frame {color}>

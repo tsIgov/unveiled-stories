@@ -3,7 +3,6 @@
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
   	import { useMediaQuery } from '$lib/utils/media-queries';
 
-
 	interface Props {
 		data: T[],
 		loop?: boolean,

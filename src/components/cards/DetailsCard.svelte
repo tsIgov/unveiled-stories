@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { ExpandIndicator } from 'components/common';
-	import type { Picture } from 'vite-imagetools';
-
 	import { Card } from '.';
 	import { CardBackground } from './internal';
+
+	import type { Picture } from 'vite-imagetools';
 
 	interface Props {
 		title : string,
@@ -16,9 +16,7 @@
 
 	let { title, subtitle, details, background, glow = true, orientation = "portrait" } : Props = $props();
 	let expanded = $state(false);
-
 </script>
-
 
 <Card class="detail-card" {glow} {orientation}>
 	<CardBackground image={background} alt={title} dim={false} />
@@ -37,7 +35,6 @@
 		</div>
 	</div>
 </Card>
-
 
 <style>
 	@reference "style";

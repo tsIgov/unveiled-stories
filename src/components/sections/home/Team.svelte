@@ -2,8 +2,9 @@
 	import { Carousel, Heading } from 'components/common';
 	import { DetailsCard } from 'components/cards';
 
-	import { type TeamMember, header, members } from 'data/team';
 	import { getTranslator } from '$lib/i18n/translator';
+
+	import { type TeamMember, header, members } from 'data/team';
 
 	let t = $derived(getTranslator());
 </script>

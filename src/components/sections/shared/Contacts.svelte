@@ -3,6 +3,7 @@
 
 	import { MailIcon, InstagramIcon, PhoneIcon, LoaderCircleIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
+
 	import { header, summary, formSubmitUrl, socials, formData, responseData } from 'data/contacts'
 
 	let t = $derived(getTranslator());
@@ -34,17 +35,13 @@
 			currentState = "error";
 		}
   };
-
 </script>
-
-
 
 <section class="contacts">
 	<Heading
 		title={t(header)}
 		summary={t(summary)}
 	/>
-
 
 	<div class="content">
 

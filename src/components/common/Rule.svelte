@@ -12,12 +12,9 @@
 <div class="rule {orientation}"
 	class:ornament={centerOrnament}
 	class:error={error}>
-	{#if centerOrnament}
-		<span></span>
-		<span></span>
-		<span></span>
-	{/if}
-
+	<span></span>
+	<span></span>
+	<span></span>
 </div>
 
 <style>
@@ -25,6 +22,10 @@
 
 	.rule {
 		@apply shrink-0 grow-0;
+
+		&:not(.ornament) > span {
+			@apply hidden;
+		}
 	}
 
 	.rule.ornament {

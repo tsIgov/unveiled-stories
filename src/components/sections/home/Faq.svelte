@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { getTranslator } from '$lib/i18n/translator';
-	import { questions, title, background, type Question } from "data/faq"
-
 	import { Carousel, Heading, SectionBackground } from "components/common";
-	import MultipleDetailsCard from "components/cards/MultipleDetailsCard.svelte";
+	import { MultipleDetailsCard } from "components/cards/";
+
+	import { getTranslator } from '$lib/i18n/translator';
+
+	import { questions, title, background, type Question } from "data/faq"
 
 	function chunkArray<T>(arr: T[], size: number): T[][] {
 		const result: T[][] = [];

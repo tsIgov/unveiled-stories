@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { Carousel, Heading, SectionBackground } from 'components/common';
+	import { Card } from 'components/cards';
+
 	import { MessageCircleMoreIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
+
 	import { type Quote, title, quotes, background } from 'data/testimonials';
-	import Card from 'components/cards/Card.svelte';
 
 	let t = $derived(getTranslator());
 </script>

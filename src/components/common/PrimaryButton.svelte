@@ -6,18 +6,18 @@
 	interface Props {
 		text: string,
 		glow? : boolean,
-		onclick?: MouseEventHandler<HTMLButtonElement> | null,
+		onclick?: MouseEventHandler<HTMLButtonElement>,
 	}
 
 	let {
 		text,
 		glow = true,
-		onclick = null,
+		onclick,
 	} : Props = $props();
 </script>
 
 
-<button class="primary-button" onclick={onclick}>
+<button class="primary-button" {onclick}>
 	<Frame {glow}>
 		<span>{text}</span>
 	</Frame>

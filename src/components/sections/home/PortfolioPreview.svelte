@@ -33,7 +33,7 @@
 				imageCenter={item.preview.center}
 				imageRight={item.preview.right}
 				color={item.color}
-				onclick={ item.gallery == undefined || !galleryEnabled ? null : () => openGallery(index)}
+				onclick={ !item.gallery || !galleryEnabled ? undefined : () => openGallery(index)}
 			/>
 
 			<div class="side">

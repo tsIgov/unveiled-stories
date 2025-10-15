@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { PhotoCard } from 'components/cards';
+
 	import type { Picture } from 'vite-imagetools';
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition"
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
 	import { ChevronLeftIcon, ChevronRightIcon,XIcon } from '@lucide/svelte';
-
-	import { PhotoCard } from 'components/cards';
 
 	interface Props {
 		images : Picture[],

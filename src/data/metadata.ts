@@ -10,6 +10,8 @@ export interface Metadata
 
 const defaultOgImage = "http://localhost:5173/og-image.jpg";
 
+export const ogLocale : MultilingualText = { en: "en_US", bg: "bg_BG" }
+
 export const home : Metadata = {
 	title: {
 		en: "Unveiled Stories - Boudoir Photography",

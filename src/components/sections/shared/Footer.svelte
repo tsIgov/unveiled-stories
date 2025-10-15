@@ -3,6 +3,7 @@
 
 	import { page } from '$app/state';
 	import { getTranslator } from '$lib/i18n/translator';
+
 	import { footerLink } from "data/privacy";
 
 	let t = $derived(getTranslator());

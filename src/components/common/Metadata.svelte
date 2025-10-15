@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getTranslator } from '$lib/i18n/translator';
-	import { type Metadata } from 'data/metadata';
-	import { page } from '$app/state';
+
+	import { type Metadata, ogLocale } from 'data/metadata';
 
 	interface Props {
 		data: Metadata,
@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-    <meta property="og:locale" content="{t({en: "en_US", bg: "bg_BG" })}">
+    <meta property="og:locale" content="{t(ogLocale)}">
 
 	<title>{t(data.title)}</title>
 	<meta property="og:title" content={t(data.title)}>
@@ -22,6 +22,6 @@
 
 	<meta name="keywords" content={t(data.keywords)}>
 
-    <meta property="og:image" content={data.image ?? page.data.defaultOgImageUrl }>
+    <meta property="og:image" content={data.image}>
     <meta property="og:type" content="website">
 </svelte:head>
