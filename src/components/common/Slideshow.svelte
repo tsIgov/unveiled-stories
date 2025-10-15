@@ -7,22 +7,39 @@
 		data: T[],
 		slideSnippet: Snippet<[T, number]>
 		timeout: number,
-		paused? : boolean;
+		onchanged? : (item : T, index : number) => void
 	}
 
-	let { data, slideSnippet, timeout, paused = false } : Props =$props();
+	let { data, slideSnippet, timeout } : Props =$props();
 	let slidesCount = $derived(data.length);
 	let currentSlide = $state(0);
+	let running = $state(false);
 
 	let timer = -1;
 
 	onMount(() => {
+		unpause();
 		return () => clearInterval(timer);
 	});
 
+	export function pause() {
+		if (!running) return;
+
+		running = false;
+		clearInterval(timer);
+	}
+
+	export function unpause() {
+		if (running) return;
+
+		running = true;
+		timer = setInterval(() => {
+			currentSlide = (currentSlide + 1) % slidesCount;
+		}, timeout);
+	}
+
 	function changeSlide(index: number) {
 		clearInterval(timer);
-		currentSlide = -1;
 		currentSlide = index;
 		timer = setInterval(() => {
 			currentSlide = (currentSlide + 1) % slidesCount;
@@ -44,26 +61,6 @@
 			changeSlide((currentSlide + 1) % slidesCount);
 	}
 
-	$effect(() => {
-		if (paused) {
-			clearInterval(timer);
-		}
-		else {
-			timer = setInterval(() => {
-				currentSlide = (currentSlide + 1) % slidesCount;
-			}, timeout);
-		}
-	});
-
-	$effect(() => {
-		const progress = document.getElementById("progress-" + currentSlide);
-		if (progress && !paused) {
-			progress.classList.remove("running");
-			void progress.offsetWidth;
-			progress.classList.add("running");
-		}
-	});
-
 </script>
 
 
@@ -75,7 +72,6 @@
 			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 
 			{@render slideSnippet(slide, index)}
-
 		</div>
 	{/each}
 
@@ -87,7 +83,9 @@
 				tabindex="-1">
 				<span>{String(slideIndex + 1).padStart(2, '0')}</span>
 
-				<div id="progress-{slideIndex}" class="progress-line running" class:paused={paused}
+				<div
+					class="progress-line"
+					class:running={slideIndex == currentSlide && running}
 					style="animation-duration: {timeout}ms">
 				</div>
 
@@ -96,7 +94,6 @@
 	</div>
 
 </div>
-
 
 <style>
 	@reference "style";
@@ -147,7 +144,7 @@
 
 			& > .progress-line {
 				@apply transition-all duration-1000;
-				@apply absolute rounded-full bg-conic from-neutral-100 to-neutral-100/20 from-100% to-100% -z-10;
+				@apply absolute rounded-full bg-conic from-neutral-100 to-neutral-100/20 from-0% to-0% -z-10;
 				@apply opacity-0;
 
 				top: -2px;
@@ -157,19 +154,12 @@
 				mask: radial-gradient(
 					transparent calc((var(--slideshow-navigation-height) - 2rem) / 2),
 					black calc((var(--slideshow-navigation-height) - 2rem) / 2 + 1px));
-			}
 
-			&.active > .progress-line {
-				@apply opacity-100;
-			}
-
-			& > .progress-line.running {
-				animation-name: progress;
-				animation-timing-function: linear;
-			}
-
-			& > .progress-line.paused {
-				@apply opacity-0;
+				&.running {
+					@apply opacity-100;
+					animation-name: progress;
+					animation-timing-function: linear;
+				}
 			}
 		}
 	}

@@ -10,14 +10,17 @@
 	let t = $derived(getTranslator());
 
 	let galleryOpenedIndex : number | null = $state(null);
-	let paused = $derived( galleryOpenedIndex != null );
+
+	let slideshow : Slideshow<Photoshoot>;
 
 	function openGallery(index: number) {
 		galleryOpenedIndex = index;
+		slideshow.pause();
 	}
 
 	function closeGallery() {
 		galleryOpenedIndex = null
+		slideshow.unpause();
 	}
 
 </script>
@@ -63,7 +66,7 @@
 {/snippet}
 
 <section class="portfolio-preview">
-	<Slideshow slideSnippet={photoshoot} data={photoshoots} timeout={5000} {paused} />
+	<Slideshow bind:this={slideshow} slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
 	{#if galleryOpenedIndex != null}
 		<LightboxGallery
 			images={photoshoots[galleryOpenedIndex].gallery?.() as Picture[]}
