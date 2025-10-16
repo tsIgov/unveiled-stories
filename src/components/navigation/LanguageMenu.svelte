@@ -30,10 +30,14 @@
 
 		& > a {
 			@apply uppercase text-moonlight-dim;
+			@apply transition-colors duration-300;
 		}
 
 		& > a.active {
 			@apply text-neutral-100;
+		}
+		& > a:not(.active):hover {
+			@apply text-moonlight;
 		}
 	}
 
