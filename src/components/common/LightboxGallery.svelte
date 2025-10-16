@@ -22,11 +22,17 @@
 		index = 0;
 		opened = true;
 		initial = false;
+
+		document.body.classList.add("overflow-hidden");
+		window.addEventListener("keydown", handleKeyDown);
 	}
 
 	function close() {
 		opened = false;
 		onclosed?.();
+
+		document.body.classList.remove("overflow-hidden");
+		window.removeEventListener("keydown", handleKeyDown);
 	}
 
 	function next() {
@@ -57,9 +63,6 @@
 	}
 
 	onMount(() => {
-		document.body.classList.add("overflow-hidden");
-		window.addEventListener("keydown", handleKeyDown);
-
 		return () => {
 			document.body.classList.remove("overflow-hidden");
 			window.removeEventListener("keydown", handleKeyDown);
@@ -71,7 +74,8 @@
 	<div class="lightbox-gallery"
 		class:opened={opened}
 		class:closed={!opened && !initial}
-		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
+		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}
+		>
 		<div class="content">
 			{#each images as image, i}
 				<PhotoCard
@@ -103,9 +107,10 @@
 
 	.lightbox-gallery {
 		@apply invisible;
-		@apply fixed top-0 inset-0 z-[2000] overflow-hidden;
+		@apply absolute top-0 inset-0 z-[2000] overflow-hidden;
 		@apply bg-neutral-900/95;
 		@apply p-8;
+
 
 		&.opened {
 			animation: open 1s ease-in-out 1 forwards;
