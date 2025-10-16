@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { PhotoCard } from 'components/cards';
 
+	import { page } from '$app/state';
+	import { pushState, onNavigate } from '$app/navigation';
 	import type { Picture } from 'vite-imagetools';
 	import { onMount } from "svelte";
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
@@ -14,24 +16,30 @@
 
 	let { images, borderColor, onclosed } : Props = $props();
 	let index : number = $state(0);
-	let opened = $state(false);
+	let opened = $derived((page.state as Record<string, unknown>)?.galleryOpened ? true : false );
 	let initial = $state(true);
+
+	$effect(() => {
+		if (opened) {
+			document.body.classList.add("overflow-hidden");
+			window.addEventListener("keydown", handleKeyDown);
+		} else if (!initial) {
+			document.body.classList.remove("overflow-hidden");
+			window.removeEventListener("keydown", handleKeyDown);
+			onclosed?.();
+		}
+	});
 
 	export function open() {
 		index = 0;
-		opened = true;
 		initial = false;
-
-		document.body.classList.add("overflow-hidden");
-		window.addEventListener("keydown", handleKeyDown);
+		pushState('', {
+			galleryOpened: true
+		 });
 	}
 
 	function close() {
-		opened = false;
-		onclosed?.();
-
-		document.body.classList.remove("overflow-hidden");
-		window.removeEventListener("keydown", handleKeyDown);
+		history.back();
 	}
 
 	function next() {
