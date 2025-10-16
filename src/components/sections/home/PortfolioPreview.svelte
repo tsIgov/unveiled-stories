@@ -9,21 +9,39 @@
 
 	let t = $derived(getTranslator());
 
-	let galleryOpenedIndex : number | null = $state(null);
+	let currentIndex = $state(0);
 
 	let slideshow : Slideshow<Photoshoot>;
+	let gallery : LightboxGallery;
 
-	function openGallery(index: number) {
-		galleryOpenedIndex = index;
+	function openGallery() {
 		slideshow.pause();
+		gallery.open();
 	}
 
-	function closeGallery() {
-		galleryOpenedIndex = null
+	function onGalleryClosed() {
 		slideshow.unpause();
 	}
 
+	function onSlideChanged(item : Photoshoot, index : number) {
+		currentIndex = index;
+	}
+
 </script>
+
+<section class="portfolio-preview">
+	<Slideshow bind:this={slideshow}
+		slideSnippet={photoshoot}
+		data={photoshoots}
+		timeout={5000}
+		onchanged={onSlideChanged}
+	/>
+	<LightboxGallery bind:this={gallery}
+		images={photoshoots[currentIndex].gallery?.() as Picture[]}
+		borderColor={photoshoots[currentIndex].color}
+		onclosed={onGalleryClosed}
+	/>
+</section>
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
 	<div>
@@ -36,7 +54,7 @@
 				imageCenter={item.preview.center}
 				imageRight={item.preview.right}
 				color={item.color}
-				onclick={ !item.gallery || !galleryEnabled ? undefined : () => openGallery(index)}
+				onclick={ !item.gallery || !galleryEnabled ? undefined : () => openGallery()}
 			/>
 
 			<div class="side">
@@ -45,7 +63,7 @@
 
 				<div class="details">
 					{#if item.gallery != undefined && galleryEnabled}
-					<button onclick={() => openGallery(index)}>
+					<button onclick={() => openGallery()}>
 						<Frame color={item.color}>
 							<span>{t(item.name)}</span>
 						</Frame>
@@ -65,16 +83,6 @@
 	</div>
 {/snippet}
 
-<section class="portfolio-preview">
-	<Slideshow bind:this={slideshow} slideSnippet={photoshoot} data={photoshoots} timeout={5000} />
-	{#if galleryOpenedIndex != null}
-		<LightboxGallery
-			images={photoshoots[galleryOpenedIndex].gallery?.() as Picture[]}
-			borderColor={photoshoots[galleryOpenedIndex].color}
-			onclose={closeGallery}
-		 />
-	{/if}
-</section>
 
 <style>
 	@reference "style";

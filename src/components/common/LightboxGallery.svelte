@@ -10,16 +10,23 @@
 	interface Props {
 		images : Picture[],
 		borderColor?: string,
-		onclose?: () => void,
+		onclosed?: () => void
 	}
 
-	let { images, borderColor, onclose } : Props = $props();
-
+	let { images, borderColor, onclosed } : Props = $props();
 	let index : number = $state(0);
+	let opened = $state(false);
+	let initial = $state(true);
+
+	export function open() {
+		index = 0;
+		opened = true;
+		initial = false;
+	}
 
 	function close() {
-		if (onclose)
-			onclose();
+		opened = false;
+		onclosed?.();
 	}
 
 	function next() {
@@ -62,14 +69,15 @@
 </script>
 
 	<div class="lightbox-gallery"
-		transition:fade
+		class:opened={opened}
+		class:closed={!opened && !initial}
 		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
 		<div class="content">
 			{#each images as image, i}
 				<PhotoCard
 					color={borderColor ?? "var(--color-gold)"}
 					image={image}
-					class={i == index ? "active" : ""}  />
+					class={i == index && opened ? "active" : ""}  />
 			{/each}
 		</div>
 
@@ -94,10 +102,22 @@
 	@reference "style";
 
 	.lightbox-gallery {
-
+		@apply invisible;
 		@apply fixed top-0 inset-0 z-[2000] overflow-hidden;
 		@apply bg-neutral-900/95;
 		@apply p-8;
+
+		&.opened {
+			animation: open 1s ease-in-out 1 forwards;
+		}
+
+		&.closed {
+			animation: close 1s ease-in-out 1 forwards;
+
+			& :global(.active) {
+				@apply !opacity-100;
+			}
+		}
 	}
 
 	.content {
@@ -141,6 +161,28 @@
 		&.close { @apply right-4 top-4 translate-y-0; }
 		&.prev { @apply left-4; }
 		&.next { @apply right-4; }
+	}
+
+	@keyframes open {
+		from {
+			visibility: visible;
+			opacity: 0%;
+		}
+		to {
+			visibility: visible;
+			opacity: 100%;
+		}
+	}
+
+	@keyframes close {
+		from {
+			visibility: visible;
+			opacity: 100%;
+		}
+		to {
+			visibility: hidden;
+			opacity: 0%;
+		}
 	}
 
 </style>
