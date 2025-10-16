@@ -10,7 +10,7 @@
 		onchanged? : (item : T, index : number) => void
 	}
 
-	let { data, slideSnippet, timeout } : Props =$props();
+	let { data, slideSnippet, timeout, onchanged } : Props =$props();
 	let slidesCount = $derived(data.length);
 	let currentSlide = $state(0);
 	let running = $state(false);
@@ -35,14 +35,17 @@
 		running = true;
 		timer = setInterval(() => {
 			currentSlide = (currentSlide + 1) % slidesCount;
+			onchanged?.(data[currentSlide], currentSlide);
 		}, timeout);
 	}
 
 	function changeSlide(index: number) {
 		clearInterval(timer);
 		currentSlide = index;
+		onchanged?.(data[index], index);
 		timer = setInterval(() => {
 			currentSlide = (currentSlide + 1) % slidesCount;
+			onchanged?.(data[index], index);
 		}, timeout);
 	}
 
