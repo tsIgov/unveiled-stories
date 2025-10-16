@@ -3,7 +3,6 @@
 
 	import type { Picture } from 'vite-imagetools';
 	import { onMount } from "svelte";
-	import { fade } from "svelte/transition"
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
 	import { ChevronLeftIcon, ChevronRightIcon,XIcon } from '@lucide/svelte';
 
