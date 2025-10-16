@@ -29,10 +29,6 @@
 <style>
 	@reference "style";
 
-	.testimonials > :global(.carousel) {
-		@apply w-full;
-	}
-
 	.quote {
 		@apply w-full h-full p-4 overflow-y-auto;
 		@apply flex flex-col gap-4 items-center justify-center-safe;

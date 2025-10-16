@@ -23,20 +23,3 @@
 	<Heading title={t(header)} />
 	<Carousel itemSnippet={member} data={members} expandIfFit={true} />
 </section>
-
-<style>
-	@reference "style";
-
-	.team {
-		@apply w-full;
-
-		& > :global(.carousel) {
-			@apply w-full;
-		}
-
-		& :global(.details-card) {
-			@apply max-w-2xs;
-		}
-	}
-
-</style>

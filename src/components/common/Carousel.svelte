@@ -12,8 +12,8 @@
 
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
 
-	// Padding + item gaps + max item size
-	let remToFit = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 20;
+	// Padding + item gaps + max item size and glow
+	let remToFit = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * (20 + 2);
 	let mediaQuery = expandIfFit ? `(width >= ${remToFit}rem)` : undefined;
 	let expanded = useMediaQuery(mediaQuery);
 
@@ -125,7 +125,7 @@
 </script>
 
 {#if $expanded}
-	<div class="carousel list">
+	<div class="carousel expanded">
 		{#each data as item}
 			<div class="item" >
 				{@render itemSnippet(item, true)}
@@ -133,7 +133,7 @@
 		{/each}
 	</div>
 {:else}
-	<div class="carousel"
+	<div class="carousel collapsed"
 		tabindex="0"
 		onkeydown={handleKeyDown}
 		role="tablist"
@@ -152,6 +152,86 @@
 <style>
 	@reference "style";
 
+	.carousel {
+		@apply w-full overflow-hidden;
+		height: calc(min(80svw, 18rem) * 1.6 + 2rem + 2rem); /* card width * aspect ratio + item padding + padding  */
+
+		& > .item {
+			width: 80%;
+			max-width: 20rem;
+			padding: 1rem;
+		}
+
+		&.expanded {
+			@apply flex content-center-safe justify-center-safe items-center-safe;
+		}
+
+		&.collapsed {
+			& > .item {
+				@apply absolute left-1/2 top-1/2;
+				@apply ease-out duration-1000;
+				transition-property: --carousel-opacity-left, --carousel-opacity-right, --carousel-translate-x, scale, filter;
+				mask: linear-gradient(to right,rgba(255,255,255,var(--carousel-opacity-left)), rgba(255,255,255,var(--carousel-opacity-right)));
+				translate: var(--carousel-translate-x) -50%;
+
+				& :global(.rule) { @apply transition-[scale] duration-1000 ease-out; }
+
+				&.active {
+					scale: 1;
+					filter: grayscale(0);
+					--carousel-translate-x: -50%;
+					--carousel-opacity-left: 1;
+					--carousel-opacity-right: 1;
+					& :global(.rule) { @apply scale-100; }
+				}
+
+				&:not(.active) {
+					scale: 0.85;
+					filter: grayscale(0.75);
+					& :global(*) { @apply pointer-events-none; }
+					& :global(.rule.horizontal) { @apply scale-y-[1.2]; }
+					& :global(.rule.vertical) { @apply scale-x-[1.2]; }
+				}
+
+				&.neighbour {
+					@apply cursor-pointer;
+
+					&.left {
+						--carousel-opacity-left: 0;
+						--carousel-opacity-right: 0.8;
+						--carousel-translate-x: -145%;
+
+						&:hover {
+							filter: grayscale(0.5);
+							--carousel-opacity-left: 0.2;
+							--carousel-opacity-right: 0.9;
+						}
+					}
+					&.right {
+						--carousel-opacity-left: 0.8;
+						--carousel-opacity-right: 0;
+						--carousel-translate-x: 45%;
+
+						&:hover {
+							filter: grayscale(0.5);
+							--carousel-opacity-left: 0.9;
+							--carousel-opacity-right: 0.2;
+						}
+					}
+				}
+
+				&.distant,
+				&.far {
+					--carousel-opacity-left: 0;
+					--carousel-opacity-right: 0;
+
+					&.left { --carousel-translate-x: -245%; }
+					&.right { --carousel-translate-x: 145%; }
+				}
+			}
+		}
+	}
+
 	@property --carousel-opacity-left{
 		syntax: "<number>";
 		initial-value: 0;
@@ -164,93 +244,10 @@
 		inherits: false;
 	}
 
-	.carousel.list {
-		@apply flex content-center-safe justify-center-safe gap-6;
-	}
-
-	.carousel:not(.list) {
-		@apply grid grid-cols-5 grid-rows-1 justify-items-center-safe items-center-safe;
-		@apply max-w-full max-h-full;
-		@apply overflow-hidden;
-
-		& > .item {
-			@apply p-4;
-			@apply col-start-2 col-end-5 row-start-1 max-h-full;
-			@apply ease-out duration-1000;
-
-			transition-property: --carousel-opacity-left, --carousel-opacity-right, scale, translate, filter;
-			mask: linear-gradient(to right,rgba(255,255,255,var(--carousel-opacity-left)), rgba(255,255,255,var(--carousel-opacity-right)));
-			scale: 1;
-			filter: grayscale(0);
-			--carousel-opacity-left: 1;
-			--carousel-opacity-right: 1;
-
-			&.left {
-				--direction: -1;
-				--carousel-opacity-left: 0;
-				--carousel-opacity-right: 0.8;
-			}
-			&.right {
-				--direction: 1;
-				--carousel-opacity-left: 0.8;
-				--carousel-opacity-right: 0;
-			}
-
-			& :global(.rule) {
-				@apply transition-all duration-1000;
-			}
-
-			&.active {
-				translate: 0%;
-
-				& :global(.rule) {
-					@apply scale-100;
-				}
-			}
-			&:not(.active) {
-				scale: 0.85;
-				filter: grayscale(0.75);
-
-				& :global(*) {
-					@apply pointer-events-none;
-				}
-
-				& :global(.rule.horizontal) {
-					@apply scale-y-[1.2];
-				}
-				& :global(.rule.vertical) {
-					@apply scale-x-[1.2];
-				}
-			}
-			&.neighbour {
-				translate: calc(var(--direction) * (100% - 1rem));
-				@apply cursor-pointer;
-			}
-			&.distant {
-				translate: calc(var(--direction) * (100% - 1rem) * 2);
-				--carousel-opacity-left: 0;
-				--carousel-opacity-right: 0;
-			}
-			&.far {
-				@apply invisible;
-				translate: calc(var(--direction) * (100% - 1rem) * 2);
-				--carousel-opacity-left: 0;
-				--carousel-opacity-right: 0;
-			}
-
-			&.neighbour.left:hover {
-				filter: grayscale(0.5);
-				--carousel-opacity-left: 0.2;
-				--carousel-opacity-right: 0.9;
-			}
-
-			&.neighbour.right:hover {
-				filter: grayscale(0.5);
-				--carousel-opacity-left: 0.9;
-				--carousel-opacity-right: 0.2;
-			}
-
-		}
+	@property --carousel-translate-x{
+		syntax: "<percentage>";
+		initial-value: 0%;
+		inherits: false;
 	}
 
 </style>

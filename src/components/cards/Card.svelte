@@ -37,7 +37,6 @@
 	.card {
 		&.portrait {
 			@apply aspect-card;
-			@apply max-w-xs;
 		}
 
 		&.landscape {

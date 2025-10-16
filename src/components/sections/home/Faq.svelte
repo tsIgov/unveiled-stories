@@ -36,13 +36,3 @@
 	<Heading title={t(title)} />
 	<Carousel itemSnippet={step} data={chunkedQuestions} />
 </section>
-
-<style>
-	@reference "style";
-
-	.faq {
-		& :global(.carousel) {
-			@apply w-full;
-		}
-	}
-</style>

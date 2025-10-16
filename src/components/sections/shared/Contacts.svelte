@@ -55,15 +55,6 @@
 		</div>
 
 		<form onsubmit="{handleSubmit}">
-			<div class="fill" class:active={currentState == "fill"} class:faded={currentState == "sending"}>
-				<input required autocomplete="name" placeholder={t(formData.namePlaceholder)} bind:value={name} />
-				<input required autocomplete="email" type="email" bind:value={email} placeholder={t(formData.emailPlaceholder)} />
-				<textarea required rows="5" placeholder={t(formData.messagePlaceholder)} bind:value={message}></textarea>
-
-				<input type="text" bind:value={honeypot} class="hidden" />
-				<PrimaryButton text={t(formData.buttonText)} glow={currentState == "fill"} />
-			</div>
-
 			<div class="form-overlay spinner" class:active={currentState == "sending"}><LoaderCircleIcon /></div>
 			<div class="form-overlay success" class:active={currentState == "success"}>
 				<h3>{t(responseData.successHeader)}</h3>
@@ -74,6 +65,14 @@
 				<h3>{t(responseData.errorHeader)}</h3>
 				<Rule centerOrnament={true} error={true} />
 				<p>{t(responseData.errorContent)}</p>
+			</div>
+			<div class="fill" class:active={currentState == "fill"} class:faded={currentState == "sending"}>
+				<input required autocomplete="name" placeholder={t(formData.namePlaceholder)} bind:value={name} />
+				<input required autocomplete="email" type="email" bind:value={email} placeholder={t(formData.emailPlaceholder)} />
+				<textarea required rows="5" placeholder={t(formData.messagePlaceholder)} bind:value={message}></textarea>
+
+				<input type="text" bind:value={honeypot} class="hidden" />
+				<PrimaryButton text={t(formData.buttonText)} glow={currentState == "fill"} />
 			</div>
 		</form>
 
