@@ -116,7 +116,7 @@
 
 	.lightbox-gallery {
 		@apply invisible;
-		@apply absolute top-0 inset-0 z-[2000] overflow-hidden;
+		@apply fixed top-0 inset-0 z-[2000] overflow-hidden;
 		@apply bg-neutral-900/95;
 		@apply p-8;
 
