@@ -8,17 +8,19 @@
 	interface Props {
 		title: string,
 		text: string,
-		backgroundImage? : Picture,
-		glow?: boolean,
-		orientation?: "landscape" | "portrait"
+		background?: {
+			portrait: Picture,
+			landscape: Picture
+		},
+		glow?: boolean
 	}
 
-	let { title, text, backgroundImage, glow = true, orientation = "portrait" } : Props = $props();
+	let { title, text, background, glow = true } : Props = $props();
 </script>
 
-<Card {glow} {orientation} class="text-card">
-	{#if backgroundImage}
-		<CardBackground image={backgroundImage} alt={title} />
+<Card {glow} class="text-card">
+	{#if background}
+		<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} />
 	{/if}
 	<div class="content">
 

@@ -1,5 +1,6 @@
 import type { TeamMember } from "data/team";
 import Portrait from "./portrait.jpg?enhanced";
+import Landscape from "./landscape.jpg?enhanced";
 
 const data : TeamMember = {
 	name: {en: "Julia", bg:"Юлия"},
@@ -11,7 +12,10 @@ const data : TeamMember = {
 		en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 		bg: ""
 	},
-	photo: Portrait,
+	photos: {
+		portrait: Portrait,
+		landscape: Landscape
+	},
 };
 
 export default data;

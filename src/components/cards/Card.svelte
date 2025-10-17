@@ -8,7 +8,6 @@
 		borderColor?: string,
 		glow?: boolean,
 		class?: ClassValue,
-		orientation?: "landscape" | "portrait",
 		children : Snippet
 	}
 
@@ -16,15 +15,12 @@
 		borderColor = "var(--color-gold)",
 		glow = true,
 		children,
-		orientation = "portrait",
 		...rest
 	} : Props = $props();
 </script>
 
 
-<div class="card {rest.class}"
-	class:portrait={orientation == "portrait"}
-	class:landscape={orientation == "landscape"}>
+<div class="card {rest.class}">
 	<Frame color={borderColor} {glow}>
 		{@render children()}
 	</Frame>
@@ -35,14 +31,7 @@
 	@reference "style";
 
 	.card {
-		&.portrait {
-			@apply aspect-card;
-		}
-
-		&.landscape {
-			 @apply aspect-card-landscape;
-			 @apply max-h-80;
-		}
+		@apply aspect-card landscape-cards:aspect-card-landscape;
 	}
 
 </style>

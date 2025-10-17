@@ -10,7 +10,10 @@ export interface Chapter
 {
 	title: MultilingualText,
 	text: MultilingualText,
-	background: Picture
+	background: {
+		portrait: Picture,
+		landscape: Picture
+	}
 }
 
 export const header : MultilingualText ={

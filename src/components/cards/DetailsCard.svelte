@@ -9,17 +9,19 @@
 		title : string,
 		subtitle : string,
 		details : string,
-		background: Picture,
-		glow?: boolean,
-		orientation?: "landscape" | "portrait"
+		background: {
+			portrait: Picture,
+			landscape: Picture,
+		},
+		glow?: boolean
 	}
 
-	let { title, subtitle, details, background, glow = true, orientation = "portrait" } : Props = $props();
+	let { title, subtitle, details, background, glow = true } : Props = $props();
 	let expanded = $state(false);
 </script>
 
-<Card class="detail-card" {glow} {orientation}>
-	<CardBackground image={background} alt={title} dim={false} />
+<Card class="detail-card" {glow}>
+	<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} />
 
 	<div class="content"
 		class:expanded={expanded}>

@@ -14,7 +14,7 @@
 		title={t(item.title)}
 		text={t(item.text)}
 		glow={active}
-		backgroundImage={item.background}
+		background={item.background}
 	/>
 {/snippet}
 

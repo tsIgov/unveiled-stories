@@ -14,7 +14,7 @@
 		title={t(item.name)}
 		subtitle={t(item.title)}
 		details={t(item.bio)}
-		background={item.photo}
+		background={item.photos}
 		glow={active}
 	/>
 {/snippet}

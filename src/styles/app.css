@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./base.css" layer(base);
+@import "./variants.css";
 
 @import "./components/markdown.css";
 

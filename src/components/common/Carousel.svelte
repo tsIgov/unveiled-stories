@@ -154,12 +154,14 @@
 
 	.carousel {
 		@apply w-full overflow-hidden;
-		height: calc(min(80svw, 18rem) * 1.6 + 2rem + 2rem); /* card width * aspect ratio + item padding + padding  */
+
+		/* card width * aspect ratio + item padding + padding  */
+		@apply h-[calc(min(80svw,_20rem)_*_1.6_+_2rem_+_2rem)];
+		@apply landscape-cards:h-[calc(min(80svw,_32rem)_*_0.625_+_2rem_+_2rem)];
 
 		& > .item {
-			width: 80%;
-			max-width: 20rem;
-			padding: 1rem;
+			@apply w-[80%] max-w-[22rem] landscape-cards:max-w-[34rem];
+			@apply p-4;
 		}
 
 		&.expanded {

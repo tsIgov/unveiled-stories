@@ -1,0 +1,7 @@
+@custom-variant landscape-cards {
+	@media (height < 40rem) {
+		@media (orientation: landscape) {
+			@slot
+		}
+	}
+}

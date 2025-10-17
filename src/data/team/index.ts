@@ -9,7 +9,10 @@ export interface TeamMember
 	name: MultilingualText,
 	title: MultilingualText,
 	bio: MultilingualText,
-	photo: Picture
+	photos: {
+		portrait: Picture,
+		landscape: Picture
+	}
 }
 
 export const header : MultilingualText ={
