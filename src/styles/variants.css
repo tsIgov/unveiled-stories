@@ -5,3 +5,9 @@
 		}
 	}
 }
+
+@custom-variant h-sm {
+	@media (height < 40rem) {
+		@slot
+	}
+}

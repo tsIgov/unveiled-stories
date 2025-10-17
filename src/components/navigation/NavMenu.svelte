@@ -38,7 +38,7 @@
 	@reference "style";
 
 	:global(:root) {
-		@apply navbar-h-lg landscape-cards:navbar-h-sm;
+		@apply navbar-h-lg h-sm:navbar-h-sm;
 	}
 
 	nav {
