@@ -25,11 +25,11 @@ export const formData : {
 	buttonText : MultilingualText
 } = {
 	emailPlaceholder:  {
-		en: "Enter your email",
+		en: "Email",
 		bg: ""
 	},
 	namePlaceholder:  {
-		en: "Enter your name",
+		en: "Name",
 		bg: ""
 	},
 	messagePlaceholder:  {
