@@ -55,17 +55,7 @@
 		</div>
 
 		<form onsubmit="{handleSubmit}">
-			<div class="form-overlay spinner" class:active={currentState == "sending"}><LoaderCircleIcon /></div>
-			<div class="form-overlay success" class:active={currentState == "success"}>
-				<h3>{t(responseData.successHeader)}</h3>
-				<Rule centerOrnament={true} />
-				<p>{t(responseData.successContent)}</p>
-			</div>
-			<div class="form-overlay error" class:active={currentState == "error" }>
-				<h3>{t(responseData.errorHeader)}</h3>
-				<Rule centerOrnament={true} error={true} />
-				<p>{t(responseData.errorContent)}</p>
-			</div>
+
 			<div class="fill" class:active={currentState == "fill"} class:faded={currentState == "sending"}>
 				<input required autocomplete="name" placeholder={t(formData.namePlaceholder)} bind:value={name} />
 				<input required autocomplete="email" type="email" bind:value={email} placeholder={t(formData.emailPlaceholder)} />
@@ -74,6 +64,21 @@
 				<input type="text" bind:value={honeypot} class="hidden" />
 				<PrimaryButton text={t(formData.buttonText)} glow={currentState == "fill"} />
 			</div>
+
+			<div class="form-overlay spinner" class:active={currentState == "sending"}><LoaderCircleIcon /></div>
+
+			<div class="form-overlay success" class:active={currentState == "success"}>
+				<h3>{t(responseData.successHeader)}</h3>
+				<Rule centerOrnament={true} />
+				<p>{t(responseData.successContent)}</p>
+			</div>
+
+			<div class="form-overlay error" class:active={currentState == "error" }>
+				<h3>{t(responseData.errorHeader)}</h3>
+				<Rule centerOrnament={true} error={true} />
+				<p>{t(responseData.errorContent)}</p>
+			</div>
+
 		</form>
 
 	</div>
@@ -114,18 +119,16 @@
 				@apply max-w-xl w-full order-1;
 
 				& > .fill {
-					@apply w-full flex flex-wrap gap-4 justify-center;
+					@apply w-full flex flex-wrap gap-4 justify-center pb-4;
 					@apply transition-opacity duration-1000;
 					@apply opacity-100;
 
 					&:not(.active) {
 						@apply opacity-0;
-						animation: remove 1s linear 1;
-
 					}
 
 					&.faded {
-						@apply opacity-50 visible;
+						@apply opacity-50;
 					}
 
 					& > input,
@@ -152,14 +155,14 @@
 				}
 
 				& > .form-overlay {
+					@apply hidden;
 					@apply transition-opacity duration-1000;
 					@apply absolute top-0 left-0 w-full h-full;
-					@apply flex flex-col justify-center-safe content-center-safe items-center-safe;
+					@apply flex-col justify-center-safe content-center-safe items-center-safe;
 					@apply opacity-100;
 
-					&:not(.active) {
-						@apply opacity-0;
-						animation: remove 1s linear 1;
+					&.active {
+						@apply opacity-100 flex;
 					}
 
 					&.spinner {
