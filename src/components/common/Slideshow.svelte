@@ -177,4 +177,13 @@
 			--tw-gradient-from-position: 100%;
 		}
 	}
+
+	@keyframes remove {
+		from {
+			visibility: visible;
+		}
+		to {
+			visibility: hidden;
+		}
+	}
 </style>
