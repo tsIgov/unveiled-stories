@@ -6,6 +6,7 @@
 
 @import "./utilities/dim.css";
 @import "./utilities/hover-glow.css";
+@import "./utilities/layout.css";
 
 @theme {
 	--font-*: initial;

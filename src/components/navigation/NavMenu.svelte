@@ -38,11 +38,11 @@
 	@reference "style";
 
 	:global(:root) {
-		--navbar-height: 5rem;
+		@apply navbar-h-lg landscape-cards:navbar-h-sm;
 	}
 
 	nav {
-		@apply fixed w-full top-0 p-4 overflow-visible;
+		@apply fixed w-full top-0 p-4 landscape-cards:py-2 overflow-visible;
 		@apply flex justify-center content-center;
 		height: var(--navbar-height);
 		z-index: 1000;

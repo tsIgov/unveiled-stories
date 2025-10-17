@@ -1,0 +1,11 @@
+@utility navbar-h-lg {
+	& {
+		--navbar-height: 5rem;
+	}
+}
+
+@utility navbar-h-sm {
+	& {
+		--navbar-height: 4rem;
+	}
+}
