@@ -12,13 +12,28 @@
 
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
 
-	// Padding + item gaps + max item size and glow
-	let remToFit = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * (20 + 2);
-	let mediaQuery = expandIfFit ? `(width >= ${remToFit}rem)` : undefined;
+	// Padding + item gaps + max item size
+	let remToFitLandscape = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 34;
+
+	let mediaQuery = getExpandMediaQuery();
 	let expanded = useMediaQuery(mediaQuery);
 
 	let currentItem = $state(0);
 	let count = $derived(loop ? Math.ceil(5 / data.length) * data.length : data.length);
+
+	function getExpandMediaQuery() {
+		if (!expandIfFit) return undefined;
+
+
+		let remToFitPortrait = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 22;
+
+		let landscapeMediaQuery = `(height < 40rem) and (orientation: landscape) and (width >= ${remToFitLandscape}rem)`;
+		let portraitMediaQuery = `((height >= 40rem) or (orientation: portrait)) and (width >= ${remToFitPortrait}rem)`;
+
+		let mediaQuery = `(${landscapeMediaQuery}) or (${portraitMediaQuery})`;
+
+		return mediaQuery;
+	}
 
 	function getNeighbourClasses(index: number, currentItem : number) {
 		const dist = distance(index, currentItem);
@@ -155,13 +170,21 @@
 	.carousel {
 		@apply w-full overflow-hidden;
 
-		/* card width * aspect ratio + item padding + padding  */
-		@apply h-[calc(min(80svw,_20rem)_*_1.6_+_2rem_+_2rem)];
-		@apply landscape-cards:h-[calc(min(80svw,_32rem)_*_0.625_+_2rem_+_2rem)];
+		--max-item-height: calc(100svh - 2rem - var(--navbar-height));
+		--max-item-width-portrait: calc(min(22rem, var(--max-item-height) * var(--aspect-card)));
+		--max-item-width-landscape: calc(min(34rem, var(--max-item-height) / var(--aspect-card)));
+
+		/* card width * aspect ratio + item padding and padding  */
+		--max-carousel-height-portrait: calc(min(80svw, var(--max-item-width-portrait)) / var(--aspect-card) + 4rem);
+		--max-carousel-height-landscape: calc(min(80svw, var(--max-item-width-landscape)) * var(--aspect-card) + 4rem);
+
+		@apply h-[var(--max-carousel-height-portrait)];
+		@apply landscape-cards:h-[var(--max-carousel-height-landscape)];
 
 		& > .item {
-			@apply w-[80%] max-w-[22rem] landscape-cards:max-w-[34rem];
-			@apply p-4;
+			@apply w-[80%] p-4;
+			@apply max-w-[var(--max-item-width-portrait)];
+			@apply landscape-cards:max-w-[var(--max-item-width-landscape)];
 		}
 
 		&.expanded {
