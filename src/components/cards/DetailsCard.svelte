@@ -80,7 +80,7 @@
 		}
 
 		& > .details {
-			@apply flex flex-col justify-around overflow-hidden;
+			@apply flex flex-col justify-around overflow-auto;
 			@apply basis-0 grow-0 shrink;
 			@apply transition-all duration-1000;
 
