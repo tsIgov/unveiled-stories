@@ -1,3 +1,4 @@
 - Pick photoshoots
 - SEO
 - Translate
+- Cemter the text of the full logo?
