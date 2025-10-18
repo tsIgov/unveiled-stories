@@ -135,7 +135,7 @@
 					& > textarea {
 						@apply p-2;
 						@apply transition-all duration-500;
-						@apply text-neutral-100 bg-neutral-800 border-b border-b-neutral-500;
+						@apply text-neutral-100 bg-neutral-800 border border-moonlight-dim/5 border-b-neutral-500;
 						@apply placeholder:italic placeholder:text-neutral-500;
 						@apply user-invalid:border-b-error;
 						@apply focus:border-b-moonlight;
@@ -175,7 +175,7 @@
 
 					&.success,
 					&.error {
-						@apply bg-neutral-800 p-4;
+						@apply bg-neutral-800 p-4 border border-moonlight-dim/5;
 
 						& > h3 {
 							@apply uppercase;
