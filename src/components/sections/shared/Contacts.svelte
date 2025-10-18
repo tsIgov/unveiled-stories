@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Heading, PrimaryButton, Rule } from "components/common";
+	import { BlueskyIcon } from "components/icons";
 
 	import { MailIcon, InstagramIcon, PhoneIcon, LoaderCircleIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
@@ -48,7 +49,12 @@
 		<div class="logo">
 			<img src="logo-full-center.svg" alt="logo" />
 			<div class="socials">
-				<a href="{socials.instagram}" target="_blank" ><InstagramIcon /></a>
+				{#if socials.bluesky}
+					<a href="{socials.bluesky}" target="_blank" ><BlueskyIcon /></a>
+				{/if}
+				{#if socials.instagram}
+					<a href="{socials.instagram}" target="_blank" ><InstagramIcon /></a>
+				{/if}
 				<a href="mailto:{socials.email}" ><MailIcon /></a>
 				<a href="tel:{socials.phone}" ><PhoneIcon /></a>
 			</div>

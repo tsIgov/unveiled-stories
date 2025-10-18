@@ -15,7 +15,8 @@ export const formSubmitUrl = "https://script.google.com/macros/s/AKfycbx9XtTnkOu
 export const socials = {
 	email: "example@example.example",
 	phone: "+359 876 543 593",
-	instagram: "https://www.instagram.com/example"
+	instagram: "https://www.instagram.com/example",
+	bluesky: "https://bsky.app/profile/unveiled-stories.bsky.social"
 }
 
 export const formData : {
