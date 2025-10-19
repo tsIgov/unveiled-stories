@@ -23,7 +23,7 @@ export const header : MultilingualText ={
 
 export const summary: MultilingualText = {
 	en: "Step into a space where your story comes alive  — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts of yourself that are ready to be unveiled. Whether you are honoring a turning point, embracing a quiet truth, or simply allowing yourself to feel, this is where it all unfolds.",
-	bg:""
+	bg: ""
 };
 
 export const chapters : Chapter[] = [

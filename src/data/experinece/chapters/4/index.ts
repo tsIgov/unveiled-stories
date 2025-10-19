@@ -8,7 +8,7 @@ const data : Chapter = {
 		bg: "Стъпка 4: ???"
 	},
 	text: {
-		en: "Once your story has been captured, we’ll come together to experience it — not just as images, but as moments remembered and felt. You’ll have the chance to choose how you want to commemorate it: perhaps with a handcrafted leather album, a custom deck of cards, or even an oil painting by our incredible artist. This final step is about creating something lasting — a way to hold your story in your hands and return to it, again and again.",
+		en: "Once your story is captured, we’ll experience it together — not just as images, but as moments remembered and felt. You’ll choose how to honor it: with a handcrafted leather album, a custom deck of cards, or even an oil painting by our incredible artist. This final step is about creating something lasting — a way to hold your story in your hands and return to it again and again.",
 		bg: ""
 	},
 	background: {

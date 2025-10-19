@@ -6,8 +6,8 @@ export const header : MultilingualText = {
 };
 
 export const summary: MultilingualText = {
-	en: "Step into a space where your story comes alive — raw, real, and entirely yours. This is a chance to be present with everything you carry: the moments that shaped you, the emotions that move you, the parts",
-	bg:""
+	en: "Take the first step toward capturing your story. Send us a message, and we’ll reach out to begin planning your personal experience.",
+	bg: ""
 };
 
 export const formSubmitUrl = "https://script.google.com/macros/s/AKfycbx9XtTnkOu3Q0bni0QE_yS1SAndeYqmhRF1odCgEh9qgy53ih5q9kSA8mZCbSdtgt0c/exec";
@@ -15,7 +15,8 @@ export const formSubmitUrl = "https://script.google.com/macros/s/AKfycbx9XtTnkOu
 export const socials = {
 	email: "example@example.example",
 	phone: "+359 876 543 593",
-	instagram: "https://www.instagram.com/example"
+	instagram: "https://www.instagram.com/example",
+	bluesky: "https://bsky.app/profile/unveiled-stories.bsky.social"
 }
 
 export const formData : {
@@ -33,11 +34,11 @@ export const formData : {
 		bg: ""
 	},
 	messagePlaceholder:  {
-		en: "Tell us what is on your mind...",
+		en: "What would you want us to help you express?",
 		bg: ""
 	},
 	buttonText:  {
-		en: "Submit",
+		en: "Let’s Do This",
 		bg: ""
 	},
 }
@@ -53,7 +54,7 @@ export const responseData : {
 		bg: ""
 	},
 	successContent:  {
-		en: "Thank you for trusting us. We'll come back to you in two business days. Also some more text goes in here.",
+		en: "Thank you for trusting us. We'll get back to you in 48 hours to confirm your session and next steps. We can’t wait to create this experience with you!",
 		bg: ""
 	},
 	errorHeader:  {
@@ -61,7 +62,7 @@ export const responseData : {
 		bg: ""
 	},
 	errorContent:  {
-		en: "Thank you for trusting us. We'll come back to you in two business days. Also some more text goes in here.",
+		en: "We are terribly sorry but something went wrong! Please give us a call or just write us a plain old email..",
 		bg: ""
 	},
 }

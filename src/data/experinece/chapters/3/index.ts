@@ -8,7 +8,7 @@ const data : Chapter = {
 		bg: "Стъпка 3: Сесията"
 	},
 	text: {
-		en: "This is the day we bring it all to life. In a private, supportive space, we’ll spend unhurried time exploring and expressing the story we’ve shaped together. You’ll be guided through the experience with care, so you can stay present, relaxed, and connected to what the day means to you. This isn’t about performing — it’s about being in the moment and letting the story unfold naturally, at your own pace.",
+		en: "This is the day your story unfolds. In a calm, supportive space, we’ll spend unhurried time exploring and expressing the world we’ve created together. You’ll be guided with care so you can stay relaxed, present, and connected to what this day means to you. It’s not about performing — it’s about being.",
 		bg: ""
 	},
 	background: {

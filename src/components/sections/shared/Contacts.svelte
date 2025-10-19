@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Heading, PrimaryButton, Rule } from "components/common";
+	import { BlueskyIcon } from "components/icons";
 
 	import { MailIcon, InstagramIcon, PhoneIcon, LoaderCircleIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
@@ -48,7 +49,12 @@
 		<div class="logo">
 			<img src="logo-full-center.svg" alt="logo" />
 			<div class="socials">
-				<a href="{socials.instagram}" target="_blank" ><InstagramIcon /></a>
+				{#if socials.bluesky}
+					<a href="{socials.bluesky}" target="_blank" ><BlueskyIcon /></a>
+				{/if}
+				{#if socials.instagram}
+					<a href="{socials.instagram}" target="_blank" ><InstagramIcon /></a>
+				{/if}
 				<a href="mailto:{socials.email}" ><MailIcon /></a>
 				<a href="tel:{socials.phone}" ><PhoneIcon /></a>
 			</div>
@@ -135,7 +141,7 @@
 					& > textarea {
 						@apply p-2;
 						@apply transition-all duration-500;
-						@apply text-neutral-100 bg-neutral-800 border-b border-b-neutral-500;
+						@apply text-neutral-100 bg-neutral-800 border border-moonlight-dim/5 border-b-neutral-500;
 						@apply placeholder:italic placeholder:text-neutral-500;
 						@apply user-invalid:border-b-error;
 						@apply focus:border-b-moonlight;
@@ -175,7 +181,7 @@
 
 					&.success,
 					&.error {
-						@apply bg-neutral-800 p-4;
+						@apply bg-neutral-800 p-4 border border-moonlight-dim/5;
 
 						& > h3 {
 							@apply uppercase;
