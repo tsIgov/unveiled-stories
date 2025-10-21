@@ -5,11 +5,11 @@ import Landscape from "./landscape.jpg?enhanced";
 const data : TeamMember = {
 	name: {en: "Julia", bg:"Юлия"},
 	title: {
-		en: "Assistant / Artist",
-		bg: "Асистент / Художник"
+		en: "Artist / Assistant",
+		bg: "Художник / Асистент"
 	},
 	bio: {
-		en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		en: "I'm a traditional artist who loves painting the human body in all its shapes and sizes especially in a fantasy, classical and historical context, my goal is to capture a moment and turn it into an eternity that lives its own life.",
 		bg: ""
 	},
 	photos: {

@@ -9,7 +9,7 @@ const data : TeamMember = {
 		bg: "Фотограф"
 	},
 	bio: {
-		en: "I’m a boudoir photographer, software consultant, martial artists, philosopher, teacher and mentor. I harbour deep love for learning anything interesting and have spent decades honing my crafts. My goal is to help people grow and to make the world a more beautiful place. My sessions are about self-expression and the beauty of understanding oneself.",
+		en: "I’m a boudoir photographer, software consultant, martial artist, philosopher, teacher and mentor. I harbour deep love for learning anything interesting and have spent decades honing my crafts. My goal is to help people grow and to make the world a more beautiful place. My sessions are about self-expression and the beauty of understanding oneself.",
 		bg: ""
 	},
 	photos: {
