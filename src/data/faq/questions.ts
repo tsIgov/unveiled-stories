@@ -53,7 +53,7 @@ export const questions : Question[] = [
 			bg: "Колко души могат да участват?"
 		},
 		answer: {
-			en: "Boudoir doesn't need to be an individual experience. Your story may include spouces, friends, lovers or even some of our models. We welcome anything that will make the experience feel true to you.",
+			en: "Boudoir doesn't need to be an individual experience. Your story may include spouses, friends, lovers or even some of our models. We welcome anything that will make the experience feel true to you.",
 			bg: "Будоарните снимки не е необходимо да бъдат само индивидуални. Твоята история може да включва съпруг/а, приятели, партньори или дори някой от моделите ни - каквото е нужно, за да изразим твоята идея."
 		}
 	},
@@ -83,7 +83,7 @@ export const questions : Question[] = [
 			bg: "Какво ще получа накрая?"
 		},
 		answer: {
-			en: "Except for the experience, you'll receive 20 to 100 (depending on the photoshoot) retouched pohotos carefully curated to tell your story. Additionally, you'll be able to order a leather album, a deck of cards or even an oil painting by our incredible artist.",
+			en: "Except for the experience, you'll receive 20 to 100 (depending on the photoshoot) retouched photos carefully curated to tell your story. Additionally, you'll be able to order a leather album, a deck of cards or even an oil painting by our incredible artist.",
 			bg: "Освен преживяването, ще получиш между 20 и 100 (в зависимост от фотосесията) ретуширани снимки, внимателно подбрани да разкажат твоята история. Освен това, ще имаш възможност да поръчаш кожен албум, тесте карти или дори маслена картина от нашия невероятен художник."
 		}
 	},
@@ -103,7 +103,7 @@ export const questions : Question[] = [
 			bg: "Не се чувствам уверен/а в тялото си."
 		},
 		answer: {
-			en: "I started doing boudoir photography because my wife didn't find herself attractive. It turned out all she needed was to look at herself through the lens of someone admiring her beauty. We're here to be the lens that help you see youself in a new light.",
+			en: "I started doing boudoir photography because my wife didn't find herself attractive. It turned out all she needed was to look at herself through the lens of someone admiring her beauty. We're here to be the lens that helps you see yourself in a new light.",
 			bg: "Започнах да се занимавам с будоарна фотография, защото съпругата ми не се намираше за привлекателна. Оказа се, че всичко, от което се нуждаеше, беше да погледне на себе си през обектива на някой, който се възхищава на красотата ѝ. Ние сме тук, за да бъдем обективът, който ще ти помогне да видиш себе си в нова светлина."
 		}
 	},
@@ -153,7 +153,7 @@ export const questions : Question[] = [
 			bg: "Колко време предварително трябва да резервирам сесията си?"
 		},
 		answer: {
-			en: "Preparation may require creating storyboards, scouting for a location, buying or renting clothes and props, making appointments an so on. Be prepared that all of this might take anything from a week up to a month but we'll discuss that in advance.",
+			en: "Preparation may require creating storyboards, scouting for a location, buying or renting clothes and props, making appointments and so on. Be prepared that all of this might take anything from a week up to a month but we'll discuss that in advance.",
 			bg: "Подготовката може да изисква създаването на сценарий, търсене на място, закупуване или наемане на реквизит, запазване на часове за грим и прическа и др. Всичко това може да отнеме от седмица до месец. Разбира се, ще обсъдим всичко това още в първоначалният ни разговор."
 		}
 	},
