@@ -10,7 +10,7 @@ export interface Quote
 
 export const title : MultilingualText = {
 	en: "Testimonials",
-	bg: "Testimonials"
+	bg: "Отзиви"
 }
 
 export const background = {
@@ -21,32 +21,32 @@ export const background = {
 export const quotes: Quote[] = [
 	{
 		author: {
-			en: "Pamela",
-			bg: ""
+			en: "July",
+			bg: "Юлка"
 		},
 		quote: {
-			en: "Bri is an absolute joy to work with! From the first contact with her she was warm, friendly and knowledgeable. She was the exact same in person on shoot day. So kind and the best hype friend. Absolutely recommend her a million times.",
-			bg: ""
+			en: "Tsvetan and I have worked together on a few different ideas I've wanted to create and he has always been very enthusiastic about bringing my vision to life and surprising me with his ingenuity. He senses the vibe I'm going for and helps me pull it off. He's incredibly easy to work with. If you can, book a session and get an album after! My friends love to browse through my collection when they visit.",
+			bg: "С Цветан сме работили по няколко различни идеи, които съм искала да създам и той винаги откликва с голямо желание и винаги ме изненадва с неговия собствен принос към тях. Той усеща настроението, което искам да създам и ми помага да го постигна по време на снимките. С него се работи изключително лесно. Силно препоръчвам да си запазите сесия и да си вземете албумче след това. Приятелите ми обожават да разглеждат колекцията ми като са ми на гости. "
 		}
 	},
 	{
 		author: {
-			en: "Krys Harr",
-			bg: ""
+			en: "Bibi",
+			bg: "Биби"
 		},
 		quote: {
-			en: "I love everything about Matt Mathews Boudoir!! I’ve shot with both Matt and Brianna multiple times and can wholeheartedly say that first, you cannot tell a difference between who’s taking the pictures— the talent is unbelievable. Second, the experience is so uplifting and positive. And last, you’ll walk away feeling like a million bucks! My last shoot was a maternity session with Brianna and she took the most beautiful and CREATIVE pictures of me, my pregnant belly, and even my husband even jumped in on a few! Their makeup artist, Lauren, is freaking amazing and nails the look every. time. I can’t recommend shooting with the MM team. It’s worth the investment in yourself",
-			bg: ""
+			en: "Comfortable, mischievous and so much fun!",
+			bg: "Комфортно, пакостливо и страшно забавно!"
 		}
 	},
 	{
 		author: {
-			en: "Lacy Herbert",
-			bg: ""
+			en: "Ven",
+			bg: "Вен"
 		},
 		quote: {
-			en: "Bri and Lauren made this a beautiful experience for me. The photos are absolutely stunning. Makes me emotional every time I look at them. Thank You, so much ladies. This has done so much for me.",
-			bg: ""
+			en: "Tsvetan is an inspiring photographer! He has unique ideas, each one of them carefully crafted into a scenario that uncovers a whole story not just a single beautiful shot! ... Every idea is carefully designed long before he goes on the field with his models. ... [He] is not afraid of experiments or provocation and always figures out how to make something amazing out of every situation! ... Can't wait to see more of his art!",
+			bg: "Цветан е вдъхновяващ фотограф! Той има уникални идеи, всяка една от които е внимателно изработена в сценарий, който разкрива цяла история, а не просто един красив кадър! ... Всяка идея е внимателно проектирана много преди той да излезе на терена с моделите си. ... [Той] не се страхува от експерименти или провокации и винаги намира как да направи нещо невероятно от всяка ситуация! ... Нямам търпение да видя още от неговото изкуство!"
 		}
 	}
 ]

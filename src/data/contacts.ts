@@ -2,12 +2,12 @@ import type { MultilingualText } from "$lib/i18n/languages";
 
 export const header : MultilingualText = {
 	en: "Book Your Experience",
-	bg: ""
+	bg: "Запази своето преживяване"
 };
 
 export const summary: MultilingualText = {
 	en: "Take the first step toward capturing your story. Send us a message, and we’ll reach out to begin planning your personal experience.",
-	bg: ""
+	bg: "Поеми първата стъпка към това да превърнеш своята история в реалност. Изпрати ни съобщение и нека създадем твоето лично преживяване!"
 };
 
 export const formSubmitUrl = "https://script.google.com/macros/s/AKfycbx9XtTnkOu3Q0bni0QE_yS1SAndeYqmhRF1odCgEh9qgy53ih5q9kSA8mZCbSdtgt0c/exec";
@@ -27,19 +27,19 @@ export const formData : {
 } = {
 	emailPlaceholder:  {
 		en: "Email",
-		bg: ""
+		bg: "Имейл"
 	},
 	namePlaceholder:  {
 		en: "Name",
-		bg: ""
+		bg: "Име"
 	},
 	messagePlaceholder:  {
 		en: "What would you want us to help you express?",
-		bg: ""
+		bg: "Какво искаш да изразиш?"
 	},
 	buttonText:  {
 		en: "Let’s Do This",
-		bg: ""
+		bg: "Изпрати "
 	},
 }
 
@@ -51,18 +51,18 @@ export const responseData : {
 } = {
 	successHeader:  {
 		en: "Thank You!",
-		bg: ""
+		bg: "Благодарим!"
 	},
 	successContent:  {
 		en: "Thank you for trusting us. We'll get back to you in 48 hours to confirm your session and next steps. We can’t wait to create this experience with you!",
-		bg: ""
+		bg: "Благодарим за доверието. Ще се свържем с теб до 48 часа, за да обсъдим следващите стъпки. Нямаме търпение да работим заедно!"
 	},
 	errorHeader:  {
 		en: "Something Went Wrong...",
-		bg: ""
+		bg: "Нещо се обърка..."
 	},
 	errorContent:  {
 		en: "We are terribly sorry but something went wrong! Please give us a call or just write us a plain old email..",
-		bg: ""
+		bg: "Ужасно съжаляваме, но нещо се обърка! Моля, обади ни се или просто ни напиши обикновен имейл."
 	},
 }
