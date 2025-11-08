@@ -13,10 +13,10 @@ export const summary: MultilingualText = {
 export const formSubmitUrl = "https://script.google.com/macros/s/AKfycbx9XtTnkOu3Q0bni0QE_yS1SAndeYqmhRF1odCgEh9qgy53ih5q9kSA8mZCbSdtgt0c/exec";
 
 export const socials = {
-	email: "example@example.example",
+	email: "tsvetan@unveiledstories.art",
 	phone: "+359 876 543 593",
-	instagram: "https://www.instagram.com/example",
-	bluesky: "https://bsky.app/profile/unveiled-stories.bsky.social"
+	instagram: "",
+	bluesky: ""
 }
 
 export const formData : {

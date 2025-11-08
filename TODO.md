@@ -1,5 +1,0 @@
-- Pick photoshoots
-- SEO
-- Translate
-- Contact details
-- Privacy policy

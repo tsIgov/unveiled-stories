@@ -55,8 +55,12 @@
 				{#if socials.instagram}
 					<a href="{socials.instagram}" target="_blank" ><InstagramIcon /></a>
 				{/if}
-				<a href="mailto:{socials.email}" ><MailIcon /></a>
-				<a href="tel:{socials.phone}" ><PhoneIcon /></a>
+				{#if socials.email}
+					<a href="mailto:{socials.email}" ><MailIcon /></a>
+				{/if}
+				{#if socials.phone}
+					<a href="tel:{socials.phone}" ><PhoneIcon /></a>
+				{/if}
 			</div>
 		</div>
 
