@@ -2,7 +2,7 @@ import type { MultilingualText } from "$lib/i18n/languages";
 
 export const footerLink : MultilingualText = {
 	en: "Privacy policy",
-	bg: "Политика за поверителност"
+	bg: "Политика на поверителност"
 }
 
 export const policyMarkdown : MultilingualText = {
