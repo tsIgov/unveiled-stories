@@ -27,7 +27,7 @@ const data : Photoshoot = {
 			en: "The predator watches, eyes sharp, muscles tensed, as the whisper of the wind carries the scent of its prey.",
 			bg:"The predator watches, eyes sharp, muscles tensed, as the whisper of the wind carries the scent of its prey."
 		},
-		color: "#5e1e5e",
+		color: "#8C088D",
 		background: {
 			portrait : backgroundPortrait,
 			landscape : backgroundLandscape

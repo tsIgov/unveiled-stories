@@ -19,6 +19,7 @@ function importGallery() {
 	images.sort();
 
 	return images as Picture[];
+	return [] as Picture[];
 }
 
 const data: Photoshoot = {
