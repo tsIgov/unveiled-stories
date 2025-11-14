@@ -14,7 +14,7 @@ export const questions : Question[] = [
 		},
 		answer: {
 			en: "Absolutely not. This is your story and you are in full control of what happens. We'll never push you to do anything you are not comfortable with.",
-			bg: "Не, това e твоята история и ти имаш пълен контрол над нея. Никога няма да те накараме да направиш нещо, некомфортно за теб."
+			bg: "Не, това e твоята история и ти имаш пълен контрол над нея. Никога няма да те накараме да направиш нещо некомфортно за теб."
 		}
 	},
 	{
@@ -34,13 +34,13 @@ export const questions : Question[] = [
 		},
 		answer: {
 			en: "Of course. We welcome anyone and anything that will make you feel comfortable.",
-			bg: "Разбира се. Приветстваме всеки и всичко, което ще те накара да се чувстваш комфортно."
+			bg: "Разбира се. Приветстваме всеки и всичко, което ще те накара да се чувстваш добре."
 		}
 	},
 	{
 		question: {
 			en: "Who will be present during the shoot?",
-			bg: "Кой ще присъства по време на снимките?"
+			bg: "Кой ще присъства по време на сесията?"
 		},
 		answer: {
 			en: "You, the photographer, the photographer's assistant and whoever else you want.",
@@ -94,7 +94,7 @@ export const questions : Question[] = [
 		},
 		answer: {
 			en: "Don't worry, we'll guide you through the process but don't get too preoccupied by that. You don't need to perform, your job is to just have fun.",
-			bg: "Не се притеснявай, ще те напътстваме където е нужно, но най-важното е просто да се опуснеш и забавляваш."
+			bg: "Не се притеснявай, ще те напътстваме където е нужно, но най-важното е просто да се отпуснеш и забавляваш."
 		}
 	},
 	{
@@ -104,7 +104,7 @@ export const questions : Question[] = [
 		},
 		answer: {
 			en: "I started doing boudoir photography because my wife didn't find herself attractive. It turned out all she needed was to look at herself through the lens of someone admiring her beauty. We're here to be the lens that helps you see yourself in a new light.",
-			bg: "Започнах да се занимавам с будоарна фотография, защото съпругата ми не се намираше за привлекателна. Оказа се, че всичко, от което се нуждаеше, беше да погледне на себе си през обектива на някой, който се възхищава на красотата ѝ. Ние сме тук, за да бъдем обективът, който ще ти помогне да видиш себе си в нова светлина."
+			bg: "Започнах да се занимавам с будоарна фотография, защото съпругата ми не се намираше за привлекателна. Оказа се, че всичко, от което се нуждаеше, беше да погледне себе си през обектива на някого, който се възхищава на красотата ѝ. Ние сме тук, за да бъдем обектива, който ще ти помогне да видиш себе си в нова светлина."
 		}
 	},
 	{
@@ -124,7 +124,7 @@ export const questions : Question[] = [
 		},
 		answer: {
 			en: "Yes, we can set up an appointment with one of our hair dressers and makeup artists for the day of the shoot.",
-			bg: "Да, можем да уредим час за професионален грим и прическа за деня на снимките."
+			bg: "Да, можем да уредим час за професионален грим и прическа за деня на сесията."
 		}
 	},
 	{
@@ -154,7 +154,7 @@ export const questions : Question[] = [
 		},
 		answer: {
 			en: "Preparation may require creating storyboards, scouting for a location, buying or renting clothes and props, making appointments and so on. Be prepared that all of this might take anything from a week up to a month but we'll discuss that in advance.",
-			bg: "Подготовката може да изисква създаването на сценарий, търсене на място, закупуване или наемане на реквизит, запазване на часове за грим и прическа и др. Всичко това може да отнеме от седмица до месец. Разбира се, ще обсъдим всичко това още в първоначалният ни разговор."
+			bg: "Подготовката може да изисква създаването на сценарий, търсене на място, закупуване или наемане на реквизит, запазване на часове за грим и прическа и др. Всичко това може да отнеме от седмица до месец. Разбира се, ще обсъдим всичко това още в първоначалния ни разговор."
 		}
 	},
 	{
@@ -164,7 +164,7 @@ export const questions : Question[] = [
 		},
 		answer: {
 			en: "We don't want to rush anything so it might take anything from a couple of hours to a whole day.",
-			bg: "Искаме всично да протече спокойно. За целта сесията може да отнеме от няколко часа до цял ден."
+			bg: "Искаме всичко да протече спокойно. За целта сесията може да отнеме от няколко часа до цял ден."
 		}
 	},
 ]
