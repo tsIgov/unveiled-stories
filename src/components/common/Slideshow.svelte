@@ -41,8 +41,18 @@
 
 	function changeSlide(index: number) {
 		clearInterval(timer);
-		currentSlide = index;
-		onchanged?.(data[index], index);
+		if (index == currentSlide && running) {
+			var pl = document.getElementById(`progress-line-${currentSlide}`);
+			if (pl) {
+				pl.classList.remove('running');
+				pl.offsetHeight;
+				pl.classList.add('running');
+			}
+		}
+		else {
+			currentSlide = index;
+			onchanged?.(data[index], index);
+		}
 		timer = setInterval(() => {
 			currentSlide = (currentSlide + 1) % slidesCount;
 			onchanged?.(data[index], index);
@@ -87,6 +97,7 @@
 				<span>{String(slideIndex + 1).padStart(2, '0')}</span>
 
 				<div
+					id="progress-line-{slideIndex}"
 					class="progress-line"
 					class:running={slideIndex == currentSlide && running}
 					style="animation-duration: {timeout}ms">
