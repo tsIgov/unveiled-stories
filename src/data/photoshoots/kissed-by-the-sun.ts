@@ -7,7 +7,7 @@ const photoshoot: Photoshoot = {
 		bg:"The hunt begins in silence, shadows stretching long beneath the ancient trees."
 	},
 	color: "#9A5103",
-	photos: getPhotos("electric-romeo")
+	photos: getPhotos("kissed-by-the-sun")
 }
 
 export default photoshoot;
