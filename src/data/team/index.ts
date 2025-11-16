@@ -1,8 +1,8 @@
 import type { MultilingualText } from "$lib/i18n/languages";
 import { type Photo } from "data/photos";
 
-import { default as tsvetan } from "./tsvetan";
-import { default as julia } from "./julia";
+import tsvetan from "./tsvetan";
+import julia from "./julia";
 
 export interface TeamMember
 {
