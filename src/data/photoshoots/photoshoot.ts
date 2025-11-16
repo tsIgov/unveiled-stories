@@ -34,7 +34,7 @@ export function getPhotos(id: string): {
 } {
 	return {
 		gallery: Object.entries(photos)
-			.filter(([key]) => key.startsWith(id))
+			.filter(([key]) => key.startsWith(`photoshoots/${id}/gallery`))
 			.sort(([a], [b]) => a.localeCompare(b))
 			.map(([, value]) => value),
 		preview: {

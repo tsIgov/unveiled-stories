@@ -6,7 +6,7 @@ const photoshoot: Photoshoot = {
 		en: "The hunt begins in silence, shadows stretching long beneath the ancient trees.",
 		bg:"The hunt begins in silence, shadows stretching long beneath the ancient trees."
 	},
-	color: "#241B14",
+	color: "#453938",
 	photos: getPhotos("en-plein-air")
 }
 

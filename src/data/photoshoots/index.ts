@@ -7,12 +7,14 @@ import electricRomeo from "./electric-romeo";
 import enPleinAir from "./en-plein-air";
 import kissedByTheSun from "./kissed-by-the-sun";
 
+export type { Photoshoot };
+
 export const photoshoots : Photoshoot[] = [
-	electricRomeo,
+	kissedByTheSun,
 	theHunt,
 	nocturnalGlow,
 	enPleinAir,
-	kissedByTheSun,
+	electricRomeo,
 	theCourt
 ]
 
