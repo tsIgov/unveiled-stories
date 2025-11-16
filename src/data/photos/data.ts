@@ -1,6 +1,74 @@
 import { type Photo} from "."
 
 const photos = {
+  "backgrounds/experience-1-landscape.avif": {
+    "orientation": "landscape",
+    "src": "backgrounds/experience-1-landscape.avif"
+  },
+  "backgrounds/experience-1-portrait.avif": {
+    "orientation": "portrait",
+    "src": "backgrounds/experience-1-portrait.avif"
+  },
+  "backgrounds/experience-2-landscape.avif": {
+    "orientation": "landscape",
+    "src": "backgrounds/experience-2-landscape.avif"
+  },
+  "backgrounds/experience-2-portrait.avif": {
+    "orientation": "portrait",
+    "src": "backgrounds/experience-2-portrait.avif"
+  },
+  "backgrounds/experience-3-landscape.avif": {
+    "orientation": "landscape",
+    "src": "backgrounds/experience-3-landscape.avif"
+  },
+  "backgrounds/experience-3-portrait.avif": {
+    "orientation": "portrait",
+    "src": "backgrounds/experience-3-portrait.avif"
+  },
+  "backgrounds/experience-4-landscape.avif": {
+    "orientation": "landscape",
+    "src": "backgrounds/experience-4-landscape.avif"
+  },
+  "backgrounds/experience-4-portrait.avif": {
+    "orientation": "portrait",
+    "src": "backgrounds/experience-4-portrait.avif"
+  },
+  "backgrounds/faq-landscape.avif": {
+    "orientation": "landscape",
+    "src": "backgrounds/faq-landscape.avif"
+  },
+  "backgrounds/faq-portrait.avif": {
+    "orientation": "portrait",
+    "src": "backgrounds/faq-portrait.avif"
+  },
+  "backgrounds/testimonials-landscape.avif": {
+    "orientation": "landscape",
+    "src": "backgrounds/testimonials-landscape.avif"
+  },
+  "backgrounds/testimonials-portrait.avif": {
+    "orientation": "portrait",
+    "src": "backgrounds/testimonials-portrait.avif"
+  },
+  "team/julia-2.avif": {
+    "orientation": "portrait",
+    "src": "team/julia-2.avif"
+  },
+  "team/julia-3.avif": {
+    "orientation": "portrait",
+    "src": "team/julia-3.avif"
+  },
+  "team/julia-portrait.avif": {
+    "orientation": "portrait",
+    "src": "team/julia-portrait.avif"
+  },
+  "team/tsvetan-2.avif": {
+    "orientation": "portrait",
+    "src": "team/tsvetan-2.avif"
+  },
+  "team/tsvetan-portrait.avif": {
+    "orientation": "portrait",
+    "src": "team/tsvetan-portrait.avif"
+  },
   "photoshoots/electric-romeo/backgrounds/landscape.avif": {
     "orientation": "landscape",
     "src": "photoshoots/electric-romeo/backgrounds/landscape.avif"
@@ -149,9 +217,9 @@ const photos = {
     "orientation": "landscape",
     "src": "photoshoots/nocturnal-glow/gallery/05.avif"
   },
-  "photoshoots/nocturnal-glow/gallery/P1049665.avif": {
+  "photoshoots/nocturnal-glow/gallery/06.avif": {
     "orientation": "landscape",
-    "src": "photoshoots/nocturnal-glow/gallery/P1049665.avif"
+    "src": "photoshoots/nocturnal-glow/gallery/06.avif"
   },
   "photoshoots/nocturnal-glow/preview/center.avif": {
     "orientation": "portrait",
@@ -166,7 +234,7 @@ const photos = {
     "src": "photoshoots/nocturnal-glow/preview/right.avif"
   },
   "photoshoots/the-court/backgrounds/landscape.avif": {
-    "orientation": "portrait",
+    "orientation": "landscape",
     "src": "photoshoots/the-court/backgrounds/landscape.avif"
   },
   "photoshoots/the-court/backgrounds/portrait.avif": {

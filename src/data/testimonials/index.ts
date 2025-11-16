@@ -14,8 +14,8 @@ export const title : MultilingualText = {
 }
 
 export const background = {
-	landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
-	portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
+	landscape: photos["backgrounds/testimonials-landscape.avif"],
+	portrait: photos["backgrounds/testimonials-portrait.avif"]
 };
 
 export const quotes: Quote[] = [

@@ -13,8 +13,8 @@ export const title : MultilingualText = {
 }
 
 export const background = {
-	landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
-	portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
+	landscape: photos["backgrounds/faq-landscape.avif"],
+	portrait: photos["backgrounds/faq-portrait.avif"]
 };
 
 export const questions : Question[] = [

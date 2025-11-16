@@ -13,7 +13,7 @@ const data : TeamMember = {
 	},
 	photos: {
 		landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
-		portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
+		portrait: photos["team/julia-2.avif"]
 	},
 };
 
