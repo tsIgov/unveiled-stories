@@ -10,7 +10,7 @@ export const summary: MultilingualText = {
 	bg: "Поеми първата стъпка към това да превърнеш своята история в реалност. Изпрати ни съобщение и нека създадем твоето лично преживяване!"
 };
 
-export const formSubmitUrl = "https://script.google.com/macros/s/AKfycbx9XtTnkOu3Q0bni0QE_yS1SAndeYqmhRF1odCgEh9qgy53ih5q9kSA8mZCbSdtgt0c/exec";
+export const formSubmitUrl = "https://script.google.com/macros/s/AKfycbyg1BSTqdP0V2WvVkV9NcIendh3oL6jVXXVND862jkjPztBrtEUc66J_YoqnjAQl4if/exec";
 
 export const socials = {
 	email: "tsvetan@unveiledstories.art",
