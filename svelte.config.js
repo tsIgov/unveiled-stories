@@ -11,7 +11,9 @@ const config = {
 			"components": "src/components",
 			"data": "src/data"
 		},
-		adapter: adapter(),
+		adapter: adapter({
+			fallback: '404.html'
+		}),
 		prerender: {
 			entries: ["*"],
 		},
