@@ -1,6 +1,5 @@
 import { type Chapter } from "data/experinece";
-import backgroundPortrait from "./background-portrait.jpg?enhanced";
-import backgroundLandscape from "./background-landscape.jpg?enhanced";
+import { photos } from "data/photos"
 
 const data : Chapter = {
 	title: {
@@ -12,8 +11,8 @@ const data : Chapter = {
 		bg: "След като идеята е придобила форма, е време да съберем елементите, които ще ѝ вдъхнат живот. Това означава да открием уединено, спокойно място, да подберем дрехи и реквизит и да определим датата, на която всичко ще се случи. Всеки детайл е съобразен с тона и истината на твоята история. Така изграждаме онази среда, в която преживяването ти може да се разгърне в пълния си блясък."
 	},
 	background: {
-		portrait: backgroundPortrait,
-		landscape: backgroundLandscape
+		landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
+		portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
 	}
 };
 

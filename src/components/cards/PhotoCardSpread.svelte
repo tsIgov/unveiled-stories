@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Picture } from 'vite-imagetools';
+	import { type Photo } from 'data/photos';
 	import { PhotoCard } from "components/cards";
 
 	interface Props {
-		imageLeft : Picture,
-		imageCenter: Picture,
-		imageRight: Picture,
+		imageLeft : Photo,
+		imageCenter: Photo,
+		imageRight: Photo,
 		color: string,
 		onclick?: (() => void),
 	}

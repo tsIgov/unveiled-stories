@@ -3,15 +3,15 @@
 	import { Card } from '.';
 	import { CardBackground } from './internal';
 
-	import type { Picture } from 'vite-imagetools';
+	import { type Photo } from "data/photos";
 
 	interface Props {
 		title : string,
 		subtitle : string,
 		details : string,
 		background: {
-			portrait: Picture,
-			landscape: Picture,
+			portrait: Photo,
+			landscape: Photo,
 		},
 		glow?: boolean
 	}

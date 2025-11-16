@@ -1,5 +1,5 @@
 import { type MultilingualText } from "$lib/i18n/languages";
-import type { Picture } from 'vite-imagetools';
+import { type Photo } from "data/photos";
 
 import { default as chapter1 } from "./chapters/1"
 import { default as chapter2 } from "./chapters/2"
@@ -11,8 +11,8 @@ export interface Chapter
 	title: MultilingualText,
 	text: MultilingualText,
 	background: {
-		portrait: Picture,
-		landscape: Picture
+		portrait: Photo,
+		landscape: Photo
 	}
 }
 

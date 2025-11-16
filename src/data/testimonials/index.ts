@@ -1,6 +1,6 @@
 import type { MultilingualText } from "$lib/i18n/languages";
-import backgroundLandscape from "./backgrounds/landscape.jpg?enhanced";
-import backgroundPortrait from "./backgrounds/portrait.jpg?enhanced";
+import { photos } from 'data/photos';
+
 
 export interface Quote
 {
@@ -14,8 +14,8 @@ export const title : MultilingualText = {
 }
 
 export const background = {
-	landscape: backgroundLandscape,
-	portrait: backgroundPortrait
+	landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
+	portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
 };
 
 export const quotes: Quote[] = [

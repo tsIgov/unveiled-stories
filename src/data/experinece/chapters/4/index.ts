@@ -1,6 +1,5 @@
 import { type Chapter } from "data/experinece";
-import backgroundPortrait from "./background-portrait.jpg?enhanced";
-import backgroundLandscape from "./background-landscape.jpg?enhanced";
+import { photos } from "data/photos"
 
 const data : Chapter = {
 	title: {
@@ -12,8 +11,8 @@ const data : Chapter = {
 		bg: "След като уловим вашата история, ще я преживеем заедно – не просто като снимки, а като съхранени и почувствани мигове. Вие ще решите как да ѝ отдадете почит: чрез ръчно изработен кожен албум, персонализирано тесте карти или пък чрез маслена картина, нарисувана от нашия невероятен художник. Тази последна стъпка е посветена на създаването на нещо вечно – начин да задържите тази история си в ръцете и да се връщате към нея отново и отново."
 	},
 	background: {
-		portrait: backgroundPortrait,
-		landscape: backgroundLandscape
+		landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
+		portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
 	}
 };
 

@@ -1,6 +1,5 @@
 import type { TeamMember } from "data/team";
-import Portrait from "./portrait.jpg?enhanced";
-import Landscape from "./landscape.jpg?enhanced";
+import { photos } from "data/photos"
 
 const data : TeamMember = {
 	name: {en: "Tsvetan", bg:"Цветан"},
@@ -13,8 +12,8 @@ const data : TeamMember = {
 		bg: "Аз съм будоарен фотограф, софтуерен консултант, учител и ментор. Занимавам се с философия и бойни изкусва и тая дълбока любов към изучаването на всичко ново и интересно. Прекарал съм десетилетия в усъвършенстване на занаятите си. Целта ми е да помагам на хората да се развиват и да правя света едно по-красиво място. Сесиите ми са посветени на себепознанието и личното изразяване."
 	},
 	photos: {
-		portrait: Portrait,
-		landscape: Landscape
+		landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
+		portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
 	}
 };
 

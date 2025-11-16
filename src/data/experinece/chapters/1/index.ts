@@ -1,6 +1,5 @@
 import { type Chapter } from "data/experinece";
-import backgroundPortrait from "./background-portrait.jpg?enhanced";
-import backgroundLandscape from "./background-landscape.jpg?enhanced";
+import { photos } from "data/photos"
 
 const data : Chapter = {
 	title: {
@@ -12,8 +11,8 @@ const data : Chapter = {
 		bg: "Всичко започва с непринуден разговор, свободен от предразсъдъци. Ще изследваме какво искаш да изразиш и как искаш да се чувстваш, оформяйки история, която е дръзка, нежна, игрива или силна — каквото усещаш като автентично за теб. Заедно ще определим визуалната посока, стила и цялостното усещане."
 	},
 	background: {
-		portrait: backgroundPortrait,
-		landscape: backgroundLandscape
+		landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
+		portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
 	}
 };
 

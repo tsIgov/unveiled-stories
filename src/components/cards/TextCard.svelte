@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Picture } from 'vite-imagetools';
+	import { type Photo } from "data/photos";
 
 	import { Rule } from 'components/common';
 	import { Card } from '.';
@@ -9,8 +9,8 @@
 		title: string,
 		text: string,
 		background?: {
-			portrait: Picture,
-			landscape: Picture
+			portrait: Photo,
+			landscape: Photo
 		},
 		glow?: boolean
 	}

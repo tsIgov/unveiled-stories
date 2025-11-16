@@ -1,6 +1,5 @@
 import { type Chapter } from "data/experinece";
-import backgroundPortrait from "./background-portrait.jpg?enhanced";
-import backgroundLandscape from "./background-landscape.jpg?enhanced";
+import { photos } from "data/photos"
 
 const data : Chapter = {
 	title: {
@@ -12,8 +11,8 @@ const data : Chapter = {
 		bg: "Това е денят, в който твоята история се разгръща. В спокойна и подкрепяща атмосфера ще отделим нужното време, за да изследваме и изразим света, който сме изградили заедно. Ще те напътстваме деликатно, за да можеш да се отпуснеш и да присъстваш в момента. Не е нужно да бъдеш модел — важното е просто да бъдеш."
 	},
 	background: {
-		portrait: backgroundPortrait,
-		landscape: backgroundLandscape
+		landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
+		portrait: photos["photoshoots/electric-romeo/backgrounds/portrait.avif"]
 	}
 };
 

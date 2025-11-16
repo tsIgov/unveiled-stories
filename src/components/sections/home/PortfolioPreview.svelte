@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { Picture } from 'vite-imagetools';
-
 	import { Rule, Slideshow, Frame, SectionBackground, LightboxGallery } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 
@@ -37,7 +35,7 @@
 		onchanged={onSlideChanged}
 	/>
 	<LightboxGallery bind:this={gallery}
-		images={photoshoots[currentIndex].gallery?.() as Picture[]}
+		images={photoshoots[currentIndex].photos.gallery}
 		borderColor={photoshoots[currentIndex].color}
 		onclosed={onGalleryClosed}
 	/>
@@ -45,16 +43,18 @@
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
 	<div>
-		<SectionBackground landscape={item.background.landscape} portrait={item.background.portrait} alt={t(item.name)} />
+		<SectionBackground
+			landscape={item.photos.backgrounds.landscape}
+			portrait={item.photos.backgrounds.portrait} alt={t(item.name)} />
 
 		<div class="preview">
 
 			<PhotoCardSpread
-				imageLeft={item.preview.left}
-				imageCenter={item.preview.center}
-				imageRight={item.preview.right}
+				imageLeft={item.photos.preview.left}
+				imageCenter={item.photos.preview.center}
+				imageRight={item.photos.preview.right}
 				color={item.color}
-				onclick={ !item.gallery || !galleryEnabled ? undefined : () => openGallery()}
+				onclick={ !item.photos.gallery || !galleryEnabled ? undefined : () => openGallery()}
 			/>
 
 			<div class="side">
@@ -62,7 +62,7 @@
 				<Rule orientation="horizontal" centerOrnament={true}/>
 
 				<div class="details">
-					{#if item.gallery != undefined && galleryEnabled}
+					{#if item.photos.gallery != undefined && galleryEnabled}
 					<button onclick={() => openGallery()}>
 						<Frame color={item.color}>
 							<span>{t(item.name)}</span>

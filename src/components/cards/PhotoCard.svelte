@@ -1,28 +1,26 @@
 <script lang="ts">
 	import { Frame } from 'components/common'
+	import { type Photo } from 'data/photos';
 
-	import type { Picture } from 'vite-imagetools';
 	import type { ClassValue } from 'svelte/elements';
 
 	interface Props {
-		image : Picture,
+		image : Photo,
 		color: string,
 		class?: ClassValue,
 	}
 
 	let { image, color, ...rest } : Props  = $props();
-	let orientation = $derived(image.img.w > image.img.h ? "landscape" : "portrait");
-
 </script>
 
 
 <div class="photo-card {rest.class}"
-	class:portrait={orientation == "portrait"}
-	class:landscape={orientation == "landscape"}>
+	class:portrait={image.orientation == "portrait"}
+	class:landscape={image.orientation == "landscape"}>
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img src={image} alt="" />
+				<img src={image.src} alt="" />
 			</Frame>
 		</div>
 	 </Frame>

@@ -1,15 +1,15 @@
 <script lang="ts">
+	import { type Photo } from 'data/photos';
 	import { PhotoCard } from 'components/cards';
 
 	import { page } from '$app/state';
-	import { pushState, onNavigate } from '$app/navigation';
-	import type { Picture } from 'vite-imagetools';
+	import { pushState } from '$app/navigation';
 	import { onMount } from "svelte";
 	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
 	import { ChevronLeftIcon, ChevronRightIcon,XIcon } from '@lucide/svelte';
 
 	interface Props {
-		images : Picture[],
+		images : Photo[],
 		borderColor?: string,
 		onclosed?: () => void
 	}
