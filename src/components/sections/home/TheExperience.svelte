@@ -14,8 +14,8 @@
 		title={t(item.title)}
 		text={t(item.text)}
 		glow={active}
-		background={item.background}
 	/>
+		<!-- background={item.background} -->
 {/snippet}
 
 <section class="the-experience">
