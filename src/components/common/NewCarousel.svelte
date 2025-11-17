@@ -1,4 +1,5 @@
 <script lang="ts" generics="T">
+	import { Card } from "components/cards";
 	import { onMount, type Snippet } from "svelte";
 
 	interface Props {
@@ -11,10 +12,13 @@
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
 
 	let scroller : HTMLElement;
-	let items: HTMLElement[] = [];
+	let items: HTMLElement[] = $state([]);
 
 	function onclick(index : number) {
 		const item = items[index];
+
+		if (item.classList.contains("spotlight"))
+			return;
 
 		const rect = scroller.getBoundingClientRect();
 		const scrollerCenter = rect.width / 2;
@@ -47,17 +51,22 @@
 			const itemCenter = box.left + box.width / 2;
 
 			const distance = Math.abs(center - itemCenter);
-			const maxDist = rect.width / 2;
+			const maxDist = box.width;
 
 			// Normalize distance 0→1
 			const t = Math.min(distance / maxDist, 1);
 
 			// Spotlight: center item = scale 1, far items shrink to 0.7
-			const scale = 1 - t * 0.3;
-			const opacity = 1 - t * 0.6;
+			const scale = 1 - t * 0.15;
+			const greyscale = t * 0.75;
 
-			// (item as HTMLElement).style.transform = `scale(${scale})`;
-			// (item as HTMLElement).style.opacity = opacity.toString();
+			item.style.transform = `scale(${scale})`;
+			item.style.filter = `grayscale(${greyscale})`;
+
+			if (distance < 10)
+				item.classList.add("spotlight");
+			else
+				item.classList.remove("spotlight");
 		});
 	}
 
@@ -80,11 +89,15 @@
 
 <div class="carousel" bind:this={scroller} onscroll={() => { checkLoop(); updateSpotlight();}}>
 
+	<div class="spacer"></div>
+
 	{#each data as item, index}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div class="item" bind:this={items[index]} onclick={() => onclick(index)}>
-			{@render itemSnippet(item, true)}
+			<Card>
+				{@render itemSnippet(item, true)}
+			</Card>
 		</div>
 	{/each}
 
@@ -99,6 +112,8 @@
 			{@render itemSnippet(item, true)}
 		</div>
 	{/each} -->
+
+	<div class="spacer"></div>
 
 </div>
 
@@ -139,14 +154,15 @@
 			black calc(50% + var(--max-item-width-portrait) / 2),
 			transparent calc(50% + var(--max-item-width-portrait) * 3 / 2 - 2rem),
 			transparent);
-
-		padding-left: calc(50% - var(--max-item-width-portrait) / 2);
-		padding-right: calc(50% - var(--max-item-width-portrait) / 2);
-
 	}
 
 	.carousel::-webkit-scrollbar {
 		display: none; /* Chrome, Safari, Edge */
+	}
+
+	.spacer {
+		width: 50%;
+		flex-shrink: 0;
 	}
 
 	.item {
@@ -164,8 +180,22 @@
 		justify-content: center;
 		scroll-snap-align: center;
 
-		/* transition spotlight smoothly */
-		/* transition: transform 0.25s ease, opacity 0.25s ease; */
+		transition: transform 0.2s ease-out;
+
+		& > :global(.card) {
+			@apply w-full;
+		}
+	}
+
+	.item.spotlight {
+
+	}
+
+	.item:not(.item.spotlight) {
+		@apply cursor-pointer;
+		& > :global(*) {
+			@apply pointer-events-none;
+		}
 	}
 
 </style>
