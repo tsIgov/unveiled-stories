@@ -11,8 +11,8 @@
 	<TheExperience />
 	<Rule />
 
-	<Faq />
-	<Rule />
+	<!-- <Faq />
+	<Rule /> -->
 
 	<Team />
 	<Rule />
