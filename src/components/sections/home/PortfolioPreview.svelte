@@ -31,7 +31,7 @@
 	<Slideshow bind:this={slideshow}
 		slideSnippet={photoshoot}
 		data={photoshoots}
-		timeout={8000}
+		timeout={7000}
 		onchanged={onSlideChanged}
 	/>
 	<LightboxGallery bind:this={gallery}
