@@ -1,5 +1,4 @@
 <script lang="ts" generics="T">
-	import { Card } from "components/cards";
 	import { onMount, type Snippet } from "svelte";
 
 	interface Props {
@@ -65,25 +64,25 @@
 			item.style.transform = `scale(${scale})`;
 			item.style.filter = `grayscale(${greyscale})`;
 
-			if (distance < 10)
+			if (distance < 1)
 				spotlightIndex = i;
 		}
 
 		scroller.style = `--item-width: ${itemWidth}px;`;
-	}
 
-	function checkLoop() {
-		// const left = scroller.scrollLeft;
-		// const itemWidth = items[0].getBoundingClientRect().width + 32; // item + gap
-		// const originalCount = data.length;
-		// const startOffset = itemWidth * originalCount;
+		if (loop)
+			if (spotlightIndex < data.length || spotlightIndex >= data.length * 2) {
+				const newTarget = items[spotlightIndex % data.length + data.length];
+				const box = newTarget.getBoundingClientRect();
+				const itemCenter = box.left + box.width / 2;
+				const delta = itemCenter - (rect.left + center);
 
-		// if (left < startOffset - itemWidth * originalCount) {
-		// 	scroller.scrollLeft = left + itemWidth * originalCount;
-		// }
-		// else if (left > startOffset + itemWidth * originalCount) {
-		// 	scroller.scrollLeft = left - itemWidth * originalCount;
-		// }
+				// scroller.scrollLeft = itemCenter;
+				scroller.scrollTo({
+					left: box.left,
+					behavior: "instant"
+				});
+			}
 	}
 </script>
 
@@ -91,7 +90,7 @@
 
 <div class="carousel"
 	bind:this={scroller}
-	onscroll={() => { checkLoop(); updateSpotlight();}}>
+	onscroll={updateSpotlight}>
 
 	<div class="spacer"></div>
 
@@ -108,17 +107,24 @@
 		</div>
 	{/each}
 
-	<!-- {#each data as item, index}
-		<div class="item" bind:this={items[index + data.length]} onclick={() => onclick(index + data.length)}>
-			{@render itemSnippet(item, true)}
-		</div>
-	{/each}
+	{#if loop}
+		{#each data as item, index}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class="item" bind:this={items[index + data.length]} onclick={() => onclick(index + data.length)}>
+				{@render itemSnippet(item, true)}
+			</div>
+		{/each}
 
-	{#each data as item, index}
-		<div class="item" bind:this={items[index + 2 * data.length]} onclick={() => onclick(index + 2 * data.length)}>
-			{@render itemSnippet(item, true)}
-		</div>
-	{/each} -->
+		{#each data as item, index}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class="item" bind:this={items[index + 2 * data.length]} onclick={() => onclick(index + 2 * data.length)}>
+				{@render itemSnippet(item, true)}
+			</div>
+		{/each}
+	{/if}
+
 
 	<div class="spacer"></div>
 
