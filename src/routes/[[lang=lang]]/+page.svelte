@@ -5,20 +5,20 @@
 </script>
 
 <main>
-	<!-- <PortfolioPreview />
-	<Rule /> -->
+	<PortfolioPreview />
+	<Rule />
 
-	<!-- <TheExperience />
+	<TheExperience />
 	<Rule />
 
 	<Faq />
-	<Rule /> -->
+	<Rule />
 
 	<Team />
 	<Rule />
 
-	<!-- <Testimonials />
-	<Rule /> -->
+	<Testimonials />
+	<Rule />
 
 	<Contacts />
 </main>

@@ -18,11 +18,11 @@
 
 
 <div class="frame" class:chipped={chipped}>
-	<div class="glow"
+	<!-- <div class="glow"
 		class:disabled={!glow}
 		style="--color: {color}">
 		<div class="glow-base"></div>
-	</div>
+	</div> -->
 
 	<div class="frame-border" style="--color: {color}">
 		<div class="content">
@@ -94,7 +94,7 @@
 
 	.frame-border {
 		@apply p-[2px] h-full;
-		animation: rotation 20s linear infinite;
+		/* animation: rotation 20s linear infinite; */
 		background-image:conic-gradient(from calc(var(--angle) + 45deg), var(--color) 0deg, var(--color-moonlight) 90deg, var(--color) 180deg, var(--color-moonlight) 270deg, var(--color) 360deg);
 	}
 
