@@ -6,7 +6,7 @@
 		data: T[],
 		loop?: boolean,
 		expandIfFit?: boolean,
-		itemSnippet: Snippet<[item: T, active: boolean]>
+		itemSnippet: Snippet<[item: T]>
 	}
 
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
@@ -14,10 +14,12 @@
 	let scroller : HTMLElement;
 	let items: HTMLElement[] = $state([]);
 
+	let spotlightIndex = $state(0);
+
 	function onclick(index : number) {
 		const item = items[index];
 
-		if (item.classList.contains("spotlight"))
+		if (index == spotlightIndex)
 			return;
 
 		const rect = scroller.getBoundingClientRect();
@@ -28,13 +30,10 @@
 
 		const delta = itemCenter - (rect.left + scrollerCenter);
 
-		// Smoothly scroll so this item reaches the center
 		scroller.scrollBy({
 			left: delta,
+			behavior: "smooth"
 		});
-
-		// Apply spotlight immediately so it feels responsive
-		// updateSpotlight();
 	}
 
 	onMount(() => {
@@ -45,9 +44,13 @@
 	function updateSpotlight() {
 		const rect = scroller.getBoundingClientRect();
 		const center = rect.left + rect.width / 2;
+		let itemWidth;
 
-		items.forEach(item => {
+		for (let i = 0; i < items.length; i++) {
+			const item = items[i];
+
 			const box = item.getBoundingClientRect();
+			itemWidth = box.width;
 			const itemCenter = box.left + box.width / 2;
 
 			const distance = Math.abs(center - itemCenter);
@@ -56,7 +59,6 @@
 			// Normalize distance 0→1
 			const t = Math.min(distance / maxDist, 1);
 
-			// Spotlight: center item = scale 1, far items shrink to 0.7
 			const scale = 1 - t * 0.15;
 			const greyscale = t * 0.75;
 
@@ -64,10 +66,10 @@
 			item.style.filter = `grayscale(${greyscale})`;
 
 			if (distance < 10)
-				item.classList.add("spotlight");
-			else
-				item.classList.remove("spotlight");
-		});
+				spotlightIndex = i;
+		}
+
+		scroller.style = `--item-width: ${itemWidth}px;`;
 	}
 
 	function checkLoop() {
@@ -87,17 +89,24 @@
 
 <svelte:window onresize={updateSpotlight} />
 
-<div class="carousel" bind:this={scroller} onscroll={() => { checkLoop(); updateSpotlight();}}>
+<div class="carousel"
+	bind:this={scroller}
+	onscroll={() => { checkLoop(); updateSpotlight();}}>
 
 	<div class="spacer"></div>
 
 	{#each data as item, index}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div class="item" bind:this={items[index]} onclick={() => onclick(index)}>
-			<Card>
-				{@render itemSnippet(item, true)}
+		<div class="item"
+			class:spotlight={spotlightIndex == index}
+			bind:this={items[index]}
+			onclick={() => onclick(index)}>
+
+			<Card glow={spotlightIndex == index}>
+				{@render itemSnippet(item)}
 			</Card>
+
 		</div>
 	{/each}
 
@@ -129,72 +138,52 @@
 		--max-carousel-height-portrait: calc(min(80svw, var(--max-item-width-portrait)) / var(--aspect-card) + 4rem);
 		--max-carousel-height-landscape: calc(min(80svw, var(--max-item-width-landscape)) * var(--aspect-card) + 4rem);
 
-		@apply w-full;
-		@apply h-[var(--max-carousel-height-portrait)];
-		@apply landscape-cards:h-[var(--max-carousel-height-landscape)];
-
-		display: flex;
-		gap: 2rem;
+		@apply w-full flex;
 
 		overflow-x: scroll;
 		scrollbar-width: none;
 		scroll-behavior: smooth;
-
 		-ms-overflow-style: none;
 
-
 		scroll-snap-type: x mandatory;
-
 
 		mask-image: linear-gradient(
 			to right,
 			transparent,
-			transparent calc(50% - var(--max-item-width-portrait) * 3 / 2 - 2rem),
-			black calc(50% - var(--max-item-width-portrait) / 2),
-			black calc(50% + var(--max-item-width-portrait) / 2),
-			transparent calc(50% + var(--max-item-width-portrait) * 3 / 2 - 2rem),
+			transparent calc(50% - var(--item-width) * 3 / 2 - 2rem),
+			black calc(50% - var(--item-width) / 2),
+			black calc(50% + var(--item-width) / 2),
+			transparent calc(50% + var(--item-width) * 3 / 2 - 2rem),
 			transparent);
-	}
 
-	.carousel::-webkit-scrollbar {
-		display: none; /* Chrome, Safari, Edge */
+			&::-webkit-scrollbar { display: none;}
 	}
 
 	.spacer {
-		width: 50%;
-		flex-shrink: 0;
+		@apply w-1/2 shrink-0;
 	}
 
 	.item {
-		@apply w-[80%];
+		@apply w-[80%] shrink-0;
 		@apply max-w-[var(--max-item-width-portrait)];
 		@apply landscape-cards:max-w-[var(--max-item-width-landscape)];
 
 		scroll-snap-align: center;
 		scroll-snap-stop: always;
 
-		flex-shrink: 0;
+		@apply flex items-center justify-center;
 
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		scroll-snap-align: center;
+		@apply transition-transform duration-200 ease-out;
 
-		transition: transform 0.2s ease-out;
+		&:not(.spotlight) {
+			@apply cursor-pointer;
+			& > :global(*) {
+				@apply pointer-events-none;
+			}
+		}
 
 		& > :global(.card) {
 			@apply w-full;
-		}
-	}
-
-	.item.spotlight {
-
-	}
-
-	.item:not(.item.spotlight) {
-		@apply cursor-pointer;
-		& > :global(*) {
-			@apply pointer-events-none;
 		}
 	}
 
