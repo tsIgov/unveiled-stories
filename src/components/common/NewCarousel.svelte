@@ -16,11 +16,10 @@
 	let spotlightIndex = $state(0);
 
 	function onclick(index : number) {
+
+		if (index == spotlightIndex) return;
+
 		const item = items[index];
-
-		if (index == spotlightIndex)
-			return;
-
 		const rect = scroller.getBoundingClientRect();
 		const scrollerCenter = rect.width / 2;
 
@@ -72,14 +71,18 @@
 
 		if (loop)
 			if (spotlightIndex < data.length || spotlightIndex >= data.length * 2) {
-				const newTarget = items[spotlightIndex % data.length + data.length];
+				const targetIndex = spotlightIndex % data.length + data.length;
+				const newTarget = items[targetIndex];
 				const box = newTarget.getBoundingClientRect();
 				const itemCenter = box.left + box.width / 2;
 				const delta = itemCenter - (rect.left + center);
+				const newOffset = scroller.scrollLeft + delta;
 
-				// scroller.scrollLeft = itemCenter;
+				newTarget.style.transform = `scale(1)`;
+				newTarget.style.filter = `grayscale(0)`;
+
 				scroller.scrollTo({
-					left: box.left,
+					left: newOffset,
 					behavior: "instant"
 				});
 			}
@@ -132,7 +135,6 @@
 
 <style>
 	@reference "style";
-
 	.carousel {
 		--max-item-height: calc(100svh - 2rem - var(--navbar-height));
 		--max-item-width-portrait: calc(min(22rem, var(--max-item-height) * var(--aspect-card)));
@@ -147,6 +149,7 @@
 		overflow-x: scroll;
 		scrollbar-width: none;
 		scroll-behavior: smooth;
+		scroll-snap-type: x mandatory;
 		-ms-overflow-style: none;
 
 		scroll-snap-type: x mandatory;
@@ -178,12 +181,11 @@
 
 		@apply flex items-center justify-center;
 
-		@apply transition-transform duration-200 ease-out;
-
 		&:not(.spotlight) {
 			@apply cursor-pointer;
 			& > :global(*) {
 				@apply pointer-events-none;
+				@apply select-none;
 			}
 		}
 	}
