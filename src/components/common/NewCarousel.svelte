@@ -1,4 +1,5 @@
 <script lang="ts" generics="T">
+	import { useMediaQuery } from "$lib/utils/media-queries";
 	import { onMount, type Snippet } from "svelte";
 
 	interface Props {
@@ -12,8 +13,25 @@
 
 	let scroller : HTMLElement;
 	let items: HTMLElement[] = $state([]);
-
 	let spotlightIndex = $state(0);
+
+	let mediaQuery = getExpandMediaQuery();
+	let expanded = useMediaQuery(mediaQuery);
+
+	function getExpandMediaQuery() {
+		if (!expandIfFit) return undefined;
+
+		// Padding + item gaps + max item size
+		const remToFitLandscape = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 34;
+		const remToFitPortrait = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 22;
+
+		const landscapeMediaQuery = `(height < 40rem) and (orientation: landscape) and (width >= ${remToFitLandscape * 18}px)`;
+		const portraitMediaQuery = `((height >= 40rem) or (orientation: portrait)) and (width >= ${remToFitPortrait * 18}px)`;
+
+		const mediaQuery = `(${landscapeMediaQuery}) or (${portraitMediaQuery})`;
+
+		return mediaQuery;
+	}
 
 	function onclick(index : number) {
 
@@ -34,12 +52,19 @@
 		});
 	}
 
-	onMount(() => {
-		updateSpotlight();
-		return () => { };
+	onMount(() => updateSpotlight());
+
+	$effect(() => {
+		if ($expanded)
+			for (let i = 0; i < items.length; i++)
+				items[i].style = "";
+		else
+			scroller.scrollBy({left: 0});
 	});
 
 	function updateSpotlight() {
+		if ($expanded) return;
+
 		const rect = scroller.getBoundingClientRect();
 		const center = rect.left + rect.width / 2;
 		let itemWidth;
@@ -91,7 +116,8 @@
 
 <svelte:window onresize={updateSpotlight} />
 
-<div class="carousel"
+
+<div class="carousel" class:expanded={$expanded}
 	bind:this={scroller}
 	onscroll={updateSpotlight}>
 
@@ -101,7 +127,7 @@
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div class="item"
-			class:spotlight={spotlightIndex == index}
+			class:spotlight={spotlightIndex == index || $expanded}
 			bind:this={items[index]}
 			onclick={() => onclick(index)}>
 
@@ -115,7 +141,7 @@
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div class="item" bind:this={items[index + data.length]} onclick={() => onclick(index + data.length)}>
-				{@render itemSnippet(item, true)}
+				{@render itemSnippet(item, false)}
 			</div>
 		{/each}
 
@@ -123,7 +149,7 @@
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div class="item" bind:this={items[index + 2 * data.length]} onclick={() => onclick(index + 2 * data.length)}>
-				{@render itemSnippet(item, true)}
+				{@render itemSnippet(item, false)}
 			</div>
 		{/each}
 	{/if}
@@ -167,12 +193,21 @@
 		&::-webkit-scrollbar { display: none;}
 	}
 
+	.expanded {
+		@apply gap-6;
+		@apply justify-center-safe items-center-safe content-center-safe;
+
+		& > .spacer {
+			@apply hidden;
+		}
+	}
+	.expanded > .spacer { display: none;}
 	.spacer {
 		@apply w-1/2 shrink-0;
 	}
 
 	.item {
-		@apply w-[80%] shrink-0;
+		@apply w-[80%] shrink-0 grow-0;
 		@apply max-w-[var(--max-item-width-portrait)];
 		@apply landscape-cards:max-w-[var(--max-item-width-landscape)];
 

@@ -5,6 +5,7 @@
 	import { getTranslator } from '$lib/i18n/translator';
 
 	import { type TeamMember, header, members } from 'data/team';
+	import NewCarousel from 'components/common/NewCarousel.svelte';
 
 	let t = $derived(getTranslator());
 </script>
@@ -21,5 +22,5 @@
 
 <section class="team">
 	<Heading title={t(header)} />
-	<Carousel itemSnippet={member} data={members} expandIfFit={true} />
+	<NewCarousel itemSnippet={member} data={members} expandIfFit={true} />
 </section>
