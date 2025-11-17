@@ -18,11 +18,11 @@
 
 
 <div class="frame" class:chipped={chipped}>
-	<!-- <div class="glow"
+	<div class="glow"
 		class:disabled={!glow}
 		style="--color: {color}">
 		<div class="glow-base"></div>
-	</div> -->
+	</div>
 
 	<div class="frame-border" style="--color: {color}">
 		<div class="content">
@@ -33,33 +33,6 @@
 
 <style>
 	@reference "style";
-
-	/* clip-path: polygon(5rem 0, 9rem 0, 10rem 1rem, 10rem 9rem, 9rem 10rem, 1rem 10rem, 0rem 9rem, 0rem 1rem, 1rem 0, 5rem 0,
-		5rem 0.5rem, 1.5rem 0.5rem, 0.5rem 1.5rem, 0.5rem 8.5rem, 1.5rem 9.5rem, 8.5rem 9.5rem, 9.5rem 8.5rem, 9.5rem 1.5rem, 8.5rem 0.5rem, 5rem 0.5rem
-		);
-
-    clip-path: shape(
-    	from top,
-    	hline to 9rem,
-    	arc to 10rem 1rem of 1rem ccw,
-    	vline to 9rem,
- 	    arc to 9rem 10rem of 1rem ccw,
- 	    hline to 1rem,
- 	    arc to 0 9rem of 1rem ccw,
- 	    vline to 1rem,
- 	    arc to 1rem 0 of 1rem ccw,
- 	    close,
- 	    move by 0 0.5rem,
- 	    hline to 1.5rem,
- 	    arc to 0.5rem 1.5rem of 1rem cw,
- 	    vline to 8.5rem,
- 	    arc to 1.5rem 9.5rem of 1rem cw,
- 	    hline to 8.5rem,
-		arc to 9.5rem 8.5rem of 1rem cw,
-		vline to 1.5rem,
-		arc to 8.5rem 0.5rem of 1rem cw,
- 	    close
-    	); */
 
 	.frame {
 		@apply h-full;

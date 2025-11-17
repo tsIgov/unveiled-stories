@@ -131,7 +131,7 @@
 			bind:this={items[index]}
 			onclick={() => onclick(index)}>
 
-				{@render itemSnippet(item, spotlightIndex == index)}
+				{@render itemSnippet(item, spotlightIndex == index || $expanded)}
 
 		</div>
 	{/each}
@@ -140,16 +140,26 @@
 		{#each data as item, index}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div class="item" bind:this={items[index + data.length]} onclick={() => onclick(index + data.length)}>
-				{@render itemSnippet(item, false)}
+			<div class="item"
+				class:spotlight={spotlightIndex == index + data.length || $expanded}
+				bind:this={items[index + data.length]}
+				onclick={() => onclick(index + data.length)}>
+
+				{@render itemSnippet(item, spotlightIndex == index + data.length || $expanded)}
+
 			</div>
 		{/each}
 
 		{#each data as item, index}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div class="item" bind:this={items[index + 2 * data.length]} onclick={() => onclick(index + 2 * data.length)}>
-				{@render itemSnippet(item, false)}
+			<div class="item"
+				class:spotlight={spotlightIndex == index + 2 * data.length || $expanded}
+				bind:this={items[index + 2 * data.length]}
+				onclick={() => onclick(index + 2 * data.length)}>
+
+				{@render itemSnippet(item, spotlightIndex == index + 2 * data.length || $expanded)}
+
 			</div>
 		{/each}
 	{/if}
@@ -170,7 +180,7 @@
 		--max-carousel-height-portrait: calc(min(80svw, var(--max-item-width-portrait)) / var(--aspect-card) + 4rem);
 		--max-carousel-height-landscape: calc(min(80svw, var(--max-item-width-landscape)) * var(--aspect-card) + 4rem);
 
-		@apply w-full flex;
+		@apply w-full flex py-4;
 
 		overflow-x: scroll;
 		scrollbar-width: none;
