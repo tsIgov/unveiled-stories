@@ -23,13 +23,13 @@
 		@apply absolute top-0 left-0 w-full h-full;
 		@apply bg-neutral-800;
 
-		& :global(img) {
+		& > img {
 			@apply absolute top-0 left-0 w-full h-full;
 			@apply object-cover;
 			@apply select-none;
-		}
 
-		& :global(.portait) { @apply block landscape-cards:hidden; }
-		& :global(.landscape) { @apply hidden landscape-cards:block; }
+			&.portrait { @apply block landscape-cards:hidden; }
+			&.landscape { @apply hidden landscape-cards:block; }
+		}
 	}
 </style>
