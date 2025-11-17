@@ -16,18 +16,18 @@
 
 	--color-*: initial;
 
-	--color-neutral-100: oklch(0.933 0.0239 104.27);
-	--color-neutral-500: oklch(0.675 0.0239 104.27);
-	--color-neutral-900: oklch(0.1793 0.0204 233.1);
-	--color-neutral-800: oklch(0.1950 0.0204 233.1);
+	--color-neutral-100: #ebead8;
+	--color-neutral-500: #999887;
+	--color-neutral-800: #0b171d;
+	--color-neutral-900: #081319;
 
-	--color-moonlight: oklch(0.9201 0.0502 76.88);
-	--color-moonlight-dim: oklch(0.7562 0.0369 81.22);
+	--color-moonlight: #f8e1c0;
+	--color-moonlight-dim: #bcae96;
 
-	--color-gold: oklch(0.638 0.0977 57.9);
-	--color-gold-dim: oklch(0.6201 0.0502 76.88);
+	--color-gold: #b87c4d;
+	--color-gold-dim: #988364;
 
-	--color-error: oklch(0.5564 0.19 15);
+	--color-error: #ca2f4e;
 
 	--aspect-*: initial;
 	--aspect-card: 0.625;
