@@ -49,21 +49,17 @@ const photos = {
     "orientation": "portrait",
     "src": "backgrounds/testimonials-portrait.avif"
   },
-  "team/julia-2.avif": {
-    "orientation": "portrait",
-    "src": "team/julia-2.avif"
-  },
-  "team/julia-3.avif": {
-    "orientation": "portrait",
-    "src": "team/julia-3.avif"
+  "team/julia-landscape.avif": {
+    "orientation": "landscape",
+    "src": "team/julia-landscape.avif"
   },
   "team/julia-portrait.avif": {
     "orientation": "portrait",
     "src": "team/julia-portrait.avif"
   },
-  "team/tsvetan-2.avif": {
-    "orientation": "portrait",
-    "src": "team/tsvetan-2.avif"
+  "team/tsvetan-landscape.avif": {
+    "orientation": "landscape",
+    "src": "team/tsvetan-landscape.avif"
   },
   "team/tsvetan-portrait.avif": {
     "orientation": "portrait",

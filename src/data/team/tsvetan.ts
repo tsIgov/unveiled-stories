@@ -12,8 +12,8 @@ const data : TeamMember = {
 		bg: "Аз съм будоарен фотограф, софтуерен консултант, учител и ментор. Занимавам се с философия и бойни изкусва и тая дълбока любов към изучаването на всичко ново и интересно. Прекарал съм десетилетия в усъвършенстване на занаятите си. Целта ми е да помагам на хората да се развиват и да правя света едно по-красиво място. Сесиите ми са посветени на себепознанието и личното изразяване."
 	},
 	photos: {
-		landscape: photos["photoshoots/electric-romeo/backgrounds/landscape.avif"],
-		portrait: photos["team/tsvetan-2.avif"]
+		landscape: photos["team/tsvetan-landscape.avif"],
+		portrait: photos["team/tsvetan-portrait.avif"]
 	}
 };
 
