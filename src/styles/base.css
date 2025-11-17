@@ -1,6 +1,9 @@
 :root {
 	/* @apply snap-y snap-proximity scroll-smooth; */
 	font-size: clamp(14px, min(2svw,2svh) + 8px, 18px);
+
+	color-scheme: dark;
+  	forced-color-adjust: none;
 }
 
 body {
