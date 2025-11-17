@@ -28,7 +28,7 @@
 			<!-- <MenuIcon class="h-5 w-auto text-moonlight" /> -->
 		</div>
 
-		<a class="logo" href="/"><img src="logo.svg" alt="logo" /></a>
+		<a class="logo" href="/"><img src="/logo.svg" alt="logo" /></a>
 		<LanguageMenu {currentRoute} {currentLang} />
 	</div>
 
