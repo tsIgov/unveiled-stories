@@ -11,8 +11,8 @@
 	let t = $derived(getTranslator());
 </script>
 
-{#snippet quote(item : Quote, active: boolean)}
-	<Card glow={active}>
+{#snippet quote(item : Quote, spotlight: boolean)}
+	<Card glow={spotlight}>
 		<div class="quote">
 			<MessageCircleMoreIcon class="icon" />
 			<p class="text">{t(item.quote)}</p>
@@ -29,6 +29,8 @@
 
 <style>
 	@reference "style";
+
+	.testimonials :global(.card) { @apply w-full; }
 
 	.quote {
 		@apply w-full h-full p-4 overflow-y-auto;

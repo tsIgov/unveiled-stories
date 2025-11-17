@@ -6,7 +6,7 @@
 		data: T[],
 		loop?: boolean,
 		expandIfFit?: boolean,
-		itemSnippet: Snippet<[item: T]>
+		itemSnippet: Snippet<[item: T, spotlight: boolean]>
 	}
 
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
@@ -103,9 +103,7 @@
 			bind:this={items[index]}
 			onclick={() => onclick(index)}>
 
-			<Card glow={spotlightIndex == index}>
-				{@render itemSnippet(item)}
-			</Card>
+				{@render itemSnippet(item, spotlightIndex == index)}
 
 		</div>
 	{/each}
@@ -150,13 +148,14 @@
 		mask-image: linear-gradient(
 			to right,
 			transparent,
-			transparent calc(50% - var(--item-width) * 3 / 2 - 2rem),
+			transparent calc(50% - var(--item-width) * 3 / 2),
 			black calc(50% - var(--item-width) / 2),
 			black calc(50% + var(--item-width) / 2),
-			transparent calc(50% + var(--item-width) * 3 / 2 - 2rem),
-			transparent);
+			transparent calc(50% + var(--item-width) * 3 / 2),
+			transparent
+		);
 
-			&::-webkit-scrollbar { display: none;}
+		&::-webkit-scrollbar { display: none;}
 	}
 
 	.spacer {
@@ -180,10 +179,6 @@
 			& > :global(*) {
 				@apply pointer-events-none;
 			}
-		}
-
-		& > :global(.card) {
-			@apply w-full;
 		}
 	}
 
