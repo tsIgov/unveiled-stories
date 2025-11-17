@@ -1,175 +1,167 @@
 <script lang="ts" generics="T">
-	import type { Snippet } from 'svelte';
-	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
-  	import { useMediaQuery } from '$lib/utils/media-queries';
+	import { useMediaQuery } from "$lib/utils/media-queries";
+	import { onMount, type Snippet } from "svelte";
 
 	interface Props {
 		data: T[],
 		loop?: boolean,
 		expandIfFit?: boolean,
-		itemSnippet: Snippet<[item: T, active: boolean]>
+		itemSnippet: Snippet<[item: T, spotlight: boolean]>
 	}
 
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
 
-	// Padding + item gaps + max item size
-	let remToFitLandscape = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 34;
+	let scroller : HTMLElement;
+	let items: HTMLElement[] = $state([]);
+	let spotlightIndex = $state(0);
 
 	let mediaQuery = getExpandMediaQuery();
 	let expanded = useMediaQuery(mediaQuery);
 
-	let currentItem = $state(0);
-	let count = $derived(loop ? Math.ceil(5 / data.length) * data.length : data.length);
-
 	function getExpandMediaQuery() {
 		if (!expandIfFit) return undefined;
 
+		// Padding + item gaps + max item size
+		const remToFitLandscape = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 34;
+		const remToFitPortrait = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 22;
 
-		let remToFitPortrait = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 22;
+		const landscapeMediaQuery = `(height < 40rem) and (orientation: landscape) and (width >= ${remToFitLandscape * 18}px)`;
+		const portraitMediaQuery = `((height >= 40rem) or (orientation: portrait)) and (width >= ${remToFitPortrait * 18}px)`;
 
-		let landscapeMediaQuery = `(height < 40rem) and (orientation: landscape) and (width >= ${remToFitLandscape}rem)`;
-		let portraitMediaQuery = `((height >= 40rem) or (orientation: portrait)) and (width >= ${remToFitPortrait}rem)`;
-
-		let mediaQuery = `(${landscapeMediaQuery}) or (${portraitMediaQuery})`;
+		const mediaQuery = `(${landscapeMediaQuery}) or (${portraitMediaQuery})`;
 
 		return mediaQuery;
 	}
 
-	function getNeighbourClasses(index: number, currentItem : number) {
-		const dist = distance(index, currentItem);
+	function onclick(index : number) {
 
-		let result = "";
-		if (dist == 0)
-			result += "active ";
-		else if (dist == 1)
-			result += "neighbour ";
-		else if (dist == 2)
-			result += "distant ";
+		if (index == spotlightIndex) return;
+
+		const item = items[index];
+		const rect = scroller.getBoundingClientRect();
+		const scrollerCenter = rect.width / 2;
+
+		const itemRect = item.getBoundingClientRect();
+		const itemCenter = itemRect.left + itemRect.width / 2;
+
+		const delta = itemCenter - (rect.left + scrollerCenter);
+
+		scroller.scrollBy({
+			left: delta,
+			behavior: "smooth"
+		});
+	}
+
+	onMount(() => updateSpotlight());
+
+	$effect(() => {
+		if ($expanded)
+			for (let i = 0; i < items.length; i++)
+				items[i].style = "";
 		else
-			result += "far ";
+			scroller.scrollBy({left: 0});
+	});
 
-		result += direction(index)
+	function updateSpotlight() {
+		if ($expanded) return;
 
-		return result;
-	}
+		const rect = scroller.getBoundingClientRect();
+		const center = rect.left + rect.width / 2;
+		let itemWidth;
 
-	function isActive(index: number) {
-		const dist = distance(index, currentItem);
-		return dist == 0;
-	}
+		for (let i = 0; i < items.length; i++) {
+			const item = items[i];
 
-	function distance(a: number, b: number) {
-		if (loop) {
-			const d1 = Math.abs(a - b);
-			const d2 = count - d1;
-			return Math.min(d1, d2);
+			const box = item.getBoundingClientRect();
+			itemWidth = box.width;
+			const itemCenter = box.left + box.width / 2;
+
+			const distance = Math.abs(center - itemCenter);
+			const maxDist = box.width;
+
+			// Normalize distance 0→1
+			const t = Math.min(distance / maxDist, 1);
+
+			const scale = 1 - t * 0.15;
+			const greyscale = t * 0.75;
+
+			item.style.transform = `scale(${scale})`;
+			item.style.filter = `grayscale(${greyscale})`;
+
+			if (distance < 1)
+				spotlightIndex = i;
 		}
-		else {
-			return Math.abs(a - b);
-		}
-	}
 
-	function direction(index: number) {
-		if (loop) {
-			const dist = distance(index, currentItem);
-			if (index < currentItem) {
-				if (currentItem - index == dist)
-					return "left";
-				else
-					return "right";
+		scroller.style = `--item-width: ${itemWidth}px;`;
+
+		if (loop)
+			if (spotlightIndex < data.length || spotlightIndex >= data.length * 2) {
+				const targetIndex = spotlightIndex % data.length + data.length;
+				const newTarget = items[targetIndex];
+				const box = newTarget.getBoundingClientRect();
+				const itemCenter = box.left + box.width / 2;
+				const delta = itemCenter - (rect.left + center);
+				const newOffset = scroller.scrollLeft + delta;
+
+				newTarget.style.transform = `scale(1)`;
+				newTarget.style.filter = `grayscale(0)`;
+
+				scroller.scrollTo({
+					left: newOffset,
+					behavior: "instant"
+				});
 			}
-			if (index > currentItem) {
-				if (index - currentItem == dist)
-					return "right";
-				else
-					return "left"
-			}
-		}
-		else {
-			if (index < currentItem) return "left";
-			if (index > currentItem) return "right";
-		}
-
-		return "";
 	}
-
-	function changeCurrentItem(index: number) {
-		if (distance(currentItem, index) == 1)
-			currentItem = index;
-	}
-
-	function next() {
-		currentItem++;
-
-		if (loop) {
-			if (currentItem == -1) currentItem = count - 1;
-			if (currentItem == count) currentItem = 0;
-		}
-		else
-			currentItem = Math.max(0, Math.min(count - 1, currentItem));
-	}
-
-	function prev() {
-		currentItem--;
-
-		if (loop) {
-			if (currentItem == -1) currentItem = count - 1;
-			if (currentItem == count) currentItem = 0;
-		}
-		else
-			currentItem = Math.max(0, Math.min(count - 1, currentItem));
-	}
-
-	function swipeHandler(event: SwipeCustomEvent) {
-		if (event.detail.pointerType == "mouse")
-			return;
-
-		if (event.detail.direction == "left")
-			next();
-		else if (event.detail.direction == "right")
-			prev();
-	}
-
-	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key == "ArrowLeft")
-			prev();
-		if (event.key == "ArrowRight")
-			next();
-	}
-
 </script>
 
-{#if $expanded}
-	<div class="carousel expanded">
-		{#each data as item}
-			<div class="item" >
-				{@render itemSnippet(item, true)}
-			</div>
-		{/each}
-	</div>
-{:else}
-	<div class="carousel collapsed"
-		tabindex="0"
-		onkeydown={handleKeyDown}
-		role="tablist"
-		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
+<svelte:window onresize={updateSpotlight} />
 
-		{#each { length: count }, index}
+
+<div class="carousel" class:expanded={$expanded}
+	bind:this={scroller}
+	onscroll={updateSpotlight}>
+
+	<div class="spacer"></div>
+
+	{#each data as item, index}
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<div class="item"
+			class:spotlight={spotlightIndex == index || $expanded}
+			bind:this={items[index]}
+			onclick={() => onclick(index)}>
+
+				{@render itemSnippet(item, spotlightIndex == index)}
+
+		</div>
+	{/each}
+
+	{#if loop}
+		{#each data as item, index}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div class="item {getNeighbourClasses(index, currentItem)}" onclick={() => {changeCurrentItem(index)}}>
-					{@render itemSnippet(data[index % data.length], isActive(index))}
+			<div class="item" bind:this={items[index + data.length]} onclick={() => onclick(index + data.length)}>
+				{@render itemSnippet(item, false)}
 			</div>
 		{/each}
-	</div>
-{/if}
+
+		{#each data as item, index}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class="item" bind:this={items[index + 2 * data.length]} onclick={() => onclick(index + 2 * data.length)}>
+				{@render itemSnippet(item, false)}
+			</div>
+		{/each}
+	{/if}
+
+
+	<div class="spacer"></div>
+
+</div>
 
 <style>
 	@reference "style";
-
 	.carousel {
-		@apply w-full overflow-hidden;
-
 		--max-item-height: calc(100svh - 2rem - var(--navbar-height));
 		--max-item-width-portrait: calc(min(22rem, var(--max-item-height) * var(--aspect-card)));
 		--max-item-width-landscape: calc(min(34rem, var(--max-item-height) / var(--aspect-card)));
@@ -178,101 +170,59 @@
 		--max-carousel-height-portrait: calc(min(80svw, var(--max-item-width-portrait)) / var(--aspect-card) + 4rem);
 		--max-carousel-height-landscape: calc(min(80svw, var(--max-item-width-landscape)) * var(--aspect-card) + 4rem);
 
-		@apply h-[var(--max-carousel-height-portrait)];
-		@apply landscape-cards:h-[var(--max-carousel-height-landscape)];
+		@apply w-full flex;
 
-		& > .item {
-			@apply w-[80%] p-4;
-			@apply max-w-[var(--max-item-width-portrait)];
-			@apply landscape-cards:max-w-[var(--max-item-width-landscape)];
+		overflow-x: scroll;
+		scrollbar-width: none;
+		scroll-behavior: smooth;
+		scroll-snap-type: x mandatory;
+		-ms-overflow-style: none;
+
+		scroll-snap-type: x mandatory;
+
+		mask-image: linear-gradient(
+			to right,
+			transparent,
+			transparent calc(50% - var(--item-width) * 3 / 2),
+			black calc(50% - var(--item-width) / 2),
+			black calc(50% + var(--item-width) / 2),
+			transparent calc(50% + var(--item-width) * 3 / 2),
+			transparent
+		);
+
+		&::-webkit-scrollbar { display: none;}
+	}
+
+	.expanded {
+		@apply gap-6;
+		@apply justify-center-safe items-center-safe content-center-safe;
+
+		& > .spacer {
+			@apply hidden;
 		}
+	}
+	.expanded > .spacer { display: none;}
+	.spacer {
+		@apply w-1/2 shrink-0;
+	}
 
-		&.expanded {
-			@apply flex content-center-safe justify-center-safe items-center-safe;
-		}
+	.item {
+		@apply w-[80%] shrink-0 grow-0;
+		@apply max-w-[var(--max-item-width-portrait)];
+		@apply landscape-cards:max-w-[var(--max-item-width-landscape)];
 
-		&.collapsed {
-			& > .item {
-				@apply absolute left-1/2 top-1/2;
-				@apply ease-out duration-1000;
-				transition-property: --carousel-opacity-left, --carousel-opacity-right, --carousel-translate-x, scale, filter;
-				mask: linear-gradient(to right,rgba(255,255,255,var(--carousel-opacity-left)), rgba(255,255,255,var(--carousel-opacity-right)));
-				translate: var(--carousel-translate-x) -50%;
+		scroll-snap-align: center;
+		scroll-snap-stop: always;
 
-				& :global(.rule) { @apply transition-[scale] duration-1000 ease-out; }
+		@apply flex items-center justify-center;
 
-				&.active {
-					scale: 1;
-					filter: grayscale(0);
-					--carousel-translate-x: -50%;
-					--carousel-opacity-left: 1;
-					--carousel-opacity-right: 1;
-					& :global(.rule) { @apply scale-100; }
-				}
-
-				&:not(.active) {
-					scale: 0.85;
-					filter: grayscale(0.75);
-					& :global(*) { @apply pointer-events-none; }
-					& :global(.rule.horizontal) { @apply scale-y-[1.2]; }
-					& :global(.rule.vertical) { @apply scale-x-[1.2]; }
-				}
-
-				&.neighbour {
-					@apply cursor-pointer;
-
-					&.left {
-						--carousel-opacity-left: 0;
-						--carousel-opacity-right: 0.8;
-						--carousel-translate-x: -145%;
-
-						&:hover {
-							filter: grayscale(0.5);
-							--carousel-opacity-left: 0.2;
-							--carousel-opacity-right: 0.9;
-						}
-					}
-					&.right {
-						--carousel-opacity-left: 0.8;
-						--carousel-opacity-right: 0;
-						--carousel-translate-x: 45%;
-
-						&:hover {
-							filter: grayscale(0.5);
-							--carousel-opacity-left: 0.9;
-							--carousel-opacity-right: 0.2;
-						}
-					}
-				}
-
-				&.distant,
-				&.far {
-					--carousel-opacity-left: 0;
-					--carousel-opacity-right: 0;
-
-					&.left { --carousel-translate-x: -245%; }
-					&.right { --carousel-translate-x: 145%; }
-				}
+		&:not(.spotlight) {
+			@apply cursor-pointer;
+			& > :global(*) {
+				@apply pointer-events-none;
+				@apply select-none;
 			}
 		}
-	}
-
-	@property --carousel-opacity-left{
-		syntax: "<number>";
-		initial-value: 0;
-		inherits: false;
-	}
-
-	@property --carousel-opacity-right{
-		syntax: "<number>";
-		initial-value: 0;
-		inherits: false;
-	}
-
-	@property --carousel-translate-x{
-		syntax: "<percentage>";
-		initial-value: 0%;
-		inherits: false;
 	}
 
 </style>

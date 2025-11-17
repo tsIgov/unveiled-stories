@@ -22,3 +22,8 @@
 	<Heading title={t(header)} summary={t(summary)}/>
 	<Carousel itemSnippet={chapter} data={chapters} />
 </section>
+
+<style>
+	@reference "style";
+	.the-experience :global(.card) { @apply w-full; }
+</style>

@@ -6,7 +6,6 @@
 	import { getTranslator } from '$lib/i18n/translator';
 
 	import { type Quote, title, quotes, background } from 'data/testimonials';
-	import NewCarousel from 'components/common/NewCarousel.svelte';
 
 	let t = $derived(getTranslator());
 </script>
@@ -24,7 +23,7 @@
 <section class="testimonials">
 	<SectionBackground portrait={background.portrait} landscape={background.landscape} />
 	<Heading title={t(title)} />
-	<NewCarousel itemSnippet={quote} data={quotes} loop={true} />
+	<Carousel itemSnippet={quote} data={quotes} loop={true} />
 </section>
 
 <style>

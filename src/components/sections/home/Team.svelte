@@ -5,7 +5,6 @@
 	import { getTranslator } from '$lib/i18n/translator';
 
 	import { type TeamMember, header, members } from 'data/team';
-	import NewCarousel from 'components/common/NewCarousel.svelte';
 
 	let t = $derived(getTranslator());
 </script>
@@ -22,5 +21,10 @@
 
 <section class="team">
 	<Heading title={t(header)} />
-	<NewCarousel itemSnippet={member} data={members} expandIfFit={true} />
+	<Carousel itemSnippet={member} data={members} expandIfFit={true} />
 </section>
+
+<style>
+	@reference "style";
+	.team :global(.card) { @apply w-full; }
+</style>
