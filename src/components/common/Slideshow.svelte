@@ -122,31 +122,26 @@
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full transition-all duration-[2s];
 		will-change: opacity, transform;
-		transform: translateZ(0) scale(1);
-		z-index: -1;
-		opacity: 1;
+		transform: translateZ(0) scale(1.01);
 
 		& > :global(*) {
 			@apply w-full h-full;
 		}
 
 		&.active {
-			/* @apply opacity-100; */
-			/* @apply pointer-events-auto; */
-			animation: 2s linear 0s 1 forwards activate;
+			@apply opacity-100;
+			@apply pointer-events-auto;
 		}
 
 		&:not(.active) {
-			/* @apply opacity-0; */
-			/* @apply pointer-events-none; */
-			animation: 2s linear 0s 1 none deactivate;
-			/* animation: remove 2s linear 1; */
+			@apply opacity-0;
+			@apply pointer-events-none;
+			animation: remove 2s linear 1;
 		}
 	}
 
 	.slideshow-nav {
 		@apply absolute p-4 w-full bottom-0 left-0 flex justify-center items-center gap-4;
-		z-index: 2;
 
 		& > button {
 			@apply flex justify-center items-center rounded-full transition-all cursor-pointer;
@@ -203,34 +198,6 @@
 		}
 		to {
 			visibility: hidden;
-		}
-	}
-
-	@keyframes activate {
-		0% {
-			z-index: 0;
-			opacity: 1%;
-		}
-		99% {
-			z-index: 0;
-		}
-		100% {
-			opacity: 100%;
-			z-index: 1
-		}
-	}
-
-	@keyframes deactivate {
-		0% {
-			z-index: 1;
-			opacity: 100%;
-		}
-		99% {
-			z-index: 1;
-		}
-		100% {
-			opacity: 1%;
-			z-index: -1;
 		}
 	}
 </style>
