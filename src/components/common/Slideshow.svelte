@@ -121,7 +121,7 @@
 
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full transition-all duration-[2s];
-		will-change: opacity, transform, visibility;
+		will-change: opacity;
 		transform: translateZ(0);
 
 		& > :global(*) {
@@ -192,10 +192,10 @@
 
 	@keyframes remove {
 		from {
-			visibility: visible;
+			/* visibility: visible; */
 		}
 		to {
-			visibility: hidden;
+			/* visibility: hidden; */
 		}
 	}
 </style>
