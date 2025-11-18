@@ -134,7 +134,7 @@
 		}
 
 		&:not(.active) {
-			@apply opacity-100;
+			@apply opacity-0;
 			/* @apply pointer-events-none; */
 			/* animation: remove 2s linear 1; */
 		}
