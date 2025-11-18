@@ -133,9 +133,8 @@
 		}
 
 		&:not(.active) {
-			@apply opacity-5;
-			/* @apply opacity-0 pointer-events-none;
-			animation: remove 2s linear 1; */
+			@apply opacity-5 pointer-events-none;
+			animation: remove 2s linear 1;
 		}
 	}
 
