@@ -9,10 +9,13 @@
 
 	let { landscape, portrait, alt = "background" } : Props = $props();
 
+	console.log(landscape);
+	console.log(portrait);
+
 </script>
 
-<img class="section-background dim portrait" src={portrait.src} {alt} />
-<img class="section-background dim landscape" src={landscape.src} {alt} />
+<enhanced:img class="section-background dim portrait" src={portrait.src} {alt} />
+<enhanced:img class="section-background dim landscape" src={landscape.src} {alt} />
 
 <style>
 	@reference "style";

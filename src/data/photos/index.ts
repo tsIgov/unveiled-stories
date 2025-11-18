@@ -1,9 +1,11 @@
 
-import { default as data } from "./data"
+import { default as data } from "./newdata"
+import type { Picture } from 'vite-imagetools';
+
 
 export interface Photo
 {
-    src: string,
+    src: Picture,
 	orientation: "landscape" | "portrait"
 }
 

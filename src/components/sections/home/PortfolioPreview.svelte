@@ -47,19 +47,19 @@
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
 	<div>
-		<!-- <SectionBackground
+		<SectionBackground
 			landscape={item.photos.backgrounds.landscape}
-			portrait={item.photos.backgrounds.portrait} alt={t(item.name)} /> -->
+			portrait={item.photos.backgrounds.portrait} alt={t(item.name)} />
 
 		<div class="preview">
 
-			<!-- <PhotoCardSpread
+			<PhotoCardSpread
 				imageLeft={item.photos.preview.left}
 				imageCenter={item.photos.preview.center}
 				imageRight={item.photos.preview.right}
 				color={item.color}
 				onclick={ !item.photos.gallery || !galleryEnabled ? undefined : () => openGallery(index)}
-			/> -->
+			/>
 
 			<div class="side">
 				<Rule orientation="vertical" centerOrnament={true}/>

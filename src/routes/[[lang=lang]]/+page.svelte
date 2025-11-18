@@ -8,7 +8,7 @@
 	<PortfolioPreview />
 	<Rule />
 
-	<TheExperience />
+	<!-- <TheExperience />
 	<Rule />
 
 	<Faq />
@@ -20,7 +20,7 @@
 	<Testimonials />
 	<Rule />
 
-	<Contacts />
+	<Contacts /> -->
 </main>
 
 <style>
