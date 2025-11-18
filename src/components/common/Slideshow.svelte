@@ -87,7 +87,7 @@
 		</div>
 	{/each}
 
-	<!-- <div class="slideshow-nav">
+	<div class="slideshow-nav">
 		{#each { length: slidesCount }, slideIndex}
 			<button
 				class:active={currentSlide == slideIndex}
@@ -104,7 +104,7 @@
 
 			</button>
 		{/each}
-	</div> -->
+	</div>
 
 </div>
 
@@ -133,8 +133,8 @@
 		}
 
 		&:not(.active) {
-			@apply opacity-[0.1] pointer-events-none;
-			/* animation: remove 2s linear 1; */
+			/* @apply opacity-0 pointer-events-none;
+			animation: remove 2s linear 1; */
 		}
 	}
 
@@ -192,10 +192,10 @@
 
 	@keyframes remove {
 		from {
-			/* visibility: visible; */
+			visibility: visible;
 		}
 		to {
-			/* visibility: hidden; */
+			visibility: hidden;
 		}
 	}
 </style>
