@@ -20,7 +20,7 @@
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<img src={image.src} alt="" fetchpriority="high" />
+				<img src={image.src} alt="" fetchpriority="high" loading="eager" />
 			</Frame>
 		</div>
 	 </Frame>
