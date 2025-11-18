@@ -1,7 +1,7 @@
 <script lang="ts" generics="T">
 	import { onMount } from "svelte";
 	import type { Snippet } from 'svelte';
-	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
+	import { type SwipeCustomEvent, useSwipe } from 'svelte-gestures';
 
 	interface Props {
 		data: T[],
@@ -81,7 +81,7 @@
 	{#each data as slide, index}
 		<div class="slide"
 			class:active={currentSlide == index}
-			use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}>
+			{...useSwipe(swipeHandler, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}>
 
 			{@render slideSnippet(slide, index)}
 		</div>
