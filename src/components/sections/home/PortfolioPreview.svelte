@@ -53,13 +53,13 @@
 
 		<div class="preview">
 
-			<PhotoCardSpread
+			<!-- <PhotoCardSpread
 				imageLeft={item.photos.preview.left}
 				imageCenter={item.photos.preview.center}
 				imageRight={item.photos.preview.right}
 				color={item.color}
 				onclick={ !item.photos.gallery || !galleryEnabled ? undefined : () => openGallery(index)}
-			/>
+			/> -->
 
 			<div class="side">
 				<Rule orientation="vertical" centerOrnament={true}/>
