@@ -129,11 +129,13 @@
 		}
 
 		&.active {
-			@apply opacity-100 pointer-events-auto;
+			@apply opacity-100;
+			/* @apply pointer-events-auto; */
 		}
 
 		&:not(.active) {
-			@apply opacity-100 pointer-events-none;
+			@apply opacity-100;
+			/* @apply pointer-events-none; */
 			/* animation: remove 2s linear 1; */
 		}
 	}
