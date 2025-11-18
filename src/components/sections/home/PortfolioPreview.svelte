@@ -35,13 +35,13 @@
 		onchanged={onSlideChanged}
 	/>
 
-	{#each photoshoots as photoshoot, index}
+	<!-- {#each photoshoots as photoshoot, index}
 		<LightboxGallery bind:this={galleries[index]}
 			images={photoshoot.photos.gallery}
 			borderColor={photoshoot.color}
 			onclosed={onGalleryClosed}
 		/>
-	{/each}
+	{/each} -->
 
 </section>
 
