@@ -21,10 +21,9 @@
 </script>
 
 <Card class="detail-card" {glow}>
-	<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} />
-
 	<div class="content"
 		class:expanded={expanded}>
+		<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} />
 		<div class="title">
 			<button onclick="{() => { expanded = !expanded; }}">
 				<h3>{title}</h3>
