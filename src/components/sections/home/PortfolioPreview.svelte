@@ -46,7 +46,7 @@
 </section>
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
-	<div class="bg-neutral-800">
+	<div class="photoshoot">
 		<SectionBackground
 			landscape={item.photos.backgrounds.landscape}
 			portrait={item.photos.backgrounds.portrait} alt={t(item.name)} />
@@ -94,6 +94,8 @@
 	.portfolio-preview > :global(.slideshow) {
 		@apply w-full h-svh;
 	}
+
+	.photoshoot { @apply bg-neutral-800; }
 
 	.details {
 		@apply max-w-sm px-4 flex flex-col gap-3 items-center;
