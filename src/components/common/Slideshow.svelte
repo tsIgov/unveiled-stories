@@ -87,7 +87,7 @@
 		</div>
 	{/each}
 
-	<div class="slideshow-nav">
+	<!-- <div class="slideshow-nav">
 		{#each { length: slidesCount }, slideIndex}
 			<button
 				class:active={currentSlide == slideIndex}
@@ -104,7 +104,7 @@
 
 			</button>
 		{/each}
-	</div>
+	</div> -->
 
 </div>
 
