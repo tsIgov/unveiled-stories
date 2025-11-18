@@ -1,5 +1,5 @@
 import type { MultilingualText } from "$lib/i18n/languages";
-import { type Photo } from "data/photos";
+import { type Photo } from "data/images";
 
 import tsvetan from "./tsvetan";
 import julia from "./julia";

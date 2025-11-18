@@ -1,5 +1,5 @@
 import { type MultilingualText } from "$lib/i18n/languages";
-import { type Photo, photos } from "data/photos";
+import { type Photo, photos } from "data/images";
 
 export interface Chapter
 {
@@ -31,8 +31,8 @@ const chapter1 : Chapter = {
 		bg: "Всичко започва с непринуден разговор, свободен от предразсъдъци. Ще изследваме какво искаш да изразиш и как искаш да се чувстваш, оформяйки история, която е дръзка, нежна, игрива или силна — каквото усещаш като автентично за теб. Заедно ще определим визуалната посока, стила и цялостното усещане."
 	},
 	background: {
-		landscape: photos["backgrounds/experience-1-landscape.avif"],
-		portrait: photos["backgrounds/experience-1-portrait.avif"]
+		landscape: photos["backgrounds/faq-landscape"],
+		portrait: photos["backgrounds/faq-portrait"]
 	}
 };
 
@@ -46,8 +46,8 @@ const chapter2 : Chapter = {
 		bg: "След като идеята е придобила форма, е време да съберем елементите, които ще ѝ вдъхнат живот. Това означава да открием уединено, спокойно място, да подберем дрехи и реквизит и да определим датата, на която всичко ще се случи. Всеки детайл е съобразен с тона и истината на твоята история. Така изграждаме онази среда, в която преживяването ти може да се разгърне в пълния си блясък."
 	},
 	background: {
-		landscape: photos["backgrounds/experience-2-landscape.avif"],
-		portrait: photos["backgrounds/experience-2-portrait.avif"]
+		landscape: photos["backgrounds/faq-landscape"],
+		portrait: photos["backgrounds/faq-portrait"]
 	}
 };
 
@@ -61,8 +61,8 @@ const chapter3 : Chapter = {
 		bg: "Това е денят, в който твоята история се разгръща. В спокойна и подкрепяща атмосфера ще отделим нужното време, за да изследваме и изразим света, който сме изградили заедно. Ще те напътстваме деликатно, за да можеш да се отпуснеш и да присъстваш в момента. Не е нужно да бъдеш модел — важното е просто да бъдеш."
 	},
 	background: {
-		landscape: photos["backgrounds/experience-3-landscape.avif"],
-		portrait: photos["backgrounds/experience-3-portrait.avif"]
+		landscape: photos["backgrounds/faq-landscape"],
+		portrait: photos["backgrounds/faq-portrait"]
 	}
 };
 
@@ -76,8 +76,8 @@ const chapter4 : Chapter = {
 		bg: "След като уловим вашата история, ще я преживеем заедно – не просто като снимки, а като съхранени и почувствани мигове. Вие ще решите как да ѝ отдадете почит: чрез ръчно изработен кожен албум, персонализирано тесте карти или пък чрез маслена картина, нарисувана от нашия невероятен художник. Тази последна стъпка е посветена на създаването на нещо вечно – начин да задържите тази история си в ръцете и да се връщате към нея отново и отново."
 	},
 	background: {
-		landscape: photos["backgrounds/experience-4-landscape.avif"],
-		portrait: photos["backgrounds/experience-4-portrait.avif"]
+		landscape: photos["backgrounds/faq-landscape"],
+		portrait: photos["backgrounds/faq-portrait"]
 	}
 };
 

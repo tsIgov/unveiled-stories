@@ -7,7 +7,9 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"process-photos": "node scripts/process-photos.js"
+		"process-photos": "node scripts/process-photos.js",
+		"compress-images": "node scripts/compress-images.js",
+		"rebuild-image-metadata": "node scripts/rebuild-image-metadata.js"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.8",

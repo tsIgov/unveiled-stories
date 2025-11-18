@@ -1,5 +1,5 @@
 import type { TeamMember } from ".";
-import { photos } from "data/photos"
+import { photos } from "data/images"
 
 const data : TeamMember = {
 	name: {en: "Julia", bg:"Юлия"},
@@ -12,8 +12,8 @@ const data : TeamMember = {
 		bg: "Аз съм художник, който обича да рисува човешкото тяло във всичките му форми и често работя във фентъзи, класически и исторически контекст. Моята цел е да уловя миг и да го превърна в една вечност, която живее свой живот."
 	},
 	photos: {
-		landscape: photos["team/julia-landscape.avif"],
-		portrait: photos["team/julia-portrait.avif"]
+		landscape: photos["team/julia-landscape"],
+		portrait: photos["team/julia-portrait"]
 	},
 };
 

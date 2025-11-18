@@ -1,5 +1,5 @@
 import { type MultilingualText } from "$lib/i18n/languages";
-import { photos } from 'data/photos';
+import { photos } from 'data/images';
 
 export interface Question
 {
@@ -13,8 +13,8 @@ export const title : MultilingualText = {
 }
 
 export const background = {
-	landscape: photos["backgrounds/faq-landscape.avif"],
-	portrait: photos["backgrounds/faq-portrait.avif"]
+	landscape: photos["backgrounds/faq-landscape"],
+	portrait: photos["backgrounds/faq-portrait"]
 };
 
 export const questions : Question[] = [

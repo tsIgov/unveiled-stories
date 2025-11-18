@@ -1,5 +1,5 @@
 import type { MultilingualText } from "$lib/i18n/languages";
-import { photos } from 'data/photos';
+import { photos } from 'data/images';
 
 
 export interface Quote
@@ -14,8 +14,8 @@ export const title : MultilingualText = {
 }
 
 export const background = {
-	landscape: photos["backgrounds/testimonials-landscape.avif"],
-	portrait: photos["backgrounds/testimonials-portrait.avif"]
+	landscape: photos["backgrounds/testimonials-landscape"],
+	portrait: photos["backgrounds/testimonials-portrait"]
 };
 
 const july : Quote = {

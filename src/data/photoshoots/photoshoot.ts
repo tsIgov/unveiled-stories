@@ -1,4 +1,4 @@
-import { type Photo, photos } from 'data/photos';
+import { type Photo, photos } from 'data/images';
 import { type MultilingualText } from '$lib/i18n/languages';
 
 export interface Photoshoot
@@ -38,13 +38,13 @@ export function getPhotos(id: string): {
 			.sort(([a], [b]) => a.localeCompare(b))
 			.map(([, value]) => value),
 		preview: {
-			left: photos[`photoshoots/${id}/preview/left.avif`] as Photo,
-			center: photos[`photoshoots/${id}/preview/center.avif`] as Photo,
-			right: photos[`photoshoots/${id}/preview/right.avif`] as Photo
+			left: photos[`photoshoots/${id}/preview/left`] as Photo,
+			center: photos[`photoshoots/${id}/preview/center`] as Photo,
+			right: photos[`photoshoots/${id}/preview/right`] as Photo
 		},
 		backgrounds: {
-			portrait: photos[`photoshoots/${id}/backgrounds/portrait.avif`] as Photo,
-			landscape: photos[`photoshoots/${id}/backgrounds/landscape.avif`] as Photo,
+			portrait: photos[`photoshoots/${id}/backgrounds/portrait`] as Photo,
+			landscape: photos[`photoshoots/${id}/backgrounds/landscape`] as Photo,
 		}
 	}
 };
