@@ -10,11 +10,11 @@
 	let currentIndex = $state(0);
 
 	let slideshow : Slideshow<Photoshoot>;
-	let gallery : LightboxGallery;
+	let galleries : LightboxGallery[] = [];
 
-	function openGallery() {
+	function openGallery(index : number) {
 		slideshow.pause();
-		gallery.open();
+		galleries[index].open();
 	}
 
 	function onGalleryClosed() {
@@ -34,11 +34,15 @@
 		timeout={7000}
 		onchanged={onSlideChanged}
 	/>
-	<LightboxGallery bind:this={gallery}
-		images={photoshoots[currentIndex].photos.gallery}
-		borderColor={photoshoots[currentIndex].color}
-		onclosed={onGalleryClosed}
-	/>
+
+	{#each photoshoots as photoshoot, index}
+		<LightboxGallery bind:this={galleries[index]}
+			images={photoshoot.photos.gallery}
+			borderColor={photoshoot.color}
+			onclosed={onGalleryClosed}
+		/>
+	{/each}
+
 </section>
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
@@ -54,7 +58,7 @@
 				imageCenter={item.photos.preview.center}
 				imageRight={item.photos.preview.right}
 				color={item.color}
-				onclick={ !item.photos.gallery || !galleryEnabled ? undefined : () => openGallery()}
+				onclick={ !item.photos.gallery || !galleryEnabled ? undefined : () => openGallery(index)}
 			/>
 
 			<div class="side">
@@ -63,7 +67,7 @@
 
 				<div class="details">
 					{#if item.photos.gallery != undefined && galleryEnabled}
-					<button onclick={() => openGallery()}>
+					<button onclick={() => openGallery(index)}>
 						<Frame color={item.color}>
 							<span>{t(item.name)}</span>
 						</Frame>

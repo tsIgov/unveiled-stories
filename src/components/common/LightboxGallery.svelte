@@ -85,12 +85,10 @@
 		>
 		<div class="content">
 			{#each images as image, i}
-				{#if opened || i == 0}
-					<PhotoCard
-						color={borderColor ?? "var(--color-gold)"}
-						image={image}
-						class={i == index && opened ? "active" : ""}  />
-				{/if}
+				<PhotoCard
+					color={borderColor ?? "var(--color-gold)"}
+					image={image}
+					class={i == index && opened ? "active" : ""}  />
 			{/each}
 		</div>
 
