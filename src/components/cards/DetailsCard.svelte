@@ -44,6 +44,7 @@
 	.content {
 		@apply w-full h-full;
 		@apply flex flex-col;
+		@apply bg-neutral-800;
 		transition-property: --tw-gradient-from, --tw-gradient-to, --tw-gradient-via;
 		transition-duration: 1000ms;
 

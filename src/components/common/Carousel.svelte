@@ -180,7 +180,7 @@
 		--max-carousel-height-portrait: calc(min(80svw, var(--max-item-width-portrait)) / var(--aspect-card) + 4rem);
 		--max-carousel-height-landscape: calc(min(80svw, var(--max-item-width-landscape)) * var(--aspect-card) + 4rem);
 
-		@apply w-full flex py-4;
+		@apply w-full flex py-4 gap-6;
 
 		overflow-x: scroll;
 		scrollbar-width: none;
@@ -225,8 +225,6 @@
 		scroll-snap-stop: always;
 
 		@apply flex items-center justify-center;
-
-		@apply transition-transform duration-100 ease-out;
 
 		&:not(.spotlight) {
 			@apply cursor-pointer;
