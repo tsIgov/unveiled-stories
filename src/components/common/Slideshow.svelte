@@ -122,7 +122,9 @@
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full transition-all duration-[2s];
 		will-change: opacity, transform;
-		transform: translateZ(0) scale(0.9);
+		transform: translateZ(0) scale(1);
+		backface-visibility: hidden;
+ 		perspective: 1000px;
 
 		& > :global(*) {
 			@apply w-full h-full;
