@@ -63,15 +63,14 @@
 		if (event.detail.pointerType == "mouse")
 			return;
 
-		if (event.detail.direction == "left") {
+		if (event.detail.direction == "left")
+			changeSlide((currentSlide + 1) % slidesCount);
+
+		else if (event.detail.direction == "right")
 			if (currentSlide == 0)
 				changeSlide(slidesCount - 1);
 			else
-				changeSlide((currentSlide + 1) % slidesCount);
-		}
-
-		else if (event.detail.direction == "right")
-			changeSlide((currentSlide + 1) % slidesCount);
+				changeSlide((currentSlide - 1));
 	}
 
 </script>
