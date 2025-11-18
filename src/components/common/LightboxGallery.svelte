@@ -5,7 +5,7 @@
 	import { page } from '$app/state';
 	import { pushState } from '$app/navigation';
 	import { onMount } from "svelte";
-	import { swipe, type SwipeCustomEvent } from 'svelte-gestures';
+	import { useSwipe, type SwipeCustomEvent } from 'svelte-gestures';
 	import { ChevronLeftIcon, ChevronRightIcon,XIcon } from '@lucide/svelte';
 
 	interface Props {
@@ -81,7 +81,7 @@
 	<div class="lightbox-gallery"
 		class:opened={opened}
 		class:closed={!opened && !initial}
-		use:swipe={()=>({ timeframe: 300, minSwipeDistance: 60, touchAction: 'pan-y' })} onswipe={swipeHandler}
+		{...useSwipe(swipeHandler, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}
 		>
 		<div class="content">
 			{#each images as image, i}
