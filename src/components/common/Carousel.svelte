@@ -226,6 +226,8 @@
 
 		@apply flex items-center justify-center;
 
+		@apply transition-transform duration-100 ease-out;
+
 		&:not(.spotlight) {
 			@apply cursor-pointer;
 			& > :global(*) {
