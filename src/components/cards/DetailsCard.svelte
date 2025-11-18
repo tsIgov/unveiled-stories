@@ -21,9 +21,9 @@
 </script>
 
 <Card class="detail-card" {glow}>
+	<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} />
 	<div class="content"
 		class:expanded={expanded}>
-		<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} />
 		<div class="title">
 			<button onclick="{() => { expanded = !expanded; }}">
 				<h3>{title}</h3>
@@ -43,7 +43,6 @@
 	.content {
 		@apply w-full h-full;
 		@apply flex flex-col;
-		@apply bg-neutral-800;
 		transition-property: --tw-gradient-from, --tw-gradient-to, --tw-gradient-via;
 		transition-duration: 1000ms;
 
