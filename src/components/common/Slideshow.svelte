@@ -122,7 +122,7 @@
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full transition-all duration-[2s];
 		will-change: opacity, transform;
-		transform: translateZ(0) scale(1);
+		transform: translateZ(0) scale(1.01);
 
 		& > :global(*) {
 			@apply w-full h-full;
@@ -130,13 +130,13 @@
 
 		&.active {
 			@apply opacity-100;
-			/* @apply pointer-events-auto; */
+			@apply pointer-events-auto;
 		}
 
 		&:not(.active) {
 			@apply opacity-0;
-			/* @apply pointer-events-none; */
-			/* animation: remove 2s linear 1; */
+			@apply pointer-events-none;
+			animation: remove 2s linear 1;
 		}
 	}
 
