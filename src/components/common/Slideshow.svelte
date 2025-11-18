@@ -121,7 +121,7 @@
 
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full transition-all duration-[2s];
-		will-change: opacity, transform;
+		will-change: opacity, transform, visibility;
 		transform: translateZ(0);
 
 		& > :global(*) {
