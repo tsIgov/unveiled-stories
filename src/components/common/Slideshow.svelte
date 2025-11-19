@@ -51,11 +51,11 @@
 		}
 		else {
 			currentSlide = index;
-			onchanged?.(data[index], index);
+			onchanged?.(data[currentSlide], currentSlide);
 		}
 		timer = setInterval(() => {
 			currentSlide = (currentSlide + 1) % slidesCount;
-			onchanged?.(data[index], index);
+			onchanged?.(data[currentSlide], currentSlide);
 		}, timeout);
 	}
 
@@ -76,13 +76,10 @@
 </script>
 
 
-<div class="slideshow">
+<div class="slideshow" {...useSwipe(swipeHandler, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}>
 
 	{#each data as slide, index}
-		<div class="slide"
-			class:active={currentSlide == index}
-			{...useSwipe(swipeHandler, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}>
-
+		<div class="slide" class:active={currentSlide == index}>
 			{@render slideSnippet(slide, index)}
 		</div>
 	{/each}
@@ -120,7 +117,7 @@
 	}
 
 	.slide {
-		@apply flex absolute top-0 left-0 w-full h-full transition-all duration-[2s];
+		@apply flex absolute top-0 left-0 w-full h-full transition-opacity duration-[2s];
 		will-change: opacity, transform;
 		transform: translateZ(0) scale(1);
 
@@ -144,12 +141,12 @@
 		@apply absolute p-4 w-full bottom-0 left-0 flex justify-center items-center gap-4;
 
 		& > button {
-			@apply flex justify-center items-center rounded-full transition-all cursor-pointer;
+			@apply flex justify-center items-center rounded-full cursor-pointer;
 			width: calc(var(--slideshow-navigation-height) - 2rem);
 			height: calc(var(--slideshow-navigation-height) - 2rem);
 
 			& > span {
-				@apply transition-all duration-1000 text-xs;
+				@apply transition-colors duration-1000 text-xs;
 				@apply text-neutral-100/60;
 
 			}
@@ -160,7 +157,7 @@
 			}
 
 			& > .progress-line {
-				@apply transition-all duration-1000;
+				@apply transition-opacity duration-1000;
 				@apply absolute rounded-full bg-conic from-neutral-100 to-neutral-100/20 from-0% to-0% -z-10;
 				@apply opacity-0;
 
