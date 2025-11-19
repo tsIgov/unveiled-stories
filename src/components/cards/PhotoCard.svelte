@@ -22,7 +22,7 @@
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img class:initialized={initialized} src={image.src} alt="" decoding="async" loading="eager" onloadeddata={() => initialized = true } />
+				<enhanced:img class:initialized={initialized} src={image.src} alt="" decoding="async" loading="eager" onload={() => initialized = true } />
 			</Frame>
 		</div>
 	 </Frame>
