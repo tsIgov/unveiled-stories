@@ -122,7 +122,7 @@
 	}
 
 	.slide {
-		@apply flex absolute top-0 left-0 w-full h-full transition-none duration-[2s];
+		@apply flex absolute top-0 left-0 w-full h-full transition-opacity duration-[2s];
 		will-change: opacity, transform;
 		transform: translateZ(0) scale(1.0);
 
