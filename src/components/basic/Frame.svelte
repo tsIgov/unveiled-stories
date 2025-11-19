@@ -167,8 +167,10 @@
 	}
 
 	.glow {
+		--innershadow: 2px;
+		--outershadow: 8px;
 		filter: drop-shadow(0 0 var(--innershadow) var(--color-moonlight)) drop-shadow(0 0 var(--outershadow) var(--color));
-		animation: glow 4s ease-in-out infinite alternate;
+		/* animation: glow 4s ease-in-out infinite alternate; */
 	}
 
 	@keyframes glow {
@@ -182,7 +184,7 @@
 		}
 	}
 
-	@property --innershadow{
+	/* @property --innershadow{
 		syntax: "<length>";
 		initial-value: 0px;
 		inherits: true;
@@ -192,6 +194,6 @@
 		syntax: "<length>";
 		initial-value: 0px;
 		inherits: true;
-	}
+	} */
 
 </style>
