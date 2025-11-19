@@ -43,8 +43,8 @@
 
 		& :global(img) {
 			@apply w-full h-full;
-			/* @apply min-w-12 min-h-12;
-			@apply object-cover; */
+			@apply min-w-12 min-h-12;
+			@apply object-cover;
 			@apply select-none;
 		}
 	}
