@@ -1,8 +1,9 @@
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
+import { v4 as uuid } from "uuid";
 
-const inputRoot = "_unprocessed-photos";
+const inputRoot = "_unprocessed-images";
 const outputRoot = "src/data/images";
 
 if (!fs.existsSync(inputRoot))
@@ -33,8 +34,14 @@ for (const photo of photos) {
 
     try {
         await sharp(fullPath)
-            .jpeg({ quality: 80 })
-            .withMetadata()
+            .jpeg({ quality: 80})
+            .withMetadata({
+				exif: {
+					IFD0: {
+						UserComment: uuid()
+					}
+				}
+			})
             .toFile(outputPath);
 
 		console.log(`✔ Converted: ${fullPath} → ${outputPath}`);

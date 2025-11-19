@@ -9,7 +9,6 @@
 		"build": "vite build",
 		"rebuild": "npm run clean && npm run build",
 		"preview": "vite preview",
-
 		"compress-images": "node scripts/compress-images.js",
 		"rebuild-image-metadata": "node scripts/rebuild-image-metadata.js"
 	},
@@ -29,6 +28,7 @@
 		"@humanspeak/svelte-markdown": "^0.8.11",
 		"@lucide/svelte": "^0.542.0",
 		"sharp": "^0.34.5",
-		"svelte-gestures": "^5.1.4"
+		"svelte-gestures": "^5.1.4",
+		"uuid": "^13.0.0"
 	}
 }
