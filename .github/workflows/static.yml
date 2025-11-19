@@ -15,14 +15,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
          node-version: 24
-         cache: npm
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path:
+		    ~/.npm
+		    node_modules
+          key: node-cache
 
       - name: Install dependencies
         run: npm i
 
       - name: build
         env:
-         BASE_PATH: '/${{ github.event.repository.name }}'
+          BASE_PATH: '/${{ github.event.repository.name }}'
         run: npm run build
 
       - name: Upload Artifacts
