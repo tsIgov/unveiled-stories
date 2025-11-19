@@ -20,8 +20,7 @@
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				asdf
-				<!-- <enhanced:img src={image.src} alt="" /> -->
+				<enhanced:img src={image.src} alt="" />
 			</Frame>
 		</div>
 	 </Frame>
@@ -44,8 +43,8 @@
 
 		& :global(img) {
 			@apply w-full h-full;
-			@apply min-w-12 min-h-12;
-			@apply object-cover;
+			/* @apply min-w-12 min-h-12;
+			@apply object-cover; */
 			@apply select-none;
 		}
 	}
