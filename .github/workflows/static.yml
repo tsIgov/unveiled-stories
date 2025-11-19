@@ -20,8 +20,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-		    ~/.npm
-		    node_modules
+            ~/.npm
+            node_modules
           key: node-cache
 
       - name: Install dependencies
