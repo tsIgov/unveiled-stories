@@ -18,11 +18,11 @@
 
 
 <div class="frame">
-	<div class="glow expanded"
+	<!-- <div class="glow expanded"
 		class:disabled={!glow}
 		style="--color: {color}">
 		<div class="expanded spinner cutout" class:chipped={chipped}></div>
-	</div>
+	</div> -->
 
 	<div class="expanded spinner cutout" class:chipped={chipped} style="--color: {color}">	</div>
 
@@ -35,12 +35,12 @@
 	@reference "style";
 
 	.frame {
+		@apply w-full h-full;
+
 		--corner-size: 1rem;
 		--border-size: 2px;
 
 		padding: var(--border-size);
-
-
 	}
 
 	.spinner {
@@ -49,8 +49,8 @@
 	}
 
 	.content {
-		padding: 1rem;
-		@apply bg-neutral-800/40 backdrop-blur-xs;
+		@apply w-full h-full;
+		@apply bg-neutral-800/30;
 	}
 
 	.content.chipped {

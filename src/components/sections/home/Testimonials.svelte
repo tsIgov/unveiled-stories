@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { Card } from "components/basic";
 	import { Carousel, Heading, SectionBackground } from 'components/common';
-	import { Card } from 'components/cards';
 
 	import { MessageCircleMoreIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
@@ -10,8 +10,8 @@
 	let t = $derived(getTranslator());
 </script>
 
-{#snippet quote(item : Quote, spotlight: boolean)}
-	<Card glow={spotlight}>
+{#snippet quote(item : Quote)}
+	<Card>
 		<div class="quote">
 			<MessageCircleMoreIcon class="icon" />
 			<p class="text">{t(item.quote)}</p>

@@ -85,8 +85,8 @@
 			const scale = 1 - t * 0.15;
 			const greyscale = t * 0.75;
 
-			item.style.transform = `scale(${scale})`;
-			item.style.filter = `grayscale(${greyscale})`;
+			item.style.transform = `scale(${scale.toFixed(2)})`;
+			item.style.filter = `grayscale(${greyscale.toFixed(2)})`;
 
 			if (distance < 1)
 				spotlightIndex = i;
