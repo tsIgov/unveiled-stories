@@ -20,7 +20,7 @@
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img src={image.src} alt="" decoding="async" loading="eager" />
+				<enhanced:img src={image.src} alt="" loading="eager" />
 			</Frame>
 		</div>
 	 </Frame>
