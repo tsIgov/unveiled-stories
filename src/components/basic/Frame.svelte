@@ -36,6 +36,7 @@
 		padding: var(--border-size);
 
 		transition: filter 1s ease;
+		filter: drop-shadow(0 0 2px transparent) drop-shadow(0 0 8px transparent);
 
 		&.glow {
 			filter: drop-shadow(0 0 2px var(--color-moonlight)) drop-shadow(0 0 8px var(--color));
