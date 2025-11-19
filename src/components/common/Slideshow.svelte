@@ -136,7 +136,7 @@
 		}
 
 		&:not(.active) {
-			@apply opacity-100 translate-x-[calc(100%_-_1px)];
+			@apply opacity-100;
 			@apply pointer-events-none;
 			animation: remove 2s linear 1;
 		}
