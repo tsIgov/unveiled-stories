@@ -131,12 +131,12 @@
 		}
 
 		&.active {
-			@apply opacity-50;
+			@apply opacity-100;
 			@apply pointer-events-auto;
 		}
 
 		&:not(.active) {
-			@apply opacity-25;
+			@apply opacity-100 translate-x-[calc(100%_-_1px)];
 			@apply pointer-events-none;
 			animation: remove 2s linear 1;
 		}
