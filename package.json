@@ -5,9 +5,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
+		"clean": "rm -rf build node_modules/.vite node_modules/.vite-temp node_modules/.cache .svelte-kit",
 		"build": "vite build",
+		"rebuild": "npm run clean && npm run build",
 		"preview": "vite preview",
-		"process-photos": "node scripts/process-photos.js",
+
 		"compress-images": "node scripts/compress-images.js",
 		"rebuild-image-metadata": "node scripts/rebuild-image-metadata.js"
 	},
