@@ -1,13 +1,15 @@
 @utility hover-glow {
-	&::after {
-			@apply absolute left-0 w-full h-2;
-			@apply blur-md bg-gradient-to-r from-moonlight/0 via-moonlight to-moonlight/0 ;
-			@apply transition-all duration-250 opacity-0;
-			top: calc(50% - 0.25rem);
-			content: "";
-		}
+	@media (hover: hover) and (pointer: fine) {
+		&::after {
+				@apply absolute left-0 w-full h-2;
+				@apply blur-md bg-linear-to-r from-moonlight/0 via-moonlight to-moonlight/0 ;
+				@apply transition-all duration-250 opacity-0;
+				top: calc(50% - 0.25rem);
+				content: "";
+			}
 
-	&:hover::after {
-		@apply opacity-100;
+		&:hover::after {
+			@apply opacity-100;
+		}
 	}
 }
