@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Photo } from "data/photos";
+	import { type Photo } from "data/images";
 
 	interface Props {
 		portrait: Photo,
@@ -13,8 +13,8 @@
 </script>
 
 <div class="card-background">
-	<img class="portrait" class:dim={dim} src={portrait.src} {alt} />
-	<img class="landscape" class:dim={dim} src={landscape.src} {alt} />
+	<enhanced:img class="portrait" class:dim={dim} src={portrait.src} {alt} />
+	<enhanced:img class="landscape" class:dim={dim} src={landscape.src} {alt} />
 </div>
 <style>
 	@reference "style";
@@ -23,13 +23,13 @@
 		@apply absolute top-0 left-0 w-full h-full;
 		@apply bg-neutral-800;
 
-		& > img {
+		& :global(img) {
 			@apply absolute top-0 left-0 w-full h-full;
 			@apply object-cover;
 			@apply select-none;
 
-			&.portrait { @apply block landscape-cards:hidden; }
-			&.landscape { @apply hidden landscape-cards:block; }
+			&:global(.portrait) { @apply block landscape-cards:hidden; }
+			&:global(.landscape) { @apply hidden landscape-cards:block; }
 		}
 	}
 </style>

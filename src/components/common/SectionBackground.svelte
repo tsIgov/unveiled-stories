@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Photo } from 'data/photos';
+	import { type Photo } from 'data/images';
 
 	interface Props {
 		landscape: Photo,
@@ -8,10 +8,6 @@
 	}
 
 	let { landscape, portrait, alt = "background" } : Props = $props();
-
-	console.log(landscape);
-	console.log(portrait);
-
 </script>
 
 <enhanced:img class="section-background dim portrait" src={portrait.src} {alt} />

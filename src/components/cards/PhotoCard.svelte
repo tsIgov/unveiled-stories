@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Frame } from 'components/common'
-	import { type Photo } from 'data/photos';
+	import { type Photo } from 'data/images';
 
 	import type { ClassValue } from 'svelte/elements';
 

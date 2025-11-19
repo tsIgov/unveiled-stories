@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Photo } from 'data/photos';
+	import { type Photo } from 'data/images';
 	import { PhotoCard } from "components/cards";
 
 	interface Props {

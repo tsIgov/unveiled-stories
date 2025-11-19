@@ -3,7 +3,7 @@
 	import { Card } from '.';
 	import { CardBackground } from './internal';
 
-	import { type Photo } from "data/photos";
+	import { type Photo } from "data/images";
 
 	interface Props {
 		title : string,
