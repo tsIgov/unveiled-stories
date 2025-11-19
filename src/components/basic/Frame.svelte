@@ -17,15 +17,8 @@
 </script>
 
 
-<div class="frame">
-	<!-- <div class="glow expanded"
-		class:disabled={!glow}
-		style="--color: {color}">
-		<div class="expanded spinner cutout" class:chipped={chipped}></div>
-	</div> -->
-
-	<div class="expanded spinner cutout" class:chipped={chipped} style="--color: {color}">	</div>
-
+<div class="frame" class:glow={glow} style="--color: {color}">
+	<div class="spinner cutout" class:chipped={chipped}></div>
 	<div class="content" class:chipped={chipped}>
 		{@render children()}
 	</div>
@@ -43,14 +36,31 @@
 		padding: var(--border-size);
 	}
 
+	.content {
+		@apply w-full h-full;
+		@apply bg-neutral-800;
+	}
+
 	.spinner {
-		animation: rotation 20s linear infinite;
+		@apply w-full h-full absolute top-0 left-0;
+
+		animation: rotation 10s linear infinite;
 		background-image:conic-gradient(from calc(var(--angle) + 45deg), var(--color) 0deg, var(--color-moonlight) 90deg, var(--color) 180deg, var(--color-moonlight) 270deg, var(--color) 360deg);
 	}
 
-	.content {
-		@apply w-full h-full;
-		@apply bg-neutral-800/30;
+	@keyframes rotation {
+		from {
+			--angle: 0deg;
+		}
+		to {
+			--angle: 360deg;
+		}
+	}
+
+	@property --angle{
+		syntax: "<angle>";
+		initial-value: 0deg;
+		inherits: true;
 	}
 
 	.content.chipped {
@@ -156,50 +166,31 @@
 		}
 	}
 
-
-
-	.expanded {
-		@apply w-full h-full absolute top-0 left-0;
-	}
-
 	.glow {
-		filter: blur(var(--blur-size));
-		animation: pulse 4s linear infinite alternate;
-
-		@apply transition-opacity duration-[1500ms];
-
-		&.disabled {
-			opacity: 0;
-		}
+		filter: drop-shadow(0 0 var(--innershadow) var(--color-moonlight)) drop-shadow(0 0 var(--outershadow) var(--color));
+		animation: glow 4s ease-in-out infinite alternate;
 	}
 
-	@keyframes pulse {
+	@keyframes glow {
 		from {
-			--blur-size: 0.375rem;
+			--innershadow: 2px;
+			--outershadow: 2px;
 		}
 		to {
-			--blur-size: 0.5rem;
+			--innershadow: 2px;
+			--outershadow: 8px;
 		}
 	}
 
-	@keyframes rotation {
-		from {
-			--angle: 0deg;
-		}
-		to {
-			--angle: 360deg;
-		}
-	}
-
-	@property --angle{
-		syntax: "<angle>";
-		initial-value: 0deg;
+	@property --innershadow{
+		syntax: "<length>";
+		initial-value: 0px;
 		inherits: true;
 	}
 
-	@property --blur-size{
+	@property --outershadow{
 		syntax: "<length>";
-		initial-value: 4px;
+		initial-value: 0px;
 		inherits: true;
 	}
 
