@@ -34,6 +34,12 @@
 		--border-size: 2px;
 
 		padding: var(--border-size);
+
+		transition: filter 1s ease;
+
+		&.glow {
+			filter: drop-shadow(0 0 2px var(--color-moonlight)) drop-shadow(0 0 8px var(--color));
+		}
 	}
 
 	.content {
@@ -165,35 +171,5 @@
 			);
 		}
 	}
-
-	.glow {
-		--innershadow: 2px;
-		--outershadow: 8px;
-		filter: drop-shadow(0 0 var(--innershadow) var(--color-moonlight)) drop-shadow(0 0 var(--outershadow) var(--color));
-		/* animation: glow 4s ease-in-out infinite alternate; */
-	}
-
-	@keyframes glow {
-		from {
-			--innershadow: 2px;
-			--outershadow: 2px;
-		}
-		to {
-			--innershadow: 2px;
-			--outershadow: 8px;
-		}
-	}
-
-	/* @property --innershadow{
-		syntax: "<length>";
-		initial-value: 0px;
-		inherits: true;
-	}
-
-	@property --outershadow{
-		syntax: "<length>";
-		initial-value: 0px;
-		inherits: true;
-	} */
 
 </style>

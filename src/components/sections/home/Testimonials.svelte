@@ -10,8 +10,8 @@
 	let t = $derived(getTranslator());
 </script>
 
-{#snippet quote(item : Quote)}
-	<Card>
+{#snippet quote(item : Quote, spotlight: boolean)}
+	<Card glow={spotlight}>
 		<div class="quote">
 			<MessageCircleMoreIcon class="icon" />
 			<p class="text">{t(item.quote)}</p>

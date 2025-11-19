@@ -6,12 +6,14 @@
 
 	interface Props {
 		borderColor?: string,
+		glow?: boolean,
 		class?: ClassValue,
 		children : Snippet
 	}
 
 	let {
 		borderColor = "var(--color-gold)",
+		glow = false,
 		children,
 		...rest
 	} : Props = $props();
@@ -19,7 +21,7 @@
 
 
 <div class="card {rest.class}">
-	<Frame color={borderColor} glow={true}>
+	<Frame color={borderColor} {glow}}>
 		{@render children()}
 	</Frame>
 </div>
