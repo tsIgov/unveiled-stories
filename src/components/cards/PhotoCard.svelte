@@ -46,6 +46,9 @@
 			@apply min-w-12 min-h-12;
 			@apply object-cover;
 			@apply select-none;
+
+			will-change: opacity;
+  			transform: translateZ(0);
 		}
 	}
 </style>
