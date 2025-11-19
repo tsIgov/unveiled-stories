@@ -9,7 +9,7 @@ let metadata = [];
 const assets = fs.readdirSync(inputRoot, {
     recursive: true,
     withFileTypes: true
-});
+}).toSorted();
 
 for (let i = 0; i < assets.length; i++) {
 
