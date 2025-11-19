@@ -1,7 +1,7 @@
 <script lang="ts" generics="T">
 	import { onMount } from "svelte";
 	import type { Snippet } from 'svelte';
-	import { type SwipeCustomEvent, useSwipe } from 'svelte-gestures';
+	import { type SwipeCustomEvent, type TouchAction, useSwipe } from 'svelte-gestures';
 
 	interface Props {
 		data: T[],
@@ -76,7 +76,12 @@
 </script>
 
 
-<div class="slideshow" {...useSwipe(swipeHandler, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}>
+<div class="slideshow"
+	{...useSwipe(swipeHandler, () => ({
+		timeframe: 300,
+		minSwipeDistance: 50,
+		touchAction: [ "pan-y", "pinch-zoom" ] as unknown as any
+	}))}>
 
 	{#each data as slide, index}
 		<div class="slide" class:active={currentSlide == index}>
