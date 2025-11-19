@@ -18,11 +18,11 @@
 
 
 <div class="frame" class:chipped={chipped}>
-	<div class="glow"
+	<!-- <div class="glow"
 		class:disabled={!glow}
 		style="--color: {color}">
 		<div class="glow-base"></div>
-	</div>
+	</div> -->
 
 	<div class="frame-border" style="--color: {color}">
 		<div class="content">
