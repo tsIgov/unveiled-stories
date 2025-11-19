@@ -20,6 +20,7 @@
 	<Frame {color}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
+				asdf
 				<!-- <enhanced:img src={image.src} alt="" /> -->
 			</Frame>
 		</div>
