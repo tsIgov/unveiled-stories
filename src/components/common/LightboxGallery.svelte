@@ -81,8 +81,12 @@
 	<div class="lightbox-gallery"
 		class:opened={opened}
 		class:closed={!opened && !initial}
-		{...useSwipe(swipeHandler, () => ({ timeframe: 300, minSwipeDistance: 50, touchAction: 'none' }))}
-		>
+		{...useSwipe(swipeHandler, () => ({
+			timeframe: 300,
+			minSwipeDistance: 50,
+			touchAction: [ "pan-y", "pinch-zoom" ] as unknown as any
+		}))}
+	>
 		<div class="content">
 			{#each images as image, i}
 				{#if opened || i == 0}
