@@ -12,10 +12,10 @@ export type { Photoshoot };
 export const photoshoots : Photoshoot[] = [
 	kissedByTheSun,
 	theHunt,
-	nocturnalGlow,
-	enPleinAir,
-	electricRomeo,
-	theCourt
+	// nocturnalGlow,
+	// enPleinAir,
+	// electricRomeo,
+	// theCourt
 ]
 
 export const galleryEnabled : boolean = true;
