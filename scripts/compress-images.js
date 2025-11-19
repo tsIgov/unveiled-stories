@@ -34,7 +34,7 @@ for (const photo of photos) {
     try {
         await sharp(fullPath)
             .jpeg({ quality: 80 })
-            .withMetadata(false)
+            // .withMetadata(false)
             .toFile(outputPath);
 
 		console.log(`✔ Converted: ${fullPath} → ${outputPath}`);
