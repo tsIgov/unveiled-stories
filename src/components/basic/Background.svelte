@@ -21,13 +21,13 @@
 	@reference "style";
 
 	.card-background {
-		@apply absolute inset-0;
+		@apply absolute w-full h-full;
 		@apply bg-neutral-800;
 	}
 
 	.portrait,
 	.landscape {
-		@apply absolute inset-0;
+		@apply absolute w-full h-full;
 		@apply object-cover;
 		@apply select-none;
 	}

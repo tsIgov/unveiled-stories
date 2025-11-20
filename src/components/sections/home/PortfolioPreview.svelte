@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Rule, Slideshow, Frame, SectionBackground, LightboxGallery } from 'components/common';
+	import { Background } from "components/basic";
+	import { Rule, Slideshow, Frame, LightboxGallery } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 
 	import { type Photoshoot, photoshoots, galleryEnabled } from 'data/photoshoots';
@@ -47,7 +48,7 @@
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
 	<div>
-		<!-- <SectionBackground
+		<!-- <Background
 			landscape={item.photos.backgrounds.landscape}
 			portrait={item.photos.backgrounds.portrait} alt={t(item.name)} /> -->
 

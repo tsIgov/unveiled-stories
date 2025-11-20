@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Card } from "components/basic";
-	import { Carousel, Heading, SectionBackground } from 'components/common';
+	import { Background, Card } from "components/basic";
+	import { Carousel, Heading } from 'components/common';
 
 	import { MessageCircleMoreIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
@@ -21,7 +21,7 @@
 {/snippet}
 
 <section class="testimonials">
-	<SectionBackground portrait={background.portrait} landscape={background.landscape} />
+	<Background portrait={background.portrait} landscape={background.landscape} dim={true} />
 	<Heading title={t(title)} />
 	<Carousel itemSnippet={quote} data={quotes} loop={true} />
 </section>

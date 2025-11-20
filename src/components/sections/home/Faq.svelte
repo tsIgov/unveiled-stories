@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Carousel, Heading, SectionBackground } from "components/common";
+	import { Background } from "components/basic";
+	import { Carousel, Heading } from "components/common";
 	import { MultipleDetailsCard } from "components/cards/";
 
 	import { getTranslator } from '$lib/i18n/translator';
@@ -31,8 +32,7 @@
 {/snippet}
 
 <section class="faq">
-	<SectionBackground portrait={background.portrait} landscape={background.landscape} />
-
+	<Background portrait={background.portrait} landscape={background.landscape} dim={true} />
 	<Heading title={t(title)} />
 	<Carousel itemSnippet={step} data={chunkedQuestions} />
 </section>
