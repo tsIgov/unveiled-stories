@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Metadata } from 'components/common';
-	import { NavMenu } from 'components/navigation';
+	import { NavMenu, Metadata } from 'components/navigation';
 	import { Footer } from 'components/sections/shared';
 
 	let { children, data } = $props();
