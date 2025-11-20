@@ -49,9 +49,9 @@
 
 {#snippet photoshoot(item : Photoshoot, index : number)}
 	<div>
-		<!-- <Background
+		<Background
 			landscape={item.photos.backgrounds.landscape}
-			portrait={item.photos.backgrounds.portrait} alt={t(item.name)} /> -->
+			portrait={item.photos.backgrounds.portrait} alt={t(item.name)} />
 
 		<div class="preview">
 

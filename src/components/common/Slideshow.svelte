@@ -166,7 +166,7 @@
 
 			& > .progress-line {
 				@apply transition-opacity duration-1000;
-				@apply absolute rounded-full bg-conic from-neutral-100 to-neutral-100/20 from-0% to-0% -z-10;
+				@apply absolute rounded-full bg-conic from-neutral-100/80 to-neutral-100/20 from-0% to-0%;
 				@apply opacity-0;
 
 				top: -2px;
