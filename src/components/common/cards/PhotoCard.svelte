@@ -16,7 +16,7 @@
 	let img : HTMLImageElement;
 
 	onMount(() => {
-		img.decode().then(() => {
+		img.decode().finally(() => {
 			img.classList.add("initialized")
 		});
 	});
