@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Picture } from 'vite-imagetools';
+	import type { Picture } from 'vite-imagetools';
 
 	interface Props {
 		portrait: Picture,

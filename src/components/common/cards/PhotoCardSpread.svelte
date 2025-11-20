@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Picture } from 'vite-imagetools';
+	import type { Picture } from 'vite-imagetools';
 	import { PhotoCard } from "components/common";
 
 	interface Props {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Background, Card, ExpandIndicator } from 'components/basic';
-	import { type Picture } from 'vite-imagetools';
+	import type { Picture } from 'vite-imagetools';
 
 	interface Props {
 		title : string,

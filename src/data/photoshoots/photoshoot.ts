@@ -1,5 +1,5 @@
 import { type MultilingualText } from '$lib/i18n/languages';
-import { type Picture } from 'vite-imagetools';
+import type { Picture } from 'vite-imagetools';
 import { getPhoto } from 'data/images';
 
 export interface Photoshoot

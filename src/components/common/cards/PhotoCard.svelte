@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { type ClassValue } from 'svelte/elements';
-	import { type Picture } from 'vite-imagetools';
+	import type { ClassValue } from 'svelte/elements';
+	import type { Picture } from 'vite-imagetools';
 	import { Frame } from 'components/basic'
 
 	interface Props {

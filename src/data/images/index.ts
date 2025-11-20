@@ -1,5 +1,5 @@
 import { imageModules } from "./images"
-import { type Picture } from 'vite-imagetools';
+import type { Picture } from 'vite-imagetools';
 
 
 export const getPhoto = (path: string) => {
