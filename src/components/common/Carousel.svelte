@@ -182,6 +182,9 @@
 
 		@apply w-full flex py-4;
 
+		transform: translateZ(0);
+		will-change: transform;
+
 		overflow-x: scroll;
 		scrollbar-width: none;
 		scroll-behavior: smooth;
