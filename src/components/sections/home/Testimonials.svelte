@@ -21,7 +21,7 @@
 {/snippet}
 
 <section class="testimonials">
-	<!-- <Background portrait={background.portrait} landscape={background.landscape} dim={true} /> -->
+	<Background portrait={background.portrait} landscape={background.landscape} dim={true} />
 	<Heading title={t(title)} />
 	<Carousel itemSnippet={quote} data={quotes} loop={true} />
 </section>
