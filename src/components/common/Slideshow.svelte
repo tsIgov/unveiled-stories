@@ -1,7 +1,8 @@
 <script lang="ts" generics="T">
-	import { onMount } from "svelte";
-	import type { Snippet } from 'svelte';
-	import { type SwipeCustomEvent, type TouchAction, useSwipe } from 'svelte-gestures';
+	import { type Snippet, onMount } from "svelte";
+	import { cubicOut } from "svelte/easing";
+	import { fade } from 'svelte/transition';
+	import { type SwipeCustomEvent, useSwipe } from 'svelte-gestures';
 
 	interface Props {
 		data: T[],
@@ -12,12 +13,13 @@
 
 	let { data, slideSnippet, timeout, onchanged } : Props =$props();
 	let slidesCount = $derived(data.length);
-	let currentSlide = $state(0);
+	let currentSlide = $state(-1);
 	let running = $state(false);
 
 	let timer = -1;
 
 	onMount(() => {
+		currentSlide = 0;
 		unpause();
 		return () => clearInterval(timer);
 	});
@@ -84,9 +86,11 @@
 	}))}>
 
 	{#each data as slide, index}
-		<div class="slide" class:active={currentSlide == index}>
-			{@render slideSnippet(slide, index)}
-		</div>
+		{#if currentSlide == index}
+			<div class="slide" transition:fade={{ duration: 1000, easing: cubicOut }}>
+				{@render slideSnippet(slide, index)}
+			</div>
+		{/if}
 	{/each}
 
 	<div class="slideshow-nav">
@@ -122,15 +126,16 @@
 	}
 
 	.slide {
-		@apply flex absolute top-0 left-0 w-full h-full transition-opacity duration-[2s];
+		@apply flex absolute top-0 left-0 w-full h-full;
+		/* @apply transition-opacity duration-[2s];
 		will-change: opacity, transform;
-		transform: translateZ(0) scale(1.0);
+		transform: translateZ(0) scale(1.0); */
 
 		& > :global(*) {
 			@apply w-full h-full;
 		}
 
-		&.active {
+		/* &.active {
 			@apply opacity-100;
 			@apply pointer-events-auto;
 		}
@@ -138,8 +143,8 @@
 		&:not(.active) {
 			@apply opacity-0;
 			@apply pointer-events-none;
-			/* animation: remove 2s linear 1; */
-		}
+			animation: remove 2s linear 1;
+		} */
 	}
 
 	.slideshow-nav {
@@ -194,12 +199,12 @@
 		}
 	}
 
-	@keyframes remove {
+	/* @keyframes remove {
 		from {
 			visibility: visible;
 		}
 		to {
 			visibility: hidden;
 		}
-	}
+	} */
 </style>
