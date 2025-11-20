@@ -1,14 +1,9 @@
 import { type MultilingualText } from "$lib/i18n/languages";
-import { type Photo, photos } from "data/images";
 
 export interface Chapter
 {
 	title: MultilingualText,
 	text: MultilingualText,
-	background: {
-		portrait: Photo,
-		landscape: Photo
-	}
 }
 
 export const header : MultilingualText ={
@@ -30,10 +25,6 @@ const chapter1 : Chapter = {
 		en: "It all begins with a relaxed, judgment-free conversation. We’ll explore what you want to express and how you want to feel, shaping a story that’s bold, tender, playful, or powerful — whatever feels true to you. Together, we’ll define the visual direction, styling, and mood.",
 		bg: "Всичко започва с непринуден разговор, свободен от предразсъдъци. Ще изследваме какво искаш да изразиш и как искаш да се чувстваш, оформяйки история, която е дръзка, нежна, игрива или силна — каквото усещаш като автентично за теб. Заедно ще определим визуалната посока, стила и цялостното усещане."
 	},
-	background: {
-		landscape: photos["backgrounds/faq-landscape"],
-		portrait: photos["backgrounds/faq-portrait"]
-	}
 };
 
 const chapter2 : Chapter = {
@@ -45,10 +36,6 @@ const chapter2 : Chapter = {
 		en: "With your story gently taking shape, we gather what brings it to life — a private location, meaningful locations and props, booking your makeup artist, and setting the date when it all comes together. Every detail is chosen to reflect the tone and truth of your story, curating a world where your experience can unfold fully and authentically.",
 		bg: "След като идеята е придобила форма, е време да съберем елементите, които ще ѝ вдъхнат живот. Това означава да открием уединено, спокойно място, да подберем дрехи и реквизит и да определим датата, на която всичко ще се случи. Всеки детайл е съобразен с тона и истината на твоята история. Така изграждаме онази среда, в която преживяването ти може да се разгърне в пълния си блясък."
 	},
-	background: {
-		landscape: photos["backgrounds/faq-landscape"],
-		portrait: photos["backgrounds/faq-portrait"]
-	}
 };
 
 const chapter3 : Chapter = {
@@ -60,10 +47,6 @@ const chapter3 : Chapter = {
 		en: "This is the day your story unfolds. In a calm, supportive space, we’ll spend unhurried time exploring and expressing the world we’ve created together. You’ll be guided with care so you can stay relaxed, present, and connected to what this day means to you. It’s not about performing — it’s about being.",
 		bg: "Това е денят, в който твоята история се разгръща. В спокойна и подкрепяща атмосфера ще отделим нужното време, за да изследваме и изразим света, който сме изградили заедно. Ще те напътстваме деликатно, за да можеш да се отпуснеш и да присъстваш в момента. Не е нужно да бъдеш модел — важното е просто да бъдеш."
 	},
-	background: {
-		landscape: photos["backgrounds/faq-landscape"],
-		portrait: photos["backgrounds/faq-portrait"]
-	}
 };
 
 const chapter4 : Chapter = {
@@ -75,10 +58,6 @@ const chapter4 : Chapter = {
 		en: "Once your story is captured, we’ll experience it together — not just as images, but as moments remembered and felt. You’ll choose how to honour it: with a handcrafted leather album, a custom deck of cards, or even an oil painting by our incredible artist. This final step is about creating something lasting — a way to hold your story in your hands and return to it again and again.",
 		bg: "След като уловим вашата история, ще я преживеем заедно – не просто като снимки, а като съхранени и почувствани мигове. Вие ще решите как да ѝ отдадете почит: чрез ръчно изработен кожен албум, персонализирано тесте карти или пък чрез маслена картина, нарисувана от нашия невероятен художник. Тази последна стъпка е посветена на създаването на нещо вечно – начин да задържите тази история си в ръцете и да се връщате към нея отново и отново."
 	},
-	background: {
-		landscape: photos["backgrounds/faq-landscape"],
-		portrait: photos["backgrounds/faq-portrait"]
-	}
 };
 
 export const chapters : Chapter[] = [
