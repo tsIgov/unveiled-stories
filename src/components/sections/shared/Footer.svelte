@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Rule } from "components/common";
+	import { Ruler } from "components/basic";
 
 	import { page } from '$app/state';
 	import { getTranslator } from '$lib/i18n/translator';
@@ -10,7 +10,7 @@
 </script>
 
 <footer class="footer">
-	<Rule />
+	<Ruler />
 	<p>
 		©{new Date().getFullYear()} Unveiled Stories |
 		<a href="/{page.data.lang}/privacy" target="_blank">{t(footerLink)}</a>
@@ -25,7 +25,7 @@
 	}
 
 	footer {
-		& > :global(.rule) {
+		& > :global(.ruler) {
 			@apply w-full absolute top-0 left-0;
 		}
 

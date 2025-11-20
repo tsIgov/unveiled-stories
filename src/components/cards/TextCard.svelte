@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Photo } from "data/images";
 
-	import { Rule } from 'components/common';
+	import { Ruler } from 'components/basic';
 	import { Card } from '.';
 
 	interface Props {
@@ -19,7 +19,7 @@
 	<div class="content">
 
 		<h3>{title}</h3>
-		<Rule centerOrnament={true} />
+		<Ruler centerOrnament={true} />
 		<div class="scroller">
 			<p>{text}</p>
 		</div>
@@ -39,7 +39,7 @@
 			@apply px-4 pt-4;
 		}
 
-		& > :global(.rule) {
+		& > :global(.ruler) {
 			@apply w-full mb-2 px-4;
 		}
 

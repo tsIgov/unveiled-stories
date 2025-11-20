@@ -1,24 +1,24 @@
 <script lang="ts">
-	import { Rule } from "components/common"
+	import { Ruler } from "components/basic"
 	import { PortfolioPreview, TheExperience, Faq, Team, Testimonials } from "components/sections/home";
 	import { Contacts } from "components/sections/shared";
 </script>
 
 <main>
 	<PortfolioPreview />
-	<Rule />
+	<Ruler />
 
 	<TheExperience />
-	<Rule />
+	<Ruler />
 
 	<Faq />
-	<Rule />
+	<Ruler />
 
 	<Team />
-	<Rule />
+	<Ruler />
 
 	<Testimonials />
-	<Rule />
+	<Ruler />
 
 	<Contacts />
 </main>
@@ -44,7 +44,7 @@
 			scroll-margin-top: var(--navbar-height);
 		}
 
-		& > :global(.rule) {
+		& > :global(.ruler) {
 			@apply w-full;
 		}
 	}

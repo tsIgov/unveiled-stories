@@ -9,7 +9,7 @@
 
 </script>
 
-<div class="rule {orientation}"
+<div class="ruler {orientation}"
 	class:ornament={centerOrnament}
 	class:error={error}>
 	<span></span>
@@ -20,7 +20,7 @@
 <style>
 	@reference "style";
 
-	.rule {
+	.ruler {
 		@apply shrink-0 grow-0;
 
 		&:not(.ornament) > span {
@@ -28,7 +28,7 @@
 		}
 	}
 
-	.rule.ornament {
+	.ruler.ornament {
 		@apply flex gap-3 items-center;
 
 		& > span:not(:nth-child(2))  {
@@ -86,7 +86,7 @@
 		}
 	}
 
-	.rule:not(.ornament) {
+	.ruler:not(.ornament) {
 		@apply from-gold via-moonlight to-gold;
 
 		&::after {
@@ -97,14 +97,14 @@
 
 		&.horizontal,
 		&.horizontal::after {
-			@apply bg-gradient-to-r;
+			@apply bg-linear-to-r;
 			width: 100%;
 			height: 1px;
 		}
 
 		&.vertical,
 		&.vertical::after {
-			@apply bg-gradient-to-b;
+			@apply bg-linear-to-b;
 			width: 1px;
 			height: 100%;
 		}

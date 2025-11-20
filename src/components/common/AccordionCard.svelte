@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Card, ExpandIndicator } from 'components/basic';
-	import { Rule } from 'components/common';
+	import { Card, ExpandIndicator, Ruler } from 'components/basic';
 
 	interface AccordionCardItem {
 		title: string,
@@ -45,11 +44,11 @@
 			<div style="height: {fr}%; top: {getTop(index)}%;"
 				class:first={index == 0}
 				class:next={chosenItem != -1 && index == chosenItem + 1}>
-				<Rule />
+				<Ruler />
 				<button onclick={() => { if(chosenItem == index) chosenItem = -1; else chosenItem = index; }}>
 					<ExpandIndicator expanded={chosenItem == index} />
 					<h3>{item.title}</h3>
-					<Rule />
+					<Ruler />
 				</button>
 			</div>
 
@@ -85,12 +84,12 @@
 			transform: translateZ(0);
 			will-change: transform;
 
-			& > :global(.rule) {
+			& > :global(.ruler) {
 				@apply -top-px;
 			}
 
-			&.next > :global(.rule),
-			&.first > :global(.rule) {
+			&.next > :global(.ruler),
+			&.first > :global(.ruler) {
 				display: block;
 			}
 
@@ -112,7 +111,7 @@
 					@apply text-neutral-100/70;
 				}
 
-				& > :global(.rule) {
+				& > :global(.ruler) {
 					@apply absolute left-0 w-full;
 					top: calc(100% - 1px);
 				}

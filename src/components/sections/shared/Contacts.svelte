@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Heading, PrimaryButton, Rule } from "components/common";
+	import { Ruler } from "components/basic"
+	import { Heading, PrimaryButton } from "components/common";
 	import { BlueskyIcon } from "components/icons";
 
 	import { MailIcon, InstagramIcon, PhoneIcon, LoaderCircleIcon } from '@lucide/svelte';
@@ -79,13 +80,13 @@
 
 			<div class="form-overlay success" class:active={currentState == "success"}>
 				<h3>{t(responseData.successHeader)}</h3>
-				<Rule centerOrnament={true} />
+				<Ruler centerOrnament={true} />
 				<p>{t(responseData.successContent)}</p>
 			</div>
 
 			<div class="form-overlay error" class:active={currentState == "error" }>
 				<h3>{t(responseData.errorHeader)}</h3>
-				<Rule centerOrnament={true} error={true} />
+				<Ruler centerOrnament={true} error={true} />
 				<p>{t(responseData.errorContent)}</p>
 			</div>
 
@@ -191,7 +192,7 @@
 							@apply uppercase;
 						}
 
-						& > :global(.rule) {
+						& > :global(.ruler) {
 							@apply w-2xs mb-4 max-w-full;
 						}
 

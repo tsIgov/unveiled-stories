@@ -2,7 +2,7 @@
 	import { MenuIcon } from '@lucide/svelte';
 	import type { Language } from '$lib/i18n/languages';
 
-	import { Rule } from 'components/common';
+	import { Ruler } from 'components/basic';
 	import { LanguageMenu } from 'components/navigation';
 
 	interface Props {
@@ -19,7 +19,7 @@
 <nav class="nav-menu"
 	class:reserved-space={reserveSpace}>
 	<div class="background" style="opacity: {opacity};">
-		<Rule />
+		<Ruler />
 		<div class="glow"></div>
 	</div>
 
@@ -51,7 +51,7 @@
 			margin-top: var(--navbar-height);
 		}
 
-		& :global(.rule) {
+		& :global(.ruler) {
 			@apply absolute bottom-0 w-full;
 		}
 

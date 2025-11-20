@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Background } from "components/basic";
-	import { Rule, Slideshow, Frame, LightboxGallery } from 'components/common';
+	import { Background, Ruler } from "components/basic";
+	import { Slideshow, Frame, LightboxGallery } from 'components/common';
 	import { PhotoCardSpread } from 'components/cards';
 
 	import { type Photoshoot, photoshoots, galleryEnabled } from 'data/photoshoots';
@@ -63,8 +63,8 @@
 			/>
 
 			<div class="side">
-				<Rule orientation="vertical" centerOrnament={true}/>
-				<Rule orientation="horizontal" centerOrnament={true}/>
+				<Ruler orientation="vertical" centerOrnament={true}/>
+				<Ruler orientation="horizontal" centerOrnament={true}/>
 
 				<div class="details">
 					{#if item.photos.gallery != undefined && galleryEnabled}
@@ -129,11 +129,11 @@
 			grid-template-columns: 100%;
 
 
-			& :global(.rule.vertical) {
+			& :global(.ruler.vertical) {
 				display: none;
 			}
 
-			& :global(.rule.horizontal) {
+			& :global(.ruler.horizontal) {
 				@apply absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-sm ;
 			}
 
@@ -163,11 +163,11 @@
 			grid-template-rows: 100%;
 			--preview-max-content-height: calc(100svh - var(--navbar-height) - var(--slideshow-navigation-height) - 1rem);
 
-			& :global(.rule.horizontal) {
+			& :global(.ruler.horizontal) {
 				display: none;
 			}
 
-			& :global(.rule.vertical) {
+			& :global(.ruler.vertical) {
 				@apply absolute top-1/2 -translate-y-1/2 h-full;
 				max-height: var(--preview-max-content-height);
 			}

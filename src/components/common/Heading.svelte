@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Rule } from ".";
+	import { Ruler } from "components/basic";
 
 	interface Props {
 		title : string,
@@ -12,7 +12,7 @@
 <div class="heading">
 	<h2>{title}</h2>
 	<p>{summary}</p>
-	<Rule centerOrnament={true} />
+	<Ruler centerOrnament={true} />
 </div>
 
 <style>
@@ -28,7 +28,7 @@
 			@apply mb-2;
 		}
 
-		& > :global(.rule) {
+		& > :global(.ruler) {
 			@apply w-full min-w-3xs mt-4;
 		}
 	}
