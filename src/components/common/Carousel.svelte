@@ -218,14 +218,11 @@
 
 	.item {
 		@apply w-[80%] shrink-0 grow-0;
-		@apply max-w-[var(--max-item-width-portrait)];
-		@apply landscape-cards:max-w-[var(--max-item-width-landscape)];
+		@apply max-w-(--max-item-width-portrait);
+		@apply landscape-cards:max-w-(--max-item-width-landscape);
 
 		scroll-snap-align: center;
 		scroll-snap-stop: always;
-
-		transform: translateZ(0);
-		will-change: transform;
 
 		@apply flex items-center justify-center;
 
