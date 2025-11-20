@@ -20,7 +20,7 @@
 
 
 <div class="frame" style="--color: {color}">
-	{#if false}
+	{#if glow}
 		<div transition:fade={{ duration: 1000, easing: cubicOut }} class="glow"></div>
 	{/if}
 	<div class="spinner cutout" class:chipped={chipped}></div>
@@ -44,6 +44,8 @@
 	.glow {
 		@apply absolute inset-0;
 		filter: drop-shadow(0 0 2px var(--color-moonlight)) drop-shadow(0 0 8px var(--color));
+		transform: translateZ(0);
+		will-change: transform;
 
 		&::before {
 			content: "";
