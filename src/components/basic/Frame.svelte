@@ -21,7 +21,7 @@
 
 
 <div class="frame" style="--color: {color}">
-	{#if glow && (!$isTouchscreen || true)}
+	{#if glow && !$isTouchscreen}
 		<div transition:fade={{ duration: 1000, easing: cubicOut }} class="glow"></div>
 	{/if}
 	<div class="spinner cutout" class:chipped={chipped}></div>
