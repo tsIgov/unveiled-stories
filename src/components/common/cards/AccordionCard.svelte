@@ -73,14 +73,14 @@
 		& > p {
 			@apply absolute p-4;
 			@apply flex items-center-safe text-center overflow-auto;
-			@apply transition-[top,opacity] duration-[1.5s];
+			@apply transition-[top,opacity] duration-1000;
 		}
 
 		& > div {
 			@apply absolute w-full left-0 overflow-visible;
 			@apply bg-neutral-800;
 			@apply flex flex-col items-center-safe;
-			@apply transition-[top] duration-[1.5s];
+			@apply transition-[top] duration-1000;
 			transform: translateZ(0);
 			will-change: transform;
 

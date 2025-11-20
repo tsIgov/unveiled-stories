@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Background, Ruler } from "components/basic";
-	import { Slideshow, Frame, LightboxGallery, PhotoCardSpread } from 'components/common';
+	import { Background, Ruler, Frame } from "components/basic";
+	import { Slideshow, LightboxGallery, PhotoCardSpread } from 'components/common';
 
 	import { type Photoshoot, photoshoots, galleryEnabled } from 'data/photoshoots';
 	import { getTranslator } from '$lib/i18n/translator';

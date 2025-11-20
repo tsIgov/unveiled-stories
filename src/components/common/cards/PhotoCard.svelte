@@ -6,10 +6,11 @@
 	interface Props {
 		image : Photo,
 		color: string,
+		glow?: boolean,
 		class?: ClassValue
 	}
 
-	let { image, color, ...rest } : Props  = $props();
+	let { image, color, glow = false, ...rest } : Props  = $props();
 
 	let initialized = $state(false);
 </script>
@@ -18,7 +19,7 @@
 <div class="photo-card {rest.class}"
 	class:portrait={image.orientation == "portrait"}
 	class:landscape={image.orientation == "landscape"}>
-	<Frame {color} glow={false}>
+	<Frame {color} {glow}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
 				<enhanced:img class:initialized={initialized} src={image.src} alt="" decoding="async" loading="eager" onload={() => initialized = true } />
