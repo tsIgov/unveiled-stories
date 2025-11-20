@@ -13,14 +13,14 @@
 
 </script>
 
-<div class="card-background">
+<div class="background">
 	<enhanced:img class="portrait" class:dim={dim} class:cardbg={forCard} src={portrait.src} {alt} decoding="async" loading="eager" />
 	<enhanced:img class="landscape" class:dim={dim} class:cardbg={forCard} src={landscape.src} {alt} decoding="async" loading="eager" />
 </div>
 <style>
 	@reference "style";
 
-	.card-background {
+	.background {
 		@apply absolute w-full h-full;
 		@apply bg-neutral-800;
 	}

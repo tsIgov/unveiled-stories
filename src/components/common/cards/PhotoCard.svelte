@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { onMount, type Snippet } from "svelte";
+	import type { ClassValue } from 'svelte/elements';
 	import { Frame } from 'components/basic'
 	import { type Photo } from 'data/images';
-	import type { ClassValue } from 'svelte/elements';
 
 	interface Props {
 		image : Photo,
@@ -12,7 +13,13 @@
 
 	let { image, color, glow = false, ...rest } : Props  = $props();
 
-	let loaded = $state(false);
+	let img : HTMLImageElement;
+
+	onMount(() => {
+		img.decode().then(() => {
+			img.classList.add("initialized")
+		});
+	});
 </script>
 
 
@@ -22,7 +29,7 @@
 	<Frame {color} {glow}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img class:initialized={loaded} src={image.src} alt="" decoding="sync" loading="eager" onload={() => { console.log("loaded"); loaded = true; } }  />
+				<enhanced:img bind:this={img} src={image.src} alt=""  decoding="async" loading="eager" />
 			</Frame>
 		</div>
 	 </Frame>
@@ -55,7 +62,7 @@
 			@apply transition-opacity duration-1000 ease-out;
 		}
 
-		.initialized {
+		& :global(.initialized) {
 			opacity: 1;
 		}
 	}
