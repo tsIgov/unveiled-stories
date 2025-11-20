@@ -17,9 +17,9 @@
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class="photo-card-spread" class:interactive={onclick} {onclick}>
-		<PhotoCard image={imageLeft} {color}	/>
-		<PhotoCard image={imageCenter} {color} />
-		<PhotoCard image={imageRight} {color} />
+		<PhotoCard image={imageLeft} {color} glow={true}	/>
+		<PhotoCard image={imageCenter} {color} glow={true} />
+		<PhotoCard image={imageRight} {color} glow={true} />
 	</div>
 
 <style>
