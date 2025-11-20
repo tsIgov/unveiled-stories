@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Background } from "components/basic";
-	import { AccordionCard, Carousel, Heading } from "components/common";
+	import { Background, Heading } from "components/basic";
+	import { AccordionCard, Carousel } from "components/common";
 
 	import { getTranslator } from '$lib/i18n/translator';
 

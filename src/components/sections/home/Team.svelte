@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Carousel, Heading, DetailsCard } from 'components/common';
+	import { Heading } from 'components/basic';
+	import { Carousel, DetailsCard } from 'components/common';
 	import { getTranslator } from '$lib/i18n/translator';
 	import { type TeamMember, header, members } from 'data/team';
 

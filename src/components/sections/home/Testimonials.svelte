@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Background, Card } from "components/basic";
-	import { Carousel, Heading } from 'components/common';
+	import { Background, Card, Heading } from "components/basic";
+	import { Carousel } from 'components/common';
 
 	import { MessageCircleMoreIcon } from '@lucide/svelte';
 	import { getTranslator } from '$lib/i18n/translator';
