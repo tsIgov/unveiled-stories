@@ -32,6 +32,9 @@
 
 	.card {
 		@apply aspect-card landscape-cards:aspect-card-landscape;
+
+		transform: translateZ(0);
+		will-change: transform;
 	}
 
 </style>

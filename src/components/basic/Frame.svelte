@@ -40,6 +40,9 @@
 		--border-size: 2px;
 
 		padding: var(--border-size);
+
+		transform: translateZ(0);
+		will-change: transform;
 	}
 
 	.glow {
