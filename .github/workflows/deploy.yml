@@ -26,7 +26,7 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: build-${{ env.cache-name }}-{{ hashFiles('**/src/data/images/**') }}-${{ hashFiles('**/package-lock.json') }}
+          key: build-${{ env.cache-name }}-${{ hashFiles('**/src/data/images/**') }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             build-${{ env.cache-name }}-{{ hashFiles('**/src/data/images/**') }}-
             build-${{ env.cache-name }}-
