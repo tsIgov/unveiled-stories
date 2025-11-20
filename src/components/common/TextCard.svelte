@@ -1,13 +1,9 @@
 <script lang="ts">
-	import { type Photo } from "data/images";
-
-	import { Ruler } from 'components/basic';
-	import { Card } from '.';
+	import { Card, Ruler } from 'components/basic';
 
 	interface Props {
 		title: string,
 		text: string,
-
 		glow?: boolean
 	}
 

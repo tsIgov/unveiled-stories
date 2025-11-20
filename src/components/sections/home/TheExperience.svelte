@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { TextCard } from 'components/cards';
 	import { Heading } from "components/basic"
-	import { Carousel } from 'components/common';
+	import { Carousel, TextCard } from 'components/common';
 	import { getTranslator } from '$lib/i18n/translator';
 
 	import { type Chapter, header, summary, chapters } from "data/experinece";
@@ -10,11 +9,11 @@
 
 </script>
 
-{#snippet chapter(item : Chapter, active : boolean )}
+{#snippet chapter(item : Chapter, spotlight : boolean )}
 	<TextCard
 		title={t(item.title)}
 		text={t(item.text)}
-		glow={active}
+		glow={spotlight}
 	/>
 {/snippet}
 
