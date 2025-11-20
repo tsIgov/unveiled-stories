@@ -93,6 +93,14 @@
 		{/if}
 	{/each}
 
+	{#if currentSlide != -1}
+		{#each data as slide, index}
+			<div class="slide preload">
+				{@render slideSnippet(slide, index)}
+			</div>
+		{/each}
+	{/if}
+
 	<div class="slideshow-nav">
 		{#each { length: slidesCount }, slideIndex}
 			<button
@@ -127,24 +135,14 @@
 
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full;
-		/* @apply transition-opacity duration-[2s];
-		will-change: opacity, transform;
-		transform: translateZ(0) scale(1.0); */
+
+		&.preload {
+			@apply hidden!;
+		}
 
 		& > :global(*) {
 			@apply w-full h-full;
 		}
-
-		/* &.active {
-			@apply opacity-100;
-			@apply pointer-events-auto;
-		}
-
-		&:not(.active) {
-			@apply opacity-0;
-			@apply pointer-events-none;
-			animation: remove 2s linear 1;
-		} */
 	}
 
 	.slideshow-nav {
@@ -199,12 +197,4 @@
 		}
 	}
 
-	/* @keyframes remove {
-		from {
-			visibility: visible;
-		}
-		to {
-			visibility: hidden;
-		}
-	} */
 </style>

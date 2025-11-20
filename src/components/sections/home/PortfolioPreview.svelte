@@ -36,11 +36,13 @@
 	/>
 
 	{#each photoshoots as photoshoot, index}
-		<LightboxGallery bind:this={galleries[index]}
-			images={photoshoot.photos.gallery}
-			borderColor={photoshoot.color}
-			onclosed={onGalleryClosed}
-		/>
+		{#if currentIndex == index}
+			<!-- <LightboxGallery bind:this={galleries[index]}
+				images={photoshoot.photos.gallery}
+				borderColor={photoshoot.color}
+				onclosed={onGalleryClosed}
+			/> -->
+		{/if}
 	{/each}
 
 </section>
