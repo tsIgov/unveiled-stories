@@ -1,5 +1,5 @@
 export { default as Card } from './Card.svelte'
-export { default as DetailsCard } from './DetailsCard.svelte'
+export { default as DetailsCard } from '../common/DetailsCard.svelte'
 export { default as MultipleDetailsCard } from './MultipleDetailsCard.svelte'
 export { default as TextCard } from './TextCard.svelte'
 export { default as PhotoCard } from './PhotoCard.svelte'

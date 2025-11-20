@@ -131,7 +131,7 @@
 			bind:this={items[index]}
 			onclick={() => onclick(index)}>
 
-				{@render itemSnippet(item, spotlightIndex == index || $expanded)}
+				{@render itemSnippet(item, spotlightIndex == index && !$expanded)}
 
 		</div>
 	{/each}
@@ -145,7 +145,7 @@
 				bind:this={items[index + data.length]}
 				onclick={() => onclick(index + data.length)}>
 
-				{@render itemSnippet(item, spotlightIndex == index + data.length || $expanded)}
+				{@render itemSnippet(item, spotlightIndex == index + data.length && !$expanded)}
 
 			</div>
 		{/each}
@@ -158,7 +158,7 @@
 				bind:this={items[index + 2 * data.length]}
 				onclick={() => onclick(index + 2 * data.length)}>
 
-				{@render itemSnippet(item, spotlightIndex == index + 2 * data.length || $expanded)}
+				{@render itemSnippet(item, spotlightIndex == index + 2 * data.length && !$expanded)}
 
 			</div>
 		{/each}

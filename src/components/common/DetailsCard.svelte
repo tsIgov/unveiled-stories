@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ExpandIndicator } from 'components/common';
 	import { Card } from 'components/basic';
-	import { CardBackground } from './internal';
+	import { CardBackground } from '../cards/internal';
 
 	import { type Photo } from "data/images";
 
@@ -20,7 +20,7 @@
 	let expanded = $state(false);
 </script>
 
-<Card class="detail-card">
+<Card class="detail-card" glow={glow || expanded}>
 	<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} />
 	<div class="content"
 		class:expanded={expanded}>
