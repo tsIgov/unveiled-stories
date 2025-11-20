@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { ExpandIndicator, Rule } from 'components/common';
-	import { Card } from '.';
+	import { Card, ExpandIndicator } from 'components/basic';
+	import { Rule } from 'components/common';
 
-	interface MultipleDetailsCardData {
+	interface AccordionCardItem {
 		title: string,
 		details: string
 	}
 
 	interface Props {
-		data: MultipleDetailsCardData[],
+		data: AccordionCardItem[],
 		slots: number,
-		glow?: boolean,
+		alwaysGlow?: boolean,
 	}
 
-	let { data, slots, glow = true } : Props = $props();
+	let { data, slots, alwaysGlow = false } : Props = $props();
 
 	let chosenItem = $state(-1);
 	let fr = $derived(100 / slots);
@@ -34,7 +34,7 @@
 </script>
 
 
-<Card class="multiple-details-card" {glow}>
+<Card class="multiple-details-card" glow={alwaysGlow || chosenItem != -1}>
 	<div class="content">
 		{#each data as item, index }
 
@@ -86,7 +86,7 @@
 			will-change: transform;
 
 			& > :global(.rule) {
-				@apply top-[-1px];
+				@apply -top-px;
 			}
 
 			&.next > :global(.rule),

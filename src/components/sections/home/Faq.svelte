@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Background } from "components/basic";
-	import { Carousel, Heading } from "components/common";
-	import { MultipleDetailsCard } from "components/cards/";
+	import { AccordionCard, Carousel, Heading } from "components/common";
 
 	import { getTranslator } from '$lib/i18n/translator';
 
@@ -21,14 +20,14 @@
 	let chunkedQuestions = chunkArray(questions, questionsPerCard);
 </script>
 
-{#snippet step(item : Question[], active : boolean )}
-	<MultipleDetailsCard
+{#snippet step(item : Question[] )}
+	<AccordionCard
 		data={item.map(x => ({
 			title: t(x.question),
 			details: t(x.answer)
 		}))}
 		slots={questionsPerCard}
-		glow={active}/>
+	/>
 {/snippet}
 
 <section class="faq">

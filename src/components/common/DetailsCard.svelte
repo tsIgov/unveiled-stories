@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { ExpandIndicator } from 'components/common';
-	import { Background, Card } from 'components/basic';
+	import { Background, Card, ExpandIndicator } from 'components/basic';
 
 	import { type Photo } from "data/images";
 
