@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
+	import { cubicOut } from "svelte/easing";
+	import { fade } from 'svelte/transition';
 
 	interface Props {
 		color? : string,
@@ -18,7 +20,9 @@
 
 
 <div class="frame" style="--color: {color}">
-	<div class="glow" class:active={glow}></div>
+	{#if glow}
+		<div transition:fade={{ duration: 1000, easing: cubicOut }} class="glow"></div>
+	{/if}
 	<div class="spinner cutout" class:chipped={chipped}></div>
 	<div class="content" class:chipped={chipped}>
 		{@render children()}
@@ -39,14 +43,7 @@
 
 	.glow {
 		@apply absolute inset-0;
-		@apply opacity-0 transition-opacity duration-1000;
-		will-change: opacity;
-		transition-timing-function: ease;
 		filter: drop-shadow(0 0 2px var(--color-moonlight)) drop-shadow(0 0 8px var(--color));
-
-		&.active {
-			@apply block opacity-100;
-		}
 
 		&::before {
 			content: "";
