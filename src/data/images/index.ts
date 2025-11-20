@@ -1,11 +1,9 @@
+import { imageModules } from "./images"
+import { type Picture } from 'vite-imagetools';
 
-import { default as metadata } from "./metadata"
-import type { Picture } from 'vite-imagetools';
 
-export interface Photo
-{
-    src: Picture,
-	orientation: "landscape" | "portrait"
-}
-
-export const photos = metadata;
+export const getPhoto = (path: string) => {
+	path = `./${path}`;
+	const module = imageModules[path] as { default: Picture };
+	return module.default;
+};

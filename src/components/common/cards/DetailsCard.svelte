@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { Background, Card, ExpandIndicator } from 'components/basic';
-
-	import { type Photo } from "data/images";
+	import { type Picture } from 'vite-imagetools';
 
 	interface Props {
 		title : string,
 		subtitle : string,
 		details : string,
 		background: {
-			portrait: Photo,
-			landscape: Photo,
+			portrait: Picture,
+			landscape: Picture,
 		},
 		alwaysGlow?: boolean
 	}

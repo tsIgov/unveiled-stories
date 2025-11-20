@@ -1,5 +1,6 @@
-import { type Photo, photos } from 'data/images';
 import { type MultilingualText } from '$lib/i18n/languages';
+import { type Picture } from 'vite-imagetools';
+import { getPhoto } from 'data/images';
 
 export interface Photoshoot
 {
@@ -8,43 +9,40 @@ export interface Photoshoot
 	color: string,
 	photos: {
 		backgrounds: {
-			portrait : Photo,
-			landscape : Photo,
+			portrait : Picture,
+			landscape : Picture,
 		},
 		preview: {
-			left : Photo,
-			center : Photo,
-			right : Photo,
+			left : Picture,
+			center : Picture,
+			right : Picture,
 		},
-		gallery: Photo[]
+		gallery: Picture[]
 	}
 }
 
 export function getPhotos(id: string): {
-	gallery: Photo[],
+	gallery: Picture[],
 	preview: {
-		left: Photo,
-		center: Photo
-		right: Photo
+		left: Picture,
+		center: Picture
+		right: Picture
 	},
 	backgrounds: {
-		portrait: Photo,
-		landscape: Photo
+		portrait: Picture,
+		landscape: Picture
 	}
 } {
 	return {
-		gallery: Object.entries(photos)
-			.filter(([key]) => key.startsWith(`photoshoots/${id}/gallery`))
-			.sort(([a], [b]) => a.localeCompare(b))
-			.map(([, value]) => value),
+		gallery: [],
 		preview: {
-			left: photos[`photoshoots/${id}/preview/left`] as Photo,
-			center: photos[`photoshoots/${id}/preview/center`] as Photo,
-			right: photos[`photoshoots/${id}/preview/right`] as Photo
+			left: getPhoto(`photoshoots/${id}/preview/left.jpg`),
+			center: getPhoto(`photoshoots/${id}/preview/center.jpg`),
+			right: getPhoto(`photoshoots/${id}/preview/right.jpg`)
 		},
 		backgrounds: {
-			portrait: photos[`photoshoots/${id}/backgrounds/portrait`] as Photo,
-			landscape: photos[`photoshoots/${id}/backgrounds/landscape`] as Photo,
+			portrait: getPhoto(`photoshoots/${id}/backgrounds/portrait.jpg`),
+			landscape: getPhoto(`photoshoots/${id}/backgrounds/landscape.jpg`),
 		}
 	}
 };

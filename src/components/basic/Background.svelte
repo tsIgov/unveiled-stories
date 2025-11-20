@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { type Photo } from "data/images";
+	import { type Picture } from 'vite-imagetools';
 
 	interface Props {
-		portrait: Photo,
-		landscape: Photo,
+		portrait: Picture,
+		landscape: Picture,
 		dim?: boolean,
 		forCard?: boolean,
 		alt?: string,
@@ -14,8 +14,8 @@
 </script>
 
 <div class="background">
-	<enhanced:img class="portrait" class:dim={dim} class:cardbg={forCard} src={portrait.src} {alt} decoding="async" loading="eager" />
-	<enhanced:img class="landscape" class:dim={dim} class:cardbg={forCard} src={landscape.src} {alt} decoding="async" loading="eager" />
+	<enhanced:img class="portrait" class:dim={dim} class:cardbg={forCard} src={portrait} {alt} decoding="async" loading="eager" />
+	<enhanced:img class="landscape" class:dim={dim} class:cardbg={forCard} src={landscape} {alt} decoding="async" loading="eager" />
 </div>
 <style>
 	@reference "style";

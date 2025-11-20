@@ -1,5 +1,5 @@
-import type { TeamMember } from ".";
-import { photos } from "data/images"
+import { type TeamMember } from ".";
+import { getPhoto } from "data/images"
 
 const data : TeamMember = {
 	name: {en: "Tsvetan", bg:"Цветан"},
@@ -12,8 +12,8 @@ const data : TeamMember = {
 		bg: "Аз съм будоарен фотограф, софтуерен консултант, учител и ментор. Занимавам се с философия и бойни изкусва и тая дълбока любов към изучаването на всичко ново и интересно. Прекарал съм десетилетия в усъвършенстване на занаятите си. Целта ми е да помагам на хората да се развиват и да правя света едно по-красиво място. Сесиите ми са посветени на себепознанието и личното изразяване."
 	},
 	photos: {
-		landscape: photos["team/tsvetan-landscape"],
-		portrait: photos["team/tsvetan-portrait"]
+		landscape: getPhoto("team/tsvetan-landscape.jpg"),
+		portrait: getPhoto("team/tsvetan-portrait.jpg")
 	}
 };
 

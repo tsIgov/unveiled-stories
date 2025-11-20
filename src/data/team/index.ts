@@ -1,5 +1,5 @@
 import type { MultilingualText } from "$lib/i18n/languages";
-import { type Photo } from "data/images";
+import { type Picture } from 'vite-imagetools';
 
 import tsvetan from "./tsvetan";
 import julia from "./julia";
@@ -10,8 +10,8 @@ export interface TeamMember
 	title: MultilingualText,
 	bio: MultilingualText,
 	photos: {
-		portrait: Photo,
-		landscape: Photo
+		portrait: Picture,
+		landscape: Picture
 	}
 }
 

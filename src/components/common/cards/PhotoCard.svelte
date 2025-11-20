@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { ClassValue } from 'svelte/elements';
+	import { type ClassValue } from 'svelte/elements';
+	import { type Picture } from 'vite-imagetools';
 	import { Frame } from 'components/basic'
-	import { type Photo } from 'data/images';
 
 	interface Props {
-		image : Photo,
+		image : Picture,
 		color: string,
 		glow?: boolean,
 		class?: ClassValue
@@ -15,16 +15,12 @@
 
 
 <div class="photo-card {rest.class}"
-	class:portrait={image.orientation == "portrait"}
-	class:landscape={image.orientation == "landscape"}>
+	class:portrait={image.img.w < image.img.h}
+	class:landscape={image.img.w >= image.img.h}>
 	<Frame {color} {glow}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img src={image.src} alt=""  decoding="async" loading="eager" onload={(e) => {
-					const img = e.target as HTMLImageElement;
-					requestAnimationFrame(() => img.classList.add("initialized"));
-					// img.decode().finally(() => img.classList.add("initialized"))
-				}} />
+				<enhanced:img src={image} alt="" decoding="async" loading="eager" />
 			</Frame>
 		</div>
 	 </Frame>
@@ -50,11 +46,6 @@
 			@apply min-w-12 min-h-12;
 			@apply object-cover;
 			@apply select-none;
-
-			will-change: opacity;
-  			transform: translateZ(0);
-			opacity: 0.1;
-			@apply transition-opacity duration-500 ease-out;
 		}
 
 		& :global(.initialized) {
