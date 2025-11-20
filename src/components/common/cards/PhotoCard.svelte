@@ -12,7 +12,7 @@
 
 	let { image, color, glow = false, ...rest } : Props  = $props();
 
-	let initialized = $state(false);
+	let loaded = $state(false);
 </script>
 
 
@@ -22,7 +22,7 @@
 	<Frame {color} {glow}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
-				<enhanced:img class:initialized={initialized} src={image.src} alt="" decoding="async" loading="eager" onload={() => initialized = true } />
+				<enhanced:img class:initialized={loaded} src={image.src} alt="" decoding="sync" loading="eager" onload={() => { console.log("loaded"); loaded = true; } }  />
 			</Frame>
 		</div>
 	 </Frame>
@@ -51,8 +51,8 @@
 
 			will-change: opacity;
   			transform: translateZ(0);
-			opacity: 0;
-			@apply transition-opacity duration-500 ease-out;
+			opacity: 0.1;
+			@apply transition-opacity duration-1000 ease-out;
 		}
 
 		.initialized {
