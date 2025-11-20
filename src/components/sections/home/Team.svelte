@@ -13,7 +13,7 @@
 		subtitle={t(item.title)}
 		details={t(item.bio)}
 		background={item.photos}
-		alwaysGlow={false}
+		alwaysGlow={spotlight}
 	/>
 {/snippet}
 
