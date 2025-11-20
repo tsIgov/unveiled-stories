@@ -21,7 +21,8 @@
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
 				<enhanced:img src={image.src} alt=""  decoding="async" loading="eager" onload={(e) => {
-					// const img = e.target as HTMLImageElement;
+					const img = e.target as HTMLImageElement;
+					requestAnimationFrame(() => img.classList.add("initialized"));
 					// img.decode().finally(() => img.classList.add("initialized"))
 				}} />
 			</Frame>
