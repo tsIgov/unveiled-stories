@@ -18,7 +18,7 @@
 <div class="photo-card {rest.class}"
 	class:portrait={image.orientation == "portrait"}
 	class:landscape={image.orientation == "landscape"}>
-	<Frame {color} glow={true}>
+	<Frame {color} glow={false}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
 				<enhanced:img class:initialized={initialized} src={image.src} alt="" decoding="async" loading="eager" onload={() => initialized = true } />
