@@ -17,7 +17,8 @@
 </script>
 
 
-<div class="frame" class:glow={glow} style="--color: {color}">
+<div class="frame" style="--color: {color}">
+	<div class="glow" class:active={glow}></div>
 	<div class="spinner cutout" class:chipped={chipped}></div>
 	<div class="content" class:chipped={chipped}>
 		{@render children()}
@@ -34,14 +35,27 @@
 		--border-size: 2px;
 
 		padding: var(--border-size);
+	}
 
-		transition: filter 1s ease;
-		filter: drop-shadow(0 0 2px transparent) drop-shadow(0 0 8px transparent);
+	.glow {
+		@apply absolute inset-0;
+		@apply opacity-0 transition-opacity duration-1000;
+		will-change: opacity;
+		transition-timing-function: ease;
+		filter: drop-shadow(0 0 2px var(--color-moonlight)) drop-shadow(0 0 8px var(--color));
 
-		&.glow {
-			filter: drop-shadow(0 0 2px var(--color-moonlight)) drop-shadow(0 0 8px var(--color));
+		&.active {
+			@apply block opacity-100;
+		}
+
+		&::before {
+			content: "";
+			@apply absolute inset-0;
+			@apply bg-neutral-800;
 		}
 	}
+
+
 
 	.content {
 		@apply w-full h-full;
@@ -70,7 +84,8 @@
 		inherits: true;
 	}
 
-	.content.chipped {
+	.content.chipped,
+	.glow::before {
 		clip-path: polygon(
 			50% 0,
 			calc(100% - var(--corner-size)) 0,
@@ -86,7 +101,8 @@
 	}
 
 	@supports (clip-path: shape(from top, hline to 100%, vline to 100%, hline to 0, close)) {
-		.content.chipped {
+		.content.chipped,
+		.glow::before {
 			clip-path: shape(
 				from top,
 				hline to calc(100% - var(--corner-size)),
