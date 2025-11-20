@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Ruler, Heading } from "components/basic"
-	import { PrimaryButton } from "components/common";
+	import { Ruler, Heading, PrimaryButton } from "components/basic"
 	import { BlueskyIcon } from "components/icons";
 
 	import { MailIcon, InstagramIcon, PhoneIcon, LoaderCircleIcon } from '@lucide/svelte';

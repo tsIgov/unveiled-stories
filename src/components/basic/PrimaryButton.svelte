@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { MouseEventHandler } from "svelte/elements";
-
 	import { Frame } from ".";
 
 	interface Props {
