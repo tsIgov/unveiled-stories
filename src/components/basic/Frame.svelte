@@ -2,6 +2,7 @@
 	import type { Snippet } from "svelte";
 	import { cubicOut } from "svelte/easing";
 	import { fade } from 'svelte/transition';
+	import { isTouchscreen } from "$lib/utils/media-queries"
 
 	interface Props {
 		color? : string,
@@ -20,7 +21,7 @@
 
 
 <div class="frame" style="--color: {color}">
-	{#if glow}
+	{#if glow && !$isTouchscreen}
 		<div transition:fade={{ duration: 1000, easing: cubicOut }} class="glow"></div>
 	{/if}
 	<div class="spinner cutout" class:chipped={chipped}></div>

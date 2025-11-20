@@ -17,7 +17,4 @@ export function useMediaQuery(query: string | undefined) {
   });
 }
 
-
-export const isMobile = useMediaQuery('(width <= 32rem)');
-export const isTablet = useMediaQuery('(32rem < width <= 48rem)');
-export const isDesktop = useMediaQuery('(48rem < width)');
+export const isTouchscreen = useMediaQuery('(pointer: coarse)');
