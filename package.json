@@ -9,7 +9,7 @@
 		"build": "vite build",
 		"rebuild": "npm run clean && npm run build",
 		"preview": "vite preview",
-		"compress-images": "node scripts/compress-images.js",
+		"compress-images": "node scripts/compress-images.js"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.8",
