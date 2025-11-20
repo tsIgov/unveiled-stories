@@ -3,25 +3,19 @@
 
 	import { Rule } from 'components/common';
 	import { Card } from '.';
-	import { CardBackground } from './internal';
 
 	interface Props {
 		title: string,
 		text: string,
-		background?: {
-			portrait: Photo,
-			landscape: Photo
-		},
+
 		glow?: boolean
 	}
 
-	let { title, text, background, glow = true } : Props = $props();
+	let { title, text, glow = true } : Props = $props();
 </script>
 
 <Card {glow} class="text-card">
-	{#if background}
-		<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} />
-	{/if}
+
 	<div class="content">
 
 		<h3>{title}</h3>

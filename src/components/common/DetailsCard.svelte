@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { ExpandIndicator } from 'components/common';
-	import { Card } from 'components/basic';
-	import { CardBackground } from '../cards/internal';
+	import { Background, Card } from 'components/basic';
 
 	import { type Photo } from "data/images";
 
@@ -13,15 +12,15 @@
 			portrait: Photo,
 			landscape: Photo,
 		},
-		glow?: boolean
+		alwaysGlow?: boolean
 	}
 
-	let { title, subtitle, details, background, glow = true } : Props = $props();
+	let { title, subtitle, details, background, alwaysGlow = true } : Props = $props();
 	let expanded = $state(false);
 </script>
 
-<Card class="detail-card" glow={glow || expanded}>
-	<CardBackground portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} />
+<Card class="detail-card" glow={alwaysGlow || expanded}>
+	<Background portrait={background.portrait} landscape={background.landscape} alt={title} dim={false} forCard={true} />
 	<div class="content"
 		class:expanded={expanded}>
 		<div class="title">
