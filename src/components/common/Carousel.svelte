@@ -224,7 +224,11 @@
 		scroll-snap-align: center;
 		scroll-snap-stop: always;
 
+		transform: translateZ(0);
+		will-change: transform;
+
 		@apply flex items-center justify-center;
+
 
 		&:not(.spotlight) {
 			@apply cursor-pointer;
