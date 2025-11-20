@@ -13,7 +13,7 @@
 	<TextCard
 		title={t(item.title)}
 		text={t(item.text)}
-		glow={spotlight}
+		glow={false}
 	/>
 {/snippet}
 

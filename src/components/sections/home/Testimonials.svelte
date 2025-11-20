@@ -11,7 +11,7 @@
 </script>
 
 {#snippet quote(item : Quote, spotlight: boolean)}
-	<Card glow={spotlight}>
+	<Card glow={false}>
 		<div class="quote">
 			<MessageCircleMoreIcon class="icon" />
 			<p class="text">{t(item.quote)}</p>
