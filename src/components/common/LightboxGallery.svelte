@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { type Photo } from 'data/images';
-	import { PhotoCard } from 'components/cards';
+	import { PhotoCard } from 'components/common';
 
 	import { page } from '$app/state';
 	import { pushState } from '$app/navigation';

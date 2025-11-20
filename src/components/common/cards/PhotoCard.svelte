@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { Frame } from 'components/common'
+	import { Frame } from 'components/basic'
 	import { type Photo } from 'data/images';
-
 	import type { ClassValue } from 'svelte/elements';
 
 	interface Props {
 		image : Photo,
 		color: string,
-		class?: ClassValue,
+		class?: ClassValue
 	}
 
 	let { image, color, ...rest } : Props  = $props();
@@ -19,7 +18,7 @@
 <div class="photo-card {rest.class}"
 	class:portrait={image.orientation == "portrait"}
 	class:landscape={image.orientation == "landscape"}>
-	<Frame {color}>
+	<Frame {color} glow={true}>
 		<div class="frame-gap">
 			<Frame glow={false} {color}>
 				<enhanced:img class:initialized={initialized} src={image.src} alt="" decoding="async" loading="eager" onload={() => initialized = true } />
