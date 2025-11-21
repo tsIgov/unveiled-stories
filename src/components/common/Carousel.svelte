@@ -191,8 +191,6 @@
 		scroll-snap-type: x mandatory;
 		-ms-overflow-style: none;
 
-		scroll-snap-type: x mandatory;
-
 		mask-image: linear-gradient(
 			to right,
 			transparent,
