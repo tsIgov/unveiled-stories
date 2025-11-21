@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import { cubicOut } from "svelte/easing";
+	import { cubicInOut } from "svelte/easing";
 	import { fade } from 'svelte/transition';
 
 	interface Props {
@@ -21,7 +21,7 @@
 
 <div class="frame" style="--color: {color}">
 	{#if glow}
-		<div transition:fade={{ duration: 1000, easing: cubicOut }} class="glow"></div>
+		<div transition:fade={{ duration: 1000, easing: cubicInOut }} class="glow"></div>
 	{/if}
 	<div class="spinner cutout" class:chipped={chipped}></div>
 	<div class="content" class:chipped={chipped}>

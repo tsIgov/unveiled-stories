@@ -1,6 +1,6 @@
 <script lang="ts" generics="T">
 	import { type Snippet, onMount } from "svelte";
-	import { cubicOut } from "svelte/easing";
+	import { cubicInOut } from "svelte/easing";
 	import { fade } from 'svelte/transition';
 	import { type SwipeCustomEvent, useSwipe } from 'svelte-gestures';
 
@@ -87,7 +87,7 @@
 
 	{#each data as slide, index}
 		{#if currentSlide == index}
-			<div class="slide" transition:fade={{ duration: 1000, easing: cubicOut }}>
+			<div class="slide" transition:fade={{ duration: 1500, easing: cubicInOut }}>
 				{@render slideSnippet(slide, index)}
 			</div>
 		{/if}
