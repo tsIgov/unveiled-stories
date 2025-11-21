@@ -206,6 +206,7 @@
 		@apply flex absolute top-0 left-0 w-full h-full;
 		opacity: 0;
 		visibility: hidden;
+		will-change: opacity;
 
 		& > :global(*) {
 			@apply w-full h-full;
