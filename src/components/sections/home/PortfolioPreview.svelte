@@ -37,11 +37,11 @@
 
 	{#each photoshoots as photoshoot, index}
 		{#if currentIndex == index}
-			<!-- <LightboxGallery bind:this={galleries[index]}
+			<LightboxGallery bind:this={galleries[index]}
 				images={photoshoot.photos.gallery}
 				borderColor={photoshoot.color}
 				onclosed={onGalleryClosed}
-			/> -->
+			/>
 		{/if}
 	{/each}
 
@@ -103,7 +103,6 @@
 		& > h3,
 		& > button {
 			@apply w-full max-w-2xs;
-			@apply bg-neutral-900;
 			@apply text-center font-bold uppercase select-none;
 
 			& span {
