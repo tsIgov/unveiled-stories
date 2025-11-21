@@ -10,7 +10,6 @@
 
 	let { data, slideSnippet, timeout, onchanged } : Props =$props();
 	let slidesCount = $derived(data.length);
-	let running = $state(false);
 
 	export function pause() {
 		if (!running) return;
@@ -22,75 +21,44 @@
 		if (running) return;
 
 		running = true;
-		setTimer();
+		resetTimer();
 	}
 
 	let initialized = $state(false);
+	let running = $state(false);
+	let currentSlide = $state(0);
+
+	let observer : IntersectionObserver;
+	let track: HTMLElement;
+	let prevSpacer : HTMLElement;
+	let nextSpacer : HTMLElement;
+
+
 	onMount(() => {
-		initialized = true;
-		running = true;
+		const options = {
+			root: track,
+			threshold: 0.501,
+		};
+		observer =  new IntersectionObserver((e) => {
+			e.forEach(entry => { intersected(entry); });
+		}, options);
+
+		observer.observe(prevSpacer);
+		observer.observe(nextSpacer);
+
 		resetScroll();
-		return () => clearTimer();
+		initialized = true;
+		resetTimer();
+
+		return () => {
+			clearTimer();
+			observer.disconnect();}
 	});
 
 	$effect(() => {
 		onchanged?.(data[currentSlide], currentSlide);
 	});
 
-	let track: HTMLElement;
-	let slides : HTMLElement[] = [];
-	let spacers : { prev: HTMLElement, current: HTMLElement, next: HTMLElement } = {} as any;
-
-	let prevSlide = $state(data.length - 1);
-	let currentSlide = $state(0);
-	let nextSlide = $state(1);
-
-	function onscroll() {
-		clearTimer();
-		const width = track.getBoundingClientRect().width;
-
-		const prevRatio = getRatio(spacers.prev, width);
-		const currentRatio = getRatio(spacers.current, width);
-		const nextRatio = getRatio(spacers.next, width);
-
-		slides[prevSlide].style.opacity = prevRatio.toString();
-		slides[currentSlide].style.opacity = currentRatio.toString();
-		slides[nextSlide].style.opacity = nextRatio.toString();
-
-		slides[prevSlide].style.visibility = prevRatio == 0 ? "hidden" : "visible";
-		slides[currentSlide].style.visibility = currentRatio == 0 ? "hidden" : "visible";
-		slides[nextSlide].style.visibility = nextRatio == 0 ? "hidden" : "visible";
-
-		if (prevRatio == 1) {
-			nextSlide = currentSlide;
-			currentSlide = prevSlide;
-			prevSlide = (prevSlide - 1 + data.length) % slidesCount;
-
-			resetScroll(width);
-		}
-		else if (nextRatio == 1) {
-			prevSlide = currentSlide;
-			currentSlide = nextSlide;
-			nextSlide = (nextSlide + 1) % slidesCount;
-
-			resetScroll(width);
-		}
-
-		if (nextRatio == 1 || prevRatio == 1 || currentRatio == 1)
-			setTimer();
-	}
-
-	function getRatio(spacer: HTMLElement, width: number) {
-		const spacerRect = spacer.getBoundingClientRect();
-
-		let ratio = 0;
-		if ((spacerRect.left >= 0 && spacerRect.left < width) || spacerRect.right >= 0 && spacerRect.right < width) {
-			ratio = (Math.min(spacerRect.right, width) - Math.max(spacerRect.left, 0)) / width;
-			ratio = Math.round(ratio * 100) / 100;
-		}
-
-		return ratio;
-	}
 
 	function resetScroll(width : number = track.getBoundingClientRect().width) {
 		track.scrollTo({
@@ -101,45 +69,51 @@
 
 	let timer = -1;
 	function clearTimer() {
-		clearTimeout(timer);
+		clearInterval(timer);
 		running = false;
 	}
-	function setTimer() {
-		clearTimeout(timer);
-		timer = setTimeout(() => {
-			changeSlide(nextSlide);
+	function resetTimer() {
+		clearInterval(timer);
+		timer = setInterval(() => {
+			changeSlide((currentSlide + 1) % slidesCount);
 		}, timeout);
 		running = true;
 	}
 
+
+
 	function changeSlide(index: number) {
-		const width = track.getBoundingClientRect().width;
-		nextSlide = index;
-		track.scrollBy({
-			left: width,
-			behavior: "smooth"
-		});
+		currentSlide = index;
+		resetTimer();
 	}
 
+	function intersected(entry : IntersectionObserverEntry) {
+		if (!initialized) return;
 
+		if (entry.target == prevSpacer && entry.isIntersecting) {
+			currentSlide = (currentSlide - 1 + data.length) % slidesCount;
 
+			resetTimer();
+			resetScroll(entry.boundingClientRect.width);
+			return;
+		}
 
+		if (entry.target == nextSpacer && entry.isIntersecting) {
+			currentSlide = (currentSlide + 1) % slidesCount;
 
-
-
-
-
-
-
+			resetTimer();
+			resetScroll(entry.boundingClientRect.width);
+			return;
+		}
+	}
 
 </script>
 
-
-<div bind:this={track} class="slideshow" class:initialized={initialized} {onscroll}>
+<div bind:this={track} class="slideshow" class:initialized={initialized}>
 
 	<div class="slide-wrapper">
 		{#each data as slide, index}
-			<div bind:this={slides[index]} class="slide">
+			<div class="slide" class:active={currentSlide == index}>
 				{@render slideSnippet(slide, index)}
 			</div>
 		{/each}
@@ -164,9 +138,9 @@
 		</div>
 	</div>
 
-	<div bind:this={spacers.prev} class="spacer prev"></div>
-	<div bind:this={spacers.current} class="spacer current"></div>
-	<div bind:this={spacers.next} class="spacer next"></div>
+	<div bind:this={prevSpacer} class="spacer prev"></div>
+	<div class="spacer current"></div>
+	<div bind:this={nextSpacer} class="spacer next"></div>
 
 </div>
 
@@ -184,8 +158,8 @@
 		@apply overflow-x-scroll;
 		@apply snap-x snap-mandatory scroll-smooth;
 
-		scrollbar-width: none;
-		-ms-overflow-style: none;
+		/* scrollbar-width: none;
+		-ms-overflow-style: none; */
 	}
 
 	.slideshow:not(.initialized) {
@@ -204,9 +178,13 @@
 
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full;
-		opacity: 0;
-		visibility: hidden;
+		@apply transition-opacity ease-in-out duration-1000;
+		@apply opacity-0;
 		will-change: opacity;
+
+		&.active {
+			@apply opacity-100;
+		}
 
 		& > :global(*) {
 			@apply w-full h-full;
