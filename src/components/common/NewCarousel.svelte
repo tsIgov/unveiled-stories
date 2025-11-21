@@ -170,7 +170,7 @@
 	}
 
 	.item-wrapper {
-		@apply sticky left-0 w-full h-full shrink-0 overflow-hidden;
+		@apply sticky left-0 w-full h-full shrink-0 overflow-x-hidden;
 	}
 
 	.item {
@@ -179,7 +179,7 @@
 		@apply max-w-(--max-item-width-portrait);
 		@apply landscape-cards:max-w-(--max-item-width-landscape);
 
-		@apply transition-all ease-in-out duration-1000;
+		@apply transition-all ease-in-out duration-500;
 
 		& > :global(*) {
 			@apply w-full h-full;
