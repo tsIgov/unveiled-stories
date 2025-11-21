@@ -37,7 +37,7 @@
 	onMount(() => {
 		const options = {
 			root: track,
-			threshold: 0.501,
+			threshold: [ 0.501, 1 ]
 		};
 		observer =  new IntersectionObserver((e) => {
 			e.forEach(entry => { intersected(entry); });
@@ -91,18 +91,23 @@
 		if (!initialized) return;
 
 		if (entry.target == prevSpacer && entry.isIntersecting) {
-			currentSlide = (currentSlide - 1 + data.length) % slidesCount;
+			if (entry.intersectionRatio == 1)
+				resetScroll(entry.boundingClientRect.width);
+			else {
+				currentSlide = (currentSlide - 1 + data.length) % slidesCount;
+				resetTimer();
+			}
 
-			resetTimer();
-			resetScroll(entry.boundingClientRect.width);
 			return;
 		}
 
 		if (entry.target == nextSpacer && entry.isIntersecting) {
-			currentSlide = (currentSlide + 1) % slidesCount;
-
-			resetTimer();
-			resetScroll(entry.boundingClientRect.width);
+			if (entry.intersectionRatio == 1)
+				resetScroll(entry.boundingClientRect.width);
+			else {
+				currentSlide = (currentSlide + 1) % slidesCount;
+				resetTimer();
+			}
 			return;
 		}
 	}
@@ -156,10 +161,10 @@
 		@apply flex;
 
 		@apply overflow-x-scroll;
-		@apply snap-x snap-mandatory scroll-smooth;
+		@apply snap-x snap-mandatory scroll-auto;
 
-		/* scrollbar-width: none;
-		-ms-overflow-style: none; */
+		scrollbar-width: none;
+		-ms-overflow-style: none;
 	}
 
 	.slideshow:not(.initialized) {
@@ -179,11 +184,11 @@
 	.slide {
 		@apply flex absolute top-0 left-0 w-full h-full;
 		@apply transition-opacity ease-in-out duration-1000;
-		@apply opacity-0;
+		@apply opacity-0 pointer-events-none;
 		will-change: opacity;
 
 		&.active {
-			@apply opacity-100;
+			@apply opacity-100 pointer-events-auto;
 		}
 
 		& > :global(*) {
