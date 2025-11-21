@@ -182,8 +182,8 @@
 
 		@apply w-full flex py-4;
 
-		/* transform: translateZ(0);
-		will-change: transform; */
+		transform: translateZ(0);
+		will-change: transform;
 
 		overflow-x: scroll;
 		scrollbar-width: none;
@@ -227,8 +227,8 @@
 		scroll-snap-align: center;
 		scroll-snap-stop: always;
 
-		/* transform: translateZ(0);
-		will-change: transform; */
+		transform: translateZ(0);
+		will-change: transform;
 
 		@apply flex items-center justify-center;
 
