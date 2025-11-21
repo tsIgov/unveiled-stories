@@ -93,7 +93,8 @@
 					<PhotoCard
 						color={borderColor ?? "var(--color-gold)"}
 						image={image}
-						class={i == index && opened ? "active" : ""}  />
+						class={i == index && opened ? "active" : ""}
+						glow={true}  />
 				{/if}
 			{/each}
 		</div>
