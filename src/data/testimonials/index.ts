@@ -62,10 +62,22 @@ const poli : Quote = {
 	}
 };
 
+const mimi : Quote = {
+	author: {
+		en: "Mimi",
+		bg: "mimi"
+	},
+	quote: {
+		en: "The whole experience from start to finish was such a blast. It was fun and empowering and I have never felt better.",
+		bg: "Цялото преживяване от началото до края беше страхотно, забавно и окрилящо. Никога не съм се чувствала по-добре."
+	}
+};
+
 export const quotes: Quote[] = [
 	poli,
 	bibi,
 	july,
+	mimi,
 	ven
 ]
 
