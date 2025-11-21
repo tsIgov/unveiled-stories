@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Photo } from 'data/images';
+	import type { Picture } from 'vite-imagetools';
 	import { PhotoCard } from 'components/common';
 
 	import { page } from '$app/state';
@@ -9,7 +9,7 @@
 	import { ChevronLeftIcon, ChevronRightIcon,XIcon } from '@lucide/svelte';
 
 	interface Props {
-		images : Photo[],
+		images : Picture[],
 		borderColor?: string,
 		onclosed?: () => void
 	}
@@ -120,7 +120,7 @@
 
 	.lightbox-gallery {
 		@apply invisible;
-		@apply fixed top-0 inset-0 z-[2000] overflow-hidden;
+		@apply fixed top-0 inset-0 z-2000 overflow-hidden;
 		@apply bg-neutral-900/95;
 		@apply p-8;
 
@@ -133,7 +133,7 @@
 			animation: close 1s ease-in-out 1 forwards;
 
 			& :global(.active) {
-				@apply !opacity-100;
+				@apply opacity-100!;
 			}
 		}
 	}
@@ -145,7 +145,7 @@
 
 		& > :global(.photo-card) {
 			@apply col-start-1 row-start-1;
-			@apply transition-opacity duration-[1s];
+			@apply transition-opacity duration-1000;
 			@apply opacity-100;
 
 			&:global(:not(.active)) {
@@ -159,7 +159,7 @@
 		@apply absolute w-8 h-8 top-1/2 -translate-y-1/2;
 		@apply flex content-center items-center justify-center;
 		@apply bg-neutral-800 border-2 border-moonlight-dim rounded-full;
-		@apply transition-opacity duration-[1s] opacity-100;
+		@apply transition-opacity duration-1000 opacity-100;
 		@apply drop-shadow-neutral-900  shadow-md shadow-neutral-900;
 		@apply cursor-pointer;
 

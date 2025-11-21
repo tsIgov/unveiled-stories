@@ -1,6 +1,6 @@
 import { type MultilingualText } from '$lib/i18n/languages';
 import type { Picture } from 'vite-imagetools';
-import { getPhoto } from 'data/images';
+import { getPhoto, getPhotosInDir } from 'data/images';
 
 export interface Photoshoot
 {
@@ -34,7 +34,7 @@ export function getPhotos(id: string): {
 	}
 } {
 	return {
-		gallery: [],
+		gallery: getPhotosInDir(`photoshoots/${id}/gallery/`),
 		preview: {
 			left: getPhoto(`photoshoots/${id}/preview/left.jpg`),
 			center: getPhoto(`photoshoots/${id}/preview/center.jpg`),
