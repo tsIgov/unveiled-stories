@@ -6,5 +6,5 @@ export { default as TextCard } from './cards/TextCard.svelte'
 
 
 export { default as Carousel } from './Carousel.svelte'
-export { default as Slideshow } from './NewSlideshow.svelte'
+export { default as Slideshow } from './Slideshow.svelte'
 export { default as LightboxGallery } from './LightboxGallery.svelte'
