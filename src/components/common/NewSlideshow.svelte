@@ -185,7 +185,6 @@
 		@apply flex absolute top-0 left-0 w-full h-full;
 		@apply transition-opacity ease-in-out duration-1000;
 		@apply opacity-0 pointer-events-none;
-		will-change: opacity;
 
 		&.active {
 			@apply opacity-100 pointer-events-auto;
