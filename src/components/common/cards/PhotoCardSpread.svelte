@@ -16,9 +16,9 @@
 
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="photo-card-spread" class:interactive={onclick} {onclick}>
+	<div class="photo-card-spread" class:interactive={onclick} {onclick} style={`--color: ${color};`}>
 		<PhotoCard image={imageLeft} {color} glow={false}	/>
-		<PhotoCard image={imageCenter} {color} glow={true} />
+		<PhotoCard image={imageCenter} {color} glow={false} />
 		<PhotoCard image={imageRight} {color} glow={false} />
 	</div>
 
@@ -31,6 +31,8 @@
 
 	.photo-card-spread {
 		@apply flex items-start justify-center aspect-spread;
+
+		filter: drop-shadow(0 0 2px var(--color-moonlight)) drop-shadow(0 0 8px var(--color));
 
 		& > :global(.photo-card):nth-child(1) {
 			@apply absolute left-1/2 z-0 w-[48%];
