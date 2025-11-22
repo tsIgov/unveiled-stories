@@ -153,8 +153,12 @@
 		@apply snap-x snap-mandatory scroll-auto;
 
 		@apply w-full;
-		@apply h-(--max-carousel-height-portrait);
+
+		/* @apply h-(--max-carousel-height-portrait); */
+		transform: translateZ(0);
+		will-change: transform;
 		@apply min-h-(--max-carousel-height-portrait);
+
 		@apply landscape-cards:h-(--max-carousel-height-landscape);
 
 		scrollbar-width: none;
