@@ -154,6 +154,7 @@
 
 		@apply w-full;
 		@apply h-(--max-carousel-height-portrait);
+		@apply min-h-(--max-carousel-height-portrait);
 		@apply landscape-cards:h-(--max-carousel-height-landscape);
 
 		scrollbar-width: none;
