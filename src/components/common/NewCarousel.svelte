@@ -181,7 +181,7 @@
 		@apply max-w-(--max-item-width-portrait);
 		@apply landscape-cards:max-w-(--max-item-width-landscape);
 
-		@apply transition-all ease-in-out duration-250;
+		@apply transition-all ease-in-out duration-500;
 
 		& > :global(*) {
 			@apply w-full h-full;
