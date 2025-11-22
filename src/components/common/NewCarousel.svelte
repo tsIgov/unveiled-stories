@@ -154,11 +154,7 @@
 
 		@apply w-full;
 
-		/* @apply h-(--max-carousel-height-portrait); */
-		transform: translateZ(0);
-		will-change: transform;
-		@apply min-h-(--max-carousel-height-portrait);
-
+		@apply h-(--max-carousel-height-portrait);
 		@apply landscape-cards:h-(--max-carousel-height-landscape);
 
 		scrollbar-width: none;
@@ -185,7 +181,7 @@
 		@apply max-w-(--max-item-width-portrait);
 		@apply landscape-cards:max-w-(--max-item-width-landscape);
 
-		@apply transition-all ease-in-out duration-500;
+		@apply transition-all ease-in-out duration-250;
 
 		& > :global(*) {
 			@apply w-full h-full;
