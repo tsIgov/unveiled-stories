@@ -49,11 +49,6 @@
 		});
 	}
 
-
-	function changeItem(index: number) {
-		currentItem = index;
-	}
-
 	function intersected(entry : IntersectionObserverEntry) {
 		if (!initialized) return;
 
@@ -61,7 +56,10 @@
 			if (entry.intersectionRatio == 1)
 				resetScroll(entry.boundingClientRect.width);
 			else {
-				currentItem = (currentItem - 1 + data.length) % itemsCount;
+				if (loop)
+					currentItem = (currentItem - 1 + data.length) % itemsCount;
+				else
+					currentItem = Math.max(currentItem - 1, 0);
 			}
 
 			return;
@@ -71,7 +69,10 @@
 			if (entry.intersectionRatio == 1)
 				resetScroll(entry.boundingClientRect.width);
 			else {
-				currentItem = (currentItem + 1) % itemsCount;
+				if (loop)
+					currentItem = (currentItem + 1) % itemsCount;
+				else
+					currentItem = Math.min(currentItem + 1, itemsCount - 1);
 			}
 			return;
 		}
