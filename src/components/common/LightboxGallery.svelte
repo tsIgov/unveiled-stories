@@ -138,10 +138,10 @@
 	}
 
 	button {
-		@apply absolute w-8 h-8 top-1/2 -translate-y-1/2;
+		@apply absolute w-10 h-10 top-1/2 -translate-y-1/2;
 		@apply flex content-center items-center justify-center;
 		@apply bg-neutral-800 border-2 border-moonlight-dim rounded-full;
-		@apply transition-opacity duration-1000 opacity-100;
+		@apply transition-opacity duration-1000 opacity-80;
 		@apply drop-shadow-neutral-900  shadow-md shadow-neutral-900;
 		@apply cursor-pointer;
 
@@ -157,7 +157,10 @@
 			@apply w-4 h-4;
 		}
 
-		&.close { @apply right-4 top-4 translate-y-0; }
+		&.close {
+			@apply right-4 translate-y-0;
+			top: calc(max(1rem, (100% - (100svw - 4rem) * 1.6) / 2 - 1rem));
+		}
 		&.prev { @apply left-4; }
 		&.next { @apply right-4; }
 	}
