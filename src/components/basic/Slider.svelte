@@ -83,7 +83,7 @@
 
 	function resetScroll(width : number = track.getBoundingClientRect().width) {
 		track.scrollTo({
-			left: width + 160,
+			left: width + 80,
 			behavior: "instant"
 		});
 	}
@@ -186,7 +186,7 @@
 	.spacer {
 		@apply h-px shrink-0;
 		@apply snap-always snap-start;
-		width: 160px;
+		width: 80px;
 
 		&.current { @apply w-full ; }
 	}
