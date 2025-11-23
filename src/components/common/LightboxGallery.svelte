@@ -133,7 +133,7 @@
 			@apply grid-cols-1 grid-rows-1;
 
 			& > :global(.photo-card) {
-				@apply transition-opacity duration-1000;
+				@apply transition-opacity duration-500;
 				@apply opacity-100;
 
 				&:global(:not(.active)) {
@@ -148,7 +148,7 @@
 		@apply absolute w-10 h-10 top-1/2 -translate-y-1/2;
 		@apply flex content-center items-center justify-center;
 		@apply bg-neutral-800 border-2 border-moonlight-dim rounded-full;
-		@apply transition-opacity duration-1000 opacity-80;
+		@apply transition-opacity duration-500 opacity-80;
 		@apply drop-shadow-neutral-900  shadow-md shadow-neutral-900;
 		@apply cursor-pointer;
 
