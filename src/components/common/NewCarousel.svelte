@@ -95,9 +95,6 @@
 
 		@apply h-(--max-carousel-height-portrait);
 		@apply landscape-cards:h-(--max-carousel-height-landscape);
-
-		scrollbar-width: none;
-		-ms-overflow-style: none;
 	}
 
 	.item {

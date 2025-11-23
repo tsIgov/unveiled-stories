@@ -83,7 +83,7 @@
 
 	function resetScroll(width : number = track.getBoundingClientRect().width) {
 		track.scrollTo({
-			left: width * 2,
+			left: width + 160,
 			behavior: "instant"
 		});
 	}
@@ -93,7 +93,7 @@
 
 		if (entry.target == prevSpacer && entry.isIntersecting) {
 			if (entry.intersectionRatio == 1)
-				resetScroll(entry.boundingClientRect.width);
+				resetScroll();
 			else {
 				if (loop)
 					currentItem = (currentItem - 1 + itemsCount) % itemsCount;
@@ -106,7 +106,7 @@
 
 		if (entry.target == nextSpacer && entry.isIntersecting) {
 			if (entry.intersectionRatio == 1)
-				resetScroll(entry.boundingClientRect.width);
+				resetScroll();
 			else {
 				if (loop)
 					currentItem = (currentItem + 1) % itemsCount;
@@ -184,8 +184,11 @@
 	}
 
 	.spacer {
-		@apply w-full h-px shrink-0;
+		@apply h-px shrink-0;
 		@apply snap-always snap-start;
+		width: 160px;
+
+		&.current { @apply w-full ; }
 	}
 
 	.item-wrapper {
