@@ -70,11 +70,13 @@
 
 	{#snippet itemSnippet(index : number, distance : number )}
 		{#if opened || index == 0}
-			<PhotoCard
-				color={borderColor ?? "var(--color-gold)"}
-				image={images[index]}
-				class={distance == 0 && opened ? "active" : ""}
-				glow={distance == 0 && opened}  />
+			<div class="photo-sizer">
+				<PhotoCard
+					color={borderColor ?? "var(--color-gold)"}
+					image={images[index]}
+					class={distance == 0 && opened ? "active" : ""}
+					glow={distance == 0 && opened}  />
+			</div>
 		{/if}
 	{/snippet}
 
@@ -125,16 +127,21 @@
 	.lightbox-gallery > :global(.slider) {
 		@apply w-full h-full;
 
-		& :global(.photo-card) {
-			@apply absolute top-1/2 left-1/2 -translate-1/2 w-full;
-			width: calc(100% - 4rem);
-			@apply transition-opacity duration-1000;
-			@apply opacity-100;
+		& .photo-sizer {
+			@apply w-full h-full p-8;
+			@apply grid content-center items-center justify-center justify-items-center;
+			@apply grid-cols-1 grid-rows-1;
 
-			&:global(:not(.active)) {
-				@apply opacity-0;
+			& > :global(.photo-card) {
+				@apply transition-opacity duration-1000;
+				@apply opacity-100;
+
+				&:global(:not(.active)) {
+					@apply opacity-0;
+				}
 			}
 		}
+
 	}
 
 	button {
