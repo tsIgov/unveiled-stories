@@ -1,6 +1,6 @@
 <script lang="ts" generics="T">
-	import { useMediaQuery } from "$lib/utils/media-queries";
-	import { onMount, type Snippet } from "svelte";
+	import { type Snippet } from "svelte";
+	import { Slider } from "components/basic"
 
 	interface Props {
 		data: T[],
@@ -9,124 +9,36 @@
 		itemSnippet: Snippet<[item: T, spotlight: boolean]>
 	}
 
+	let slider : Slider;
+
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
 	let itemsCount = $derived(data.length);
 
 
-	let initialized = $state(false);
-	let currentItem = $state(0);
-
-	let observer : IntersectionObserver;
-	let track: HTMLElement;
-	let prevSpacer : HTMLElement;
-	let nextSpacer : HTMLElement;
-
-
-	onMount(() => {
-		const options = {
-			root: track,
-			threshold: [ 0.501, 1 ]
-		};
-		observer =  new IntersectionObserver((e) => {
-			e.forEach(entry => { intersected(entry); });
-		}, options);
-
-		observer.observe(prevSpacer);
-		observer.observe(nextSpacer);
-
-		resetScroll();
-		initialized = true;
-
-		return () => {
-			observer.disconnect();}
-	});
-
-
-	function resetScroll(width : number = track.getBoundingClientRect().width) {
-		track.scrollTo({
-			left: width * 2,
-			behavior: "instant"
-		});
-	}
-
-	function intersected(entry : IntersectionObserverEntry) {
-		if (!initialized) return;
-
-		if (entry.target == prevSpacer && entry.isIntersecting) {
-			if (entry.intersectionRatio == 1)
-				resetScroll(entry.boundingClientRect.width);
-			else {
-				if (loop)
-					currentItem = (currentItem - 1 + data.length) % itemsCount;
-				else
-					currentItem = Math.max(currentItem - 1, 0);
-			}
-
-			return;
-		}
-
-		if (entry.target == nextSpacer && entry.isIntersecting) {
-			if (entry.intersectionRatio == 1)
-				resetScroll(entry.boundingClientRect.width);
-			else {
-				if (loop)
-					currentItem = (currentItem + 1) % itemsCount;
-				else
-					currentItem = Math.min(currentItem + 1, itemsCount - 1);
-			}
-			return;
-		}
-	}
-
-	function getProximityClasses(index: number) {
-		if (index == currentItem) return "current";
-
-		if (loop) {
-
-			const next = (currentItem + 1) % itemsCount;
-			if (index == next) return "neighbour right";
-
-			const prev = (currentItem - 1 + itemsCount) % itemsCount;
-			if (index == prev) return "neighbour left";
-
-			const leftDistance = (currentItem - index + itemsCount) % itemsCount;
-			const rightDistance = (index - currentItem + itemsCount) % itemsCount;
-
-			if (leftDistance < rightDistance) return "far left";
-			return "far right";
-		}
-		else {
-			if (index == currentItem + 1) return "neighbour right";
-			if (index == currentItem - 1) return "neighbour left";
-			if (index < currentItem) return "far left";
-			return "far right";
-		}
+	function getProximityClasses(distance: number) {
+		if (distance < -1) return "far left";
+		if (distance == -1) return "neighbour left";
+		if (distance == 0) return "current";
+		if (distance == 1) return "neighbour right";
+		return "far right";
 	}
 
 </script>
 
-<div bind:this={track} class="carousel" class:initialized={initialized}>
-
-	<div class="item-wrapper">
-		{#each data as item, index}
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div class={`item ${getProximityClasses(index)}`} onclick={() => currentItem = index}>
-				{@render itemSnippet(item, currentItem == index)}
-			</div>
-		{/each}
+{#snippet sliderSnippet(index : number, distance : number )}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class={`item ${getProximityClasses(distance)}`} onclick={() => { if (Math.abs(distance) < 2) slider.changeItem(index); }}>
+		{@render itemSnippet(data[index], distance == 0)}
 	</div>
+{/snippet}
 
-	<div bind:this={prevSpacer} class="spacer prev"></div>
-	<div class="spacer current"></div>
-	<div bind:this={nextSpacer} class="spacer next"></div>
-
-</div>
+<Slider bind:this={slider} class="carousel" {itemsCount} {loop} itemSnippet={sliderSnippet} />
 
 <style>
 	@reference "style";
 
-	.carousel {
+	:global(.carousel.slider) {
 		--max-item-height: calc(100svh - 2rem - var(--navbar-height));
 		--max-item-width-portrait: calc(min(22rem, var(--max-item-height) * var(--aspect-card)));
 		--max-item-width-landscape: calc(min(34rem, var(--max-item-height) / var(--aspect-card)));
@@ -148,10 +60,6 @@
 			transparent
 		);
 
-		@apply flex;
-		@apply overflow-x-scroll;
-		@apply snap-x snap-mandatory scroll-auto;
-
 		@apply w-full;
 
 		@apply h-(--max-carousel-height-portrait);
@@ -159,20 +67,6 @@
 
 		scrollbar-width: none;
 		-ms-overflow-style: none;
-	}
-
-	.carousel:not(.initialized) {
-		& > .spacer.prev { @apply snap-none; }
-		& > .item-wrapper > .item:first-child { @apply opacity-100 visible; }
-	}
-
-	.spacer {
-		@apply w-full h-px shrink-0;
-		@apply snap-always snap-start;
-	}
-
-	.item-wrapper {
-		@apply sticky left-0 w-full h-full shrink-0 overflow-x-hidden;
 	}
 
 	.item {
@@ -197,9 +91,11 @@
 
 		&:not(.current) {
 			@apply scale-[0.85] grayscale-75;
-
-			@apply cursor-pointer;
 			& > :global(*) { @apply pointer-events-none; }
+		}
+
+		&.neighhbour {
+			@apply cursor-pointer;
 		}
 
 		&.neighbour.left {
