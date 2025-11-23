@@ -15,7 +15,7 @@
 	let slider : Slider;
 
 	export function pause() { slider.pause(); }
-	export function unpause() {slider.unpause; }
+	export function unpause() {slider.unpause(); }
 
 </script>
 

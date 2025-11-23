@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { Picture } from 'vite-imagetools';
+	import { Slider } from 'components/basic';
 	import { PhotoCard } from 'components/common';
 
 	import { page } from '$app/state';
 	import { pushState } from '$app/navigation';
 	import { onMount } from "svelte";
-	import { useSwipe, type SwipeCustomEvent } from 'svelte-gestures';
 	import { ChevronLeftIcon, ChevronRightIcon,XIcon } from '@lucide/svelte';
 
 	interface Props {
@@ -15,9 +15,10 @@
 	}
 
 	let { images, borderColor, onclosed } : Props = $props();
-	let index : number = $state(0);
 	let opened = $derived((page.state as Record<string, unknown>)?.galleryOpened ? true : false );
 	let initial = $state(true);
+	let slider : Slider;
+	let index = $state(0);
 
 	$effect(() => {
 		if (opened) {
@@ -31,7 +32,6 @@
 	});
 
 	export function open() {
-		index = 0;
 		initial = false;
 		pushState('', {
 			galleryOpened: true
@@ -43,11 +43,11 @@
 	}
 
 	function next() {
-		index = Math.min(index + 1, images.length - 1);
+		slider.changeItem(Math.min(index + 1, images.length - 1));
 	}
 
 	function prev() {
-		index = Math.max(index - 1, 0);
+		slider.changeItem(Math.max(index - 1, 0));
 	}
 
 	function handleKeyDown(event: KeyboardEvent) {
@@ -59,16 +59,6 @@
 			next();
 	}
 
-	function swipeHandler(event: SwipeCustomEvent) {
-		if (event.detail.pointerType == "mouse")
-			return;
-
-		if (event.detail.direction == "left")
-			next();
-		else if (event.detail.direction == "right")
-			prev();
-	}
-
 	onMount(() => {
 		return () => {
 			document.body.classList.remove("overflow-hidden");
@@ -78,26 +68,21 @@
 
 </script>
 
+	{#snippet itemSnippet(index : number, distance : number )}
+		{#if opened || index == 0}
+			<PhotoCard
+				color={borderColor ?? "var(--color-gold)"}
+				image={images[index]}
+				class={distance == 0 && opened ? "active" : ""}
+				glow={distance == 0 && opened}  />
+		{/if}
+	{/snippet}
+
 	<div class="lightbox-gallery"
 		class:opened={opened}
-		class:closed={!opened && !initial}
-		{...useSwipe(swipeHandler, () => ({
-			timeframe: 300,
-			minSwipeDistance: 50,
-			touchAction: [ "pan-y", "pinch-zoom" ] as unknown as any
-		}))}
-	>
-		<div class="content">
-			{#each images as image, i}
-				{#if opened || i == 0}
-					<PhotoCard
-						color={borderColor ?? "var(--color-gold)"}
-						image={image}
-						class={i == index && opened ? "active" : ""}
-						glow={true}  />
-				{/if}
-			{/each}
-		</div>
+		class:closed={!opened && !initial}>
+
+		<Slider bind:this={slider} onchanged={(i) => { index = i; }} itemsCount={images.length} loop={false} {itemSnippet}  />
 
 		<button class="close active"
 			onclick={(e) => { e.stopPropagation(); close(); }}>
@@ -123,15 +108,13 @@
 		@apply invisible;
 		@apply fixed top-0 inset-0 z-2000 overflow-hidden;
 		@apply bg-neutral-900/95;
-		@apply p-8;
-
 
 		&.opened {
-			animation: open 1s ease-in-out 1 forwards;
+			animation: open 500ms ease-in-out 1 forwards;
 		}
 
 		&.closed {
-			animation: close 1s ease-in-out 1 forwards;
+			animation: close 500ms ease-in-out 1 forwards;
 
 			& :global(.active) {
 				@apply opacity-100!;
@@ -139,19 +122,17 @@
 		}
 	}
 
-	.content {
+	.lightbox-gallery > :global(.slider) {
 		@apply w-full h-full;
-		@apply grid content-center items-center justify-center justify-items-center;
-		@apply grid-cols-1 grid-rows-1;
 
-		& > :global(.photo-card) {
-			@apply col-start-1 row-start-1;
+		& :global(.photo-card) {
+			@apply absolute top-1/2 left-1/2 -translate-1/2 w-full;
+			width: calc(100% - 4rem);
 			@apply transition-opacity duration-1000;
 			@apply opacity-100;
 
 			&:global(:not(.active)) {
 				@apply opacity-0;
-				animation: remove 1s linear 1;
 			}
 		}
 	}
@@ -166,7 +147,6 @@
 
 		&:not(.active) {
 			@apply opacity-0 cursor-default;
-			animation: remove 1s linear 1;
 		}
 
 		&:hover {

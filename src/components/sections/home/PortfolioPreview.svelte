@@ -21,7 +21,7 @@
 		slideshow.unpause();
 	}
 
-	function onSlideChanged(item : Photoshoot, index : number) {
+	function onSlideChanged(index : number) {
 		currentIndex = index;
 	}
 
