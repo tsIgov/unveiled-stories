@@ -1,6 +1,7 @@
 <script lang="ts" generics="T">
 	import { type Snippet } from "svelte";
 	import { Slider } from "components/basic"
+	import { useMediaQuery } from "$lib/utils/media-queries";
 
 	interface Props {
 		data: T[],
@@ -9,11 +10,28 @@
 		itemSnippet: Snippet<[item: T, spotlight: boolean]>
 	}
 
-	let slider : Slider;
+	let slider : Slider | undefined = $state(undefined);
 
 	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
 	let itemsCount = $derived(data.length);
 
+	let mediaQuery = getExpandMediaQuery();
+	let expanded = useMediaQuery(mediaQuery);
+
+	function getExpandMediaQuery() {
+		if (!expandIfFit) return undefined;
+
+		// Padding + item gaps + max item size
+		const remToFitLandscape = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 34;
+		const remToFitPortrait = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 22;
+
+		const landscapeMediaQuery = `(height < 40rem) and (orientation: landscape) and (width >= ${remToFitLandscape * 18}px)`;
+		const portraitMediaQuery = `((height >= 40rem) or (orientation: portrait)) and (width >= ${remToFitPortrait * 18}px)`;
+
+		const mediaQuery = `(${landscapeMediaQuery}) or (${portraitMediaQuery})`;
+
+		return mediaQuery;
+	}
 
 	function getProximityClasses(distance: number) {
 		if (distance < -1) return "far left";
@@ -28,15 +46,28 @@
 {#snippet sliderSnippet(index : number, distance : number )}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class={`item ${getProximityClasses(distance)}`} onclick={() => { if (Math.abs(distance) < 2) slider.changeItem(index); }}>
+	<div class={`item ${getProximityClasses(distance)}`} onclick={() => { if (Math.abs(distance) < 2) slider?.changeItem(index); }}>
 		{@render itemSnippet(data[index], distance == 0)}
 	</div>
 {/snippet}
 
-<Slider bind:this={slider} class="carousel" {itemsCount} {loop} itemSnippet={sliderSnippet} />
+{#if $expanded}
+	<div class="carousel expanded">
+		{#each data as item, index}
+			{@render itemSnippet(item, true)}
+		{/each}
+	</div>
+{:else}
+	<Slider bind:this={slider} class="carousel" {itemsCount} {loop} itemSnippet={sliderSnippet} />
+{/if}
 
 <style>
 	@reference "style";
+
+	.carousel.expanded {
+		@apply flex gap-6;
+		@apply justify-center-safe items-center-safe content-center-safe;
+	}
 
 	:global(.carousel.slider) {
 		--max-item-height: calc(100svh - 2rem - var(--navbar-height));

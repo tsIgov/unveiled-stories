@@ -32,6 +32,7 @@
 
 	.card {
 		@apply aspect-card landscape-cards:aspect-card-landscape;
+		@apply max-w-88 landscape-cards:max-w-136;
 	}
 
 </style>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { useMediaQuery } from "$lib/utils/media-queries";
 	import { onMount, type Snippet } from "svelte";
 	import type { ClassValue } from 'svelte/elements';
 
