@@ -61,8 +61,10 @@
 
 	onMount(() => {
 		return () => {
-			document.body.classList.remove("overflow-hidden");
-			window.removeEventListener("keydown", handleKeyDown);
+			if (!initial) {
+				document.body.classList.remove("overflow-hidden");
+				window.removeEventListener("keydown", handleKeyDown);
+			}
 		};
 	});
 

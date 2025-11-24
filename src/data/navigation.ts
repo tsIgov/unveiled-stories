@@ -37,6 +37,13 @@ export const navLinks : NavLink[] = [
 	},
 	{
 		text: {
+			en: "Testimonials",
+			bg: "Отзиви"
+		},
+		sectionId: "testimonials"
+	},
+	{
+		text: {
 			en: "Book Your Experience",
 			bg: "Запази своето преживяване"
 		},
