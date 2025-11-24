@@ -1,177 +1,42 @@
 <script lang="ts" generics="T">
-	import { useMediaQuery } from "$lib/utils/media-queries";
-	import { onMount, type Snippet } from "svelte";
+	import { type Snippet } from "svelte";
+	import { Slider } from "components/basic"
 
 	interface Props {
 		data: T[],
 		loop?: boolean,
-		expandIfFit?: boolean,
 		itemSnippet: Snippet<[item: T, spotlight: boolean]>
 	}
 
-	let { itemSnippet, data, loop = false, expandIfFit = false} : Props =$props();
+	let slider : Slider | undefined = $state(undefined);
 
-	let scroller : HTMLElement;
-	let items: HTMLElement[] = $state([]);
-	let spotlightIndex = $state(0);
+	let { itemSnippet, data, loop = false} : Props =$props();
+	let itemsCount = $derived(data.length);
 
-	let mediaQuery = getExpandMediaQuery();
-	let expanded = useMediaQuery(mediaQuery);
-
-	function getExpandMediaQuery() {
-		if (!expandIfFit) return undefined;
-
-		// Padding + item gaps + max item size
-		const remToFitLandscape = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 34;
-		const remToFitPortrait = 1.5 * 2 + (data.length - 1) * 1.5 + data.length * 22;
-
-		const landscapeMediaQuery = `(height < 40rem) and (orientation: landscape) and (width >= ${remToFitLandscape * 18}px)`;
-		const portraitMediaQuery = `((height >= 40rem) or (orientation: portrait)) and (width >= ${remToFitPortrait * 18}px)`;
-
-		const mediaQuery = `(${landscapeMediaQuery}) or (${portraitMediaQuery})`;
-
-		return mediaQuery;
+	function getProximityClasses(distance: number) {
+		if (distance < -1) return "far left";
+		if (distance == -1) return "neighbour left";
+		if (distance == 0) return "current";
+		if (distance == 1) return "neighbour right";
+		return "far right";
 	}
 
-	function onclick(index : number) {
-
-		if (index == spotlightIndex) return;
-
-		const item = items[index];
-		const rect = scroller.getBoundingClientRect();
-		const scrollerCenter = rect.width / 2;
-
-		const itemRect = item.getBoundingClientRect();
-		const itemCenter = itemRect.left + itemRect.width / 2;
-
-		const delta = itemCenter - (rect.left + scrollerCenter);
-
-		scroller.scrollBy({
-			left: delta,
-			behavior: "smooth"
-		});
-	}
-
-	onMount(() => updateSpotlight());
-
-	$effect(() => {
-		if ($expanded)
-			for (let i = 0; i < items.length; i++)
-				items[i].style = "";
-		else
-			scroller.scrollBy({left: 0});
-	});
-
-	function updateSpotlight() {
-		if ($expanded) return;
-
-		const rect = scroller.getBoundingClientRect();
-		const center = rect.left + rect.width / 2;
-		let itemWidth;
-
-		for (let i = 0; i < items.length; i++) {
-			const item = items[i];
-
-			const box = item.getBoundingClientRect();
-			itemWidth = box.width;
-			const itemCenter = box.left + box.width / 2;
-
-			const distance = Math.abs(center - itemCenter);
-			const maxDist = box.width;
-
-			// Normalize distance 0→1
-			const t = Math.min(distance / maxDist, 1);
-
-			const scale = 1 - t * 0.15;
-			const greyscale = t * 0.75;
-
-			item.style.transform = `scale(${scale.toFixed(2)})`;
-			item.style.filter = `grayscale(${greyscale.toFixed(2)})`;
-
-			if (distance < 1)
-				spotlightIndex = i;
-		}
-
-		scroller.style = `--item-width: ${itemWidth}px;`;
-
-		if (loop)
-			if (spotlightIndex < data.length || spotlightIndex >= data.length * 2) {
-				const targetIndex = spotlightIndex % data.length + data.length;
-				const newTarget = items[targetIndex];
-				const box = newTarget.getBoundingClientRect();
-				const itemCenter = box.left + box.width / 2;
-				const delta = itemCenter - (rect.left + center);
-				const newOffset = scroller.scrollLeft + delta;
-
-				newTarget.style.transform = `scale(1)`;
-				newTarget.style.filter = `grayscale(0)`;
-
-				scroller.scrollTo({
-					left: newOffset,
-					behavior: "instant"
-				});
-			}
-	}
 </script>
 
-<svelte:window onresize={updateSpotlight} />
+{#snippet sliderSnippet(index : number, distance : number )}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class={`item ${getProximityClasses(distance)}`} onclick={() => { if (Math.abs(distance) < 2) slider?.changeItem(index); }}>
+		{@render itemSnippet(data[index], distance == 0)}
+	</div>
+{/snippet}
 
-
-<div class="carousel" class:expanded={$expanded}
-	bind:this={scroller}
-	onscroll={updateSpotlight}>
-
-	<div class="spacer"></div>
-
-	{#each data as item, index}
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div class="item"
-			class:spotlight={spotlightIndex == index || $expanded}
-			bind:this={items[index]}
-			onclick={() => onclick(index)}>
-
-				{@render itemSnippet(item, spotlightIndex == index || $expanded)}
-
-		</div>
-	{/each}
-
-	{#if loop}
-		{#each data as item, index}
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div class="item"
-				class:spotlight={spotlightIndex == index + data.length || $expanded}
-				bind:this={items[index + data.length]}
-				onclick={() => onclick(index + data.length)}>
-
-				{@render itemSnippet(item, spotlightIndex == index + data.length || $expanded)}
-
-			</div>
-		{/each}
-
-		{#each data as item, index}
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div class="item"
-				class:spotlight={spotlightIndex == index + 2 * data.length || $expanded}
-				bind:this={items[index + 2 * data.length]}
-				onclick={() => onclick(index + 2 * data.length)}>
-
-				{@render itemSnippet(item, spotlightIndex == index + 2 * data.length || $expanded)}
-
-			</div>
-		{/each}
-	{/if}
-
-
-	<div class="spacer"></div>
-
-</div>
+<Slider bind:this={slider} class="carousel" {itemsCount} {loop} itemSnippet={sliderSnippet} />
 
 <style>
 	@reference "style";
-	.carousel {
+
+	:global(.carousel.slider) {
 		--max-item-height: calc(100svh - 2rem - var(--navbar-height));
 		--max-item-width-portrait: calc(min(22rem, var(--max-item-height) * var(--aspect-card)));
 		--max-item-width-landscape: calc(min(34rem, var(--max-item-height) / var(--aspect-card)));
@@ -180,15 +45,8 @@
 		--max-carousel-height-portrait: calc(min(80svw, var(--max-item-width-portrait)) / var(--aspect-card) + 4rem);
 		--max-carousel-height-landscape: calc(min(80svw, var(--max-item-width-landscape)) * var(--aspect-card) + 4rem);
 
-		@apply w-full flex py-4;
-
-		will-change: scroll-position;
-
-		overflow-x: scroll;
-		scrollbar-width: none;
-		scroll-behavior: smooth;
-		scroll-snap-type: x mandatory;
-		-ms-overflow-style: none;
+		--item-width:var(--max-item-width-portrait);
+		@apply landscape-cards:[--item-width:var(--max-item-width-landscape)];
 
 		mask-image: linear-gradient(
 			to right,
@@ -200,41 +58,55 @@
 			transparent
 		);
 
-		&::-webkit-scrollbar { display: none;}
-	}
+		@apply w-full;
 
-	.expanded {
-		@apply gap-6;
-		@apply justify-center-safe items-center-safe content-center-safe;
-
-		& > .spacer {
-			@apply hidden;
-		}
-	}
-	.expanded > .spacer { display: none;}
-	.spacer {
-		@apply w-1/2 shrink-0;
+		@apply h-(--max-carousel-height-portrait);
+		@apply landscape-cards:h-(--max-carousel-height-landscape);
 	}
 
 	.item {
-		@apply w-[80%] shrink-0 grow-0;
+		@apply absolute;
+		@apply w-[80%];
 		@apply max-w-(--max-item-width-portrait);
 		@apply landscape-cards:max-w-(--max-item-width-landscape);
 
-		scroll-snap-align: center;
-		scroll-snap-stop: always;
+		@apply transition-all ease-in-out duration-500;
 
-		will-change: scroll-position;
+		& > :global(*) {
+			@apply w-full h-full;
+		}
 
-		@apply flex items-center justify-center;
+		@apply top-1/2 left-1/2 -translate-y-1/2;
 
+		&.current {
+			@apply -translate-x-1/2;
+			@apply opacity-100 scale-100 grayscale-0;
+			--mask-color: black;
+		}
 
-		&:not(.spotlight) {
+		&:not(.current) {
+			@apply scale-[0.85] grayscale-75;
+			& > :global(*) { @apply pointer-events-none; }
+		}
+
+		&.neighhbour {
 			@apply cursor-pointer;
-			& > :global(*) {
-				@apply pointer-events-none;
-				@apply select-none;
-			}
+		}
+
+		&.neighbour.left {
+			@apply -translate-x-3/2;
+		}
+
+		&.neighbour.right {
+			@apply translate-x-1/2;
+		}
+
+		&.far.left {
+			@apply -translate-x-5/2 opacity-0;
+		}
+
+		&.far.right {
+			@apply translate-x-3/2 opacity-0;
 		}
 	}
 
