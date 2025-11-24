@@ -4,6 +4,9 @@
 	import { fade } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 
+	import { page } from '$app/state';
+	import { pushState } from '$app/navigation';
+
 	import { MenuIcon, XIcon } from '@lucide/svelte';
 
 	import { getTranslator } from '$lib/i18n/translator';
@@ -27,7 +30,7 @@
 
 	let { currentLang, currentRoute, opacity, reserveSpace } : Props = $props();
 
-	let opened = $state(false);
+	let opened = $derived((page.state as Record<string, unknown>)?.menuOpened ? true : false );
 
 	$effect(() => {
 		if (opened) {
@@ -46,13 +49,34 @@
 		};
 	});
 
+	function open() {
+		if (opened) return;
+
+		pushState('', {
+			menuOpened: true
+		 });
+	}
+
+	function close() {
+		if (!opened) return;
+
+		history.back();
+	}
+
+	function toggle() {
+		if (opened)
+			close();
+		else
+			open();
+	}
+
 	function handleKeyDown(event: KeyboardEvent) {
 		if (event.key == "Escape")
-			opened = false;
+			close();
 	}
 
 	function navigate(e : MouseEvent, link : NavLink) {
-		opened = false;
+		close();
 
 		if (currentRoute != "/[[lang=lang]]")
 			return;
@@ -85,7 +109,7 @@
 
 	<div class="content">
 		<div class="menu">
-			<button onclick={() => {opened = !opened}}>
+			<button onclick={toggle}>
 				{#if opened}
 					<span transition:fade={transitionOptions}><XIcon/></span>
 				{:else}
@@ -187,8 +211,7 @@
 
 	.links {
 		@apply fixed top-(--navbar-height) left-0;
-		@apply w-full h-screen pb-4;
-		padding-top: calc(var(--navbar-height) + 1rem);
+		@apply w-full h-screen py-4;
 
 		& > :global(.ruler) { @apply absolute -top-px; }
 
