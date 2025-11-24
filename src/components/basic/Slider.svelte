@@ -95,6 +95,7 @@
 			if (entry.intersectionRatio == 1)
 				resetScroll();
 			else {
+				resetTimer();
 				if (loop)
 					currentItem = (currentItem - 1 + itemsCount) % itemsCount;
 				else
@@ -108,6 +109,7 @@
 			if (entry.intersectionRatio == 1)
 				resetScroll();
 			else {
+				resetTimer();
 				if (loop)
 					currentItem = (currentItem + 1) % itemsCount;
 				else
