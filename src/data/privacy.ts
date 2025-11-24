@@ -57,8 +57,6 @@ We would like to make sure you are fully aware of all of your data protection ri
 If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
 `,
 	bg: `
-	What if I don't know how to pose?
-3,868 / 5,000
 Вашата поверителност е важна за нас. Нашата политика е да уважаваме поверителността ви по отношение на всяка информация, която можем да съберем от вас на нашия уебсайт.
 
 Изискваме лична информация само когато наистина ни е необходима, за да ви предоставим услуга. Събираме я по честен и законен начин, с ваше знание и съгласие. Също така ви уведомяваме защо я събираме и как ще бъде използвана.
