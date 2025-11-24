@@ -4,9 +4,6 @@
 	import { fade } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 
-	import { page } from '$app/state';
-	import { pushState } from '$app/navigation';
-
 	import { MenuIcon, XIcon } from '@lucide/svelte';
 
 	import { getTranslator } from '$lib/i18n/translator';
@@ -30,7 +27,7 @@
 
 	let { currentLang, currentRoute, opacity, reserveSpace } : Props = $props();
 
-	let opened = $derived((page.state as Record<string, unknown>)?.menuOpened ? true : false );
+	let opened = $state(false);
 
 	$effect(() => {
 		if (opened) {
@@ -50,24 +47,15 @@
 	});
 
 	function open() {
-		if (opened) return;
-
-		pushState('', {
-			menuOpened: true
-		 });
+		opened = true;
 	}
 
 	function close() {
-		if (!opened) return;
-
-		history.back();
+		opened = false;
 	}
 
 	function toggle() {
-		if (opened)
-			close();
-		else
-			open();
+		opened = !opened;
 	}
 
 	function handleKeyDown(event: KeyboardEvent) {
@@ -76,10 +64,10 @@
 	}
 
 	function navigate(e : MouseEvent, link : NavLink) {
-		close();
-
-		if (currentRoute != "/[[lang=lang]]")
+		if (currentRoute != "/[[lang=lang]]") {
+			close();
 			return;
+		}
 
 		e.preventDefault();
 
@@ -91,6 +79,8 @@
 				behavior: "smooth"
 			});
 		});
+
+
 	}
 </script>
 
