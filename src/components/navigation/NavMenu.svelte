@@ -54,12 +54,14 @@
 			return;
 
 		e.preventDefault();
+
 		document.body.classList.remove("overflow-hidden");
-		document.body.offsetHeight;
-		document.getElementById(link.sectionId)?.scrollIntoView({
-			block: "start",
-			inline: "nearest",
-			behavior: "smooth"
+		requestAnimationFrame(() => {
+			document.getElementById(link.sectionId)?.scrollIntoView({
+				block: "start",
+				inline: "nearest",
+				behavior: "smooth"
+			});
 		});
 	}
 </script>
