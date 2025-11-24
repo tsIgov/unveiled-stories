@@ -27,7 +27,7 @@
 
 </script>
 
-<section class="portfolio-preview">
+<section id="portfolio" class="portfolio-preview">
 	<Slideshow bind:this={slideshow}
 		slideSnippet={photoshoot}
 		data={photoshoots}

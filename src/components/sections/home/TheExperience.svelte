@@ -17,7 +17,7 @@
 	/>
 {/snippet}
 
-<section class="the-experience">
+<section id="experience" class="the-experience">
 	<Heading title={t(header)} summary={t(summary)}/>
 	<Carousel itemSnippet={chapter} data={chapters} />
 </section>

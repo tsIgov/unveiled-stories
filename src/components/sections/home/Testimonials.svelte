@@ -20,7 +20,7 @@
 	</Card>
 {/snippet}
 
-<section class="testimonials">
+<section id="testimonials" class="testimonials">
 	<Background portrait={background.portrait} landscape={background.landscape} dim={true} />
 	<Heading title={t(title)} />
 	<Carousel itemSnippet={quote} data={quotes} loop={true} />

@@ -34,7 +34,7 @@
 	/>
 {/snippet}
 
-<section class="team">
+<section id="team" class="team">
 	<Heading title={t(header)} />
 
 	{#if $expanded}

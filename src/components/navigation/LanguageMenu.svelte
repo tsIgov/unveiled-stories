@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { resolveRoute } from "$app/paths";
+	import { resolve } from "$app/paths";
 	import { languages, type Language } from "$lib/i18n/languages";
 
 	interface Props {
@@ -15,7 +15,7 @@
 		<a
 			data-sveltekit-noscroll
 			class:active={currentLang == language}
-			href="{resolveRoute(currentRoute, { lang: language })}">
+			href={resolve(currentRoute, { lang: language })}>
 			{language}
 		</a>
 	{/each}

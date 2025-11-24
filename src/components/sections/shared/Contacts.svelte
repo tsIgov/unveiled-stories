@@ -38,7 +38,7 @@
   };
 </script>
 
-<section class="contacts">
+<section id="booking" class="contacts">
 	<Heading
 		title={t(header)}
 		summary={t(summary)}

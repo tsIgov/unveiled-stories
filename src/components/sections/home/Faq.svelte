@@ -30,7 +30,7 @@
 	/>
 {/snippet}
 
-<section class="faq">
+<section id="faq" class="faq">
 	<Background portrait={background.portrait} landscape={background.landscape} dim={true} />
 	<Heading title={t(title)} />
 	<Carousel itemSnippet={step} data={chunkedQuestions} />
