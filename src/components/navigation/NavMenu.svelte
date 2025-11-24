@@ -1,10 +1,12 @@
 <script lang="ts">
 
 	import { onMount } from "svelte";
-	import { getTranslator } from '$lib/i18n/translator';
+	import { fade } from 'svelte/transition';
+	import { cubicInOut } from 'svelte/easing';
 
 	import { MenuIcon, XIcon } from '@lucide/svelte';
 
+	import { getTranslator } from '$lib/i18n/translator';
 	import { type Language, defaultLanguage } from '$lib/i18n/languages';
 
 	import { Ruler } from 'components/basic';
@@ -13,6 +15,8 @@
 	import { type NavLink, navLinks } from "data/navigation"
 
 	let t = $derived(getTranslator());
+
+	const transitionOptions = { duration: 500, easing: cubicInOut };
 
 	interface Props {
 		currentLang : Language,
@@ -68,8 +72,12 @@
 
 
 <nav class="nav-menu"
-	class:reserved-space={reserveSpace}
-	class:opened={opened}>
+	class:reserved-space={reserveSpace}>
+
+	{#if opened}
+		<div class="dimmer" transition:fade={transitionOptions}></div>
+	{/if}
+
 	<div class="background" style="opacity: {opacity};">
 		<Ruler />
 		<div class="glow"></div>
@@ -78,28 +86,31 @@
 	<div class="content">
 		<div class="menu">
 			<button onclick={() => {opened = !opened}}>
-				<MenuIcon class="hamburger-icon" />
-				<XIcon class="x-icon" />
+				{#if opened}
+					<span transition:fade={transitionOptions}><XIcon/></span>
+				{:else}
+					<span transition:fade={transitionOptions}><MenuIcon/></span>
+				{/if}
 			</button>
-			{#if opened}
-				<div class="links">
-					<div class="content">
-						{#each navLinks as link }
-							<a
-								href={`/${currentLang == defaultLanguage ? "" : currentLang}#${link.sectionId}`}
-								onclick={(e) => navigate(e, link)}
-							>
-								{t(link.text)}
-							</a>
-						{/each}
-					</div>
-				</div>
-			{/if}
 		</div>
 
 		<a class="logo" href={`/${currentLang == defaultLanguage ? "" : currentLang}`}><img src="/logo.svg" alt="logo" /></a>
 		<LanguageMenu {currentRoute} {currentLang} />
 	</div>
+
+	{#if opened}
+		<div class="links" transition:fade={transitionOptions}>
+			<Ruler />
+			<div class="content">
+				{#each navLinks as link }
+					<a href={`/${currentLang == defaultLanguage ? "" : currentLang}#${link.sectionId}`}
+						onclick={(e) => navigate(e, link)}>
+						{t(link.text)}
+					</a>
+				{/each}
+			</div>
+		</div>
+	{/if}
 </nav>
 
 
@@ -142,10 +153,16 @@
 				@apply flex items-center content-center gap-2;
 
 				& > button {
-					@apply h-5 w-auto text-moonlight;
+					@apply w-5 h-5;
 
-					& > :global(.x-icon) {
-						@apply absolute top-0 opacity-0;
+					& > span {
+						@apply block absolute top-0 w-full h-full;
+						@apply text-moonlight hover:text-neutral-100;
+						@apply transition-colors ease-in-out duration-200;
+					}
+
+					& :global(.lucide-icon) {
+						@apply absolute ;
 					}
 				}
 			}
@@ -164,32 +181,28 @@
 		}
 	}
 
-	nav.opened {
-		& > .background {
-			opacity: 1 !important;
-		}
+	.dimmer {
+		@apply fixed top-0 w-full h-screen bg-neutral-800/90;
+	}
 
-		& :global(.x-icon) { @apply opacity-100!; }
-		& :global(.hamburger-icon) { @apply opacity-0; }
+	.links {
+		@apply fixed top-(--navbar-height) left-0;
+		@apply w-full h-screen pb-4;
+		padding-top: calc(var(--navbar-height) + 1rem);
 
-		& .links {
-			@apply fixed top-(--navbar-height) left-0;
-			@apply w-full flex py-4;
-			height: calc(100vh - var(--navbar-height));
+		& > :global(.ruler) { @apply absolute -top-px; }
 
-			@apply bg-neutral-800/90;
+		& > .content {
+			@apply h-full w-full;
+			@apply flex flex-col gap-4;
 
-			& > .content {
-				@apply h-full w-full;
-				@apply flex flex-col gap-4;
-
-				& > a {
-					@apply p-4 pr-8;
-					@apply flex items-center justify-center text-center;
-					@apply cursor-pointer;
-					@apply hover:text-neutral-100 text-moonlight;
-					@apply text-xl;
-				}
+			& > a {
+				@apply p-4 pr-8;
+				@apply flex items-center justify-center text-center;
+				@apply cursor-pointer;
+				@apply hover:text-neutral-100 text-moonlight;
+				@apply transition-colors ease-in-out duration-200;
+				@apply text-xl;
 			}
 		}
 	}
