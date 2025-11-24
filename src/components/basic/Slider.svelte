@@ -42,7 +42,7 @@
 	onMount(() => {
 		const options = {
 			root: track,
-			threshold: [ 0.501, 1 ]
+			threshold: [ 0.100, 1 ]
 		};
 		observer =  new IntersectionObserver((e) => {
 			e.forEach(entry => { intersected(entry); });
@@ -83,7 +83,7 @@
 
 	function resetScroll(width : number = track.getBoundingClientRect().width) {
 		track.scrollTo({
-			left: width + 80,
+			left: width * 2,
 			behavior: "instant"
 		});
 	}
@@ -184,11 +184,8 @@
 	}
 
 	.spacer {
-		@apply h-px shrink-0;
+		@apply w-full h-px shrink-0;
 		@apply snap-always snap-start;
-		width: 80px;
-
-		&.current { @apply w-full ; }
 	}
 
 	.item-wrapper {
