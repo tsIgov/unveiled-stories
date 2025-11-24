@@ -64,10 +64,10 @@
 	}
 
 	function navigate(e : MouseEvent, link : NavLink) {
-		if (currentRoute != "/[[lang=lang]]") {
-			close();
+		close();
+
+		if (currentRoute != "/[[lang=lang]]")
 			return;
-		}
 
 		e.preventDefault();
 
