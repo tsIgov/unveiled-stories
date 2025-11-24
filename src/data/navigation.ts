@@ -23,17 +23,17 @@ export const navLinks : NavLink[] = [
 	},
 	{
 		text: {
-			en: "Team",
-			bg: "Екип"
-		},
-		sectionId: "team"
-	},
-	{
-		text: {
 			en: "FAQ",
 			bg: "Често задавани въпроси"
 		},
 		sectionId: "faq"
+	},
+	{
+		text: {
+			en: "Team",
+			bg: "Екип"
+		},
+		sectionId: "team"
 	},
 	{
 		text: {

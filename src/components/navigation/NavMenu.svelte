@@ -54,6 +54,7 @@
 			return;
 
 		e.preventDefault();
+		document.body.classList.remove("overflow-hidden");
 		document.getElementById(link.sectionId)?.scrollIntoView({
 			block: "start",
 			inline: "nearest",
