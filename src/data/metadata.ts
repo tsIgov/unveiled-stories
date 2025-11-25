@@ -8,7 +8,7 @@ export interface Metadata
 	image: string
 }
 
-const defaultOgImage = "http://unveiledstories.org/og-image.jpg";
+const defaultOgImage = "http://unveiledstories.art/og-image.jpg";
 
 export const ogLocale : MultilingualText = { en: "en_US", bg: "bg_BG" }
 
