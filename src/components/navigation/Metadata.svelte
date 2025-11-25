@@ -23,7 +23,7 @@
 	<meta name="keywords" content={t(data.keywords)}>
 
     <meta property="og:image" content={data.image}>
-	<meta property="og:image:width" content="1190">
+	<meta property="og:image:width" content="1200">
   	<meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
 </svelte:head>
